@@ -14,3 +14,7 @@
 &nbsp;<img src="screenshots/screenshot_2.png" alt="Captured tracks list" height="500px"/>
 <img src="screenshots/screenshot_3.png" alt="Settings screen" height="500px"/>
 &nbsp;<img src="screenshots/screenshot_4.png" alt="Sound notifications" height="500px"/>
+
+-------------------
+###BEFORE CONTRIBUTING TO THE WAIL APP!
+Please read small wiki about commits style guides, git work flow and sources styleguides -> [WIKI](https://github.com/artem-zinnatullin/android-wail-app/wiki)  
