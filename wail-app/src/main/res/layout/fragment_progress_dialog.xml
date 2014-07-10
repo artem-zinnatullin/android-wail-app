@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="18dp"
+    android:paddingBottom="18dp">
+
+    <ProgressBar
+        android:layout_height="45dp"
+        android:layout_width="45dp"
+        android:layout_marginLeft="25dp"/>
+
+    <com.artemzin.android.wail.ui.TypefaceTextView
+        android:id="@+id/progress_dialog_message"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="30dp"
+        android:paddingRight="55dp"
+        android:textSize="14sp"/>
+
+</LinearLayout>

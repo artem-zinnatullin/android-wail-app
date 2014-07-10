@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="navigationDrawer" format="reference" />
+    <attr name="navigationDrawerCategoryTextView" format="reference" />
+
+    <declare-styleable name="TypefaceTextView">
+        <attr name="typefaceFromAssets" format="string" />
+    </declare-styleable>
+</resources>

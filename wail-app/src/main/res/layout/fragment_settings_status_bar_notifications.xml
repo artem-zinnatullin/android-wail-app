@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/settings_padding_right_and_left"
+        android:paddingRight="@dimen/settings_padding_right_and_left"
+        android:stretchColumns="0">
+
+        <LinearLayout style="@style/SettingsCategoryTitle">
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                style="@style/SettingsCategoryTitleTitle"
+                android:text="@string/settings_status_bar_notifications_main_title" />
+
+            <View style="@style/SettingsCategoryTitleDivider" />
+
+        </LinearLayout>
+
+        <TableRow
+            android:id="@+id/settings_status_bar_notifications_track_marked_as_scrobbled"
+            style="@style/SettingsItem.WithSwitch"
+            android:layout_marginTop="15dp">
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                style="@style/SettingsItemTitle.WithSwitch"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/settings_notifications_track_scrobbled" />
+
+            <Switch
+                android:id="@+id/settings_status_bar_notifications_track_marked_as_scrobbled_switch"
+                style="@style/SettingsItemSwitch" />
+
+        </TableRow>
+
+        <View style="@style/SettingsCategoryTitleDivider" />
+
+        <TableRow
+            android:id="@+id/settings_status_bar_notifications_track_skipped"
+            style="@style/SettingsItem.WithSwitch">
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                style="@style/SettingsItemTitle.WithSwitch"
+                android:text="@string/settings_track_was_skipped" />
+
+            <Switch
+                android:id="@+id/settings_status_bar_notifications_track_skipped_switch"
+                style="@style/SettingsItemSwitch" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</ScrollView>

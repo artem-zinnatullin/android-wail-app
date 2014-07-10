@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.artemzin.android.wail"
+    android:versionCode="21"
+    android:versionName="0.6.3 beta">
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:name=".WAILApp"
+        android:allowBackup="true"
+        android:icon="@drawable/wail_launcher_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme.Dark">
+
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.activity.NonAuthorizedActivity"
+            android:label="@string/not_authorized_activity_label" />
+
+        <activity
+            android:name=".ui.activity.LastfmLoginActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:label="@string/lastfm_login_activity_label" />
+
+        <activity
+            android:name=".ui.activity.settings.SettingsSoundNotificationsActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/settings_sound_notifications_activity_label" />
+
+        <service
+            android:name=".service.WAILService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name="com.google.analytics.tracking.android.CampaignTrackingService"
+            android:enabled="true" />
+
+        <receiver
+            android:name="com.google.analytics.tracking.android.CampaignTrackingReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.DeviceBootCompletedReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.ConnectivityChangedReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- music apps receivers -->
+
+        <receiver
+            android:name=".receiver.music.WAILReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.artemzin.android.wail.api.metachanged" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.AndroidMusicReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.android.music.metachanged" />
+                <action android:name="com.android.music.playstatechanged" />
+                <action android:name="com.android.music.playbackcomplete" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.SonyEricssonMusicAppReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.sonyericsson.music.playbackcontrol.ACTION_TRACK_STARTED" />
+                <action android:name="com.sonyericsson.music.playbackcontrol.ACTION_PAUSED" />
+                <action android:name="com.sonyericsson.music.TRACK_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.HtcMusicAppReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.htc.music.metachanged" />
+                <action android:name="com.htc.music.playbackcomplete" />
+                <action android:name="com.htc.music.playstatechanged" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.RocketMusicPlayerReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.jrtstudio.music.metachanged" />
+                <action android:name="com.jrtstudio.music.playstatechanged" />
+                <action android:name="com.jrtstudio.music.playbackcomplete" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.MIUIPlayerReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.miui.player.metachanged" />
+                <action android:name="com.miui.player.playstatechanged" />
+                <action android:name="com.miui.player.playbackcomplete" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.RdioPlayerReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.rdio.android.playstatechanged" />
+                <action android:name="com.rdio.android.metachanged" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Samsung receivers, fuck this!!1 -->
+        <receiver
+            android:name=".receiver.music.samsung.SamsungSecAndroidMusicPlayerReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.samsung.sec.android.MusicPlayer.metachanged" />
+                <action android:name="com.samsung.sec.android.MusicPlayer.playbackcomplete" />
+                <action android:name="com.samsung.sec.android.MusicPlayer.playstatechanged" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.samsung.SamsungMusicReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.samsung.music.metachanged" />
+                <action android:name="com.samsung.music.playbackcomplete" />
+                <action android:name="com.samsung.music.playstatechanged" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.samsung.SamsungSecReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.samsung.sec.metachanged" />
+                <action android:name="com.samsung.sec.playbackcomplete" />
+                <action android:name="com.samsung.sec.playstatechanged" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.samsung.SamsungSecAndroidReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.samsung.sec.android.metachanged" />
+                <action android:name="com.samsung.sec.android.playbackcomplete" />
+                <action android:name="com.samsung.sec.android.playstatechanged" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.samsung.SamsungMusicPlayerReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.samsung.MusicPlayer.metachanged" />
+                <action android:name="com.samsung.MusicPlayer.playbackcomplete" />
+                <action android:name="com.samsung.MusicPlayer.playstatechanged" />
+            </intent-filter>
+        </receiver>
+
+        <!-- end of Samsung receivers -->
+
+        <receiver
+            android:name=".receiver.music.WinampReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.nullsoft.winamp.metachanged" />
+                <action android:name="com.nullsoft.winamp.playbackcomplete" />
+                <action android:name="com.nullsoft.winamp.playstatechanged" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.AmazonMP3Receiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.amazon.mp3.metachanged" />
+                <action android:name="com.amazon.mp3.playbackcomplete" />
+                <action android:name="com.amazon.mp3.playstatechanged" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.RhapsodyReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.rhapsody.metachanged" />
+                <action android:name="com.rhapsody.playbackcomplete" />
+                <action android:name="com.rhapsody.playstatechanged" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.AppoloReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.andrew.appolo.metachanged" />
+                <action android:name="com.andrew.appolo.playbackcomplete" />
+                <action android:name="com.andrew.appolo.playstatechanged" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.JetAudioReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.jetappfactory.jetaudio.metachanged" />
+                <action android:name="com.jetappfactory.jetaudio.playbackcomplete" />
+                <action android:name="com.jetappfactory.jetaudio.playstatechanged" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.PlayerProTrialReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.tbig.playerprotrial.metachanged" />
+                <action android:name="com.tbig.playerprotrial.playbackcomplete" />
+                <action android:name="com.tbig.playerprotrial.playstatechanged" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.PlayerProReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.tbig.playerpro.metachanged" />
+                <action android:name="com.tbig.playerpro.playbackcomplete" />
+                <action android:name="com.tbig.playerpro.playstatechanged" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.LGMusicAppReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.lge.music.metachanged" />
+                <action android:name="com.lge.music.playstatechanged" />
+                <action android:name="com.lge.music.endofplayback" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.music.SpotifyReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.spotify.mobile.android.metadatachanged" />
+                <action android:name="com.spotify.mobile.android.playbackstatechanged" />
+            </intent-filter>
+        </receiver>
+
+        <!-- end of music apps receivers -->
+    </application>
+
+</manifest>

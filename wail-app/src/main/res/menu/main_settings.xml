@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main_settings_menu_is_wail_enabled"
+        android:showAsAction="always"
+        android:actionLayout="@layout/main_settings_is_wail_enabled_menu_item" />
+</menu>

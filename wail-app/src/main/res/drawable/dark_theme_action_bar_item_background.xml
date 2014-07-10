@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:enterFadeDuration="@android:integer/config_mediumAnimTime" android:exitFadeDuration="@android:integer/config_longAnimTime">
+    <item android:state_focused="true" android:drawable="@color/dark_theme_action_bar_background_focused"/>
+    <item android:state_pressed="true" android:drawable="@color/dark_theme_action_bar_background_pressed"/>
+</selector>

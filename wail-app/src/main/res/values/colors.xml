@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dark_theme_window_background">#3c3f41</color>
+    <color name="dark_theme_action_bar_background_pressed">#6f6f6f</color>
+    <color name="dark_theme_action_bar_background_focused">#ff858585</color>
+    <color name="dark_theme_navigation_drawer_background">#797979</color>
+    <color name="dark_theme_common_background_pressed">#888888</color>
+    <color name="dark_theme_navigation_drawer_divider_line">#d1d1d1</color>
+    <color name="dark_theme_navigation_drawer_item_background_pressed">#ff5a7989</color>
+
+    <color name="dark_theme_main_today_tracks_background_normal">#666666</color>
+    <color name="dark_theme_main_today_tracks_background_pressed">#ff3580bb</color>
+
+    <color name="dark_theme_settings_item_title_enabled">#ffffffff</color>
+    <color name="dark_theme_settings_item_title_disabled">#cccccc</color>
+
+    <color name="dark_theme_settings_item_desc_enabled">#bebebe</color>
+    <color name="dark_theme_settings_item_desc_disabled">#80bebebe</color>
+
+    <color name="dark_theme_dialog_background">#282828</color>
+    <color name="dark_theme_dialog_button_normal">@color/dark_theme_dialog_background</color>
+    <color name="dark_theme_dialog_button_pressed">@color/dark_theme_common_background_pressed</color>
+
+    <color name="dark_theme_track_title">#FFFFFF</color>
+    <color name="dark_theme_track_artist_and_album">#BBBBBB</color>
+
+    <color name="dark_theme_track_state_waiting_for_scrobble">#aaaaaa</color>
+    <color name="dark_theme_track_state_scrobbling">#ff73b3ff</color>
+    <color name="dark_theme_track_state_error">#ffff3a6d</color>
+    <color name="dark_theme_track_state_scrobble_success">#ff23bb3b</color>
+    <color name="dark_theme_track_state_unknown">#fff5f5ff</color>
+
+    <color name="dark_theme_track_date">#ff7a7a81</color>
+
+</resources>

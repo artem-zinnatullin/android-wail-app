@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/app_main_about_1"
+                android:textColor="#5eb1c5"
+                android:textSize="23sp"
+                app:typefaceFromAssets="fonts/Roboto-MediumItalic.ttf" />
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textSize="16sp"
+                android:textColor="#727272"
+                android:text="@string/app_main_about_2" />
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                android:id="@+id/non_authorized_sign_in_button"
+                android:clickable="true"
+                android:background="@drawable/dark_theme_common_background_selector"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="100dp"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="13dp"
+                android:paddingBottom="13dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="22sp"
+                android:text="@string/text_button_sign_in_last_fm"
+                android:textColor="#35b5e6"
+                app:typefaceFromAssets="fonts/Roboto-MediumItalic.ttf" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:text="@string/app_main_about_3"
+                android:textColor="#AAAAAA"/>
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                android:id="@+id/non_authorized_sign_up_button"
+                android:clickable="true"
+                android:background="@drawable/dark_theme_common_background_selector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:textSize="14sp"
+                android:text="@string/non_authorized_sign_up_in_lastfm"
+                android:textColor="#AAAAAA" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

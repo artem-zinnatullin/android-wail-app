@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="android:Theme.Holo">
+    </style>
+
+    <style name="AppTheme.Dark">
+        <item name="android:buttonStyle">@style/ButtonDark</item>
+        <item name="android:windowBackground">@color/dark_theme_window_background</item>
+        <item name="android:actionBarItemBackground">@drawable/dark_theme_action_bar_item_background</item>
+        <item name="android:actionBarStyle">@style/ActionBarDark</item>
+        <item name="navigationDrawer">@style/NavigationDrawerDark</item>
+        <item name="navigationDrawerCategoryTextView">@style/NavigationDrawerDarkCategoryText</item>
+    </style>
+
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingRight="12dp">
+
+    <EditText
+        android:id="@+id/ab_main_tracks_search_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tracks_search_hint"
+        android:paddingRight="35dp"
+        android:singleLine="true" />
+
+    <ImageButton
+        android:id="@+id/ab_main_tracks_search_clear_button"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/ab_clear_edit_text"
+        android:contentDescription="@string/tracks_search_clear_text" />
+
+</FrameLayout>

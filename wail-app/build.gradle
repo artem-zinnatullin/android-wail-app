@@ -1,0 +1,32 @@
+apply plugin: 'android'
+
+repositories {
+    mavenCentral()
+}
+
+android {
+    compileSdkVersion 20
+    buildToolsVersion '20.0.0'
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 20
+    }
+
+    buildTypes {
+        debug {
+            versionNameSuffix ' debug ' + getDateForVersionName()
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:20.0.0'
+    compile 'com.github.chrisbanes.actionbarpulltorefresh:library:0.9.3'
+
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+def getDateForVersionName() {
+    return new Date().format('yyyy.MM.dd HH:mm:ss');
+}
