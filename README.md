@@ -16,6 +16,11 @@
 <img src="screenshots/screenshot_3.png" alt="Settings screen" height="500px"/>
 &nbsp;<img src="screenshots/screenshot_4.png" alt="Sound notifications" height="500px"/>
 
+##Main features:
+* Scrobbling tracks to the last.fm (even if you are offline, WAIL will send them later)
+* Updating #nowplaying
+* Sound notifications
+
 -------------------
 ###BEFORE CONTRIBUTING TO THE WAIL APP!
 Please read small wiki about commits style guides, git work flow and sources styleguides -> [WIKI](https://github.com/artem-zinnatullin/android-wail-app/wiki)  
