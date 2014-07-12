@@ -43,22 +43,30 @@ public abstract class CommonMusicAppReceiver extends BroadcastReceiver {
             @Override
             protected Intent doInBackground(Void... params) {
                 try {
+                    try {
+                        Loggi.d("CommonMusicAppReceiver.onReceive() intent: " + IntentUtil.getIntentAsString(intent));
+                    } catch (Exception e) {
+                        Loggi.e("CommonMusicAppReceiver.onReceive() can not display intent info");
+                    }
+
                     if (intent == null) {
                         Loggi.e("CommonMusicAppReceiver.onReceive() intent is null");
                         return null;
                     }
 
                     if (StringUtil.isNullOrEmpty(intent.getAction())
-                            || intent.getAction().indexOf('.') == -1
-                            || intent.getExtras() == null) {
+                            || intent.getAction().indexOf('.') == -1) {
                         Loggi.e("CommonMusicAppReceiver.onReceive() intent action is corrupted: " + intent.getAction());
                         return null;
                     }
 
-                    Loggi.v("CommonMusicAppReceiver.onReceiver() " + IntentUtil.getIntentAsString(intent));
+                    if (intent.getExtras() == null || intent.getExtras().size() == 0) {
+                        Loggi.e("CommonMusicAppReceiver.onReceive() intent extras are null or empty, skipping intent");
+                        return null;
+                    }
 
                     if (isInitialStickyBroadcast()) {
-                        Loggi.w("CommonMusicAppReceiver.onReceive() received cached sticky broadcast, WAIL wont process it");
+                        Loggi.w("CommonMusicAppReceiver.onReceive() received cached sticky broadcast, WAIL won't process it");
                         return null;
                     }
 
