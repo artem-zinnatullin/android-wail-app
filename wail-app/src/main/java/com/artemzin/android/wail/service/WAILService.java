@@ -16,6 +16,7 @@ import com.artemzin.android.wail.sound.SoundNotificationsManager;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.storage.model.Track;
+import com.artemzin.android.wail.ui.fragment.main.MainFragment;
 import com.artemzin.android.wail.util.AsyncTaskExecutor;
 import com.artemzin.android.wail.util.IntentUtil;
 import com.artemzin.android.wail.util.Loggi;
@@ -40,6 +41,8 @@ public class WAILService extends Service {
     private static final int DEFAULT_TRACK_DURATION_IF_UNKNOWN_SECONDS = 210;
 
     private static volatile com.artemzin.android.wail.storage.model.Track lastUpdatedNowPlayingTrackInfo;
+
+    private LocalBroadcast localBroadcast = LocalBroadcast.getInstance();
 
     private long lastScrobbleTime = 0;
 
@@ -107,6 +110,9 @@ public class WAILService extends Service {
 
                 if (isCurrentTrackPlaying) {
                     updateNowPlaying(currentTrack);
+                    LocalBroadcast.getInstance().setCurrentTrack(currentTrack);
+                } else {
+                    LocalBroadcast.getInstance().setCurrentTrack(null);
                 }
 
                 final LastCapturedTrackInfo mLastCapturedTrackInfo = WAILSettings.getLastCapturedTrackInfo(getApplicationContext());
@@ -437,7 +443,7 @@ public class WAILService extends Service {
         private boolean isPlaying;
 
         public LastCapturedTrackInfo(com.artemzin.android.wail.storage.model.Track track, boolean isPlaying) {
-            this.track     = track;
+            this.track = track;
             this.isPlaying = isPlaying;
         }
 

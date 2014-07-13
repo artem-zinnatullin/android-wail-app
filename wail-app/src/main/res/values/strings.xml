@@ -29,6 +29,8 @@
     <string name="main_today">today</string>
     <string name="main_tracks_on_last_fm">scrobbled on last.fm</string>
     <string name="main_tracks_on_last_fm_unknown">total tracks count on last.fm is unknown :( try to do manual pull to refresh!</string>
+    <string name="main_now_scrobbling_label">Now scrobbling: </string>
+    <string name="main_now_scrobbling_nothing">nothing :(</string>
     <string name="main_pull_down_to_refresh_toast">Pull down to refresh data :)</string>
     <string name="main_pull_to_refresh_pull_text">Pull to refresh</string>
     <string name="main_pull_to_refresh_refreshing_text">Updating info from last.fm</string>
