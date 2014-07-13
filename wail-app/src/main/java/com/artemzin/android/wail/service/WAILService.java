@@ -16,7 +16,6 @@ import com.artemzin.android.wail.sound.SoundNotificationsManager;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.storage.model.Track;
-import com.artemzin.android.wail.ui.fragment.main.MainFragment;
 import com.artemzin.android.wail.util.AsyncTaskExecutor;
 import com.artemzin.android.wail.util.IntentUtil;
 import com.artemzin.android.wail.util.Loggi;
