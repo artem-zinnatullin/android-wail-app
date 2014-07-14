@@ -18,10 +18,6 @@ android {
             versionNameSuffix ' debug ' + getDateForVersionName()
         }
     }
-    
-    lintOptions {
-        abortOnError false
-    }
 }
 
 dependencies {
