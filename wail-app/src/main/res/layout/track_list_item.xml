@@ -2,6 +2,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:baselineAligned="false"
     android:clickable="true"
     android:background="@drawable/dark_theme_common_background_selector"
     android:orientation="horizontal"

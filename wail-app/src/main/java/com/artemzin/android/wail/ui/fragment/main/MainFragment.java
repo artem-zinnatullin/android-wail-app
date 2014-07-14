@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ import com.google.analytics.tracking.android.MapBuilder;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.DefaultHeaderTransformer;
@@ -57,13 +59,13 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().getActionBar().setTitle(getString(R.string.main_ab_title));
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.main_ab_title));
         loadTrackWordForms();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, null);
+        return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
     @Override
@@ -373,13 +375,13 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
             final long timeDiff = System.currentTimeMillis() - lastUpdateTime;
 
             if (timeDiff < 86400000) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
                 text = getString(R.string.main_updated_today_at, dateFormat.format(lastUpdateDate.getTime()));
             } else if (timeDiff >= 86400000 && timeDiff <= 172800000) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
                 text = getString(R.string.main_updated_yesterday_at, dateFormat.format(lastUpdateDate.getTime()));
             } else {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd at HH:mm");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd at HH:mm", Locale.getDefault());
                 text = getString(R.string.main_updated_common, dateFormat.format(lastUpdateDate.getTime()));
             }
 

@@ -2,6 +2,7 @@ package com.artemzin.android.wail.ui.fragment.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,12 +37,12 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        getActivity().getActionBar().setTitle(R.string.settings_actionbar_title);
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(R.string.settings_actionbar_title);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main_settings, null);
+        return inflater.inflate(R.layout.fragment_main_settings, container, false);
     }
 
     @Override
@@ -54,6 +55,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
 
+        menu.getItem(0).setActionView(R.layout.main_settings_is_wail_enabled_menu_item);
         Switch isWailEnabledSwitch = (Switch) menu.getItem(0).getActionView();
         isWailEnabledSwitch.setChecked(WAILSettings.isEnabled(getActivity()));
         isWailEnabledSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

@@ -23,6 +23,7 @@
     <string name="lastfm_logging_network_error">Could not login into last.fm, please check your internet connection</string>
     <string name="lastfm_logging_api_error_unknown">Can not understand last.fm response, may be you need to update the app?</string>
     <string name="lastfm_logging_api_error_4">Login or password is incorrect ;(</string>
+    <string name="lastfm_login_icon">LastFM icon</string>
     <!-- END of authorization screen strings -->
 
     <!-- START of main screen strings -->
@@ -93,6 +94,7 @@
     <string name="settings_notifications_track_scrobbled">WAIL marked track as scrobbled</string>
     <string name="settings_track_was_skipped">WAIL skipped track because it was not played required time</string>
     <string name="settings_sound_notifications_toast_can_not_play_sound">Can not play sound :(</string>
+    <string name="settings_toggle_wail_ab_title">Toggle WAIL</string>
     <!-- END of sound notifications screen strings -->
 
     <string name="settings_status_bar_notifications_activity_label">Status bar notifications</string>

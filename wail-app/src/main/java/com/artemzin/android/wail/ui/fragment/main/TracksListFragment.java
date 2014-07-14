@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -39,6 +40,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class TracksListFragment extends BaseFragment {
 
@@ -54,7 +56,7 @@ public class TracksListFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        getActivity().getActionBar().setTitle(getString(R.string.tracks_actionbar_title));
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.tracks_actionbar_title));
         tracksListAdapter = new TracksListAdapter(tracksListDataProvider);
     }
 
@@ -249,7 +251,7 @@ public class TracksListFragment extends BaseFragment {
         private final int[] mTrackStateColors;
         private TracksListDataProvider mTracksListDataProvider;
 
-        private final DateFormat mDateFormatWithYear  = new SimpleDateFormat("HH:mm dd.MM.yyyy");
+        private final DateFormat mDateFormatWithYear  = new SimpleDateFormat("HH:mm dd.MM.yyyy", Locale.getDefault());
 
         public TracksListAdapter(TracksListDataProvider tracksListDataProvider) {
             this.mTracksListDataProvider = tracksListDataProvider;
@@ -289,7 +291,7 @@ public class TracksListFragment extends BaseFragment {
             final TrackViewHolder trackViewHolder;
 
             if (convertView == null) {
-                convertView = LayoutInflater.from(getActivity()).inflate(R.layout.track_list_item, null);
+                convertView = LayoutInflater.from(getActivity()).inflate(R.layout.track_list_item, parent, false);
                 trackViewHolder = new TrackViewHolder(convertView);
                 convertView.setTag(trackViewHolder);
             } else {
@@ -388,6 +390,7 @@ public class TracksListFragment extends BaseFragment {
 
         public void setSearchItem(MenuItem menuItem) {
             menuItem.setOnActionExpandListener(this);
+            menuItem.setActionView(R.layout.ab_main_tracks_search);
 
             searchEditText = ((EditText) menuItem.getActionView().findViewById(R.id.ab_main_tracks_search_edit_text));
             searchEditText.addTextChangedListener(this);
@@ -445,7 +448,7 @@ public class TracksListFragment extends BaseFragment {
                 @Override
                 protected List<Track> doInBackground(String... params) {
                     try {
-                        text = params[0].toLowerCase();
+                        text = params[0].toLowerCase(Locale.getDefault());
 
                         Cursor cursor = TracksDBHelper.getInstance(getActivity()).getAllDesc();
 
@@ -455,11 +458,11 @@ public class TracksListFragment extends BaseFragment {
                             do {
                                 Track track = TracksDBHelper.parseFromCursor(cursor);
 
-                                if (track.getTrack() != null && track.getTrack().toLowerCase().contains(text)) {
+                                if (track.getTrack() != null && track.getTrack().toLowerCase(Locale.getDefault()).contains(text)) {
                                     tracks.add(track);
-                                } else if (track.getArtist() != null && track.getArtist().toLowerCase().contains(text)) {
+                                } else if (track.getArtist() != null && track.getArtist().toLowerCase(Locale.getDefault()).contains(text)) {
                                     tracks.add(track);
-                                } else if (track.getAlbum() != null && track.getAlbum().toLowerCase().contains(text)) {
+                                } else if (track.getAlbum() != null && track.getAlbum().toLowerCase(Locale.getDefault()).contains(text)) {
                                     tracks.add(track);
                                 }
                             } while (cursor.moveToNext());
