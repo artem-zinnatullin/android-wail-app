@@ -94,6 +94,32 @@
 
                 </TableRow>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_horizontal_margin">
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        android:id="@+id/main_now_scrobbling_track_label_text_view"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/main_now_scrobbling_label"
+                        android:textSize="15sp"
+                        android:gravity="center"
+                        app:typefaceFromAssets="fonts/Roboto-Medium.ttf" />
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        android:id="@+id/main_now_scrobbling_track_text_view"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        tools:text="Prodigy - Omen"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="10dp"
+                        app:typefaceFromAssets="fonts/Roboto-Medium.ttf" />
+
+
+                </LinearLayout>
+
             </TableLayout>
 
             <LinearLayout

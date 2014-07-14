@@ -41,6 +41,8 @@ public class WAILService extends Service {
 
     private static volatile com.artemzin.android.wail.storage.model.Track lastUpdatedNowPlayingTrackInfo;
 
+    private LocalBroadcast localBroadcast = LocalBroadcast.getInstance();
+
     private long lastScrobbleTime = 0;
 
     @Override
@@ -107,6 +109,9 @@ public class WAILService extends Service {
 
                 if (isCurrentTrackPlaying) {
                     updateNowPlaying(currentTrack);
+                    LocalBroadcast.getInstance().setCurrentTrack(currentTrack);
+                } else {
+                    LocalBroadcast.getInstance().setCurrentTrack(null);
                 }
 
                 final LastCapturedTrackInfo mLastCapturedTrackInfo = WAILSettings.getLastCapturedTrackInfo(getApplicationContext());
@@ -437,7 +442,7 @@ public class WAILService extends Service {
         private boolean isPlaying;
 
         public LastCapturedTrackInfo(com.artemzin.android.wail.storage.model.Track track, boolean isPlaying) {
-            this.track     = track;
+            this.track = track;
             this.isPlaying = isPlaying;
         }
 

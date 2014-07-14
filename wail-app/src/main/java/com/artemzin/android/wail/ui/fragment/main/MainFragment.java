@@ -25,6 +25,7 @@ import com.artemzin.android.wail.api.lastfm.LFApiException;
 import com.artemzin.android.wail.api.lastfm.LFUserApi;
 import com.artemzin.android.wail.api.lastfm.model.response.LFUserResponseModel;
 import com.artemzin.android.wail.api.network.NetworkException;
+import com.artemzin.android.wail.service.LocalBroadcast;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.storage.model.Track;
@@ -45,12 +46,17 @@ import uk.co.senab.actionbarpulltorefresh.library.Options;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 
-public class MainFragment extends BaseFragment implements View.OnClickListener {
+public class MainFragment extends BaseFragment implements View.OnClickListener, LocalBroadcast.LocalBroadcastListener {
 
     private static final String GA_EVENT_MAIN_FRAGMENT = "MainFragment";
 
     private PullToRefreshLayout pullToRefreshLayout;
-    private TextView tracksTodayCountTextView, tracksTodayCountLabelTextView, tracksTotalCountOnLastfmTextView, tracksTotalCountOnLastfmLabelTextView, lastfmUserInfoUpdateTimeTextView;
+    private TextView tracksTodayCountTextView,
+            tracksTodayCountLabelTextView,
+            nowScrobblingTrackTextView,
+            tracksTotalCountOnLastfmTextView,
+            tracksTotalCountOnLastfmLabelTextView,
+            lastfmUserInfoUpdateTimeTextView;
     private View feedbackPleaseView;
     private String[] trackWordForms;
 
@@ -58,6 +64,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivity().getActionBar().setTitle(getString(R.string.main_ab_title));
+        LocalBroadcast.getInstance().setListener(this);
         loadTrackWordForms();
     }
 
@@ -85,6 +92,8 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
 
         tracksTodayCountTextView      = (TextView) view.findViewById(R.id.main_tracks_today_count_text_view);
         tracksTodayCountLabelTextView = (TextView) view.findViewById(R.id.main_tracks_today_count_label_text_view);
+
+        nowScrobblingTrackTextView = (TextView) view.findViewById(R.id.main_now_scrobbling_track_text_view);
 
         tracksTotalCountOnLastfmTextView      = (TextView) view.findViewById(R.id.main_tracks_total_count_text_view);
         tracksTotalCountOnLastfmLabelTextView = (TextView) view.findViewById(R.id.main_tracks_total_count_label_text_view);
@@ -174,6 +183,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onStop() {
         super.onStop();
+        LocalBroadcast.getInstance().setListener(null);
         EasyTracker.getInstance(getActivity()).send(
                 MapBuilder.createEvent(GA_EVENT_MAIN_FRAGMENT,
                         "stopped",
@@ -289,6 +299,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
     private void updateLocalInfo() {
         updateTracksTodayCount();
         redrawLastUpdateTime();
+        updateNowScrobblingTrack();
     }
 
     private void updateTracksTodayCount() {
@@ -353,6 +364,17 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
             tracksTotalCountOnLastfmLabelTextView.setText(
                     WordFormUtil.getWordForm(userModel.getPlayCount(), trackWordForms) + " " + getString(R.string.main_tracks_on_last_fm)
             );
+        }
+    }
+
+    private void updateNowScrobblingTrack() {
+        if (LocalBroadcast.getInstance().getCurrentTrack() != null) {
+            nowScrobblingTrackTextView.setText(
+                    LocalBroadcast.getInstance().getCurrentTrack().getArtist()
+                    + " - "
+                    + LocalBroadcast.getInstance().getCurrentTrack().getTrack());
+        } else {
+            nowScrobblingTrackTextView.setText(R.string.main_now_scrobbling_nothing);
         }
     }
 
@@ -437,6 +459,18 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
                     "Browser opened",
                     1L
             ).build());
+        }
+    }
+
+    @Override
+    public void onTrackReceived(Track track) {
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    updateNowScrobblingTrack();
+                }
+            });
         }
     }
 
