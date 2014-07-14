@@ -21,7 +21,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:20.0.0'
+    // NOTICE, libraries versions are FIXED for stability
+    // because gradle can automatically load newer version which can add bugs and have to be tested
+
+    compile 'com.android.support:support-v13:20.0.0'
     compile 'com.github.chrisbanes.actionbarpulltorefresh:library:0.9.3'
 
     compile fileTree(dir: 'libs', include: '*.jar')
