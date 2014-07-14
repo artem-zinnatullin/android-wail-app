@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -54,7 +55,7 @@ public class TracksListFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        getActivity().getActionBar().setTitle(getString(R.string.tracks_actionbar_title));
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.tracks_actionbar_title));
         tracksListAdapter = new TracksListAdapter(tracksListDataProvider);
     }
 
@@ -388,6 +389,7 @@ public class TracksListFragment extends BaseFragment {
 
         public void setSearchItem(MenuItem menuItem) {
             menuItem.setOnActionExpandListener(this);
+            menuItem.setActionView(R.layout.ab_main_tracks_search);
 
             searchEditText = ((EditText) menuItem.getActionView().findViewById(R.id.ab_main_tracks_search_edit_text));
             searchEditText.addTextChangedListener(this);

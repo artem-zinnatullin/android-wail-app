@@ -14,7 +14,7 @@ public class LastfmLoginActivity extends BaseActivity {
         setContentView(R.layout.activity_lastfm_login);
         setResult(RESULT_CANCELED);
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

@@ -78,8 +78,8 @@ public class MainActivity extends BaseActivity implements MainDrawerFragment.Mai
 
             drawerLayout.setDrawerListener(actionBarDrawerToggle);
 
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-            getActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
 
             tryToIncreaseNavigationDrawerLeftSwipeZone(drawerLayout);
         }
