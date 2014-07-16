@@ -133,6 +133,17 @@ public abstract class CommonMusicAppReceiver extends BroadcastReceiver {
         return handleTrackIntent;
     }
 
+    public static Intent addTrackDataToTheIntent(Track track, Intent intent) {
+        intent.putExtra(EXTRA_PLAYER_PACKAGE_NAME, track.getPlayerPackageName());
+        intent.putExtra(EXTRA_TRACK, track.getTrack());
+        intent.putExtra(EXTRA_ARTIST, track.getArtist());
+        intent.putExtra(EXTRA_ALBUM, track.getAlbum());
+        intent.putExtra(EXTRA_DURATION, track.getDuration());
+        intent.putExtra(EXTRA_TIMESTAMP, track.getTimestamp());
+
+        return intent;
+    }
+
     public static Track parseFromIntentExtras(final Intent intent) {
         final Track track = new Track();
 
