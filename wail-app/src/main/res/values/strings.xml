@@ -84,6 +84,7 @@
     <string name="settings_status_bar_notifications_description">This feature is coming soon…</string>
     <string name="settings_email_to_the_developer">Email developer</string>
     <string name="settings_email_dialog_title">Select email app</string>
+    <string name="main_settings_menu_toggle_wail">Toggle WAIL</string>
     <!-- END of settings screen strings -->
 
     <!-- START of sound notifications screen strings -->
