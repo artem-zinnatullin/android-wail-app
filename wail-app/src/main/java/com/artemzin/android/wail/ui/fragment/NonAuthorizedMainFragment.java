@@ -20,7 +20,7 @@ public class NonAuthorizedMainFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_non_authorized, null);
+        return inflater.inflate(R.layout.fragment_non_authorized, container, false);
     }
 
     @Override
