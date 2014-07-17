@@ -50,7 +50,12 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
     private static final String GA_EVENT_MAIN_FRAGMENT = "MainFragment";
 
     private PullToRefreshLayout pullToRefreshLayout;
-    private TextView tracksTodayCountTextView, tracksTodayCountLabelTextView, tracksTotalCountOnLastfmTextView, tracksTotalCountOnLastfmLabelTextView, lastfmUserInfoUpdateTimeTextView;
+    private TextView tracksTodayCountTextView,
+            tracksTodayCountLabelTextView,
+            nowScrobblingTrackTextView,
+            tracksTotalCountOnLastfmTextView,
+            tracksTotalCountOnLastfmLabelTextView,
+            lastfmUserInfoUpdateTimeTextView;
     private View feedbackPleaseView;
     private String[] trackWordForms;
 
@@ -85,6 +90,8 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
 
         tracksTodayCountTextView      = (TextView) view.findViewById(R.id.main_tracks_today_count_text_view);
         tracksTodayCountLabelTextView = (TextView) view.findViewById(R.id.main_tracks_today_count_label_text_view);
+
+        nowScrobblingTrackTextView = (TextView) view.findViewById(R.id.main_now_scrobbling_track_text_view);
 
         tracksTotalCountOnLastfmTextView      = (TextView) view.findViewById(R.id.main_tracks_total_count_text_view);
         tracksTotalCountOnLastfmLabelTextView = (TextView) view.findViewById(R.id.main_tracks_total_count_label_text_view);
@@ -289,6 +296,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
     private void updateLocalInfo() {
         updateTracksTodayCount();
         redrawLastUpdateTime();
+        updateNowScrobblingTrack();
     }
 
     private void updateTracksTodayCount() {
@@ -353,6 +361,15 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
             tracksTotalCountOnLastfmLabelTextView.setText(
                     WordFormUtil.getWordForm(userModel.getPlayCount(), trackWordForms) + " " + getString(R.string.main_tracks_on_last_fm)
             );
+        }
+    }
+
+    private void updateNowScrobblingTrack() {
+        String nowScrobblingTrack = WAILSettings.getNowScrobblingTrack(getActivity().getApplicationContext());
+        if (nowScrobblingTrack != null) {
+            nowScrobblingTrackTextView.setText(nowScrobblingTrack);
+        } else {
+            nowScrobblingTrackTextView.setText(R.string.main_now_scrobbling_nothing);
         }
     }
 
