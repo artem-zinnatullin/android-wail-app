@@ -6,7 +6,7 @@
 [![Get WAIL on the Google Play!](http://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=com.artemzin.android.wail&referrer=utm_source%3Dgithub)
 
 
-*Main* ***develop*** branch build status [![Build Status](http://teamcity.artemzin.com/app/rest/builds/buildType:id:Wail_BuildDevelopBranchAndRunTest/statusIcon)](http://teamcity.artemzin.com/viewType.html?buildTypeId=Wail_BuildDevelopBranchAndRunTest&guest=1)
+*Main* ***develop*** branch build status [![Build Status](https://travis-ci.org/artem-zinnatullin/android-wail-app.svg?branch=develop)](https://travis-ci.org/artem-zinnatullin/android-wail-app)
 
 **How it looks:**
 
