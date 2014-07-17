@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import com.artemzin.android.bytes.common.StringUtil;
 import com.artemzin.android.wail.api.lastfm.model.response.LFUserResponseModel;
 import com.artemzin.android.wail.service.WAILService;
+import com.artemzin.android.wail.storage.model.Track;
 
 public class WAILSettings {
 
@@ -29,6 +30,8 @@ public class WAILSettings {
 
     private static final String KEY_SOUND_NOTIFICATION_TRACK_MARKED_AS_SCROBBLED_ENABLED = "KEY_SOUND_NOTIFICATION_TRACK_MARKED_AS_SCROBBLED_ENABLED";
     private static final String KEY_SOUND_NOTIFICATION_TRACK_SKIPPED_ENABLED = "KEY_SOUND_NOTIFICATION_TRACK_SKIPPED_ENABLED";
+
+    private static final String KEY_NOW_SCROBBLING_TRACK = "KEY_NOW_SCROBBLING_TRACK";
 
     private static final String KEY_SHOULD_SHOW_NOTIFICATION_ABOUT_MIN_TRACK_DURATION_BEHAVIOR_CHANGED = "KEY_SHOULD_SHOW_NOTIFICATION_ABOUT_MIN_TRACK_DURATION_BEHAVIOR_CHANGED";
 
@@ -244,5 +247,13 @@ public class WAILSettings {
     public static synchronized void setShowFeedbackRequest(Context context, boolean value) {
         isShowFeedbackRequest = value;
         getSharedPreferences(context).edit().putBoolean(KEY_IS_SHOW_FEEDBACK_REQUEST, value).commit();
+    }
+
+    public static synchronized String getNowScrobblingTrack(Context context) {
+        return getSharedPreferences(context).getString(KEY_NOW_SCROBBLING_TRACK, null);
+    }
+
+    public static synchronized void setNowScrobblingTrack(Context context, String value) {
+        getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_TRACK, value).commit();
     }
 }
