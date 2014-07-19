@@ -36,7 +36,7 @@ public class ProgressDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE); // hiding title from dialog window
-        return inflater.inflate(R.layout.fragment_progress_dialog, null);
+        return inflater.inflate(R.layout.fragment_progress_dialog, container, false);
     }
 
     @Override

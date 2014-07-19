@@ -50,7 +50,7 @@ public class DialogFragmentWithNumberPicker extends CustomDialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.dialog_with_number_picker_fragment, null);
+        return inflater.inflate(R.layout.dialog_with_number_picker_fragment, container, false);
     }
 
     @Override
