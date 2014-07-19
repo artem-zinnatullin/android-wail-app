@@ -258,7 +258,7 @@ public class WAILSettings {
         getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_TRACK, value).commit();
     }
 
-    public static boolean getDisableScrobblingOverMobileNetwork(Context context) {
+    public static boolean isDisableScrobblingOverMobileNetwork(Context context) {
         return disableScrobblingOverMobileNetwork != null
                 ? disableScrobblingOverMobileNetwork
                 : getSharedPreferences(context).getBoolean(KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK, false);

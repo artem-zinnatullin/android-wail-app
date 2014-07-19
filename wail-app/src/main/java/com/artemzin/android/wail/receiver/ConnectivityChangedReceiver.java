@@ -13,8 +13,11 @@ public class ConnectivityChangedReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (NetworkUtil.isAvailable(context)) {
-            if (NetworkUtil.isMobileNetwork(context)
-                    && WAILSettings.getDisableScrobblingOverMobileNetwork(context)) {
+            if (WAILSettings.isDisableScrobblingOverMobileNetwork(context)
+                    && NetworkUtil.isMobileNetwork(context)) {
+                // if mobile network scrobbling disabled
+                // and current network is mobile
+                // we should prevent starting of WAILService
                 return;
             }
 

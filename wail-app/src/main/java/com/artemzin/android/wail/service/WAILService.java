@@ -201,7 +201,8 @@ public class WAILService extends Service {
         if (!NetworkUtil.isAvailable(this)) {
             Loggi.e("WAILService scrobblePendingTracks() stopped, network is not available");
             return;
-        } else if (NetworkUtil.isMobileNetwork(this) && WAILSettings.getDisableScrobblingOverMobileNetwork(getApplicationContext())) {
+        } else if (WAILSettings.isDisableScrobblingOverMobileNetwork(getApplicationContext())
+                && NetworkUtil.isMobileNetwork(this)) {
             Loggi.e("WAILService scrobblePendingTracks() stopped, scrobbling over mobile network disabled");
             return;
         }
@@ -350,8 +351,8 @@ public class WAILService extends Service {
         if (!NetworkUtil.isAvailable(getApplicationContext())) {
             Loggi.w("WAILService.updateNowPlaying() network is not available, update skipped: " + track);
             return;
-        } else if (NetworkUtil.isMobileNetwork(getApplicationContext())
-                && WAILSettings.getDisableScrobblingOverMobileNetwork(getApplicationContext())) {
+        } else if (WAILSettings.isDisableScrobblingOverMobileNetwork(getApplicationContext())
+                && NetworkUtil.isMobileNetwork(getApplicationContext())) {
             Loggi.w("WAILService.updateNowPlaying() scrobbling over mobile network is disabled, update skipped: " + track);
             return;
         }
