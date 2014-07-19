@@ -9,7 +9,8 @@ public class NetworkUtil {
     private NetworkUtil() {}
 
     public static boolean isAvailable(Context context) {
-        final ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        final ConnectivityManager connectivityManager =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if (connectivityManager == null) {
             return false;
@@ -17,5 +18,18 @@ public class NetworkUtil {
 
         final NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo(); // could be null in airplane mode
         return networkInfo != null && networkInfo.isConnectedOrConnecting();
+    }
+
+    public static boolean isMobileNetwork(Context context) {
+        if (!isAvailable(context)) {
+            return false;
+        }
+
+        final ConnectivityManager connectivityManager =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        final NetworkInfo networkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        return networkInfo != null && !networkInfo.isConnected();
     }
 }

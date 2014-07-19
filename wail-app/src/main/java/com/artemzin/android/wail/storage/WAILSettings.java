@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import com.artemzin.android.bytes.common.StringUtil;
 import com.artemzin.android.wail.api.lastfm.model.response.LFUserResponseModel;
 import com.artemzin.android.wail.service.WAILService;
-import com.artemzin.android.wail.storage.model.Track;
 
 public class WAILSettings {
 
@@ -18,6 +17,7 @@ public class WAILSettings {
     private static final String KEY_LASTFM_SESSION_KEY             = "KEY_LASTFM_SESSION_KEY";
     private static final String KEY_MIN_TRACK_DURATION_IN_PERCENTS = "KEY_MIN_TRACK_DURATION_IN_PERCENTS";
     private static final String KEY_MIN_TRACK_DURATION_IN_SECONDS  = "KEY_MIN_TRACK_DURATION_IN_SECONDS";
+    private static final String KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK = "KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK";
     private static final String KEY_TOTAL_HANDLED_TRACKS_COUNT     = "KEY_TOTAL_HANDLED_TRACKS_COUNT";
     private static final String KEY_LASTFM_USER_NAME               = "KEY_LASTFM_USER_NAME";
     private static final String KEY_IS_FIRST_LAUNCH                = "KEY_IS_FIRST_LAUNCH";
@@ -47,6 +47,7 @@ public class WAILSettings {
     private static Boolean isEnabled;
     private static Integer minTrackDurationInPercents;
     private static Integer minTrackDurationInSeconds;
+    private static Boolean disableScrobblingOverMobileNetwork;
     private static Long    totalHandledTracksCount;
     private static Boolean isLastfmNowplayingUpdateEnabled;
     private static String  lastfmUserName;
@@ -255,5 +256,16 @@ public class WAILSettings {
 
     public static synchronized void setNowScrobblingTrack(Context context, String value) {
         getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_TRACK, value).commit();
+    }
+
+    public static boolean getDisableScrobblingOverMobileNetwork(Context context) {
+        return disableScrobblingOverMobileNetwork != null
+                ? disableScrobblingOverMobileNetwork
+                : getSharedPreferences(context).getBoolean(KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK, false);
+    }
+
+    public static void setDisableScrobblingOverMobileNetwork(Context context, boolean value) {
+        disableScrobblingOverMobileNetwork = value;
+        getSharedPreferences(context).edit().putBoolean(KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK, value).commit();
     }
 }

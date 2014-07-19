@@ -106,6 +106,15 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
         refreshMinTrackDurationInPercents();
         refreshMinTrackDurationInSeconds();
 
+        Switch isScrobblingOverMobileNetworkDisabledSwitch = (Switch) view.findViewById(R.id.settings_disable_scrobbling_over_mobile_network_switch);
+        isScrobblingOverMobileNetworkDisabledSwitch.setChecked(WAILSettings.getDisableScrobblingOverMobileNetwork(getActivity()));
+        isScrobblingOverMobileNetworkDisabledSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                WAILSettings.setDisableScrobblingOverMobileNetwork(getActivity(), b);
+            }
+        });
+
         Switch isLastfmUpdateNowplayingEnabledSwitch = (Switch) view.findViewById(R.id.settings_lastfm_update_nowplaying_switch);
         isLastfmUpdateNowplayingEnabledSwitch.setChecked(WAILSettings.isLastfmNowplayingUpdateEnabled(getActivity()));
 
