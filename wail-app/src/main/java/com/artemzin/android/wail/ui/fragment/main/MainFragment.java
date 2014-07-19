@@ -38,6 +38,7 @@ import com.google.analytics.tracking.android.MapBuilder;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.DefaultHeaderTransformer;
@@ -50,7 +51,12 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
     private static final String GA_EVENT_MAIN_FRAGMENT = "MainFragment";
 
     private PullToRefreshLayout pullToRefreshLayout;
-    private TextView tracksTodayCountTextView, tracksTodayCountLabelTextView, tracksTotalCountOnLastfmTextView, tracksTotalCountOnLastfmLabelTextView, lastfmUserInfoUpdateTimeTextView;
+    private TextView tracksTodayCountTextView,
+            tracksTodayCountLabelTextView,
+            nowScrobblingTrackTextView,
+            tracksTotalCountOnLastfmTextView,
+            tracksTotalCountOnLastfmLabelTextView,
+            lastfmUserInfoUpdateTimeTextView;
     private View feedbackPleaseView;
     private String[] trackWordForms;
 
@@ -63,7 +69,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, null);
+        return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
     @Override
@@ -85,6 +91,8 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
 
         tracksTodayCountTextView      = (TextView) view.findViewById(R.id.main_tracks_today_count_text_view);
         tracksTodayCountLabelTextView = (TextView) view.findViewById(R.id.main_tracks_today_count_label_text_view);
+
+        nowScrobblingTrackTextView = (TextView) view.findViewById(R.id.main_now_scrobbling_track_text_view);
 
         tracksTotalCountOnLastfmTextView      = (TextView) view.findViewById(R.id.main_tracks_total_count_text_view);
         tracksTotalCountOnLastfmLabelTextView = (TextView) view.findViewById(R.id.main_tracks_total_count_label_text_view);
@@ -289,6 +297,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
     private void updateLocalInfo() {
         updateTracksTodayCount();
         redrawLastUpdateTime();
+        updateNowScrobblingTrack();
     }
 
     private void updateTracksTodayCount() {
@@ -356,6 +365,15 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
         }
     }
 
+    private void updateNowScrobblingTrack() {
+        String nowScrobblingTrack = WAILSettings.getNowScrobblingTrack(getActivity().getApplicationContext());
+        if (nowScrobblingTrack != null) {
+            nowScrobblingTrackTextView.setText(getString(R.string.main_now_scrobbling_label, nowScrobblingTrack));
+        } else {
+            nowScrobblingTrackTextView.setText(getString(R.string.main_now_scrobbling_label, getString(R.string.main_now_scrobbling_nothing)));
+        }
+    }
+
     private void redrawLastUpdateTime() {
         try {
             final long lastUpdateTime = WAILSettings.getLastfmUserInfoUpdateTimestamp(getActivity());
@@ -373,13 +391,13 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
             final long timeDiff = System.currentTimeMillis() - lastUpdateTime;
 
             if (timeDiff < 86400000) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
                 text = getString(R.string.main_updated_today_at, dateFormat.format(lastUpdateDate.getTime()));
             } else if (timeDiff >= 86400000 && timeDiff <= 172800000) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
                 text = getString(R.string.main_updated_yesterday_at, dateFormat.format(lastUpdateDate.getTime()));
             } else {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd at HH:mm");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd at HH:mm", Locale.getDefault());
                 text = getString(R.string.main_updated_common, dateFormat.format(lastUpdateDate.getTime()));
             }
 

@@ -6,7 +6,9 @@
 [![Get WAIL on the Google Play!](http://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=com.artemzin.android.wail&referrer=utm_source%3Dgithub)
 
 
-*Main* ***develop*** branch build status [![Build Status](http://teamcity.artemzin.com/app/rest/builds/buildType:id:Wail_BuildDevelopBranchAndRunTest/statusIcon)](http://teamcity.artemzin.com/viewType.html?buildTypeId=Wail_BuildDevelopBranchAndRunTest&guest=1)
+*Main* ***develop*** branch build status [on Travis CI](https://travis-ci.org/artem-zinnatullin/android-wail-app): [![Build Status](https://travis-ci.org/artem-zinnatullin/android-wail-app.svg?branch=develop)](https://travis-ci.org/artem-zinnatullin/android-wail-app)
+
+***Also, here is tasks dashboard on Waffie.io*** -> [Tasks Dashboard](https://waffle.io/artem-zinnatullin/android-wail-app): [![Tasks ready to work on](https://badge.waffle.io/artem-zinnatullin/android-wail-app.png?label=ready&title=Ready)](https://waffle.io/artem-zinnatullin/android-wail-app)
 
 **How it looks:**
 
@@ -15,6 +17,11 @@
 
 <img src="screenshots/screenshot_3.png" alt="Settings screen" height="500px"/>
 &nbsp;<img src="screenshots/screenshot_4.png" alt="Sound notifications" height="500px"/>
+
+##Main features:
+* Scrobbling tracks to the last.fm (even if you are offline, WAIL will send them later)
+* Updating #nowplaying
+* Sound notifications
 
 -------------------
 ###BEFORE CONTRIBUTING TO THE WAIL APP!

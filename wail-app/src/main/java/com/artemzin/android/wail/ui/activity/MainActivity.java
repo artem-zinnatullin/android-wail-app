@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.ui.fragment.main.MainDrawerFragment;
@@ -26,8 +25,6 @@ import java.lang.reflect.Field;
 public class MainActivity extends BaseActivity implements MainDrawerFragment.MainDrawerListener {
 
     private static final int REQUEST_CODE_NON_AUTHORIZED_ACTIVITY_INTENT = 1;
-
-    private Long lastBackPressedTime;
 
     private MainDrawerFragment mainDrawerFragment;
     private DrawerLayout drawerLayout;
@@ -184,16 +181,5 @@ public class MainActivity extends BaseActivity implements MainDrawerFragment.Mai
         } catch (Exception e) {
             Loggi.w("MainActivity.tryToIncreaseNavigationDrawerLeftSwipeZone() exception: " + e);
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (lastBackPressedTime != null && SystemClock.elapsedRealtime() - lastBackPressedTime < 3000) {
-            super.onBackPressed();
-            return;
-        }
-
-        lastBackPressedTime = SystemClock.elapsedRealtime();
-        Toast.makeText(this, getString(R.string.main_press_back_again_to_exit), Toast.LENGTH_SHORT).show();
     }
 }

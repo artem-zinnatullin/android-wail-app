@@ -54,6 +54,20 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/settings_disable_scrobbling_over_mobile_network"
+            style="@style/SettingsItem.WithSwitch">
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                style="@style/SettingsItemTitle.WithSwitch"
+                android:text="@string/settings_disable_scrobbling_over_mobile_network"/>
+
+            <Switch
+                android:id="@+id/settings_disable_scrobbling_over_mobile_network_switch"
+                style="@style/SettingsItemSwitch" />
+
+        </LinearLayout>
+
         <LinearLayout style="@style/SettingsCategoryTitle">
 
             <com.artemzin.android.wail.ui.TypefaceTextView

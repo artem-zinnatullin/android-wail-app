@@ -17,6 +17,7 @@ public class WAILSettings {
     private static final String KEY_LASTFM_SESSION_KEY             = "KEY_LASTFM_SESSION_KEY";
     private static final String KEY_MIN_TRACK_DURATION_IN_PERCENTS = "KEY_MIN_TRACK_DURATION_IN_PERCENTS";
     private static final String KEY_MIN_TRACK_DURATION_IN_SECONDS  = "KEY_MIN_TRACK_DURATION_IN_SECONDS";
+    private static final String KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK = "KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK";
     private static final String KEY_TOTAL_HANDLED_TRACKS_COUNT     = "KEY_TOTAL_HANDLED_TRACKS_COUNT";
     private static final String KEY_LASTFM_USER_NAME               = "KEY_LASTFM_USER_NAME";
     private static final String KEY_IS_FIRST_LAUNCH                = "KEY_IS_FIRST_LAUNCH";
@@ -29,6 +30,8 @@ public class WAILSettings {
 
     private static final String KEY_SOUND_NOTIFICATION_TRACK_MARKED_AS_SCROBBLED_ENABLED = "KEY_SOUND_NOTIFICATION_TRACK_MARKED_AS_SCROBBLED_ENABLED";
     private static final String KEY_SOUND_NOTIFICATION_TRACK_SKIPPED_ENABLED = "KEY_SOUND_NOTIFICATION_TRACK_SKIPPED_ENABLED";
+
+    private static final String KEY_NOW_SCROBBLING_TRACK = "KEY_NOW_SCROBBLING_TRACK";
 
     private static final String KEY_SHOULD_SHOW_NOTIFICATION_ABOUT_MIN_TRACK_DURATION_BEHAVIOR_CHANGED = "KEY_SHOULD_SHOW_NOTIFICATION_ABOUT_MIN_TRACK_DURATION_BEHAVIOR_CHANGED";
 
@@ -44,6 +47,7 @@ public class WAILSettings {
     private static Boolean isEnabled;
     private static Integer minTrackDurationInPercents;
     private static Integer minTrackDurationInSeconds;
+    private static Boolean disableScrobblingOverMobileNetwork;
     private static Long    totalHandledTracksCount;
     private static Boolean isLastfmNowplayingUpdateEnabled;
     private static String  lastfmUserName;
@@ -244,5 +248,24 @@ public class WAILSettings {
     public static synchronized void setShowFeedbackRequest(Context context, boolean value) {
         isShowFeedbackRequest = value;
         getSharedPreferences(context).edit().putBoolean(KEY_IS_SHOW_FEEDBACK_REQUEST, value).commit();
+    }
+
+    public static synchronized String getNowScrobblingTrack(Context context) {
+        return getSharedPreferences(context).getString(KEY_NOW_SCROBBLING_TRACK, null);
+    }
+
+    public static synchronized void setNowScrobblingTrack(Context context, String value) {
+        getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_TRACK, value).commit();
+    }
+
+    public static boolean isDisableScrobblingOverMobileNetwork(Context context) {
+        return disableScrobblingOverMobileNetwork != null
+                ? disableScrobblingOverMobileNetwork
+                : getSharedPreferences(context).getBoolean(KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK, false);
+    }
+
+    public static void setDisableScrobblingOverMobileNetwork(Context context, boolean value) {
+        disableScrobblingOverMobileNetwork = value;
+        getSharedPreferences(context).edit().putBoolean(KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK, value).commit();
     }
 }

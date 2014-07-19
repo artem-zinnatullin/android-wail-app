@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.support.v4.content.LocalBroadcastManager;
 
 import com.artemzin.android.wail.api.lastfm.LFApiException;
 import com.artemzin.android.wail.api.lastfm.LFTrackApi;
@@ -106,8 +107,15 @@ public class WAILService extends Service {
                 final Track currentTrack = CommonMusicAppReceiver.parseFromIntentExtras(intent);
 
                 if (isCurrentTrackPlaying) {
+                    WAILSettings.setNowScrobblingTrack(
+                            getApplicationContext(),
+                            currentTrack.getArtist() + " - " + currentTrack.getTrack());
                     updateNowPlaying(currentTrack);
+                } else {
+                    WAILSettings.setNowScrobblingTrack(getApplicationContext(), null);
                 }
+                LocalBroadcastManager.getInstance(getApplicationContext())
+                        .sendBroadcast(new Intent(TracksDBHelper.INTENT_TRACKS_CHANGED));
 
                 final LastCapturedTrackInfo mLastCapturedTrackInfo = WAILSettings.getLastCapturedTrackInfo(getApplicationContext());
 
@@ -192,6 +200,10 @@ public class WAILService extends Service {
 
         if (!NetworkUtil.isAvailable(this)) {
             Loggi.e("WAILService scrobblePendingTracks() stopped, network is not available");
+            return;
+        } else if (WAILSettings.isDisableScrobblingOverMobileNetwork(getApplicationContext())
+                && NetworkUtil.isMobileNetwork(this)) {
+            Loggi.e("WAILService scrobblePendingTracks() stopped, scrobbling over mobile network disabled");
             return;
         }
 
@@ -338,6 +350,10 @@ public class WAILService extends Service {
 
         if (!NetworkUtil.isAvailable(getApplicationContext())) {
             Loggi.w("WAILService.updateNowPlaying() network is not available, update skipped: " + track);
+            return;
+        } else if (WAILSettings.isDisableScrobblingOverMobileNetwork(getApplicationContext())
+                && NetworkUtil.isMobileNetwork(getApplicationContext())) {
+            Loggi.w("WAILService.updateNowPlaying() scrobbling over mobile network is disabled, update skipped: " + track);
             return;
         }
 

@@ -23,12 +23,15 @@
     <string name="lastfm_logging_network_error">Could not login into last.fm, please check your internet connection</string>
     <string name="lastfm_logging_api_error_unknown">Can not understand last.fm response, may be you need to update the app?</string>
     <string name="lastfm_logging_api_error_4">Login or password is incorrect ;(</string>
+    <string name="lastfm_login_lastfm_icon">Last.fm icon</string>
     <!-- END of authorization screen strings -->
 
     <!-- START of main screen strings -->
     <string name="main_today">today</string>
     <string name="main_tracks_on_last_fm">scrobbled on last.fm</string>
     <string name="main_tracks_on_last_fm_unknown">total tracks count on last.fm is unknown :( try to do manual pull to refresh!</string>
+    <string name="main_now_scrobbling_label">Now scrobbling: %1$s</string>
+    <string name="main_now_scrobbling_nothing">nothing :(</string>
     <string name="main_pull_down_to_refresh_toast">Pull down to refresh data :)</string>
     <string name="main_pull_to_refresh_pull_text">Pull to refresh</string>
     <string name="main_pull_to_refresh_refreshing_text">Updating info from last.fm</string>
@@ -84,6 +87,8 @@
     <string name="settings_status_bar_notifications_description">This feature is coming soon…</string>
     <string name="settings_email_to_the_developer">Email developer</string>
     <string name="settings_email_dialog_title">Select email app</string>
+    <string name="main_settings_menu_toggle_wail">Toggle WAIL</string>
+    <string name="settings_disable_scrobbling_over_mobile_network">Disable scrobbling over mobile network</string>
     <!-- END of settings screen strings -->
 
     <!-- START of sound notifications screen strings -->
