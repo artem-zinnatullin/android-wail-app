@@ -13,10 +13,31 @@ android {
         targetSdkVersion 20
     }
 
+    signingConfigs {
+        release
+    }
+
     buildTypes {
         debug {
             versionNameSuffix ' debug ' + getDateForVersionName()
         }
+
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    if (project.hasProperty('signingConfig.storeFile')
+        && project.hasProperty('signingConfig.storePassword')
+        && project.hasProperty('signingConfig.keyAlias')
+        && project.hasProperty('signingConfig.keyPassword')
+    ) {
+        android.signingConfigs.release.storeFile     = file(project.getProperty('signingConfig.storeFile'))
+        android.signingConfigs.release.storePassword = project.getProperty('signingConfig.storePassword')
+        android.signingConfigs.release.keyAlias      = project.getProperty('signingConfig.keyAlias')
+        android.signingConfigs.release.keyPassword   = project.getProperty('signingConfig.keyPassword')
+    } else {
+        buildTypes.release.signingConfig = null
     }
 }
 
