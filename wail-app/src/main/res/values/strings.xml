@@ -23,6 +23,7 @@
     <string name="lastfm_logging_network_error">Could not login into last.fm, please check your internet connection</string>
     <string name="lastfm_logging_api_error_unknown">Can not understand last.fm response, may be you need to update the app?</string>
     <string name="lastfm_logging_api_error_4">Login or password is incorrect ;(</string>
+    <string name="lastfm_login_lastfm_icon">LastFM icon</string>
     <!-- END of authorization screen strings -->
 
     <!-- START of main screen strings -->
@@ -86,6 +87,7 @@
     <string name="settings_status_bar_notifications_description">This feature is coming soon…</string>
     <string name="settings_email_to_the_developer">Email developer</string>
     <string name="settings_email_dialog_title">Select email app</string>
+    <string name="main_settings_menu_toggle_wail">Toggle WAIL</string>
     <!-- END of settings screen strings -->
 
     <!-- START of sound notifications screen strings -->
