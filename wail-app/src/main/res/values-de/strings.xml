@@ -77,7 +77,7 @@
     <string name="settings_min_track_elapsed_time_in_percent_dialog_description">Wird benutzt, wenn der Titel kürzer als die min. Titellänge ist. Einstellbar von 50 bis 100%.</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Aktuell: %1$s%%</string>
     <string name="settings_update_nowplaying_title">#nowplaying</string>
-    <string name="settings_lastfm_update_nowplaying_title">#nowplaying auf Last.fm</string>
+    <string name="settings_lastfm_update_nowplaying_title">Auf Last.fm aktuellen Titel anzeigen</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm #nowplaying aktiviert</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm #nowplaying deaktiviert</string>
     <string name="settings_notifications_title">Mitteilungen</string>
