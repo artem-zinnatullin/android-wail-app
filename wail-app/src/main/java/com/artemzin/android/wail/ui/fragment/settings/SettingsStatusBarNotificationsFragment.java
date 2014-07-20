@@ -16,7 +16,7 @@ import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
 
 /**
- * @author Artem Zinnatullin [artem.zinnatullin@gmail.com]
+ * @author Ilya Murzinov [murz42@gmail.com]
  */
 public class SettingsStatusBarNotificationsFragment extends BaseFragment {
 
@@ -44,7 +44,7 @@ public class SettingsStatusBarNotificationsFragment extends BaseFragment {
                 StatusBarNotificationsManager.getInstance(getActivity()).hideTrackScrobblingStatusBarNotification();
 
                 EasyTracker.getInstance(activity).send(MapBuilder.createEvent(GA_EVENT_SETTINGS_STATUS_BAR_NOTIFICATIONS,
-                        "trackSkippedSoundSwitch",
+                        "nowPlayingStatusBarNotifications",
                         isChecked ? "enabled" : "disabled",
                         isChecked? 1L : 0L).build());
             }

@@ -15,6 +15,10 @@ import com.artemzin.android.wail.storage.model.Track;
 import com.artemzin.android.wail.ui.activity.MainActivity;
 import com.artemzin.android.wail.util.Loggi;
 
+/**
+ * @author Ilya Murzinov [murz42@gmail.com]
+ */
+
 public class StatusBarNotificationsManager {
     private static final int NOTIFICATION_ID = 1;
 

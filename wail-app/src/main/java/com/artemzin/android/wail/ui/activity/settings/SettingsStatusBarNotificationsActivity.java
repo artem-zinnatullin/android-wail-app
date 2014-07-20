@@ -4,7 +4,7 @@ import android.os.Bundle;
 import com.artemzin.android.wail.R;
 
 /**
- * @author Artem Zinnatullin [artem.zinnatullin@gmail.com]
+ * @author Ilya Murzinov [murz42@gmail.com]
  */
 public class SettingsStatusBarNotificationsActivity extends BaseSettingsActivity {
 
