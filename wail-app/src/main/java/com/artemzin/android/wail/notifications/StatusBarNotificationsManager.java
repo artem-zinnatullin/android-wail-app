@@ -74,4 +74,9 @@ public class StatusBarNotificationsManager {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Activity.NOTIFICATION_SERVICE);
         notificationManager.cancel(NOTIFICATION_ID);
     }
+
+    public void cancelAllNotifications() {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Activity.NOTIFICATION_SERVICE);
+        notificationManager.cancelAll();
+    }
 }

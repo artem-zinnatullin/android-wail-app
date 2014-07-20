@@ -41,7 +41,7 @@ public class SettingsStatusBarNotificationsFragment extends BaseFragment {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 WAILSettings.setStatusBarNotificationTrackScrobblingEnabled(activity, isChecked);
 
-                StatusBarNotificationsManager.getInstance(getActivity()).hideTrackScrobblingStatusBarNotification();
+                StatusBarNotificationsManager.getInstance(getActivity()).cancelAllNotifications();
 
                 EasyTracker.getInstance(activity).send(MapBuilder.createEvent(GA_EVENT_SETTINGS_STATUS_BAR_NOTIFICATIONS,
                         "nowPlayingStatusBarNotifications",
