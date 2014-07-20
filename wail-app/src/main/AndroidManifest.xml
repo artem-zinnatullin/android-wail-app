@@ -38,6 +38,11 @@
             android:windowSoftInputMode="stateHidden"
             android:label="@string/settings_sound_notifications_activity_label" />
 
+        <activity
+            android:name=".ui.activity.settings.SettingsStatusBarNotificationsActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/settings_status_bar_notifications_activity_label" />
+
         <service
             android:name=".service.WAILService"
             android:enabled="true"

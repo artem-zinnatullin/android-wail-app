@@ -23,7 +23,7 @@
         </LinearLayout>
 
         <TableRow
-            android:id="@+id/settings_status_bar_notifications_track_marked_as_scrobbled"
+            android:id="@+id/settings_status_bar_notifications_track_now_scrobbling"
             style="@style/SettingsItem.WithSwitch"
             android:layout_marginTop="15dp">
 
@@ -31,26 +31,10 @@
                 style="@style/SettingsItemTitle.WithSwitch"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="@string/settings_notifications_track_scrobbled" />
+                android:text="@string/settings_notifications_track_now_scrobbling" />
 
             <Switch
-                android:id="@+id/settings_status_bar_notifications_track_marked_as_scrobbled_switch"
-                style="@style/SettingsItemSwitch" />
-
-        </TableRow>
-
-        <View style="@style/SettingsCategoryTitleDivider" />
-
-        <TableRow
-            android:id="@+id/settings_status_bar_notifications_track_skipped"
-            style="@style/SettingsItem.WithSwitch">
-
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="@style/SettingsItemTitle.WithSwitch"
-                android:text="@string/settings_track_was_skipped" />
-
-            <Switch
-                android:id="@+id/settings_status_bar_notifications_track_skipped_switch"
+                android:id="@+id/settings_status_bar_notifications_track_now_scrobbling_switch"
                 style="@style/SettingsItemSwitch" />
 
         </TableRow>

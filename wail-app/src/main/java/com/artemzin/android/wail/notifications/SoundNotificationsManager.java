@@ -1,4 +1,4 @@
-package com.artemzin.android.wail.sound;
+package com.artemzin.android.wail.notifications;
 
 import android.content.Context;
 import android.media.MediaPlayer;

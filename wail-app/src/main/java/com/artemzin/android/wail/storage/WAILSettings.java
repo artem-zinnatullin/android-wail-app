@@ -31,6 +31,8 @@ public class WAILSettings {
     private static final String KEY_SOUND_NOTIFICATION_TRACK_MARKED_AS_SCROBBLED_ENABLED = "KEY_SOUND_NOTIFICATION_TRACK_MARKED_AS_SCROBBLED_ENABLED";
     private static final String KEY_SOUND_NOTIFICATION_TRACK_SKIPPED_ENABLED = "KEY_SOUND_NOTIFICATION_TRACK_SKIPPED_ENABLED";
 
+    private static final String KEY_STATUS_BAR_NOTIFICATION_TRACK_SCROBBLING = "KEY_SOUND_NOTIFICATION_TRACK_MARKED_AS_SCROBBLED_ENABLED";
+
     private static final String KEY_NOW_SCROBBLING_TRACK = "KEY_NOW_SCROBBLING_TRACK";
 
     private static final String KEY_SHOULD_SHOW_NOTIFICATION_ABOUT_MIN_TRACK_DURATION_BEHAVIOR_CHANGED = "KEY_SHOULD_SHOW_NOTIFICATION_ABOUT_MIN_TRACK_DURATION_BEHAVIOR_CHANGED";
@@ -55,6 +57,8 @@ public class WAILSettings {
 
     private static Boolean soundNotificationTrackScrobbledEnabled;
     private static Boolean soundNotificationTrackSkippedEnabled;
+
+    private static Boolean statusBarNotificationTrackScrobblingEnabled;
     // endregion
 
     private WAILSettings() {}
@@ -267,5 +271,16 @@ public class WAILSettings {
     public static void setDisableScrobblingOverMobileNetwork(Context context, boolean value) {
         disableScrobblingOverMobileNetwork = value;
         getSharedPreferences(context).edit().putBoolean(KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK, value).commit();
+    }
+
+    public static boolean isStatusBarNotificationTrackScrobblingEnabled(Context context) {
+        return statusBarNotificationTrackScrobblingEnabled != null
+                ? statusBarNotificationTrackScrobblingEnabled
+                : getSharedPreferences(context).getBoolean(KEY_STATUS_BAR_NOTIFICATION_TRACK_SCROBBLING, false);
+    }
+
+    public static void setStatusBarNotificationTrackScrobblingEnabled(Context context, boolean value) {
+        WAILSettings.statusBarNotificationTrackScrobblingEnabled = value;
+        getSharedPreferences(context).edit().putBoolean(KEY_STATUS_BAR_NOTIFICATION_TRACK_SCROBBLING, value).commit();
     }
 }
