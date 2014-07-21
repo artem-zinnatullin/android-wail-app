@@ -57,7 +57,7 @@ public class StatusBarNotificationsManager {
         Notification notification = new NotificationCompat.Builder(context)
                 .setContentTitle("Now scrobbling")
                 .setContentText(track.getArtist() + " - " + track.getTrack())
-                .setSmallIcon(R.drawable.wail_launcher_icon)
+                .setSmallIcon(R.drawable.ic_status_wail_notifications)
                 .setContentIntent(intent)
                 .build();
         notification.flags = Notification.FLAG_ONGOING_EVENT;
