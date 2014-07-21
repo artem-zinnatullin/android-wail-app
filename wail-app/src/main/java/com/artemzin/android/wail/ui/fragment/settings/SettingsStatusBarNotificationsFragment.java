@@ -11,6 +11,7 @@ import android.widget.Switch;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.notifications.StatusBarNotificationsManager;
 import com.artemzin.android.wail.storage.WAILSettings;
+import com.artemzin.android.wail.storage.model.Track;
 import com.artemzin.android.wail.ui.fragment.BaseFragment;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
@@ -41,7 +42,16 @@ public class SettingsStatusBarNotificationsFragment extends BaseFragment {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 WAILSettings.setStatusBarNotificationTrackScrobblingEnabled(activity, isChecked);
 
-                StatusBarNotificationsManager.getInstance(getActivity()).cancelAllNotifications();
+                if (isChecked) {
+                    Track track = WAILSettings.getNowScrobblingTrack(getActivity());
+                    if (track != null)
+                    {
+                        StatusBarNotificationsManager.getInstance(getActivity())
+                                .showTrackScrobblingStatusBarNotification(track);
+                    }
+                } else {
+                    StatusBarNotificationsManager.getInstance(getActivity()).cancelAllNotifications();
+                }
 
                 EasyTracker.getInstance(activity).send(MapBuilder.createEvent(GA_EVENT_SETTINGS_STATUS_BAR_NOTIFICATIONS,
                         "nowPlayingStatusBarNotifications",
