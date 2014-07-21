@@ -108,9 +108,7 @@ public class WAILService extends Service {
                 final Track currentTrack = CommonMusicAppReceiver.parseFromIntentExtras(intent);
 
                 if (isCurrentTrackPlaying) {
-                    WAILSettings.setNowScrobblingTrack(
-                            getApplicationContext(),
-                            currentTrack.getArtist() + " - " + currentTrack.getTrack());
+                    WAILSettings.setNowScrobblingTrack(getApplicationContext(), currentTrack);
                     StatusBarNotificationsManager.getInstance(getApplicationContext())
                             .showTrackScrobblingStatusBarNotification(currentTrack);
                     updateNowPlaying(currentTrack);

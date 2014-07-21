@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import com.artemzin.android.bytes.common.StringUtil;
 import com.artemzin.android.wail.api.lastfm.model.response.LFUserResponseModel;
 import com.artemzin.android.wail.service.WAILService;
+import com.artemzin.android.wail.storage.model.Track;
 
 public class WAILSettings {
 
@@ -33,7 +34,8 @@ public class WAILSettings {
 
     private static final String KEY_STATUS_BAR_NOTIFICATION_TRACK_SCROBBLING = "KEY_SOUND_NOTIFICATION_TRACK_MARKED_AS_SCROBBLED_ENABLED";
 
-    private static final String KEY_NOW_SCROBBLING_TRACK = "KEY_NOW_SCROBBLING_TRACK";
+    private static final String KEY_NOW_SCROBBLING_TRACK_ARTIST = "KEY_NOW_SCROBBLING_TRACK_ARTIST";
+    private static final String KEY_NOW_SCROBBLING_TRACK_TITLE = "KEY_NOW_SCROBBLING_TRACK_TITLE";
 
     private static final String KEY_SHOULD_SHOW_NOTIFICATION_ABOUT_MIN_TRACK_DURATION_BEHAVIOR_CHANGED = "KEY_SHOULD_SHOW_NOTIFICATION_ABOUT_MIN_TRACK_DURATION_BEHAVIOR_CHANGED";
 
@@ -254,12 +256,25 @@ public class WAILSettings {
         getSharedPreferences(context).edit().putBoolean(KEY_IS_SHOW_FEEDBACK_REQUEST, value).commit();
     }
 
-    public static synchronized String getNowScrobblingTrack(Context context) {
-        return getSharedPreferences(context).getString(KEY_NOW_SCROBBLING_TRACK, null);
+    public static synchronized Track getNowScrobblingTrack(Context context) {
+        String artist = getSharedPreferences(context).getString(KEY_NOW_SCROBBLING_TRACK_ARTIST, null);
+        String title = getSharedPreferences(context).getString(KEY_NOW_SCROBBLING_TRACK_TITLE, null);
+        if (artist == null && title == null) {
+            return null;
+        }
+        Track track = new Track();
+        track.setArtist(artist);
+        track.setTrack(title);
+        return track;
     }
 
-    public static synchronized void setNowScrobblingTrack(Context context, String value) {
-        getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_TRACK, value).commit();
+    public static synchronized void setNowScrobblingTrack(Context context, Track track) {
+        getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_TRACK_ARTIST,
+                track == null ? null : track.getArtist()
+        ).commit();
+        getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_TRACK_TITLE,
+                track == null ? null : track.getTrack()
+        ).commit();
     }
 
     public static boolean isDisableScrobblingOverMobileNetwork(Context context) {
