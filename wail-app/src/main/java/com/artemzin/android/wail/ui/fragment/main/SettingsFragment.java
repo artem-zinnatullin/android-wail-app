@@ -19,9 +19,11 @@ import com.artemzin.android.bytes.ui.ViewUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSoundNotificationsActivity;
+import com.artemzin.android.wail.ui.activity.settings.SettingsStatusBarNotificationsActivity;
 import com.artemzin.android.wail.ui.fragment.BaseFragment;
 import com.artemzin.android.wail.ui.fragment.custom_dialog.DialogFragmentWithNumberPicker;
 import com.artemzin.android.wail.ui.fragment.custom_dialog.DialogFragmentWithSeekBar;
+import com.artemzin.android.wail.ui.fragment.settings.SettingsStatusBarNotificationsFragment;
 import com.artemzin.android.wail.util.WordFormUtil;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
@@ -139,6 +141,8 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
         });
 
         view.findViewById(R.id.settings_sound_notifications).setOnClickListener(this);
+
+        view.findViewById(R.id.settings_status_bar_notifications).setOnClickListener(this);
 
         view.findViewById(R.id.settings_email_to_the_developer).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -324,6 +328,8 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     public void onClick(View v) {
         if (v.getId() == R.id.settings_sound_notifications) {
             startActivity(new Intent(getActivity(), SettingsSoundNotificationsActivity.class));
+        } else if (v.getId() == R.id.settings_status_bar_notifications) {
+            startActivity(new Intent(getActivity(), SettingsStatusBarNotificationsActivity.class));
         }
     }
 }
