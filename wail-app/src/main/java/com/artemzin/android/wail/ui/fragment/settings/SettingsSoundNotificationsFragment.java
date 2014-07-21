@@ -10,7 +10,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.artemzin.android.wail.R;
-import com.artemzin.android.wail.sound.SoundNotificationsManager;
+import com.artemzin.android.wail.notifications.SoundNotificationsManager;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.ui.fragment.BaseFragment;
 import com.artemzin.android.wail.util.Loggi;

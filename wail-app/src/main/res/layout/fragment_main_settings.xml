@@ -114,7 +114,9 @@
 
         </LinearLayout>
 
-        <LinearLayout style="@style/SettingsItem">
+        <LinearLayout
+            android:id="@+id/settings_status_bar_notifications"
+            style="@style/SettingsItem">
 
             <com.artemzin.android.wail.ui.TypefaceTextView
                 style="@style/SettingsItemTitle"
