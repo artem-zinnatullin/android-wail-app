@@ -82,9 +82,9 @@
     <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm #nowplaying deaktiviert</string>
     <string name="settings_notifications_title">Mitteilungen</string>
     <string name="settings_sound_notifications_title">Tonmitteilungen</string>
-    <string name="settings_sound_notifications_description">Ton wenn Titel gescrobbelt wird, u.a. …</string>
+    <string name="settings_sound_notifications_description">Ton wenn Titel gescrobbelt werden.</string>
     <string name="settings_status_bar_notifications_title">Statusbar-Mitteilungen</string>
-    <string name="settings_status_bar_notifications_description">Kommt bald …</string>
+    <string name="settings_status_bar_notifications_description">Mitteilung in der Statusbar, wenn Titel gescrobbelt werden.</string>
     <string name="settings_email_to_the_developer">E-Mail an Entwickler</string>
     <string name="settings_email_dialog_title">E-Mail-App auswählen</string>
     <string name="main_settings_menu_toggle_wail">WAIL an/abschalten</string>
