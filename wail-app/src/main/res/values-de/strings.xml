@@ -102,8 +102,9 @@
 
     <string name="settings_status_bar_notifications_activity_label">Statusbar-Mitteilungen</string>
     <string name="settings_status_bar_notifications_main_title">Liste von Statusbar-Mitteilungen</string>
+    <string name="settings_notifications_track_now_scrobbling">WAIL scrobbelt Titel</string>
 
-    <!-- START of some common strings -->
+<!-- START of some common strings -->
     <string name="dialog_cancel">Abbrechen</string>
     <string name="dialog_save">Speichern</string>
     <string name="drawer_main">Allgemein</string>
