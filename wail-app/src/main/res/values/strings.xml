@@ -88,7 +88,7 @@
     <string name="settings_email_to_the_developer">Email developer</string>
     <string name="settings_email_dialog_title">Select email app</string>
     <string name="main_settings_menu_toggle_wail">Toggle WAIL</string>
-    <string name="settings_disable_scrobbling_over_mobile_network">Disable scrobbling over mobile network</string>
+    <string name="settings_disable_scrobbling_over_mobile_network">Scrobbling over mobile network</string>
     <!-- END of settings screen strings -->
 
     <!-- START of sound notifications screen strings -->
