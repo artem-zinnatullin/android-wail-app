@@ -88,6 +88,10 @@ public class WAILSettings {
         getSharedPreferences(context).edit().clear().commit();
     }
 
+    public static synchronized String getLanguageOrNullIfAuto(Context context) {
+        return getSharedPreferences(context).getString(KEY_LOCALE, null);
+    }
+
     public static synchronized String getLanguage(Context context) {
         return getSharedPreferences(context).getString(KEY_LOCALE, Locale.getDefault().getDisplayLanguage());
     }

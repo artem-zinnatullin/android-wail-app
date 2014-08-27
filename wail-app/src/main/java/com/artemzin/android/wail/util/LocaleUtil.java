@@ -1,7 +1,5 @@
 package com.artemzin.android.wail.util;
 
-import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -13,8 +11,7 @@ import java.util.Locale;
 
 public class LocaleUtil {
 
-    public static void updateLanguage(Context context, String newLanguage)
-    {
+    public static void updateLanguage(Context context, String newLanguage) {
         Configuration configuration = new Configuration();
         String language = WAILSettings.getLanguage(context);
 

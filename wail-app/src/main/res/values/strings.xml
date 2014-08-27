@@ -92,11 +92,7 @@
     <string name="settings_select_language_title">Language</string>
     <string name="settings_select_language">Select language</string>
     <string name="settings_select_language_activity_label">Select language</string>
-    <string-array name="settings_select_language_languages">
-        <item>Auto</item>
-        <item>English</item>
-        <item>Deutsch</item>
-    </string-array>
+
     <!-- END of settings screen strings -->
 
     <!-- START of sound notifications screen strings -->

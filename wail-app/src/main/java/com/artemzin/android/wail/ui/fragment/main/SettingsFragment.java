@@ -93,7 +93,14 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
 
         view.findViewById(R.id.settings_select_language_menu_item).setOnClickListener(this);
         TextView languageMenuItemDescription = (TextView) view.findViewById(R.id.settings_select_language_description);
-        languageMenuItemDescription.setText(WAILSettings.getLanguage(getActivity()));
+
+        String lang = WAILSettings.getLanguageOrNullIfAuto(getActivity());
+
+        if (lang == null) {
+            lang = getResources().getStringArray(R.array.settings_select_language_languages)[0];
+        }
+
+        languageMenuItemDescription.setText(lang);
 
         view.findViewById(R.id.settings_min_track_duration_in_percents).setOnClickListener(new View.OnClickListener() {
             @Override

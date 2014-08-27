@@ -1,16 +1,20 @@
 package com.artemzin.android.wail.ui.fragment.settings;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.artemzin.android.wail.R;
+import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.ui.fragment.BaseFragment;
 import com.artemzin.android.wail.util.LocaleUtil;
+import com.artemzin.android.wail.util.Loggi;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
 
@@ -21,19 +25,22 @@ public class SettingsSelectLanguageFragment extends BaseFragment implements List
     private final String GA_EVENT_SETTINGS_SELECT_LANGUAGE = "SettingsSelectLanguage";
 
     private String[] languages;
+    private ListView languagesList;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        languages = getResources().getStringArray(R.array.settings_select_language_languages);
-        languages[0] = String.format(languages[0] + " (%s)", Locale.getDefault().getDisplayLanguage());
-        ListView languagesList = (ListView) view.findViewById(R.id.settings_select_language_list_view);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        languages = markCurrentLanguageAsSelected(getActivity(), getResources().getStringArray(R.array.settings_select_language_languages));
+
+        languagesList = (ListView) view.findViewById(R.id.settings_select_language_list_view);
+
+        BaseAdapter adapter = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 languages
         );
+
         languagesList.setAdapter(adapter);
         languagesList.setOnItemClickListener(this);
     }
@@ -62,5 +69,32 @@ public class SettingsSelectLanguageFragment extends BaseFragment implements List
         ).build());
 
         getActivity().finish();
+    }
+
+    private static String[] markCurrentLanguageAsSelected(Context context, String[] languages) {
+        try {
+            final String currentLanguage = WAILSettings.getLanguage(context);
+
+            boolean languageWasSelected = false;
+
+            for (int i = 0; i < languages.length; i++) {
+                final String lang = languages[i];
+
+                if (currentLanguage.equalsIgnoreCase(lang)) {
+                    languages[i] = context.getString(R.string.settings_select_language_current_lang, lang);
+                    languageWasSelected = true;
+                    break;
+                }
+            }
+
+            if (!languageWasSelected) {
+                languages[0] = context.getString(R.string.settings_select_language_current_lang, languages[0]);
+            }
+
+            return languages;
+        } catch (Exception e) {
+            Loggi.e(e.toString());
+            return languages;
+        }
     }
 }

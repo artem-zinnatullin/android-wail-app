@@ -5,4 +5,13 @@
     <string name="settings_my_email" translatable="false">artem.zinnatullin@gmail.com (English or Russian)</string>
     <string name="settings_email_to_the_developer_subj" translatable="false">WAIL</string>
     <string name="settings_build_version_label" translatable="false">Build version</string>
+
+    <string-array name="settings_select_language_languages" translatable="false">
+        <!-- Please do not change position of "Auto" item! -->
+        <item>Auto</item>
+        <item>English</item>
+        <item>Deutsch</item>
+    </string-array>
+
+    <string name="settings_select_language_current_lang">%s (current)</string>
 </resources>
