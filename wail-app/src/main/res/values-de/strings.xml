@@ -127,7 +127,7 @@
     <!-- same as word_form_tracks -->
     <string-array name="word_forms_second">
         <item>Sekunde</item>
-        <item>Sekunden </item>
+        <item>Sekunden</item>
         <!-- <item>3rd word form</item> -->
     </string-array>
     <!-- END of some common strings -->

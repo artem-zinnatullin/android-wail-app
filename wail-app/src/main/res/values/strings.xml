@@ -43,7 +43,7 @@
     <string name="main_refresh_info_from_lastfm_api_error">Last.fm error: %1$s</string>
     <string name="main_refresh_info_from_lastfm_unknown_error">Can not update info from last.fm, sorry :(</string>
     <string name="main_press_back_again_to_exit">Press back again to exit</string>
-    <string name="main_feedback_please">WAIL is sad without your feedback on the Google PLay :(</string>
+    <string name="main_feedback_please">WAIL is sad without your feedback on the Google Play :(</string>
     <string name="main_feedback_please_happy_toast">Now WAIL is happy ;)</string>
     <!-- END of main screen strings -->
 
