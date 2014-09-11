@@ -13,7 +13,8 @@ import com.artemzin.android.wail.api.lastfm.LFTrackApi;
 import com.artemzin.android.wail.api.lastfm.model.request.LFTrackRequestModel;
 import com.artemzin.android.wail.api.network.NetworkException;
 import com.artemzin.android.wail.receiver.music.CommonMusicAppReceiver;
-import com.artemzin.android.wail.sound.SoundNotificationsManager;
+import com.artemzin.android.wail.notifications.SoundNotificationsManager;
+import com.artemzin.android.wail.notifications.StatusBarNotificationsManager;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.storage.model.Track;
@@ -107,11 +108,13 @@ public class WAILService extends Service {
                 final Track currentTrack = CommonMusicAppReceiver.parseFromIntentExtras(intent);
 
                 if (isCurrentTrackPlaying) {
-                    WAILSettings.setNowScrobblingTrack(
-                            getApplicationContext(),
-                            currentTrack.getArtist() + " - " + currentTrack.getTrack());
+                    WAILSettings.setNowScrobblingTrack(getApplicationContext(), currentTrack);
+                    StatusBarNotificationsManager.getInstance(getApplicationContext())
+                            .showTrackScrobblingStatusBarNotification(currentTrack);
                     updateNowPlaying(currentTrack);
                 } else {
+                    StatusBarNotificationsManager.getInstance(getApplicationContext())
+                            .hideTrackScrobblingStatusBarNotification();
                     WAILSettings.setNowScrobblingTrack(getApplicationContext(), null);
                 }
                 LocalBroadcastManager.getInstance(getApplicationContext())

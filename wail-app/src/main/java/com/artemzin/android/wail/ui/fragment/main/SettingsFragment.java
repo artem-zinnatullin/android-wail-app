@@ -18,7 +18,9 @@ import com.artemzin.android.bytes.ui.DisplayUnitsConverter;
 import com.artemzin.android.bytes.ui.ViewUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
+import com.artemzin.android.wail.ui.activity.settings.SettingsSelectLanguageActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSoundNotificationsActivity;
+import com.artemzin.android.wail.ui.activity.settings.SettingsStatusBarNotificationsActivity;
 import com.artemzin.android.wail.ui.fragment.BaseFragment;
 import com.artemzin.android.wail.ui.fragment.custom_dialog.DialogFragmentWithNumberPicker;
 import com.artemzin.android.wail.ui.fragment.custom_dialog.DialogFragmentWithSeekBar;
@@ -89,6 +91,17 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
             setUIStateWailDisabled();
         }
 
+        view.findViewById(R.id.settings_select_language_menu_item).setOnClickListener(this);
+        TextView languageMenuItemDescription = (TextView) view.findViewById(R.id.settings_select_language_description);
+
+        String lang = WAILSettings.getLanguageOrNullIfAuto(getActivity());
+
+        if (lang == null) {
+            lang = getResources().getStringArray(R.array.settings_select_language_languages)[0];
+        }
+
+        languageMenuItemDescription.setText(lang);
+
         view.findViewById(R.id.settings_min_track_duration_in_percents).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,13 +145,15 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                         MapBuilder.createEvent(GA_EVENT_SETTINGS_FRAGMENT,
                                 "lastFmUpdateNowPlaying enabled: " + isChecked,
                                 null,
-                                isChecked ? 1L : 0L)
-                        .build()
+                                isChecked ? 1L : 0L
+                        ).build()
                 );
             }
         });
 
         view.findViewById(R.id.settings_sound_notifications).setOnClickListener(this);
+
+        view.findViewById(R.id.settings_status_bar_notifications).setOnClickListener(this);
 
         view.findViewById(R.id.settings_email_to_the_developer).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -324,6 +339,10 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     public void onClick(View v) {
         if (v.getId() == R.id.settings_sound_notifications) {
             startActivity(new Intent(getActivity(), SettingsSoundNotificationsActivity.class));
+        } else if (v.getId() == R.id.settings_status_bar_notifications) {
+            startActivity(new Intent(getActivity(), SettingsStatusBarNotificationsActivity.class));
+        } else if (v.getId() == R.id.settings_select_language_menu_item) {
+            startActivity(new Intent(getActivity(), SettingsSelectLanguageActivity.class));
         }
     }
 }

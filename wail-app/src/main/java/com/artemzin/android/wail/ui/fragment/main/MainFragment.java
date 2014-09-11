@@ -366,9 +366,12 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void updateNowScrobblingTrack() {
-        String nowScrobblingTrack = WAILSettings.getNowScrobblingTrack(getActivity().getApplicationContext());
+        Track nowScrobblingTrack = WAILSettings.getNowScrobblingTrack(getActivity());
         if (nowScrobblingTrack != null) {
-            nowScrobblingTrackTextView.setText(getString(R.string.main_now_scrobbling_label, nowScrobblingTrack));
+            nowScrobblingTrackTextView.setText(getString(
+                    R.string.main_now_scrobbling_label,
+                    nowScrobblingTrack.getArtist() + " - " + nowScrobblingTrack.getTrack())
+            );
         } else {
             nowScrobblingTrackTextView.setText(getString(R.string.main_now_scrobbling_label, getString(R.string.main_now_scrobbling_nothing)));
         }
