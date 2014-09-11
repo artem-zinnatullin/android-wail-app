@@ -72,6 +72,31 @@
 
             <com.artemzin.android.wail.ui.TypefaceTextView
                 style="@style/SettingsCategoryTitleTitle"
+                android:text="@string/settings_select_language_title" />
+
+            <View style="@style/SettingsCategoryTitleDivider" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/SettingsItem"
+            android:id="@+id/settings_select_language_menu_item">
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                style="@style/SettingsItemTitle"
+                android:text="@string/settings_select_language"/>
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                style="@style/SettingsItemDescription"
+                android:id="@+id/settings_select_language_description"
+                tools:text="English"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/SettingsCategoryTitle">
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                style="@style/SettingsCategoryTitleTitle"
                 android:text="@string/settings_update_nowplaying_title" />
 
             <View style="@style/SettingsCategoryTitleDivider" />

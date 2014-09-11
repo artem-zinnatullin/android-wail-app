@@ -1,3 +1,8 @@
+// for applying custom environment properties
+if (new File('wail-app/custom_env.gradle').exists()) {
+    apply from: 'custom_env.gradle'
+}
+
 apply plugin: 'com.android.application'
 
 repositories {
@@ -16,30 +21,31 @@ android {
     }
 
     signingConfigs {
-        release
+        googlePlay
     }
 
     buildTypes {
         debug {
             versionNameSuffix ' debug ' + getDateForVersionName()
+            signingConfig signingConfigs.googlePlay
         }
 
         release {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.googlePlay
         }
     }
 
-    if (project.hasProperty('signingConfig.storeFile')
-        && project.hasProperty('signingConfig.storePassword')
-        && project.hasProperty('signingConfig.keyAlias')
-        && project.hasProperty('signingConfig.keyPassword')
+    if (project.hasProperty('signingConfigStoreFile')
+            && project.hasProperty('signingConfigStorePassword')
+            && project.hasProperty('signingConfigKeyAlias')
+            && project.hasProperty('signingConfigKeyPassword')
     ) {
-        android.signingConfigs.release.storeFile     = file(project.getProperty('signingConfig.storeFile'))
-        android.signingConfigs.release.storePassword = project.getProperty('signingConfig.storePassword')
-        android.signingConfigs.release.keyAlias      = project.getProperty('signingConfig.keyAlias')
-        android.signingConfigs.release.keyPassword   = project.getProperty('signingConfig.keyPassword')
+        android.signingConfigs.googlePlay.storeFile     = file(project.ext['signingConfigStoreFile'])
+        android.signingConfigs.googlePlay.storePassword = project.ext['signingConfigStorePassword']
+        android.signingConfigs.googlePlay.keyAlias      = project.ext['signingConfigKeyAlias']
+        android.signingConfigs.googlePlay.keyPassword   = project.ext['signingConfigKeyPassword']
     } else {
-        buildTypes.release.signingConfig = null
+        buildTypes.googlePlay.signingConfig = null
     }
 }
 

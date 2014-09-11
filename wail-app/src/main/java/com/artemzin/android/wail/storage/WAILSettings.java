@@ -7,12 +7,16 @@ import com.artemzin.android.bytes.common.StringUtil;
 import com.artemzin.android.wail.api.lastfm.model.response.LFUserResponseModel;
 import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.model.Track;
+import com.artemzin.android.wail.util.LocaleUtil;
+
+import java.util.Locale;
 
 public class WAILSettings {
 
     private static final String APP_SETTINGS                       = "APP_SETTINGS";
 
     // region keys
+    private static final String KEY_LOCALE                         = "KEY_LOCALE";
     private static final String KEY_IS_ENABLED                     = "KEY_IS_ENABLED";
     private static final String KEY_START_ON_BOOT                  = "KEY_START_ON_BOOT";
     private static final String KEY_LASTFM_SESSION_KEY             = "KEY_LASTFM_SESSION_KEY";
@@ -83,6 +87,28 @@ public class WAILSettings {
         soundNotificationTrackSkippedEnabled   = null;
 
         getSharedPreferences(context).edit().clear().commit();
+    }
+
+    public static synchronized String getLanguageOrNullIfAuto(Context context) {
+        String savedLang = getSharedPreferences(context).getString(KEY_LOCALE, null);
+
+        String defaultLang = Locale.getDefault().getDisplayLanguage();
+
+        if (savedLang == null) {
+            return null;
+        } else if (savedLang.equals(defaultLang) || savedLang.equals(LocaleUtil.lang(defaultLang))) {
+            return null;
+        } else {
+            return savedLang;
+        }
+    }
+
+    public static synchronized String getLanguage(Context context) {
+        return getSharedPreferences(context).getString(KEY_LOCALE, Locale.getDefault().getDisplayLanguage());
+    }
+
+    public static synchronized void setLanguage(Context context, String value) {
+        getSharedPreferences(context).edit().putString(KEY_LOCALE, value).commit();
     }
 
     public static synchronized boolean isAuthorized(Context context) {
