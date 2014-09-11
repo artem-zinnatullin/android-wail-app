@@ -89,9 +89,6 @@
     <string name="settings_email_dialog_title">Select email app</string>
     <string name="main_settings_menu_toggle_wail">Toggle WAIL</string>
     <string name="settings_disable_scrobbling_over_mobile_network">Scrobbling over mobile network</string>
-    <string name="settings_select_language_title">Language</string>
-    <string name="settings_select_language">Select language</string>
-    <string name="settings_select_language_activity_label">Select language</string>
 
     <!-- END of settings screen strings -->
 

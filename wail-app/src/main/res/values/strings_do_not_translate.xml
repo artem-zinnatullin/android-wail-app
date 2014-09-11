@@ -13,5 +13,8 @@
         <item>Deutsch</item>
     </string-array>
 
-    <string name="settings_select_language_current_lang">%s (current)</string>
+    <string name="settings_select_language_title" translatable="false">Language</string>
+    <string name="settings_select_language" translatable="false">Select language</string>
+    <string name="settings_select_language_activity_label" translatable="false">Select language</string>
+    <string name="settings_select_language_current_lang" translatable="false">%s (current)</string>
 </resources>
