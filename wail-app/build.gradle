@@ -45,7 +45,9 @@ android {
         android.signingConfigs.googlePlay.keyAlias      = project.ext['signingConfigKeyAlias']
         android.signingConfigs.googlePlay.keyPassword   = project.ext['signingConfigKeyPassword']
     } else {
-        buildTypes.googlePlay.signingConfig = null
+        buildTypes.all { bt ->
+            bt.signingConfig = null
+        }
     }
 }
 
