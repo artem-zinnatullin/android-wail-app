@@ -7,6 +7,7 @@ import com.artemzin.android.bytes.common.StringUtil;
 import com.artemzin.android.wail.api.lastfm.model.response.LFUserResponseModel;
 import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.model.Track;
+import com.artemzin.android.wail.util.LocaleUtil;
 
 import java.util.Locale;
 
@@ -89,7 +90,17 @@ public class WAILSettings {
     }
 
     public static synchronized String getLanguageOrNullIfAuto(Context context) {
-        return getSharedPreferences(context).getString(KEY_LOCALE, null);
+        String savedLang = getSharedPreferences(context).getString(KEY_LOCALE, null);
+
+        String defaultLang = Locale.getDefault().getDisplayLanguage();
+
+        if (savedLang == null) {
+            return null;
+        } else if (savedLang.equals(defaultLang) || savedLang.equals(LocaleUtil.lang(defaultLang))) {
+            return null;
+        } else {
+            return savedLang;
+        }
     }
 
     public static synchronized String getLanguage(Context context) {
