@@ -84,7 +84,7 @@
     <string name="settings_sound_notifications_title">Sound notifications</string>
     <string name="settings_sound_notifications_description">Track scrobbled sound, etc…</string>
     <string name="settings_status_bar_notifications_title">Status bar notifications</string>
-    <string name="settings_status_bar_notifications_description">Now playing notification</string>
+    <string name="settings_status_bar_notifications_description">Now scrobbling</string>
     <string name="settings_email_to_the_developer">Email developer</string>
     <string name="settings_email_dialog_title">Select email app</string>
     <string name="main_settings_menu_toggle_wail">Toggle WAIL</string>
