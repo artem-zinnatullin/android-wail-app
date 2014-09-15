@@ -45,6 +45,8 @@
     <string name="main_press_back_again_to_exit">Press back again to exit</string>
     <string name="main_feedback_please">WAIL is sad without your feedback on the Google Play :(</string>
     <string name="main_feedback_please_happy_toast">Now WAIL is happy ;)</string>
+    <string name="main_love_current_track_button_text">Love</string>
+    <string name="main_track_loved">Track loved :)</string>
     <!-- END of main screen strings -->
 
     <!-- START of tracks list screen strings -->

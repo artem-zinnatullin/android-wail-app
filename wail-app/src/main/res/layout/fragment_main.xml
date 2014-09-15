@@ -105,6 +105,19 @@
                     app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
                     tools:text="Now scrobbling: Prodigy — Omen"/>
 
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/main_love_current_track_button_text"
+                        android:id="@+id/main_love_current_track_button"
+                        android:layout_column="1"
+                        android:layout_gravity="end" />
+                </TableRow>
+
 
             </TableLayout>
 
