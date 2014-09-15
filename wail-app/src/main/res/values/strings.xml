@@ -47,6 +47,8 @@
     <string name="main_feedback_please_happy_toast">Now WAIL is happy ;)</string>
     <string name="main_love_current_track_button_text">Love</string>
     <string name="main_track_loved">Track loved :)</string>
+    <string name="main_love_track_button_content_description">Love track button</string>
+    <string name="main_love_track_button_label">Love current track</string>
     <!-- END of main screen strings -->
 
     <!-- START of tracks list screen strings -->
@@ -113,8 +115,6 @@
     <string name="drawer_main">Main</string>
     <string name="drawer_tracks">Tracks</string>
     <string name="drawer_settings">Settings</string>
-    <string name="main_love_track_button_content_description">Love track button</string>
-    <string name="main_love_track_button_label">Love current track</string>
 
     <!-- Some languages has 3 word forms depending on word items count -->
     <!-- But English has only 2 word forms -->

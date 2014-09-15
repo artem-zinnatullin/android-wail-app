@@ -44,64 +44,9 @@ public class LovedTracksDBHelper {
         return rowId;
     }
 
-    public synchronized boolean update(Track track) {
-        ContentValues contentValues = asContentValues(track);
-
-        final boolean result = AppDBManager.getInstance(context).getWritableDatabase().update(
-                TableInfo.TABLE_NAME,
-                contentValues,
-                TableInfo.COLUMN_INTERNAL_ID + " = ?",
-                new String[] { String.valueOf(track.getInternalDBId()) }
-        ) >= 1;
-
-        if (!result) {
-            Loggi.e("LovedTracksDBHelper can not update track info, track: " + track);
-        }
-        return result;
-    }
-
-    public synchronized void updateAll(List<Track> tracks) {
-        AppDBManager.getInstance(context).getWritableDatabase().beginTransaction();
-
-        try {
-            for (Track track : tracks) {
-                final ContentValues contentValues = asContentValues(track);
-                AppDBManager.getInstance(context).getWritableDatabase().update(
-                        TableInfo.TABLE_NAME,
-                        contentValues,
-                        TableInfo.COLUMN_INTERNAL_ID + " = ?",
-                        new String[] { String.valueOf(track.getInternalDBId()) }
-                );
-            }
-
-            AppDBManager.getInstance(context).getWritableDatabase().setTransactionSuccessful();
-        } catch (Exception e) {
-            Loggi.e("LovedTracksDBHelper.updateAll() can not perform action: " + e);
-        } finally {
-            AppDBManager.getInstance(context).getWritableDatabase().endTransaction();
-        }
-    }
-
     public synchronized Cursor getAllDesc() {
         return AppDBManager.getInstance(context).getReadableDatabase()
                 .query(TableInfo.TABLE_NAME, null, null, null, null, null, TableInfo.COLUMN_INTERNAL_ID + " DESC");
-    }
-
-    public synchronized Track getLastAddedTrack() {
-        Cursor cursor = AppDBManager.getInstance(context).getReadableDatabase()
-                .rawQuery("SELECT * FROM " + TableInfo.TABLE_NAME + " ORDER BY " + TableInfo.COLUMN_INTERNAL_ID + " DESC LIMIT 1",
-                        null
-                );
-
-        Track lastAddedTrack = null;
-
-        if (cursor.moveToFirst()) {
-            lastAddedTrack = parseFromCursor(cursor);
-        }
-
-        cursor.close();
-
-        return lastAddedTrack;
     }
 
     public synchronized int deleteAll() {

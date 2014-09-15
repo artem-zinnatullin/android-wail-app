@@ -30,7 +30,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 public class WAILService extends Service {
@@ -43,7 +42,6 @@ public class WAILService extends Service {
     public static final String INTENT_ACTION_HANDLE_TRACK                 = "INTENT_ACTION_HANDLE_TRACK";
     public static final String INTENT_ACTION_SCROBBLE_PENDING_TRACKS      = "INTENT_ACTION_SCROBBLE_PENDING_TRACKS";
     public static final String INTENT_ACTION_HANDLE_LOVED_TRACK           = "INTENT_ACTION_HANDLE_LOVED_TRACK";
-    public static final String INTENT_ACTION_HANDLE_UNLOVED_TRACK         = "INTENT_ACTION_HANDLE_UNLOVED_TRACK";
 
     private static final int DEFAULT_TRACK_DURATION_IF_UNKNOWN_SECONDS = 210;
 
@@ -86,8 +84,6 @@ public class WAILService extends Service {
             pushLovedTracks();
         } else if (action.equals(INTENT_ACTION_HANDLE_LOVED_TRACK)) {
             handleLovedTrack();
-        } else if (action.equals(INTENT_ACTION_HANDLE_UNLOVED_TRACK)) {
-            handleUnlovedTrack();
         } else {
             // unknown intent action
         }
@@ -462,28 +458,23 @@ public class WAILService extends Service {
     }
 
     private void handleLovedTrack() {
-        AsyncTaskExecutor.executeConcurrently(new AsyncTask<Object, Object, Object>() {
-            Track track = WAILSettings.getNowScrobblingTrack(getApplicationContext());
-
+        AsyncTaskExecutor.executeConcurrently(new AsyncTask<Void, Void, Void>() {
             @Override
-            protected Object doInBackground(Object... objects) {
+            protected Void doInBackground(Void... objects) {
+                Track track = WAILSettings.getNowScrobblingTrack(getApplicationContext());
                 LovedTracksDBHelper.getInstance(getApplicationContext()).add(track);
                 return null;
             }
 
             @Override
-            protected void onPostExecute(Object o) {
+            protected void onPostExecute(Void o) {
                 pushLovedTracks();
             }
         });
     }
 
-    private void handleUnlovedTrack() {
-
-    }
-
     private void pushLovedTracks() {
-        AsyncTaskExecutor.executeConcurrently(new AsyncTask<Object, Void, Void>() {
+        AsyncTaskExecutor.executeConcurrently(new AsyncTask<Void, Void, Void>() {
             private void loveTrack(Track track) {
                 if (track != null) {
                     Loggi.i("Wail is going to love track: " + track);
@@ -522,7 +513,7 @@ public class WAILService extends Service {
             }
 
             @Override
-            protected Void doInBackground(Object... params) {
+            protected Void doInBackground(Void... params) {
                 Cursor tracksCursor = LovedTracksDBHelper.getInstance(getApplicationContext()).getAllDesc();
 
                 if (tracksCursor.moveToFirst()) {

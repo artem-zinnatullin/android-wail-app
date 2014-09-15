@@ -62,5 +62,6 @@ public class AppDBManager extends SQLiteOpenHelper {
     public void clearAll() {
         PlayersDBHelper.getInstance(context).removeAll();
         TracksDBHelper.getInstance(context).deleteAll();
+        LovedTracksDBHelper.getInstance(context).deleteAll();
     }
 }
