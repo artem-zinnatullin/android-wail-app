@@ -105,20 +105,25 @@
                     app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
                     tools:text="Now scrobbling: Prodigy — Omen"/>
 
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    <TableRow
+                        android:paddingStart="@dimen/activity_horizontal_margin_left"
+                        android:paddingLeft="@dimen/activity_horizontal_margin_left"
+                        android:id="@+id/main_love_current_track_button">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_main_love_track"
+                            android:id="@+id/main_love_current_track_image"
+                            android:layout_gravity="end"
+                            android:contentDescription="@string/main_love_track_button_content_description" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/main_love_current_track_button_text"
-                        android:id="@+id/main_love_current_track_button"
-                        android:layout_column="1"
-                        android:layout_gravity="end" />
-                </TableRow>
-
-
+                        <com.artemzin.android.wail.ui.TypefaceTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="@string/main_love_track_button_label"
+                            android:layout_gravity="start|center_vertical"/>
+                    </TableRow>
             </TableLayout>
 
             <LinearLayout

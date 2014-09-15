@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,7 +62,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
             tracksTotalCountOnLastfmTextView,
             tracksTotalCountOnLastfmLabelTextView,
             lastfmUserInfoUpdateTimeTextView;
-    private Button loveCurrentTrackButton;
+    private View loveCurrentTrackButton;
     private View feedbackPleaseView;
     private String[] trackWordForms;
 
@@ -99,7 +100,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
 
         nowScrobblingTrackTextView = (TextView) view.findViewById(R.id.main_now_scrobbling_track_text_view);
 
-        loveCurrentTrackButton = (Button) view.findViewById(R.id.main_love_current_track_button);
+        loveCurrentTrackButton = view.findViewById(R.id.main_love_current_track_button);
 
         tracksTotalCountOnLastfmTextView      = (TextView) view.findViewById(R.id.main_tracks_total_count_text_view);
         tracksTotalCountOnLastfmLabelTextView = (TextView) view.findViewById(R.id.main_tracks_total_count_label_text_view);

@@ -11,7 +11,6 @@ import android.support.v4.app.TaskStackBuilder;
 
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.receiver.NotificationActionsReceiver;
-import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.storage.model.Track;
 import com.artemzin.android.wail.ui.activity.MainActivity;
@@ -64,7 +63,7 @@ public class StatusBarNotificationsManager {
                 .setContentText(track.getArtist() + " - " + track.getTrack())
                 .setSmallIcon(R.drawable.ic_status_wail_notifications)
                 .setContentIntent(intent)
-                .addAction(0, "Love", lovePendingIntent)
+                .addAction(R.drawable.ic_status_wail_love_track, "Love this track", lovePendingIntent)
                 .build();
         notification.flags = Notification.FLAG_ONGOING_EVENT;
 
