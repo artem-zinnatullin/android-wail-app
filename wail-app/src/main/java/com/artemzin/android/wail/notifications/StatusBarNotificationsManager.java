@@ -59,11 +59,15 @@ public class StatusBarNotificationsManager {
         PendingIntent lovePendingIntent = PendingIntent.getBroadcast(context, 0, loveIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Notification notification = new NotificationCompat.Builder(context)
-                .setContentTitle("Now scrobbling")
+                .setContentTitle(context.getString(R.string.notifications_now_scrobbling))
                 .setContentText(track.getArtist() + " - " + track.getTrack())
                 .setSmallIcon(R.drawable.ic_status_wail_notifications)
                 .setContentIntent(intent)
-                .addAction(R.drawable.ic_status_wail_love_track, "Love this track", lovePendingIntent)
+                .addAction(
+                        R.drawable.ic_status_wail_love_track,
+                        context.getString(R.string.notifications_love_current_track),
+                        lovePendingIntent
+                )
                 .build();
         notification.flags = Notification.FLAG_ONGOING_EVENT;
 
@@ -84,7 +88,7 @@ public class StatusBarNotificationsManager {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Activity.NOTIFICATION_SERVICE);
 
         Notification notification = new NotificationCompat.Builder(context)
-                .setContentTitle("Track loved")
+                .setContentTitle(context.getString(R.string.notifications_track_loved))
                 .setContentText(track.getArtist() + " - " + track.getTrack())
                 .setSmallIcon(R.drawable.ic_status_wail_notifications)
                 .build();
