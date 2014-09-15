@@ -33,6 +33,7 @@ public class AppDBManager extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TracksDBHelper.TableInfo.CREATE_TABLE_QUERY);
         db.execSQL(PlayersDBHelper.TableInfo.CREATE_TABLE_QUERY);
+        db.execSQL(LovedTracksDBHelper.TableInfo.CREATE_TABLE_QUERY);
     }
 
     @Override
