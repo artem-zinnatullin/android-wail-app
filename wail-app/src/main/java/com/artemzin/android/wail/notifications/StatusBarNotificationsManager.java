@@ -21,7 +21,8 @@ import com.artemzin.android.wail.util.Loggi;
  */
 
 public class StatusBarNotificationsManager {
-    private static final int NOTIFICATION_ID = 1;
+    private static final int TRACK_SCROBBLING_NOTIFICATION_ID = 1;
+    private static final int TRACK_LOVED_NOTIFICATION_ID = 2;
 
     private static volatile StatusBarNotificationsManager instance;
     private Context context;
@@ -41,13 +42,15 @@ public class StatusBarNotificationsManager {
         return instance;
     }
 
+    private NotificationManager getNotificationManager() {
+        return (NotificationManager) context.getSystemService(Activity.NOTIFICATION_SERVICE);
+    }
+
     public void showTrackScrobblingStatusBarNotification(Track track) {
         if (!WAILSettings.isStatusBarNotificationTrackScrobblingEnabled(context)) {
             Loggi.i("StatusBarNotificationsManager: Status bar notifications are disabled, skipping");
             return;
         }
-
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Activity.NOTIFICATION_SERVICE);
 
         Intent resultIntent = new Intent(context, MainActivity.class);
         TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(context);
@@ -71,7 +74,7 @@ public class StatusBarNotificationsManager {
                 .build();
         notification.flags = Notification.FLAG_ONGOING_EVENT;
 
-        notificationManager.notify(NOTIFICATION_ID, notification);
+        getNotificationManager().notify(TRACK_SCROBBLING_NOTIFICATION_ID, notification);
     }
 
     public void hideTrackScrobblingStatusBarNotification() {
@@ -80,24 +83,24 @@ public class StatusBarNotificationsManager {
             return;
         }
 
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Activity.NOTIFICATION_SERVICE);
-        notificationManager.cancel(NOTIFICATION_ID);
+        getNotificationManager().cancel(TRACK_SCROBBLING_NOTIFICATION_ID);
     }
 
     public void showTrackLovedStatusBarNotification(Track track) {
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Activity.NOTIFICATION_SERVICE);
-
         Notification notification = new NotificationCompat.Builder(context)
                 .setContentTitle(context.getString(R.string.notifications_track_loved))
                 .setContentText(track.getArtist() + " - " + track.getTrack())
                 .setSmallIcon(R.drawable.ic_status_wail_notifications)
                 .build();
 
-        notificationManager.notify(NOTIFICATION_ID + 1, notification);
+        getNotificationManager().notify(TRACK_LOVED_NOTIFICATION_ID, notification);
+    }
+
+    public void hideTrackLovedStatusBarNotification() {
+        getNotificationManager().cancel(TRACK_LOVED_NOTIFICATION_ID);
     }
 
     public void cancelAllNotifications() {
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Activity.NOTIFICATION_SERVICE);
-        notificationManager.cancelAll();
+        getNotificationManager().cancelAll();
     }
 }

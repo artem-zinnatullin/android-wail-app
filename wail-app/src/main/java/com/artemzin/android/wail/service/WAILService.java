@@ -523,7 +523,14 @@ public class WAILService extends Service {
                     } while (tracksCursor.moveToNext());
                 }
 
+                SystemClock.sleep(1500); // for better user experience with notification
+
                 return null;
+            }
+
+            @Override protected void onPostExecute(Void aVoid) {
+                StatusBarNotificationsManager.getInstance(getApplicationContext())
+                        .hideTrackLovedStatusBarNotification();
             }
         });
     }
