@@ -45,6 +45,9 @@
     <string name="main_press_back_again_to_exit">Erneut drücken um App zu beenden.</string>
     <string name="main_feedback_please">Ohne Feedback auf Google Play ist WAIL traurig.</string>
     <string name="main_feedback_please_happy_toast">WAIL ist jetzt glücklich.</string>
+    <string name="main_track_loved">Track geliebt :)</string>
+    <string name="main_love_track_button_content_description">Liebe Titel Taste</string>
+    <string name="main_love_track_button_label">Liebe aktuellen Titel</string>
     <!-- END of main screen strings -->
 
     <!-- START of tracks list screen strings -->
@@ -104,7 +107,11 @@
     <string name="settings_status_bar_notifications_main_title">Liste von Statusbar-Mitteilungen</string>
     <string name="settings_notifications_track_now_scrobbling">WAIL scrobbelt Titel</string>
 
-<!-- START of some common strings -->
+    <string name="notifications_now_scrobbling">Scrobbelt gerade</string>
+    <string name="notifications_love_current_track">Liebe aktuellen Titel</string>
+    <string name="notifications_track_loved">Titel geliebt</string>
+
+    <!-- START of some common strings -->
     <string name="dialog_cancel">Abbrechen</string>
     <string name="dialog_save">Speichern</string>
     <string name="drawer_main">Allgemein</string>

@@ -15,6 +15,7 @@ import com.artemzin.android.wail.api.network.NetworkException;
 import com.artemzin.android.wail.receiver.music.CommonMusicAppReceiver;
 import com.artemzin.android.wail.notifications.SoundNotificationsManager;
 import com.artemzin.android.wail.notifications.StatusBarNotificationsManager;
+import com.artemzin.android.wail.storage.db.LovedTracksDBHelper;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.storage.model.Track;
@@ -35,9 +36,12 @@ public class WAILService extends Service {
 
     private static final String GA_EVENT_SCROBBLE_TO_THE_LASTFM    = "scrobbleToTheLastfm";
     private static final String GA_EVENT_UPDATE_LASTFM_NOW_PLAYING = "updateLastfmNowplaying";
+    private static final String GA_EVENT_LOVE_TRACK = "GA_EVENT_LOVE_TRACK";
+    private static final String GA_EVENT_UNLOVE_TRACK = "GA_EVENT_UNLOVE_TRACK";
 
     public static final String INTENT_ACTION_HANDLE_TRACK                 = "INTENT_ACTION_HANDLE_TRACK";
     public static final String INTENT_ACTION_SCROBBLE_PENDING_TRACKS      = "INTENT_ACTION_SCROBBLE_PENDING_TRACKS";
+    public static final String INTENT_ACTION_HANDLE_LOVED_TRACK           = "INTENT_ACTION_HANDLE_LOVED_TRACK";
 
     private static final int DEFAULT_TRACK_DURATION_IF_UNKNOWN_SECONDS = 210;
 
@@ -77,6 +81,9 @@ public class WAILService extends Service {
             handleTrack(intent);
         } else if (action.equals(INTENT_ACTION_SCROBBLE_PENDING_TRACKS)) {
             scrobblePendingTracks(false);
+            pushLovedTracks();
+        } else if (action.equals(INTENT_ACTION_HANDLE_LOVED_TRACK)) {
+            handleLovedTrack();
         } else {
             // unknown intent action
         }
@@ -204,7 +211,7 @@ public class WAILService extends Service {
         if (!NetworkUtil.isAvailable(this)) {
             Loggi.e("WAILService scrobblePendingTracks() stopped, network is not available");
             return;
-        } else if (WAILSettings.isDisableScrobblingOverMobileNetwork(getApplicationContext())
+        } else if (!WAILSettings.isEnableScrobblingOverMobileNetwork(getApplicationContext())
                 && NetworkUtil.isMobileNetwork(this)) {
             Loggi.e("WAILService scrobblePendingTracks() stopped, scrobbling over mobile network disabled");
             return;
@@ -354,7 +361,7 @@ public class WAILService extends Service {
         if (!NetworkUtil.isAvailable(getApplicationContext())) {
             Loggi.w("WAILService.updateNowPlaying() network is not available, update skipped: " + track);
             return;
-        } else if (WAILSettings.isDisableScrobblingOverMobileNetwork(getApplicationContext())
+        } else if (!WAILSettings.isEnableScrobblingOverMobileNetwork(getApplicationContext())
                 && NetworkUtil.isMobileNetwork(getApplicationContext())) {
             Loggi.w("WAILService.updateNowPlaying() scrobbling over mobile network is disabled, update skipped: " + track);
             return;
@@ -448,6 +455,77 @@ public class WAILService extends Service {
                         .build());
             }
         }
+    }
+
+    private void handleLovedTrack() {
+        AsyncTaskExecutor.executeConcurrently(new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... objects) {
+                Track track = WAILSettings.getNowScrobblingTrack(getApplicationContext());
+                LovedTracksDBHelper.getInstance(getApplicationContext()).add(track);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void o) {
+                pushLovedTracks();
+            }
+        });
+    }
+
+    private void pushLovedTracks() {
+        AsyncTaskExecutor.executeConcurrently(new AsyncTask<Void, Void, Void>() {
+            private void loveTrack(Track track) {
+                if (track != null) {
+                    Loggi.i("Wail is going to love track: " + track);
+
+                    LFTrackRequestModel trackForRequest = new LFTrackRequestModel(track);
+
+                    try {
+                        Loggi.w("Result: " + LFTrackApi.love(
+                                        WAILSettings.getLastfmSessionKey(getApplicationContext()),
+                                        WAILSettings.getLastfmApiKey(),
+                                        WAILSettings.getLastfmSecret(),
+                                        trackForRequest)
+                        );
+
+                        LovedTracksDBHelper.getInstance(getApplicationContext()).delete(track);
+
+                        EasyTracker.getInstance(getApplicationContext()).send(
+                                MapBuilder.createEvent(GA_EVENT_LOVE_TRACK,
+                                        "success",
+                                        null,
+                                        1L)
+                                        .build()
+                        );
+                    } catch (NetworkException e) {
+                        Loggi.e("Can not love track: " + track + ", exception: " + e.getMessage());
+
+                        EasyTracker.getInstance(getApplicationContext()).send(
+                                MapBuilder.createEvent(GA_EVENT_LOVE_TRACK,
+                                        "failed with NetworkException: " + e.getMessage(),
+                                        null,
+                                        0L)
+                                        .build()
+                        );
+                    }
+                }
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                Cursor tracksCursor = LovedTracksDBHelper.getInstance(getApplicationContext()).getAllDesc();
+
+                if (tracksCursor.moveToFirst()) {
+                    do {
+                        Track track = LovedTracksDBHelper.parseFromCursor(tracksCursor);
+                        loveTrack(track);
+                    } while (tracksCursor.moveToNext());
+                }
+
+                return null;
+            }
+        });
     }
 
     public static class LastCapturedTrackInfo {

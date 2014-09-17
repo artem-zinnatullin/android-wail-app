@@ -55,7 +55,7 @@ public class WAILSettings {
     private static Boolean isEnabled;
     private static Integer minTrackDurationInPercents;
     private static Integer minTrackDurationInSeconds;
-    private static Boolean disableScrobblingOverMobileNetwork;
+    private static Boolean enableScrobblingOverMobileNetwork;
     private static Long    totalHandledTracksCount;
     private static Boolean isLastfmNowplayingUpdateEnabled;
     private static String  lastfmUserName;
@@ -303,14 +303,14 @@ public class WAILSettings {
         ).commit();
     }
 
-    public static boolean isDisableScrobblingOverMobileNetwork(Context context) {
-        return disableScrobblingOverMobileNetwork != null
-                ? disableScrobblingOverMobileNetwork
-                : getSharedPreferences(context).getBoolean(KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK, false);
+    public static boolean isEnableScrobblingOverMobileNetwork(Context context) {
+        return enableScrobblingOverMobileNetwork != null
+                ? enableScrobblingOverMobileNetwork
+                : getSharedPreferences(context).getBoolean(KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK, true);
     }
 
     public static void setDisableScrobblingOverMobileNetwork(Context context, boolean value) {
-        disableScrobblingOverMobileNetwork = value;
+        enableScrobblingOverMobileNetwork = value;
         getSharedPreferences(context).edit().putBoolean(KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK, value).commit();
     }
 
