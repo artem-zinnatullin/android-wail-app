@@ -25,8 +25,9 @@ import com.artemzin.android.wail.api.lastfm.LFApiException;
 import com.artemzin.android.wail.api.lastfm.LFUserApi;
 import com.artemzin.android.wail.api.lastfm.model.response.LFUserResponseModel;
 import com.artemzin.android.wail.api.network.NetworkException;
-import com.artemzin.android.wail.storage.db.TracksDBHelper;
+import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.WAILSettings;
+import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.model.Track;
 import com.artemzin.android.wail.ui.fragment.BaseFragment;
 import com.artemzin.android.wail.util.AsyncTaskExecutor;
@@ -57,6 +58,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
             tracksTotalCountOnLastfmTextView,
             tracksTotalCountOnLastfmLabelTextView,
             lastfmUserInfoUpdateTimeTextView;
+    private View loveCurrentTrackButton;
     private View feedbackPleaseView;
     private String[] trackWordForms;
 
@@ -94,6 +96,8 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
 
         nowScrobblingTrackTextView = (TextView) view.findViewById(R.id.main_now_scrobbling_track_text_view);
 
+        loveCurrentTrackButton = view.findViewById(R.id.main_love_current_track_button);
+
         tracksTotalCountOnLastfmTextView      = (TextView) view.findViewById(R.id.main_tracks_total_count_text_view);
         tracksTotalCountOnLastfmLabelTextView = (TextView) view.findViewById(R.id.main_tracks_total_count_label_text_view);
 
@@ -104,6 +108,8 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
         if (WAILSettings.isShowFeedbackRequest(activity)) {
             ViewUtil.setVisibility(feedbackPleaseView, true);
         }
+
+        loveCurrentTrackButton.setOnClickListener(this);
 
         feedbackPleaseView.setOnClickListener(this);
     }
@@ -367,13 +373,16 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
 
     private void updateNowScrobblingTrack() {
         Track nowScrobblingTrack = WAILSettings.getNowScrobblingTrack(getActivity());
+
         if (nowScrobblingTrack != null) {
             nowScrobblingTrackTextView.setText(getString(
                     R.string.main_now_scrobbling_label,
                     nowScrobblingTrack.getArtist() + " - " + nowScrobblingTrack.getTrack())
             );
+            loveCurrentTrackButton.setVisibility(View.VISIBLE);
         } else {
             nowScrobblingTrackTextView.setText(getString(R.string.main_now_scrobbling_label, getString(R.string.main_now_scrobbling_nothing)));
+            loveCurrentTrackButton.setVisibility(View.GONE);
         }
     }
 
@@ -423,6 +432,8 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
             onTracksTodayViewClick();
         } else if (v.getId() == R.id.main_feedback_please) {
             onFeedbackPleaseClick();
+        } else if (v.getId() == R.id.main_love_current_track_button) {
+            onLoveCurrentTrackButtonClick();
         }
     }
 
@@ -458,6 +469,17 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
                     "Browser opened",
                     1L
             ).build());
+        }
+    }
+
+    private void onLoveCurrentTrackButtonClick() {
+        Track track = WAILSettings.getNowScrobblingTrack(getActivity());
+        if (track != null) {
+            Toast.makeText(getActivity(), getString(R.string.main_track_loved), Toast.LENGTH_SHORT).show();
+            getActivity().startService(
+                    new Intent(getActivity(), WAILService.class)
+                            .setAction(WAILService.INTENT_ACTION_HANDLE_LOVED_TRACK)
+            );
         }
     }
 

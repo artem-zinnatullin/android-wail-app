@@ -84,6 +84,12 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name=".receiver.NotificationActionsReceiver"
+            android:enabled="true"
+            android:exported="false">
+        </receiver>
+
         <!-- music apps receivers -->
 
         <receiver

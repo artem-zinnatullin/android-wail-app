@@ -45,6 +45,9 @@
     <string name="main_press_back_again_to_exit">Press back again to exit</string>
     <string name="main_feedback_please">WAIL is sad without your feedback on the Google Play :(</string>
     <string name="main_feedback_please_happy_toast">Now WAIL is happy ;)</string>
+    <string name="main_track_loved">Track loved :)</string>
+    <string name="main_love_track_button_content_description">Love track button</string>
+    <string name="main_love_track_button_label">Love current track</string>
     <!-- END of main screen strings -->
 
     <!-- START of tracks list screen strings -->
@@ -104,6 +107,10 @@
     <string name="settings_status_bar_notifications_activity_label">Status bar notifications</string>
     <string name="settings_status_bar_notifications_main_title">List of status bar notifications</string>
     <string name="settings_notifications_track_now_scrobbling">WAIL is now scrobbling track</string>
+
+    <string name="notifications_now_scrobbling">Now scrobbling</string>
+    <string name="notifications_love_current_track">Love this track</string>
+    <string name="notifications_track_loved">Track loved</string>
 
     <!-- START of some common strings -->
     <string name="dialog_cancel">Cancel</string>
