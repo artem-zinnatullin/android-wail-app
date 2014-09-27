@@ -18,6 +18,6 @@
         android:background="#fff"
         android:cacheColorHint="#fff"
         android:divider="@color/dark_theme_navigation_drawer_divider_line"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="1px" />
 
 </android.support.v4.widget.DrawerLayout>
