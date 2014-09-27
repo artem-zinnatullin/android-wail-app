@@ -48,20 +48,29 @@ public class TracksListFragment extends BaseFragment {
 
     private final String GA_EVENT_TRACKS_LIST_FRAGMENT = "TracksListFragment";
     private final TracksListDataProvider tracksListDataProvider = new TracksListDataProvider();
+
     private final BroadcastReceiver tracksChangedBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             reloadTracksAsync();
         }
     };
+
     @InjectView(R.id.tracks_list_loading)
     public View tracksListLoading;
+
     @InjectView(R.id.track_list_empty)
     public View tracksListEmpty;
+
     @InjectView(R.id.tracks_list_container)
     public View tracksListContainer;
+
     @InjectView(R.id.tracks_list_view)
     public ListView tracksListView;
+
+    @InjectView(R.id.tracks_list_empty_text_view)
+    public TextView emptyTextView;
+
     private TracksListAdapter tracksListAdapter;
     private TracksSearchHandler tracksSearchHandler = new TracksSearchHandler();
 
@@ -96,7 +105,6 @@ public class TracksListFragment extends BaseFragment {
     }
 
     private void setUIStateEmpty(String emptyText) {
-        TextView emptyTextView = (TextView) tracksListEmpty.findViewById(R.id.tracks_list_empty_text_view);
         emptyTextView.setText(emptyText);
 
         ViewUtil.setVisibility(tracksListLoading, false);
@@ -256,17 +264,21 @@ public class TracksListFragment extends BaseFragment {
         }
     }
 
-    private static class TrackViewHolder {
-        public final TextView trackTextView;
-        public final TextView artistAndAlbumTextView;
-        public final TextView statusTextView;
-        public final TextView dateTextView;
+    public static class TrackViewHolder {
+        @InjectView(R.id.track_list_item_track)
+        public TextView trackTextView;
+
+        @InjectView(R.id.track_list_item_artist_and_album)
+        public TextView artistAndAlbumTextView;
+
+        @InjectView(R.id.track_list_item_status)
+        public TextView statusTextView;
+
+        @InjectView(R.id.track_list_item_date)
+        public TextView dateTextView;
 
         public TrackViewHolder(View convertView) {
-            trackTextView = (TextView) convertView.findViewById(R.id.track_list_item_track);
-            artistAndAlbumTextView = (TextView) convertView.findViewById(R.id.track_list_item_artist_and_album);
-            statusTextView = (TextView) convertView.findViewById(R.id.track_list_item_status);
-            dateTextView = (TextView) convertView.findViewById(R.id.track_list_item_date);
+            ButterKnife.inject(this, convertView);
         }
     }
 

@@ -28,11 +28,73 @@ import com.artemzin.android.wail.util.WordFormUtil;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
 
-public class SettingsFragment extends BaseFragment implements View.OnClickListener {
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
+
+public class SettingsFragment extends BaseFragment {
 
     private final String GA_EVENT_SETTINGS_FRAGMENT = "SettingsFragment";
 
-    private TextView buildVersionDescTextView;
+    @InjectView(R.id.settings_build_version_desc)
+    public TextView buildVersionDescTextView;
+
+    @InjectView(R.id.settings_select_language_description)
+    public TextView languageMenuItemDescription;
+
+    @InjectView(R.id.settings_disable_scrobbling_over_mobile_network_switch)
+    public Switch isScrobblingOverMobileNetworkDisabledSwitch;
+
+    @InjectView(R.id.settings_lastfm_update_nowplaying_switch)
+    public Switch isLastfmUpdateNowplayingEnabledSwitch;
+
+    @InjectView(R.id.settings_container)
+    public View settingContainer;
+
+    @InjectView(R.id.settings_min_track_duration_in_seconds_desc)
+    public TextView minDurationInSecondsDescription;
+
+    @InjectView(R.id.settings_min_track_duration_in_percents_desc)
+    public TextView minDurationInPercentsDescription;
+
+    @OnClick(R.id.settings_select_language_menu_item)
+    public void onSelectLanguageClick() {
+        startActivity(new Intent(getActivity(), SettingsSelectLanguageActivity.class));
+    }
+
+    @OnCheckedChanged(R.id.settings_disable_scrobbling_over_mobile_network_switch)
+    public void onDisableScrobblingOverMobileChanged(boolean isChecked) {
+        WAILSettings.setDisableScrobblingOverMobileNetwork(getActivity(), isChecked);
+    }
+
+    @OnCheckedChanged(R.id.settings_lastfm_update_nowplaying_switch)
+    public void onLastfmUpdateNowPlayingChanged(boolean isChecked) {
+        WAILSettings.setLastfmNowplayingUpdateEnabled(getActivity(), isChecked);
+
+        final String toast = isChecked ? getString(R.string.settings_lastfm_update_nowplaying_enabled_toast)
+                : getString(R.string.settings_lastfm_update_nowplaying_disabled_toast);
+
+        Toast.makeText(getActivity(), toast, Toast.LENGTH_SHORT).show();
+
+        EasyTracker.getInstance(getActivity()).send(
+                MapBuilder.createEvent(GA_EVENT_SETTINGS_FRAGMENT,
+                        "lastFmUpdateNowPlaying enabled: " + isChecked,
+                        null,
+                        isChecked ? 1L : 0L
+                ).build()
+        );
+    }
+
+    @OnClick(R.id.settings_sound_notifications)
+    public void onSoundNotificationSettingClick() {
+        startActivity(new Intent(getActivity(), SettingsSoundNotificationsActivity.class));
+    }
+
+    @OnClick(R.id.settings_status_bar_notifications)
+    public void onStatusBarNotificationSettingClick() {
+        startActivity(new Intent(getActivity(), SettingsStatusBarNotificationsActivity.class));
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +105,9 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main_settings, container, false);
+        View view = inflater.inflate(R.layout.fragment_main_settings, container, false);
+        ButterKnife.inject(this, view);
+        return view;
     }
 
     @Override
@@ -64,7 +128,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                 WAILSettings.setEnabled(getActivity(), isChecked);
 
                 final Toast toast = Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0 , (int) DisplayUnitsConverter.dpToPx(getActivity(), 60));
+                toast.setGravity(Gravity.TOP | Gravity.RIGHT, 0, (int) DisplayUnitsConverter.dpToPx(getActivity(), 60));
 
                 if (isChecked) {
                     setUIStateWailEnabled();
@@ -91,9 +155,6 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
             setUIStateWailDisabled();
         }
 
-        view.findViewById(R.id.settings_select_language_menu_item).setOnClickListener(this);
-        TextView languageMenuItemDescription = (TextView) view.findViewById(R.id.settings_select_language_description);
-
         String lang = WAILSettings.getLanguageOrNullIfAuto(getActivity());
 
         if (lang == null) {
@@ -102,67 +163,12 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
 
         languageMenuItemDescription.setText(lang);
 
-        view.findViewById(R.id.settings_min_track_duration_in_percents).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMinTrackDurationInPercentsEditDialog();
-            }
-        });
-
-        view.findViewById(R.id.settings_min_track_duration_in_seconds).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMinTrackDurationInSecondsEditDialog();
-            }
-        });
-
         refreshMinTrackDurationInPercents();
         refreshMinTrackDurationInSeconds();
 
-        Switch isScrobblingOverMobileNetworkDisabledSwitch = (Switch) view.findViewById(R.id.settings_disable_scrobbling_over_mobile_network_switch);
         isScrobblingOverMobileNetworkDisabledSwitch.setChecked(WAILSettings.isEnableScrobblingOverMobileNetwork(getActivity()));
-        isScrobblingOverMobileNetworkDisabledSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                WAILSettings.setDisableScrobblingOverMobileNetwork(getActivity(), b);
-            }
-        });
 
-        Switch isLastfmUpdateNowplayingEnabledSwitch = (Switch) view.findViewById(R.id.settings_lastfm_update_nowplaying_switch);
         isLastfmUpdateNowplayingEnabledSwitch.setChecked(WAILSettings.isLastfmNowplayingUpdateEnabled(getActivity()));
-
-        isLastfmUpdateNowplayingEnabledSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                WAILSettings.setLastfmNowplayingUpdateEnabled(getActivity(), isChecked);
-
-                final String toast = isChecked ? getString(R.string.settings_lastfm_update_nowplaying_enabled_toast)
-                        : getString(R.string.settings_lastfm_update_nowplaying_disabled_toast);
-
-                Toast.makeText(getActivity(), toast, Toast.LENGTH_SHORT).show();
-
-                EasyTracker.getInstance(getActivity()).send(
-                        MapBuilder.createEvent(GA_EVENT_SETTINGS_FRAGMENT,
-                                "lastFmUpdateNowPlaying enabled: " + isChecked,
-                                null,
-                                isChecked ? 1L : 0L
-                        ).build()
-                );
-            }
-        });
-
-        view.findViewById(R.id.settings_sound_notifications).setOnClickListener(this);
-
-        view.findViewById(R.id.settings_status_bar_notifications).setOnClickListener(this);
-
-        view.findViewById(R.id.settings_email_to_the_developer).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                emailToTheDeveloper();
-            }
-        });
-
-        buildVersionDescTextView = (TextView) view.findViewById(R.id.settings_build_version_desc);
 
         try {
             buildVersionDescTextView.setText(getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0).versionName);
@@ -185,13 +191,14 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     }
 
     void setUIStateWailEnabled() {
-        ViewUtil.setEnabledForAllChildrenRecursively((ViewGroup) getView().findViewById(R.id.settings_container), true);
+        ViewUtil.setEnabledForAllChildrenRecursively((ViewGroup) settingContainer, true);
     }
 
     void setUIStateWailDisabled() {
-        ViewUtil.setEnabledForAllChildrenRecursively((ViewGroup) getView().findViewById(R.id.settings_container), false);
+        ViewUtil.setEnabledForAllChildrenRecursively((ViewGroup) settingContainer, false);
     }
 
+    @OnClick(R.id.settings_min_track_duration_in_percents)
     void showMinTrackDurationInPercentsEditDialog() {
         final DialogFragmentWithSeekBar dialogFragmentWithSeekBar = DialogFragmentWithSeekBar.newInstance(
                 getString(R.string.settings_min_track_elapsed_time_in_percent_dialog_title),
@@ -207,8 +214,8 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                 }
 
                 dialogFragmentWithSeekBar.setBottomText(getString(
-                        R.string.settings_min_track_elapsed_time_in_percent_dialog_bottom_text,
-                        seekBar.getProgress())
+                                R.string.settings_min_track_elapsed_time_in_percent_dialog_bottom_text,
+                                seekBar.getProgress())
                 );
             }
 
@@ -243,7 +250,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                                     "changed min track duration in percents to: " + WAILSettings.getMinTrackDurationInPercents(getActivity()) + "%",
                                     null,
                                     1L)
-                            .build()
+                                    .build()
                     );
                 } catch (Exception e) {
                     // do nothing
@@ -254,15 +261,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
         dialogFragmentWithSeekBar.show(getFragmentManager(), "minTrackDurationInPercentsDialog");
     }
 
-    private void refreshMinTrackDurationInPercents() {
-        ((TextView) getView().findViewById(R.id.settings_min_track_duration_in_percents_desc)).setText(
-                getString(
-                        R.string.settings_min_track_elapsed_time_in_percent_desc,
-                        WAILSettings.getMinTrackDurationInPercents(getActivity())
-                )
-        );
-    }
-
+    @OnClick(R.id.settings_min_track_duration_in_seconds)
     void showMinTrackDurationInSecondsEditDialog() {
         final DialogFragmentWithNumberPicker minTrackDurationInSecondsDialog = DialogFragmentWithNumberPicker.newInstance(
                 getString(R.string.settings_min_track_elapsed_time_in_seconds_dialog_title),
@@ -295,7 +294,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                                 "changed min track duration in seconds to: " + WAILSettings.getMinTrackDurationInSeconds(getActivity()) + " seconds",
                                 null,
                                 1L)
-                        .build()
+                                .build()
                 );
             }
         });
@@ -306,19 +305,29 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     private void refreshMinTrackDurationInSeconds() {
         final int minTrackDurationInSeconds = WAILSettings.getMinTrackDurationInSeconds(getActivity());
 
-        ((TextView) getView().findViewById(R.id.settings_min_track_duration_in_seconds_desc)).setText(
+        minDurationInPercentsDescription.setText(
                 getString(
                         R.string.settings_min_track_elapsed_time_in_seconds_desc,
-                         minTrackDurationInSeconds + " " + WordFormUtil.getWordForm(minTrackDurationInSeconds, getResources().getStringArray(R.array.word_forms_second))
+                        minTrackDurationInSeconds + " " + WordFormUtil.getWordForm(minTrackDurationInSeconds, getResources().getStringArray(R.array.word_forms_second))
                 )
         );
     }
 
-    private void emailToTheDeveloper() {
+    private void refreshMinTrackDurationInPercents() {
+        minDurationInSecondsDescription.setText(
+                getString(
+                        R.string.settings_min_track_elapsed_time_in_percent_desc,
+                        WAILSettings.getMinTrackDurationInPercents(getActivity())
+                )
+        );
+    }
+
+    @OnClick(R.id.settings_email_to_the_developer)
+    public void emailToTheDeveloper() {
         try {
             final Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
-            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { getString(R.string.settings_my_email) });
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.settings_my_email)});
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_email_to_the_developer_subj) + " " + buildVersionDescTextView.getText().toString());
             emailIntent.setType("message/rfc822");
 
@@ -332,17 +341,6 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
         } catch (Exception e) {
             EasyTracker.getInstance(getActivity())
                     .send(MapBuilder.createException("Can not send email to the developer: " + e, false).build());
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.settings_sound_notifications) {
-            startActivity(new Intent(getActivity(), SettingsSoundNotificationsActivity.class));
-        } else if (v.getId() == R.id.settings_status_bar_notifications) {
-            startActivity(new Intent(getActivity(), SettingsStatusBarNotificationsActivity.class));
-        } else if (v.getId() == R.id.settings_select_language_menu_item) {
-            startActivity(new Intent(getActivity(), SettingsSelectLanguageActivity.class));
         }
     }
 }
