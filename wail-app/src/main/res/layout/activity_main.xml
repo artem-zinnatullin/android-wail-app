@@ -17,7 +17,7 @@
         android:layout_gravity="start"
         android:background="#fff"
         android:cacheColorHint="#fff"
-        android:divider="@null"
-        android:dividerHeight="0dp" />
+        android:divider="@color/dark_theme_navigation_drawer_divider_line"
+        android:dividerHeight="1dp" />
 
 </android.support.v4.widget.DrawerLayout>

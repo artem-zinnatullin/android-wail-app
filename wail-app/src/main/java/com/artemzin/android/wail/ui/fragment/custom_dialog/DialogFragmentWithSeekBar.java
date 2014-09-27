@@ -9,15 +9,17 @@ import android.widget.TextView;
 
 import com.artemzin.android.wail.R;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 public class DialogFragmentWithSeekBar extends CustomDialogFragment {
 
     private static final String ARGS_START_PROGRESS_VALUE = "ARGS_START_PROGRESS_VALUE";
-
+    @InjectView(R.id.dialog_with_seek_bar_seek_bar)
+    public SeekBar seekBar;
+    @InjectView(R.id.dialog_with_seek_bar_bottom_text)
+    public TextView bottomTextView;
     private int startProgressValue;
-
-    private SeekBar seekBar;
-    private TextView bottomTextView;
-
     private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener;
 
     public static DialogFragmentWithSeekBar newInstance(String title, String description, int startProgressValue) {
@@ -38,16 +40,14 @@ public class DialogFragmentWithSeekBar extends CustomDialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.dialog_with_seek_bar_fragment, container, false);
+        View view = inflater.inflate(R.layout.dialog_with_seek_bar_fragment, container, false);
+        ButterKnife.inject(this, view);
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        seekBar        = (SeekBar) view.findViewById(R.id.dialog_with_seek_bar_seek_bar);
-        bottomTextView = (TextView) view.findViewById(R.id.dialog_with_seek_bar_bottom_text);
-
         if (onSeekBarChangeListener != null) {
             seekBar.setOnSeekBarChangeListener(onSeekBarChangeListener);
         }
