@@ -83,6 +83,8 @@
     <string name="settings_lastfm_update_nowplaying_title">Auf Last.fm aktuellen Titel anzeigen</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm #nowplaying aktiviert</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm #nowplaying deaktiviert</string>
+    <string name="settings_scrobbling_over_mobile_network_enabled_toast">Scrobbeln über Mobilfunk aktiviert!</string>
+    <string name="settings_scrobbling_over_mobile_network_disabled_toast">Scrobbeln über Mobilfunk deaktiviert!</string>
     <string name="settings_notifications_title">Mitteilungen</string>
     <string name="settings_sound_notifications_title">Tonmitteilungen</string>
     <string name="settings_sound_notifications_description">Ton wenn Titel gescrobbelt werden.</string>

@@ -65,11 +65,32 @@ public class SettingsFragment extends BaseFragment {
 
     @OnCheckedChanged(R.id.settings_disable_scrobbling_over_mobile_network_switch)
     public void onDisableScrobblingOverMobileChanged(boolean isChecked) {
+        if (isChecked == WAILSettings.isEnableScrobblingOverMobileNetwork(getActivity())) {
+            return;
+        }
+
         WAILSettings.setDisableScrobblingOverMobileNetwork(getActivity(), isChecked);
+
+        final String toast = isChecked ? getString(R.string.settings_scrobbling_over_mobile_network_enabled_toast)
+                : getString(R.string.settings_scrobbling_over_mobile_network_disabled_toast);
+
+        Toast.makeText(getActivity(), toast, Toast.LENGTH_SHORT).show();
+
+        EasyTracker.getInstance(getActivity()).send(
+                MapBuilder.createEvent(GA_EVENT_SETTINGS_FRAGMENT,
+                        "Scrobbling over mobile network enabled: " + isChecked,
+                        null,
+                        isChecked ? 1L : 0L
+                ).build()
+        );
     }
 
     @OnCheckedChanged(R.id.settings_lastfm_update_nowplaying_switch)
     public void onLastfmUpdateNowPlayingChanged(boolean isChecked) {
+        if (isChecked == WAILSettings.isLastfmNowplayingUpdateEnabled(getActivity())) {
+            return;
+        }
+
         WAILSettings.setLastfmNowplayingUpdateEnabled(getActivity(), isChecked);
 
         final String toast = isChecked ? getString(R.string.settings_lastfm_update_nowplaying_enabled_toast)

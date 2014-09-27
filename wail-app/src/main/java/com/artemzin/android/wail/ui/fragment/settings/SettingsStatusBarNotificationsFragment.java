@@ -30,6 +30,10 @@ public class SettingsStatusBarNotificationsFragment extends BaseFragment {
 
     @OnCheckedChanged(R.id.settings_status_bar_notifications_track_now_scrobbling_switch)
     public void onStatusBarNotificationSwitchChanged(boolean isChecked) {
+        if (isChecked == WAILSettings.isStatusBarNotificationTrackScrobblingEnabled(getActivity())) {
+            return;
+        }
+
         WAILSettings.setStatusBarNotificationTrackScrobblingEnabled(getActivity(), isChecked);
 
         if (isChecked) {

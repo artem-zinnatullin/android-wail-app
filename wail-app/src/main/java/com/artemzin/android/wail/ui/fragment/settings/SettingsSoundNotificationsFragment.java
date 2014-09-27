@@ -55,6 +55,11 @@ public class SettingsSoundNotificationsFragment extends BaseFragment {
     @OnCheckedChanged(R.id.settings_sound_notifications_track_marked_as_scrobbled_switch)
     public void onTrackMarkedAsScrobbledChanged(boolean isChecked) {
         final Activity activity = getActivity();
+
+        if (isChecked == WAILSettings.isSoundNotificationTrackMarkedAsScrobbledEnabled(activity)) {
+            return;
+        }
+
         WAILSettings.setSoundNotificationTrackMarkedAsScrobbledEnabled(activity, isChecked);
         EasyTracker.getInstance(activity).send(MapBuilder.createEvent(GA_EVENT_SETTINGS_SOUND_NOTIFICATIONS,
                 "trackMarkedAsScrobbledSoundSwitch",
@@ -65,6 +70,11 @@ public class SettingsSoundNotificationsFragment extends BaseFragment {
     @OnCheckedChanged(R.id.settings_sound_notifications_track_skipped_switch)
     public void onTrackSkippedChanged(boolean isChecked) {
         final Activity activity = getActivity();
+
+        if (isChecked == WAILSettings.isSoundNotificationTrackSkippedEnabled(activity)) {
+            return;
+        }
+
         WAILSettings.setSoundNotificationTrackSkippedEnabled(activity, isChecked);
         EasyTracker.getInstance(activity).send(MapBuilder.createEvent(GA_EVENT_SETTINGS_SOUND_NOTIFICATIONS,
                 "trackSkippedSoundSwitch",

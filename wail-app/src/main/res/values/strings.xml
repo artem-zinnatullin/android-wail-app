@@ -83,6 +83,8 @@
     <string name="settings_lastfm_update_nowplaying_title">Listening now on Last.fm</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm update nowplaying enabled</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm update nowplaying turned off</string>
+    <string name="settings_scrobbling_over_mobile_network_enabled_toast">Scrobbling over mobile network enabled!</string>
+    <string name="settings_scrobbling_over_mobile_network_disabled_toast">Scrobbling over mobile network disabled!</string>
     <string name="settings_notifications_title">Notifications</string>
     <string name="settings_sound_notifications_title">Sound notifications</string>
     <string name="settings_sound_notifications_description">Track scrobbled sound, etc…</string>
