@@ -7,16 +7,17 @@
 
     <FrameLayout
         android:id="@+id/main_content"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-    <FrameLayout
+    <ListView
         android:id="@+id/main_left_drawer"
-        android:layout_height="match_parent"
         android:layout_width="240dp"
+        android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="#fff"
+        android:cacheColorHint="#fff"
         android:divider="@null"
-        android:dividerHeight="0dp"
-        android:background="#111" />
+        android:dividerHeight="0dp" />
 
 </android.support.v4.widget.DrawerLayout>

@@ -20,6 +20,13 @@ android {
         versionName '0.6.5 beta'
     }
 
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
     signingConfigs {
         googlePlay
     }
@@ -40,10 +47,10 @@ android {
             && project.hasProperty('signingConfigKeyAlias')
             && project.hasProperty('signingConfigKeyPassword')
     ) {
-        android.signingConfigs.googlePlay.storeFile     = file(project.ext['signingConfigStoreFile'])
+        android.signingConfigs.googlePlay.storeFile = file(project.ext['signingConfigStoreFile'])
         android.signingConfigs.googlePlay.storePassword = project.ext['signingConfigStorePassword']
-        android.signingConfigs.googlePlay.keyAlias      = project.ext['signingConfigKeyAlias']
-        android.signingConfigs.googlePlay.keyPassword   = project.ext['signingConfigKeyPassword']
+        android.signingConfigs.googlePlay.keyAlias = project.ext['signingConfigKeyAlias']
+        android.signingConfigs.googlePlay.keyPassword = project.ext['signingConfigKeyPassword']
     } else {
         buildTypes.all { bt ->
             bt.signingConfig = null
@@ -57,6 +64,7 @@ dependencies {
 
     compile 'com.android.support:support-v13:20.0.0'
     compile 'com.github.chrisbanes.actionbarpulltorefresh:library:0.9.3'
+    compile 'com.jakewharton:butterknife:5.1.2'
 
     compile fileTree(dir: 'libs', include: '*.jar')
 }
