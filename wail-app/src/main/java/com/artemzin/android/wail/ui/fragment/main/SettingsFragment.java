@@ -326,7 +326,7 @@ public class SettingsFragment extends BaseFragment {
     private void refreshMinTrackDurationInSeconds() {
         final int minTrackDurationInSeconds = WAILSettings.getMinTrackDurationInSeconds(getActivity());
 
-        minDurationInPercentsDescription.setText(
+        minDurationInSecondsDescription.setText(
                 getString(
                         R.string.settings_min_track_elapsed_time_in_seconds_desc,
                         minTrackDurationInSeconds + " " + WordFormUtil.getWordForm(minTrackDurationInSeconds, getResources().getStringArray(R.array.word_forms_second))
@@ -335,7 +335,7 @@ public class SettingsFragment extends BaseFragment {
     }
 
     private void refreshMinTrackDurationInPercents() {
-        minDurationInSecondsDescription.setText(
+        minDurationInPercentsDescription.setText(
                 getString(
                         R.string.settings_min_track_elapsed_time_in_percent_desc,
                         WAILSettings.getMinTrackDurationInPercents(getActivity())
