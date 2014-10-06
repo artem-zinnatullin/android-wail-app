@@ -83,6 +83,8 @@
     <string name="settings_lastfm_update_nowplaying_title">Auf Last.fm aktuellen Titel anzeigen</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm #nowplaying aktiviert</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm #nowplaying deaktiviert</string>
+    <string name="settings_scrobbling_over_mobile_network_enabled_toast">Scrobbeln über Mobilfunk aktiviert!</string>
+    <string name="settings_scrobbling_over_mobile_network_disabled_toast">Scrobbeln über Mobilfunk deaktiviert!</string>
     <string name="settings_notifications_title">Mitteilungen</string>
     <string name="settings_sound_notifications_title">Tonmitteilungen</string>
     <string name="settings_sound_notifications_description">Ton wenn Titel gescrobbelt werden.</string>
@@ -114,15 +116,19 @@
     <!-- START of some common strings -->
     <string name="dialog_cancel">Abbrechen</string>
     <string name="dialog_save">Speichern</string>
-    <string name="drawer_main">Allgemein</string>
-    <string name="drawer_tracks">Titel</string>
-    <string name="drawer_settings">Einstellungen</string>
+    <string-array name="drawer_items">
+        <item>Allgemein</item>
+        <item>Titel</item>
+        <item>Einstellungen</item>
+    </string-array>
 
     <!-- Some languages has 3 word forms depending on word items count -->
     <!-- But English has only 2 word forms -->
     <string-array name="word_form_track">
-        <item>Titel</item>  <!-- example: 1 track -->
-        <item>Titel</item> <!-- example: 2 tracks, 3, .... infinity -->
+        <item>Titel</item>
+        <!-- example: 1 track -->
+        <item>Titel</item>
+        <!-- example: 2 tracks, 3, .... infinity -->
         <!-- <item>3rd word form</item> -->
         <!-- if your language requires 3rd word form, uncomment and  write it above -->
 
