@@ -42,8 +42,11 @@ public class NonAuthorizedMainFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_non_authorized, container, false);
+        return inflater.inflate(R.layout.fragment_non_authorized, container, false);
+    }
+
+    @Override public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         ButterKnife.inject(this, view);
-        return view;
     }
 }

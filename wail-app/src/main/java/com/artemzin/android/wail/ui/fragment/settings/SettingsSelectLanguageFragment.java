@@ -59,8 +59,15 @@ public class SettingsSelectLanguageFragment extends BaseFragment implements List
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_settings_select_language, container, false);
+    }
+
+    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ButterKnife.inject(this, view);
 
         languages = markCurrentLanguageAsSelected(getActivity(), getResources().getStringArray(R.array.settings_select_language_languages));
 
@@ -72,13 +79,6 @@ public class SettingsSelectLanguageFragment extends BaseFragment implements List
 
         languagesList.setAdapter(adapter);
         languagesList.setOnItemClickListener(this);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_settings_select_language, container, false);
-        ButterKnife.inject(this, view);
-        return view;
     }
 
     @OnItemClick(R.id.settings_select_language_list_view)

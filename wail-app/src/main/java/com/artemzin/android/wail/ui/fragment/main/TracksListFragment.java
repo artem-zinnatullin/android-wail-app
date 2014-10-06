@@ -84,14 +84,14 @@ public class TracksListFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tracks_list, container, false);
-        ButterKnife.inject(this, view);
-        return view;
+        return inflater.inflate(R.layout.fragment_tracks_list, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ButterKnife.inject(this, view);
 
         setUIStateLoading();
 

@@ -47,9 +47,7 @@ public class LastfmLoginFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_lastfm_login, container, false);
-        ButterKnife.inject(this, view);
-        return view;
+        return inflater.inflate(R.layout.fragment_lastfm_login, container, false);
     }
 
     @OnClick(R.id.lastfm_login_login_button)
@@ -167,6 +165,8 @@ public class LastfmLoginFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ButterKnife.inject(this, view);
 
         loginButton.setEnabled(false);
 

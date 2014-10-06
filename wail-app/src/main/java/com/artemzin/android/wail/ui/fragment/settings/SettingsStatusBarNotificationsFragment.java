@@ -54,15 +54,15 @@ public class SettingsStatusBarNotificationsFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater
-                .inflate(R.layout.fragment_settings_status_bar_notifications, container, false);
-        ButterKnife.inject(this, view);
-        return view;
+        return inflater.inflate(R.layout.fragment_settings_status_bar_notifications, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ButterKnife.inject(this, view);
+
         trackNowScrobblingStatusBarNotificationsSwitch
                 .setChecked(WAILSettings.isStatusBarNotificationTrackScrobblingEnabled(getActivity()));
     }
