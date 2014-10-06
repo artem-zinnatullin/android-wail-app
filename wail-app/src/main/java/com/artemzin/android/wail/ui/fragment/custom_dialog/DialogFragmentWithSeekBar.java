@@ -9,14 +9,20 @@ import android.widget.TextView;
 
 import com.artemzin.android.wail.R;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 public class DialogFragmentWithSeekBar extends CustomDialogFragment {
 
     private static final String ARGS_START_PROGRESS_VALUE = "ARGS_START_PROGRESS_VALUE";
 
-    private int startProgressValue;
+    @InjectView(R.id.dialog_with_seek_bar_seek_bar)
+    public SeekBar seekBar;
 
-    private SeekBar seekBar;
-    private TextView bottomTextView;
+    @InjectView(R.id.dialog_with_seek_bar_bottom_text)
+    public TextView bottomTextView;
+
+    private int startProgressValue;
 
     private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener;
 
@@ -45,8 +51,7 @@ public class DialogFragmentWithSeekBar extends CustomDialogFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        seekBar        = (SeekBar) view.findViewById(R.id.dialog_with_seek_bar_seek_bar);
-        bottomTextView = (TextView) view.findViewById(R.id.dialog_with_seek_bar_bottom_text);
+        ButterKnife.inject(this, view);
 
         if (onSeekBarChangeListener != null) {
             seekBar.setOnSeekBarChangeListener(onSeekBarChangeListener);

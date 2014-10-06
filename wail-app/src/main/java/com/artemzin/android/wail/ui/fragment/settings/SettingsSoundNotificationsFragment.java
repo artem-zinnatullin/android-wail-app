@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -17,12 +16,23 @@ import com.artemzin.android.wail.util.Loggi;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
+
 /**
  * @author Artem Zinnatullin [artem.zinnatullin@gmail.com]
  */
-public class SettingsSoundNotificationsFragment extends BaseFragment implements View.OnClickListener {
+public class SettingsSoundNotificationsFragment extends BaseFragment {
 
     private final String GA_EVENT_SETTINGS_SOUND_NOTIFICATIONS = "SettingsSoundNotifications";
+
+    @InjectView(R.id.settings_sound_notifications_track_marked_as_scrobbled_switch)
+    public Switch trackMarkedAsScrobbledSoundSwitch;
+
+    @InjectView(R.id.settings_sound_notifications_track_skipped_switch)
+    public Switch trackSkippedSoundSwitch;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,49 +43,47 @@ public class SettingsSoundNotificationsFragment extends BaseFragment implements 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        ButterKnife.inject(this, view);
+
         final Activity activity = getActivity();
 
-        view.findViewById(R.id.settings_sound_notifications_track_marked_as_scrobbled).setOnClickListener(this);
-        Switch trackMarkedAsScrobbledSoundSwitch = (Switch) view.findViewById(R.id.settings_sound_notifications_track_marked_as_scrobbled_switch);
-
         trackMarkedAsScrobbledSoundSwitch.setChecked(WAILSettings.isSoundNotificationTrackMarkedAsScrobbledEnabled(activity));
-        trackMarkedAsScrobbledSoundSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                WAILSettings.setSoundNotificationTrackMarkedAsScrobbledEnabled(activity, isChecked);
-                EasyTracker.getInstance(activity).send(MapBuilder.createEvent(GA_EVENT_SETTINGS_SOUND_NOTIFICATIONS,
-                        "trackMarkedAsScrobbledSoundSwitch",
-                        isChecked ? "enabled" : "disabled",
-                        isChecked ? 1L : 0L).build());
-            }
-        });
-
-        view.findViewById(R.id.settings_sound_notifications_track_skipped).setOnClickListener(this);
-        Switch trackSkippedSoundSwitch = (Switch) view.findViewById(R.id.settings_sound_notifications_track_skipped_switch);
 
         trackSkippedSoundSwitch.setChecked(WAILSettings.isSoundNotificationTrackSkippedEnabled(activity));
-        trackSkippedSoundSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                WAILSettings.setSoundNotificationTrackSkippedEnabled(activity, isChecked);
-                EasyTracker.getInstance(activity).send(MapBuilder.createEvent(GA_EVENT_SETTINGS_SOUND_NOTIFICATIONS,
-                        "trackSkippedSoundSwitch",
-                        isChecked ? "enabled" : "disabled",
-                        isChecked ? 1L : 0L).build());
-            }
-        });
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.settings_sound_notifications_track_marked_as_scrobbled) {
-            tryToPlayTrackMarkedAsScrobbledSound();
-        } else if (v.getId() == R.id.settings_sound_notifications_track_skipped) {
-            tryToPlayTrackSkippedSound();
+    @OnCheckedChanged(R.id.settings_sound_notifications_track_marked_as_scrobbled_switch)
+    public void onTrackMarkedAsScrobbledChanged(boolean isChecked) {
+        final Activity activity = getActivity();
+
+        if (isChecked == WAILSettings.isSoundNotificationTrackMarkedAsScrobbledEnabled(activity)) {
+            return;
         }
+
+        WAILSettings.setSoundNotificationTrackMarkedAsScrobbledEnabled(activity, isChecked);
+        EasyTracker.getInstance(activity).send(MapBuilder.createEvent(GA_EVENT_SETTINGS_SOUND_NOTIFICATIONS,
+                "trackMarkedAsScrobbledSoundSwitch",
+                isChecked ? "enabled" : "disabled",
+                isChecked ? 1L : 0L).build());
     }
 
-    private void tryToPlayTrackMarkedAsScrobbledSound() {
+    @OnCheckedChanged(R.id.settings_sound_notifications_track_skipped_switch)
+    public void onTrackSkippedChanged(boolean isChecked) {
+        final Activity activity = getActivity();
+
+        if (isChecked == WAILSettings.isSoundNotificationTrackSkippedEnabled(activity)) {
+            return;
+        }
+
+        WAILSettings.setSoundNotificationTrackSkippedEnabled(activity, isChecked);
+        EasyTracker.getInstance(activity).send(MapBuilder.createEvent(GA_EVENT_SETTINGS_SOUND_NOTIFICATIONS,
+                "trackSkippedSoundSwitch",
+                isChecked ? "enabled" : "disabled",
+                isChecked ? 1L : 0L).build());
+    }
+
+    @OnClick(R.id.settings_sound_notifications_track_marked_as_scrobbled)
+    public void tryToPlayTrackMarkedAsScrobbledSound() {
         Activity activity = getActivity();
         EasyTracker.getInstance(activity).send(MapBuilder.createEvent(GA_EVENT_SETTINGS_SOUND_NOTIFICATIONS,
                 "playTrackMarkedAsScrobbledSound",
@@ -90,7 +98,8 @@ public class SettingsSoundNotificationsFragment extends BaseFragment implements 
         }
     }
 
-    private void tryToPlayTrackSkippedSound() {
+    @OnClick(R.id.settings_sound_notifications_track_skipped)
+    public void tryToPlayTrackSkippedSound() {
         Activity activity = getActivity();
         EasyTracker.getInstance(activity).send(MapBuilder.createEvent(GA_EVENT_SETTINGS_SOUND_NOTIFICATIONS,
                 "playTrackSkippedSound",

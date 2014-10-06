@@ -41,26 +41,103 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.DefaultHeaderTransformer;
 import uk.co.senab.actionbarpulltorefresh.library.Options;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 
-public class MainFragment extends BaseFragment implements View.OnClickListener {
+public class MainFragment extends BaseFragment {
 
     private static final String GA_EVENT_MAIN_FRAGMENT = "MainFragment";
 
-    private PullToRefreshLayout pullToRefreshLayout;
-    private TextView tracksTodayCountTextView,
-            tracksTodayCountLabelTextView,
-            nowScrobblingTrackTextView,
-            tracksTotalCountOnLastfmTextView,
-            tracksTotalCountOnLastfmLabelTextView,
-            lastfmUserInfoUpdateTimeTextView;
-    private View loveCurrentTrackButton;
-    private View feedbackPleaseView;
+    private final BroadcastReceiver tracksChangedBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateLocalInfo();
+        }
+    };
+
+    @InjectView(R.id.main_pull_to_refresh_layout)
+    public PullToRefreshLayout pullToRefreshLayout;
+
+    @InjectView(R.id.main_tracks_today_count_text_view)
+    public TextView tracksTodayCountTextView;
+
+    @InjectView(R.id.main_tracks_today_count_label_text_view)
+    public TextView tracksTodayCountLabelTextView;
+
+    @InjectView(R.id.main_now_scrobbling_track_text_view)
+    public TextView nowScrobblingTrackTextView;
+
+    @InjectView(R.id.main_tracks_total_count_text_view)
+    public TextView tracksTotalCountOnLastfmTextView;
+
+    @InjectView(R.id.main_tracks_total_count_label_text_view)
+    public TextView tracksTotalCountOnLastfmLabelTextView;
+
+    @InjectView(R.id.main_last_fm_user_info_update_time)
+    public TextView lastfmUserInfoUpdateTimeTextView;
+
+    @InjectView(R.id.main_love_current_track_button)
+    public View loveCurrentTrackButton;
+
+    @InjectView(R.id.main_feedback_please)
+    public View feedbackPleaseView;
+
     private String[] trackWordForms;
+
+    @OnClick(R.id.main_tracks_today_view)
+    public void onTracksTodayViewClick() {
+        Toast.makeText(getActivity(), getString(R.string.main_pull_down_to_refresh_toast), Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.main_feedback_please)
+    public void onFeedbackPleaseClick() {
+        final Activity activity = getActivity();
+
+        WAILSettings.setShowFeedbackRequest(activity, false);
+        ViewUtil.setVisibility(feedbackPleaseView, false);
+
+        Toast.makeText(activity, getString(R.string.main_feedback_please_happy_toast), Toast.LENGTH_LONG)
+                .show();
+
+        final String appPackageName = activity.getPackageName();
+
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            EasyTracker.getInstance(activity).send(MapBuilder.createEvent(
+                    GA_EVENT_MAIN_FRAGMENT,
+                    "feedback_please_click",
+                    "Google Play opened",
+                    1L
+            ).build());
+        } catch (Exception e) {
+            // will open browser if failed with Google Play app
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
+            EasyTracker.getInstance(activity).send(MapBuilder.createEvent(
+                    GA_EVENT_MAIN_FRAGMENT,
+                    "feedback_please_click",
+                    "Browser opened",
+                    1L
+            ).build());
+        }
+    }
+
+    @OnClick(R.id.main_love_current_track_button)
+    public void onLoveCurrentTrackButtonClick() {
+        Track track = WAILSettings.getNowScrobblingTrack(getActivity());
+        if (track != null) {
+            Toast.makeText(getActivity(), getString(R.string.main_track_loved), Toast.LENGTH_SHORT).show();
+            getActivity().startService(
+                    new Intent(getActivity(), WAILService.class)
+                            .setAction(WAILService.INTENT_ACTION_HANDLE_LOVED_TRACK)
+            );
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,40 +155,21 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        ButterKnife.inject(this, view);
+
         final Activity activity = getActivity();
 
-        pullToRefreshLayout = (PullToRefreshLayout) view.findViewById(R.id.main_pull_to_refresh_layout);
         ActionBarPullToRefresh.from(activity)
                 .allChildrenArePullable()
                 .listener(new PullToRefreshListener())
                 .options(Options.create()
-                            .headerTransformer(new PullToRefreshHeaderTransformer())
-                            .build())
+                        .headerTransformer(new PullToRefreshHeaderTransformer())
+                        .build())
                 .setup(pullToRefreshLayout);
-
-        view.findViewById(R.id.main_tracks_today_view).setOnClickListener(this);
-
-        tracksTodayCountTextView      = (TextView) view.findViewById(R.id.main_tracks_today_count_text_view);
-        tracksTodayCountLabelTextView = (TextView) view.findViewById(R.id.main_tracks_today_count_label_text_view);
-
-        nowScrobblingTrackTextView = (TextView) view.findViewById(R.id.main_now_scrobbling_track_text_view);
-
-        loveCurrentTrackButton = view.findViewById(R.id.main_love_current_track_button);
-
-        tracksTotalCountOnLastfmTextView      = (TextView) view.findViewById(R.id.main_tracks_total_count_text_view);
-        tracksTotalCountOnLastfmLabelTextView = (TextView) view.findViewById(R.id.main_tracks_total_count_label_text_view);
-
-        lastfmUserInfoUpdateTimeTextView      = (TextView) view.findViewById(R.id.main_last_fm_user_info_update_time);
-
-        feedbackPleaseView = view.findViewById(R.id.main_feedback_please);
 
         if (WAILSettings.isShowFeedbackRequest(activity)) {
             ViewUtil.setVisibility(feedbackPleaseView, true);
         }
-
-        loveCurrentTrackButton.setOnClickListener(this);
-
-        feedbackPleaseView.setOnClickListener(this);
     }
 
     @Override
@@ -376,8 +434,8 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
 
         if (nowScrobblingTrack != null) {
             nowScrobblingTrackTextView.setText(getString(
-                    R.string.main_now_scrobbling_label,
-                    nowScrobblingTrack.getArtist() + " - " + nowScrobblingTrack.getTrack())
+                            R.string.main_now_scrobbling_label,
+                            nowScrobblingTrack.getArtist() + " - " + nowScrobblingTrack.getTrack())
             );
             loveCurrentTrackButton.setVisibility(View.VISIBLE);
         } else {
@@ -419,67 +477,18 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
         }
     }
 
-    private final BroadcastReceiver tracksChangedBroadcastReceiver = new BroadcastReceiver() {
+    private static class PullToRefreshHeaderTransformer extends DefaultHeaderTransformer {
+
         @Override
-        public void onReceive(Context context, Intent intent) {
-            updateLocalInfo();
-        }
-    };
+        public void onViewCreated(Activity activity, View headerView) {
+            super.onViewCreated(activity, headerView);
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.main_tracks_today_view) {
-            onTracksTodayViewClick();
-        } else if (v.getId() == R.id.main_feedback_please) {
-            onFeedbackPleaseClick();
-        } else if (v.getId() == R.id.main_love_current_track_button) {
-            onLoveCurrentTrackButtonClick();
-        }
-    }
+            setProgressBarColor(Color.parseColor("#FFFFFF"));
+            setProgressBarHeight((int) DisplayUnitsConverter.dpToPx(activity, 3));
 
-    private void onTracksTodayViewClick() {
-        Toast.makeText(getActivity(), getString(R.string.main_pull_down_to_refresh_toast), Toast.LENGTH_SHORT).show();
-    }
-
-    private void onFeedbackPleaseClick() {
-        final Activity activity = getActivity();
-
-        WAILSettings.setShowFeedbackRequest(activity, false);
-        ViewUtil.setVisibility(feedbackPleaseView, false);
-
-        Toast.makeText(activity, getString(R.string.main_feedback_please_happy_toast), Toast.LENGTH_LONG)
-                .show();
-
-        final String appPackageName = activity.getPackageName();
-
-        try {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-            EasyTracker.getInstance(activity).send(MapBuilder.createEvent(
-                    GA_EVENT_MAIN_FRAGMENT,
-                    "feedback_please_click",
-                    "Google Play opened",
-                    1L
-            ).build());
-        } catch (Exception e) {
-            // will open browser if failed with Google Play app
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
-            EasyTracker.getInstance(activity).send(MapBuilder.createEvent(
-                    GA_EVENT_MAIN_FRAGMENT,
-                    "feedback_please_click",
-                    "Browser opened",
-                    1L
-            ).build());
-        }
-    }
-
-    private void onLoveCurrentTrackButtonClick() {
-        Track track = WAILSettings.getNowScrobblingTrack(getActivity());
-        if (track != null) {
-            Toast.makeText(getActivity(), getString(R.string.main_track_loved), Toast.LENGTH_SHORT).show();
-            getActivity().startService(
-                    new Intent(getActivity(), WAILService.class)
-                            .setAction(WAILService.INTENT_ACTION_HANDLE_LOVED_TRACK)
-            );
+            setPullText(activity.getString(R.string.main_pull_to_refresh_pull_text));
+            setRefreshingText(activity.getString(R.string.main_pull_to_refresh_refreshing_text));
+            setReleaseText(activity.getString(R.string.main_pull_to_refresh_release_text));
         }
     }
 
@@ -493,21 +502,6 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
                     "pullToRefresh",
                     null,
                     1L).build());
-        }
-    }
-
-    private static class PullToRefreshHeaderTransformer extends DefaultHeaderTransformer {
-
-        @Override
-        public void onViewCreated(Activity activity, View headerView) {
-            super.onViewCreated(activity, headerView);
-
-            setProgressBarColor(Color.parseColor("#FFFFFF"));
-            setProgressBarHeight((int) DisplayUnitsConverter.dpToPx(activity, 3));
-
-            setPullText(activity.getString(R.string.main_pull_to_refresh_pull_text));
-            setRefreshingText(activity.getString(R.string.main_pull_to_refresh_refreshing_text));
-            setReleaseText(activity.getString(R.string.main_pull_to_refresh_release_text));
         }
     }
 }

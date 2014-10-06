@@ -41,13 +41,36 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 public class TracksListFragment extends BaseFragment {
 
     private final String GA_EVENT_TRACKS_LIST_FRAGMENT = "TracksListFragment";
-
-    private View tracksListLoading, tracksListEmpty, tracksListContainer;
-    private ListView tracksListView;
     private final TracksListDataProvider tracksListDataProvider = new TracksListDataProvider();
+
+    private final BroadcastReceiver tracksChangedBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            reloadTracksAsync();
+        }
+    };
+
+    @InjectView(R.id.tracks_list_loading)
+    public View tracksListLoading;
+
+    @InjectView(R.id.track_list_empty)
+    public View tracksListEmpty;
+
+    @InjectView(R.id.tracks_list_container)
+    public View tracksListContainer;
+
+    @InjectView(R.id.tracks_list_view)
+    public ListView tracksListView;
+
+    @InjectView(R.id.tracks_list_empty_text_view)
+    public TextView emptyTextView;
+
     private TracksListAdapter tracksListAdapter;
     private TracksSearchHandler tracksSearchHandler = new TracksSearchHandler();
 
@@ -68,13 +91,10 @@ public class TracksListFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        tracksListLoading = view.findViewById(R.id.tracks_list_loading);
-        tracksListEmpty = view.findViewById(R.id.track_list_empty);
-        tracksListContainer = view.findViewById(R.id.tracks_list_container);
+        ButterKnife.inject(this, view);
 
         setUIStateLoading();
 
-        tracksListView = (ListView) view.findViewById(R.id.tracks_list_view);
         tracksListView.setAdapter(tracksListAdapter);
     }
 
@@ -85,7 +105,6 @@ public class TracksListFragment extends BaseFragment {
     }
 
     private void setUIStateEmpty(String emptyText) {
-        TextView emptyTextView = (TextView) tracksListEmpty.findViewById(R.id.tracks_list_empty_text_view);
         emptyTextView.setText(emptyText);
 
         ViewUtil.setVisibility(tracksListLoading, false);
@@ -183,10 +202,6 @@ public class TracksListFragment extends BaseFragment {
     }
 
     private static class TracksListDataProvider {
-        interface Listener {
-            void onDataSourceChanged();
-        }
-
         private Cursor tracksCursor;
         private List<Track> tracksList;
         private Listener listener;
@@ -243,14 +258,35 @@ public class TracksListFragment extends BaseFragment {
                 listener.onDataSourceChanged();
             }
         }
+
+        interface Listener {
+            void onDataSourceChanged();
+        }
+    }
+
+    public static class TrackViewHolder {
+        @InjectView(R.id.track_list_item_track)
+        public TextView trackTextView;
+
+        @InjectView(R.id.track_list_item_artist_and_album)
+        public TextView artistAndAlbumTextView;
+
+        @InjectView(R.id.track_list_item_status)
+        public TextView statusTextView;
+
+        @InjectView(R.id.track_list_item_date)
+        public TextView dateTextView;
+
+        public TrackViewHolder(View convertView) {
+            ButterKnife.inject(this, convertView);
+        }
     }
 
     private class TracksListAdapter extends BaseAdapter implements TracksListDataProvider.Listener {
 
         private final int[] mTrackStateColors;
+        private final DateFormat mDateFormatWithYear = new SimpleDateFormat("HH:mm dd.MM.yyyy", Locale.getDefault());
         private TracksListDataProvider mTracksListDataProvider;
-
-        private final DateFormat mDateFormatWithYear  = new SimpleDateFormat("HH:mm dd.MM.yyyy", Locale.getDefault());
 
         public TracksListAdapter(TracksListDataProvider tracksListDataProvider) {
             this.mTracksListDataProvider = tracksListDataProvider;
@@ -360,27 +396,6 @@ public class TracksListFragment extends BaseFragment {
             notifyDataSetChanged();
         }
     }
-
-    private static class TrackViewHolder {
-        public final TextView trackTextView;
-        public final TextView artistAndAlbumTextView;
-        public final TextView statusTextView;
-        public final TextView dateTextView;
-
-        public TrackViewHolder(View convertView) {
-            trackTextView          = (TextView) convertView.findViewById(R.id.track_list_item_track);
-            artistAndAlbumTextView = (TextView) convertView.findViewById(R.id.track_list_item_artist_and_album);
-            statusTextView         = (TextView) convertView.findViewById(R.id.track_list_item_status);
-            dateTextView           = (TextView) convertView.findViewById(R.id.track_list_item_date);
-        }
-    }
-
-    private final BroadcastReceiver tracksChangedBroadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            reloadTracksAsync();
-        }
-    };
 
     private class TracksSearchHandler implements TextWatcher, MenuItem.OnActionExpandListener, View.OnFocusChangeListener {
 
