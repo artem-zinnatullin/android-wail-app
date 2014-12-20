@@ -5,9 +5,9 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -76,7 +76,6 @@ public class MainActivity extends BaseActivity {
             actionBarDrawerToggle = new ActionBarDrawerToggle(
                     this,
                     drawerLayout,
-                    R.drawable.ic_drawer,
                     R.string.app_name,
                     R.string.app_name) {
 
@@ -112,8 +111,8 @@ public class MainActivity extends BaseActivity {
                     getResources().getStringArray(R.array.drawer_items)
             ));
 
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-            getActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
 
             tryToIncreaseNavigationDrawerLeftSwipeZone(drawerLayout);
         }

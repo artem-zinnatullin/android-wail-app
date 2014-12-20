@@ -19,7 +19,8 @@
 
     <color name="dark_theme_dialog_background">#282828</color>
     <color name="dark_theme_dialog_button_normal">@color/dark_theme_dialog_background</color>
-    <color name="dark_theme_dialog_button_pressed">@color/dark_theme_common_background_pressed</color>
+    <color name="dark_theme_dialog_button_pressed">@color/dark_theme_common_background_pressed
+    </color>
 
     <color name="dark_theme_track_title">#FFFFFF</color>
     <color name="dark_theme_track_artist_and_album">#BBBBBB</color>
@@ -31,5 +32,11 @@
     <color name="dark_theme_track_state_unknown">#fff5f5ff</color>
 
     <color name="dark_theme_track_date">#ff7a7a81</color>
+
+    <color name="primary">#42A5F5</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="accent">#fff</color>
+    <color name="primary_pressed">#1976D2</color>
+    <color name="ripple">#1976D2</color>
 
 </resources>

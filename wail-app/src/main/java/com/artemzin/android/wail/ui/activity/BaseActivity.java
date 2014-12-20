@@ -1,12 +1,12 @@
 package com.artemzin.android.wail.ui.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
 import com.google.analytics.tracking.android.EasyTracker;
 
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends ActionBarActivity {
 
     protected boolean doFinishOnHomeAsUpButton() {
         return true;

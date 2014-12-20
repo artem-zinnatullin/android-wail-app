@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/main_settings_menu_is_wail_enabled"
         android:title="@string/main_settings_menu_toggle_wail"
-        android:showAsAction="always"
-        android:actionLayout="@layout/main_settings_is_wail_enabled_menu_item" />
+        app:showAsAction="always"
+        app:actionViewClass="android.support.v7.widget.SwitchCompat"
+        app:actionLayout="@layout/main_settings_is_wail_enabled_menu_item" />
 </menu>

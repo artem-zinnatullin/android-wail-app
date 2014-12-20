@@ -11,5 +11,6 @@
     android:paddingEnd="10dp"
     android:paddingLeft="15dp"
     android:paddingRight="10dp"
+    android:paddingStart="15dp"
     android:paddingTop="15dp"
     app:typefaceFromAssets="fonts/Roboto-Light.ttf" />
