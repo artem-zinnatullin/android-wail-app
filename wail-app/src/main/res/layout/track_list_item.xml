@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:clickable="true"
-    android:background="@drawable/dark_theme_common_background_selector"
+    android:background="@color/background"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="16sp"
-            android:textColor="@color/dark_theme_track_title"/>
+            android:textColor="@color/text_primary" />
 
         <com.artemzin.android.wail.ui.TypefaceTextView
             android:id="@+id/track_list_item_artist_and_album"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="13sp"
-            android:textColor="@color/dark_theme_track_artist_and_album"/>
+            android:textColor="@color/text_primary" />
 
     </LinearLayout>
 
@@ -50,7 +50,7 @@
             tools:text="@string/track_status_waiting_for_scrobble"
             android:layout_marginTop="3dp"
             android:textSize="12sp"
-            tools:textColor="@color/dark_theme_track_state_waiting_for_scrobble"
+            tools:textColor="@color/text_secondary"
             android:gravity="right"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -60,11 +60,11 @@
             tools:text="18:02 26.03.2014"
             android:textSize="12sp"
             android:layout_marginTop="0dp"
-            android:textColor="@color/dark_theme_track_date"
+            android:textColor="@color/text_secondary"
             android:gravity="bottom|right"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
     </LinearLayout>
 

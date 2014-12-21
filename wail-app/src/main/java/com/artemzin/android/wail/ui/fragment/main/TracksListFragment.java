@@ -296,11 +296,11 @@ public class TracksListFragment extends BaseFragment {
         private int[] loadTrackStateColors() {
             int[] colors = new int[5];
 
-            colors[0] = getResources().getColor(R.color.dark_theme_track_state_waiting_for_scrobble);
-            colors[1] = getResources().getColor(R.color.dark_theme_track_state_scrobbling);
-            colors[2] = getResources().getColor(R.color.dark_theme_track_state_error);
-            colors[3] = getResources().getColor(R.color.dark_theme_track_state_scrobble_success);
-            colors[4] = getResources().getColor(R.color.dark_theme_track_state_unknown);
+            colors[0] = getResources().getColor(R.color.track_state_waiting_for_scrobble);
+            colors[1] = getResources().getColor(R.color.track_state_scrobbling);
+            colors[2] = getResources().getColor(R.color.track_state_error);
+            colors[3] = getResources().getColor(R.color.track_state_scrobble_success);
+            colors[4] = getResources().getColor(R.color.track_state_unknown);
 
             return colors;
         }

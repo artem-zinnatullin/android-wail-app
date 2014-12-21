@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#cccccc"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <SeekBar
             android:id="@+id/dialog_with_seek_bar_seek_bar"
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#474747"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,8 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/dialog_cancel"
-            android:background="@drawable/dark_theme_dialog_button_selector"/>
+            android:text="@string/dialog_cancel" />
 
         <View
             android:layout_width="1dp"
@@ -67,9 +66,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/dialog_save"
-            android:background="@drawable/dark_theme_dialog_button_selector"/>
+            android:text="@string/dialog_save" />
 
     </LinearLayout>
-    
+
 </LinearLayout>

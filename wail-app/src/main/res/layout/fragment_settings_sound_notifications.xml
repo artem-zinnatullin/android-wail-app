@@ -8,8 +8,6 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/settings_padding_right_and_left"
-        android:paddingRight="@dimen/settings_padding_right_and_left"
         android:stretchColumns="0">
 
         <LinearLayout style="@style/SettingsCategoryTitle">
@@ -21,10 +19,12 @@
             <com.artemzin.android.wail.ui.TypefaceTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/settings_padding_right_and_left"
+                android:paddingRight="@dimen/settings_padding_right_and_left"
                 android:layout_marginTop="12dp"
                 android:textSize="13sp"
                 android:textColor="#999999"
-                android:text="@string/settings_sound_notifications_pro_tip"/>
+                android:text="@string/settings_sound_notifications_pro_tip" />
 
             <View style="@style/SettingsCategoryTitleDivider" />
 

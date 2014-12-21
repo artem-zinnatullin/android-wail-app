@@ -10,9 +10,7 @@
         android:id="@+id/settings_container"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="18dp"
-        android:paddingRight="18dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout style="@style/SettingsCategoryTitle">
 
@@ -60,7 +58,7 @@
 
             <com.artemzin.android.wail.ui.TypefaceTextView
                 style="@style/SettingsItemTitle.WithSwitch"
-                android:text="@string/settings_disable_scrobbling_over_mobile_network"/>
+                android:text="@string/settings_disable_scrobbling_over_mobile_network" />
 
             <Switch
                 android:id="@+id/settings_disable_scrobbling_over_mobile_network_switch"
@@ -84,12 +82,12 @@
 
             <com.artemzin.android.wail.ui.TypefaceTextView
                 style="@style/SettingsItemTitle"
-                android:text="@string/settings_select_language"/>
+                android:text="@string/settings_select_language" />
 
             <com.artemzin.android.wail.ui.TypefaceTextView
                 style="@style/SettingsItemDescription"
                 android:id="@+id/settings_select_language_description"
-                tools:text="English"/>
+                tools:text="English" />
 
         </LinearLayout>
 

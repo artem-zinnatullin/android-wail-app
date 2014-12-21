@@ -27,7 +27,7 @@
 
                 <TableRow
                     android:id="@+id/main_tracks_today_view"
-                    android:background="@drawable/dark_theme_main_tracks_today_background"
+                    android:background="@color/primary_light"
                     android:clickable="true"
                     android:focusable="true"
                     android:focusableInTouchMode="false"
@@ -42,6 +42,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textSize="46sp"
+                        android:textColor="@color/text_primary"
                         app:typefaceFromAssets="fonts/Roboto-Regular.ttf"
                         tools:text="12" />
 
@@ -51,6 +52,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:textSize="30sp"
+                        android:textColor="@color/text_primary"
                         app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
                         tools:text="tracks today" />
 
@@ -67,6 +69,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textSize="20sp"
+                        android:textColor="@color/text_primary"
                         app:typefaceFromAssets="fonts/Roboto-Regular.ttf"
                         tools:text="438" />
 
@@ -76,6 +79,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:textSize="20sp"
+                        android:textColor="@color/text_primary"
                         app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
                         tools:text="tracks scrobbled on last.fm" />
 
@@ -93,6 +97,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="6dp"
                         android:textSize="13sp"
+                        android:textColor="@color/text_primary"
                         app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
                         tools:text="updated today at 15:04" />
 
@@ -104,6 +109,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/activity_horizontal_margin"
                     android:textSize="15sp"
+                    android:textColor="@color/text_primary"
                     app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
                     tools:text="Now scrobbling: Prodigy — Omen" />
 
@@ -123,14 +129,14 @@
                     android:id="@+id/main_feedback_please"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/dark_theme_common_background_selector"
+                    android:background="@color/background"
                     android:clickable="true"
                     android:paddingBottom="5dp"
                     android:paddingLeft="2dp"
                     android:paddingRight="2dp"
                     android:paddingTop="5dp"
                     android:text="@string/main_feedback_please"
-                    android:textColor="#ffff8090"
+                    android:textColor="@color/wail_is_sad"
                     android:visibility="gone"
                     tools:visibility="visible" />
 

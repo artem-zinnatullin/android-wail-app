@@ -8,8 +8,6 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/settings_padding_right_and_left"
-        android:paddingRight="@dimen/settings_padding_right_and_left"
         android:stretchColumns="0">
 
         <LinearLayout style="@style/SettingsCategoryTitle">
