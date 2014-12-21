@@ -160,6 +160,7 @@ public class MainFragment extends BaseFragment {
 
         final Activity activity = getActivity();
 
+        pullToRefreshLayout.setColorSchemeResources(R.color.primary);
         pullToRefreshLayout.setOnRefreshListener(new PullToRefreshListener());
 
         if (WAILSettings.isShowFeedbackRequest(activity)) {

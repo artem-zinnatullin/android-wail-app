@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v7.widget.SwitchCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<Switch xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main_settings_is_wail_enabled_switch"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

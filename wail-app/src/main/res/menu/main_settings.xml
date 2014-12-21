@@ -6,6 +6,5 @@
         android:id="@+id/main_settings_menu_is_wail_enabled"
         android:title="@string/main_settings_menu_toggle_wail"
         app:showAsAction="always"
-        app:actionViewClass="android.support.v7.widget.SwitchCompat"
         app:actionLayout="@layout/main_settings_is_wail_enabled_menu_item" />
 </menu>

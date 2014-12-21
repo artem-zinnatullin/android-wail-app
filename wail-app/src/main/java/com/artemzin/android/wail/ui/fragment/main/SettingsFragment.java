@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.SwitchCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -136,13 +135,8 @@ public class SettingsFragment extends BaseFragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.main_settings, menu);
-    }
 
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-
-        SwitchCompat isWailEnabledSwitch = (SwitchCompat) MenuItemCompat.getActionView(menu
+        Switch isWailEnabledSwitch = (Switch) MenuItemCompat.getActionView(menu
                 .findItem(R.id.main_settings_menu_is_wail_enabled));
         isWailEnabledSwitch.setChecked(WAILSettings.isEnabled(getActivity()));
         isWailEnabledSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
