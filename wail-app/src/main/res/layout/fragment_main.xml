@@ -18,90 +18,95 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
 
-            <TableLayout
+            <LinearLayout
+                android:id="@+id/main_tracks_today_view"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_height="wrap_content"
+                android:background="@color/primary_light"
+                android:layout_gravity="center_horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="false"
+                android:paddingBottom="10dp">
 
-                <TableRow
-                    android:id="@+id/main_tracks_today_view"
-                    android:background="@color/primary_light"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:focusableInTouchMode="false"
-                    android:paddingBottom="@dimen/activity_horizontal_margin"
+                <com.artemzin.android.wail.ui.TypefaceTextView
+                    android:id="@+id/main_tracks_today_count_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="60sp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/text_primary"
+                    app:typefaceFromAssets="fonts/Roboto-Regular.ttf"
+                    tools:text="12" />
+
+                <com.artemzin.android.wail.ui.TypefaceTextView
+                    android:id="@+id/main_tracks_today_count_label_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/text_primary"
+                    app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
+                    tools:text="tracks today" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:layout_gravity="center_horizontal">
+
+                <com.artemzin.android.wail.ui.TypefaceTextView
+                    android:id="@+id/main_tracks_total_count_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="25sp"
                     android:paddingLeft="@dimen/activity_horizontal_margin"
                     android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:paddingTop="@dimen/activity_horizontal_margin">
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/text_primary"
+                    app:typefaceFromAssets="fonts/Roboto-Regular.ttf"
+                    tools:text="24438" />
 
-                    <com.artemzin.android.wail.ui.TypefaceTextView
-                        android:id="@+id/main_tracks_today_count_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="46sp"
-                        android:textColor="@color/text_primary"
-                        app:typefaceFromAssets="fonts/Roboto-Regular.ttf"
-                        tools:text="12" />
-
-                    <com.artemzin.android.wail.ui.TypefaceTextView
-                        android:id="@+id/main_tracks_today_count_label_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="30sp"
-                        android:textColor="@color/text_primary"
-                        app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
-                        tools:text="tracks today" />
-
-                </TableRow>
-
-                <TableRow
+                <com.artemzin.android.wail.ui.TypefaceTextView
+                    android:id="@+id/main_tracks_total_count_label_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
                     android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="5dp"
-                    android:paddingTop="@dimen/activity_horizontal_margin">
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/text_primary"
+                    app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
+                    tools:text="tracks scrobbled on last.fm" />
 
-                    <com.artemzin.android.wail.ui.TypefaceTextView
-                        android:id="@+id/main_tracks_total_count_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="20sp"
-                        android:textColor="@color/text_primary"
-                        app:typefaceFromAssets="fonts/Roboto-Regular.ttf"
-                        tools:text="438" />
+                <com.artemzin.android.wail.ui.TypefaceTextView
+                    android:id="@+id/main_last_fm_user_info_update_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:textSize="13sp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/text_secondary"
+                    app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
+                    tools:text="updated today at 15:04" />
 
-                    <com.artemzin.android.wail.ui.TypefaceTextView
-                        android:id="@+id/main_tracks_total_count_label_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="20sp"
-                        android:textColor="@color/text_primary"
-                        app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
-                        tools:text="tracks scrobbled on last.fm" />
+            </LinearLayout>
 
-
-                </TableRow>
-
-                <TableRow android:paddingLeft="@dimen/activity_horizontal_margin">
-
-                    <Space />
-
-                    <com.artemzin.android.wail.ui.TypefaceTextView
-                        android:id="@+id/main_last_fm_user_info_update_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="6dp"
-                        android:textSize="13sp"
-                        android:textColor="@color/text_primary"
-                        app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
-                        tools:text="updated today at 15:04" />
-
-                </TableRow>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="top"
+                android:layout_gravity="center_horizontal">
 
                 <com.artemzin.android.wail.ui.TypefaceTextView
                     android:id="@+id/main_now_scrobbling_track_text_view"
@@ -109,11 +114,12 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/activity_horizontal_margin"
                     android:textSize="15sp"
+                    android:layout_gravity="center_horizontal"
                     android:textColor="@color/text_primary"
                     app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
                     tools:text="Now scrobbling: Prodigy — Omen" />
 
-            </TableLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -150,9 +156,9 @@
                 android:visibility="gone"
                 android:layout_margin="25dp"
                 android:src="@drawable/ic_main_love_track"
-                fab:fab_colorNormal="@color/primary"
-                fab:fab_colorPressed="@color/primary_pressed"
-                fab:fab_colorRipple="@color/ripple" />
+                fab:fab_colorNormal="@color/accent"
+                fab:fab_colorPressed="@color/accent_dark"
+                fab:fab_colorRipple="@color/accent_light" />
 
         </LinearLayout>
 

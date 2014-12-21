@@ -9,10 +9,10 @@
     <color name="primary_light">#B3E5FC</color>
     <color name="primary_dark">#0288D1</color>
     <color name="accent">#FF4081</color>
-    <color name="primary_pressed">#1976D2</color>
-    <color name="ripple">#1976D2</color>
+    <color name="accent_light">#FF4081</color>
+    <color name="accent_dark">#FF4081</color>
 
-    <color name="wail_is_sad">#ffff3a6d</color>
+    <color name="wail_is_sad">#FF0000</color>
 
     <color name="track_state_waiting_for_scrobble">#aaaaaa</color>
     <color name="track_state_scrobbling">#ff73b3ff</color>
