@@ -13,9 +13,8 @@
     <color name="accent_dark">#FF4081</color>
 
     <color name="btn_disabled">#E0E0E0</color>
-    <color name="dialog_button_background">#727272</color>
 
-    <color name="wail_is_sad">#FF0000</color>
+    <color name="error">#FF0000</color>
 
     <color name="track_state_waiting_for_scrobble">#aaaaaa</color>
     <color name="track_state_scrobbling">#ff73b3ff</color>

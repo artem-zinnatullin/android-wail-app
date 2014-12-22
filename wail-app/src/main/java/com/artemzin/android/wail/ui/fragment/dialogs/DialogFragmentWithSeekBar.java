@@ -37,7 +37,7 @@ public class DialogFragmentWithSeekBar extends DialogDecorator {
 
         builder.setView(view)
                 .setCustomTitle(inflater.inflate(R.layout.dialog_with_seek_bar_fragment_title, null))
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.dialog_save), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         WAILSettings.setMinTrackDurationInPercents(
@@ -56,7 +56,7 @@ public class DialogFragmentWithSeekBar extends DialogDecorator {
                         );
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.dialog_cancel), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         DialogFragmentWithSeekBar.this.getDialog().cancel();
                     }

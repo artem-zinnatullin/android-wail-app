@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textColor="@color/background"
-        android:paddingTop="25dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:textSize="20sp"
         android:text="@string/settings_min_track_elapsed_time_in_seconds_dialog_title" />
 </LinearLayout>

@@ -20,7 +20,7 @@
         <item name="android:layout_marginTop">20dp</item>
         <item name="baseColor">@color/text_secondary</item>
         <item name="primaryColor">@color/text_secondary</item>
-        <item name="errorColor">@color/accent</item>
+        <item name="errorColor">@color/error</item>
     </style>
 
     <style name="LastFmLoginEditButton">
@@ -139,7 +139,7 @@
         <item name="android:paddingLeft">2dp</item>
         <item name="android:paddingRight">2dp</item>
         <item name="android:paddingTop">5dp</item>
-        <item name="android:textColor">@color/wail_is_sad</item>
+        <item name="android:textColor">@color/error</item>
         <item name="android:visibility">gone</item>
     </style>
 
