@@ -29,7 +29,7 @@
     <!-- START of main screen strings -->
     <string name="main_today">heute</string>
     <string name="main_tracks_on_last_fm">auf Last.fm gescrobbelt</string>
-    <string name="main_tracks_on_last_fm_unknown">Anzahl der Titel auf Last.fm ist unbekannt. Ziehen, um manuell zu aktualisieren!</string>
+    <string name="main_tracks_on_last_fm_unknown">Anzahl der Titel auf Last.fm ist unbekannt.\nZiehen, um manuell zu aktualisieren!</string>
     <string name="main_now_scrobbling_label">Scrobbelt gerade: %1$s</string>
     <string name="main_now_scrobbling_nothing">nichts</string>
     <string name="main_pull_down_to_refresh_toast">Ziehen, um Daten zu aktualisieren</string>

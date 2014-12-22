@@ -16,49 +16,13 @@
         <com.artemzin.android.wail.ui.TypefaceTextView
             android:id="@+id/custom_dialog_description"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#cccccc"
-            android:textSize="16sp" />
+            android:layout_height="wrap_content" />
 
         <NumberPicker
             android:id="@+id/dialog_with_number_picker_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal" />
-
-    </LinearLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#474747"
-        android:layout_marginTop="20dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="2">
-
-        <Button
-            android:id="@+id/custom_dialog_left_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/dialog_cancel" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#474747" />
-
-        <Button
-            android:id="@+id/custom_dialog_right_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/dialog_save" />
 
     </LinearLayout>
 

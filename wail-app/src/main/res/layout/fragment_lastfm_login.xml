@@ -23,35 +23,21 @@
             android:src="@drawable/lastfm_logo_red"
             android:contentDescription="@string/lastfm_login_lastfm_icon" />
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/lastfm_login_login_edit_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="400dp"
-            android:maxWidth="400dp"
-            android:layout_marginTop="20dp"
+            style="@style/LastFmLoginEditText"
             android:hint="@string/lastfm_login_hint"
             android:inputType="textWebEmailAddress" />
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/lastfm_login_password_edit_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="400dp"
-            android:maxWidth="400dp"
-            android:layout_marginTop="20dp"
+            style="@style/LastFmLoginEditText"
             android:hint="@string/lastfm_password_hint"
             android:inputType="textPassword"/>
 
         <Button
             android:id="@+id/lastfm_login_login_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="400dp"
-            android:maxWidth="400dp"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
+            style="@style/LastFmLoginEditButton"
             android:text="@string/lastfm_login_button"
             android:enabled="false"/>
 

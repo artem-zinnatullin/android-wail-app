@@ -22,8 +22,7 @@
 
         <TableRow
             android:id="@+id/settings_status_bar_notifications_track_now_scrobbling"
-            style="@style/SettingsItem.WithSwitch"
-            android:layout_marginTop="15dp">
+            style="@style/SettingsItem.WithSwitch">
 
             <com.artemzin.android.wail.ui.TypefaceTextView
                 style="@style/SettingsItemTitle.WithSwitch"

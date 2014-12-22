@@ -21,9 +21,10 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/settings_padding_right_and_left"
                 android:paddingRight="@dimen/settings_padding_right_and_left"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
                 android:textSize="13sp"
-                android:textColor="#999999"
+                android:textColor="@color/text_secondary"
                 android:text="@string/settings_sound_notifications_pro_tip" />
 
             <View style="@style/SettingsCategoryTitleDivider" />
@@ -32,8 +33,7 @@
 
         <TableRow
             android:id="@+id/settings_sound_notifications_track_marked_as_scrobbled"
-            style="@style/SettingsItem.WithSwitch"
-            android:layout_marginTop="15dp">
+            style="@style/SettingsItem.WithSwitch">
 
             <com.artemzin.android.wail.ui.TypefaceTextView
                 style="@style/SettingsItemTitle.WithSwitch"

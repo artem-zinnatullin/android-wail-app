@@ -5,7 +5,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -18,85 +17,58 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/main_tracks_today_view"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/primary_light"
-                android:layout_gravity="center_horizontal"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="false"
-                android:paddingBottom="10dp">
+                style="@style/MainTracksTodayContainer">
 
                 <com.artemzin.android.wail.ui.TypefaceTextView
                     android:id="@+id/main_tracks_today_count_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="60sp"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/text_primary"
-                    app:typefaceFromAssets="fonts/Roboto-Regular.ttf"
+                    style="@style/MainTracksTodayCount"
                     tools:text="12" />
 
                 <com.artemzin.android.wail.ui.TypefaceTextView
                     android:id="@+id/main_tracks_today_count_label_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/text_primary"
-                    app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
+                    style="@style/MainTracksTodayLabel"
                     tools:text="tracks today" />
 
             </LinearLayout>
 
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                android:id="@+id/main_tracks_total_count_unknown_text"
+                style="@style/MainTotalTrackCountUnknown" />
+
             <LinearLayout
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:layout_gravity="center_horizontal">
+                android:paddingTop="10dp">
 
                 <com.artemzin.android.wail.ui.TypefaceTextView
                     android:id="@+id/main_tracks_total_count_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textSize="25sp"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/text_primary"
-                    app:typefaceFromAssets="fonts/Roboto-Regular.ttf"
+                    style="@style/MainTotalTrackCount"
                     tools:text="24438" />
 
-                <com.artemzin.android.wail.ui.TypefaceTextView
-                    android:id="@+id/main_tracks_total_count_label_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/text_primary"
-                    app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
-                    tools:text="tracks scrobbled on last.fm" />
 
-                <com.artemzin.android.wail.ui.TypefaceTextView
-                    android:id="@+id/main_last_fm_user_info_update_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:textSize="13sp"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/text_secondary"
-                    app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
-                    tools:text="updated today at 15:04" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        android:id="@+id/main_tracks_total_count_label_text_view"
+                        style="@style/MainTotalTrackCountLabel"
+                        tools:text="tracks scrobbled on last.fm" />
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        android:id="@+id/main_last_fm_user_info_update_time"
+                        app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
+                        tools:text="updated today at 15:04"
+                        style="@style/MainUpdatedAtLabel" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -110,55 +82,26 @@
 
                 <com.artemzin.android.wail.ui.TypefaceTextView
                     android:id="@+id/main_now_scrobbling_track_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/activity_horizontal_margin"
-                    android:textSize="15sp"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/text_primary"
-                    app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
-                    tools:text="Now scrobbling: Prodigy — Omen" />
+                    tools:text="Now scrobbling: Prodigy — Omen"
+                    style="@style/MainNowScrobblingTrack" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingBottom="15dp"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="15dp">
+            <LinearLayout style="@style/MainWailIsSadContainer">
 
                 <com.artemzin.android.wail.ui.TypefaceTextView
                     android:id="@+id/main_feedback_please"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/background"
-                    android:clickable="true"
-                    android:paddingBottom="5dp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:paddingTop="5dp"
                     android:text="@string/main_feedback_please"
-                    android:textColor="@color/wail_is_sad"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
+                    tools:visibility="visible"
+                    style="@style/MainWailIsSadLabel" />
 
             </LinearLayout>
 
             <com.melnykov.fab.FloatingActionButton
                 android:id="@+id/main_love_current_track_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:visibility="gone"
-                android:layout_margin="25dp"
                 android:src="@drawable/ic_main_love_track"
-                fab:fab_colorNormal="@color/accent"
-                fab:fab_colorPressed="@color/accent_dark"
-                fab:fab_colorRipple="@color/accent_light" />
+
+                style="@style/MainFloatingActionButton" />
 
         </LinearLayout>
 

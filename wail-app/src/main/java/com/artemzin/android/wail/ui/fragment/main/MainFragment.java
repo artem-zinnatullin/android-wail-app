@@ -79,6 +79,9 @@ public class MainFragment extends BaseFragment {
     @InjectView(R.id.main_tracks_total_count_label_text_view)
     public TextView tracksTotalCountOnLastfmLabelTextView;
 
+    @InjectView(R.id.main_tracks_total_count_unknown_text)
+    public TextView tracksTotalCountOnLastfmLabelUnknownTextView;
+
     @InjectView(R.id.main_last_fm_user_info_update_time)
     public TextView lastfmUserInfoUpdateTimeTextView;
 
@@ -418,9 +421,15 @@ public class MainFragment extends BaseFragment {
         final LFUserResponseModel userModel = WAILSettings.getLastfmUserInfo(getActivity());
 
         if (userModel == null || userModel.getPlayCount() == -1) {
-            tracksTotalCountOnLastfmTextView.setText("");
-            tracksTotalCountOnLastfmLabelTextView.setText(R.string.main_tracks_on_last_fm_unknown);
+            tracksTotalCountOnLastfmTextView.setVisibility(View.GONE);
+            tracksTotalCountOnLastfmLabelTextView.setVisibility(View.GONE);
+            tracksTotalCountOnLastfmLabelUnknownTextView.setVisibility(View.VISIBLE);
+            tracksTotalCountOnLastfmLabelUnknownTextView.setText(R.string.main_tracks_on_last_fm_unknown);
         } else {
+            tracksTotalCountOnLastfmTextView.setVisibility(View.VISIBLE);
+            tracksTotalCountOnLastfmLabelTextView.setVisibility(View.VISIBLE);
+            tracksTotalCountOnLastfmLabelUnknownTextView.setVisibility(View.GONE);
+
             tracksTotalCountOnLastfmTextView.setText(String.valueOf(userModel.getPlayCount()));
             tracksTotalCountOnLastfmLabelTextView.setText(
                     WordFormUtil.getWordForm(userModel.getPlayCount(), trackWordForms) + " " + getString(R.string.main_tracks_on_last_fm)
