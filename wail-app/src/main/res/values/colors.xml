@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#FFFFFF</color>
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#727272</color>
-    <color name="divider">#B6B6B6</color>
 
     <color name="primary">#03A9F4</color>
     <color name="primary_light">#B3E5FC</color>
@@ -21,4 +17,23 @@
     <color name="track_state_error">#ffff3a6d</color>
     <color name="track_state_scrobble_success">#ff23bb3b</color>
     <color name="track_state_unknown">#fff5f5ff</color>
+
+    <!--Light theme-->
+
+    <color name="light_theme_background">#FFFFFF</color>
+    <color name="light_theme_text_primary">#212121</color>
+    <color name="light_theme_text_secondary">#727272</color>
+    <color name="light_theme_divider">#B6B6B6</color>
+
+    <!--/Light theme-->
+
+    <!--Dark theme-->
+
+    <color name="dark_theme_background">#727272</color>
+    <color name="dark_theme_text_primary">#FFFFFF</color>
+    <color name="dark_theme_text_secondary">#727272</color>
+    <color name="dark_theme_divider">#B6B6B6</color>
+
+    <!--/Dark theme-->
+
 </resources>

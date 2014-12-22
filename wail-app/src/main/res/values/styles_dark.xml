@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--Login screen-->
+
+    <style name="AppTheme.Dark.LastFmLoginEditText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">400dp</item>
+        <item name="android:maxWidth">400dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="baseColor">@color/dark_theme_text_secondary</item>
+        <item name="primaryColor">@color/dark_theme_text_secondary</item>
+        <item name="errorColor">@color/error</item>
+    </style>
+
+    <style name="AppTheme.Dark.LastFmLoginEditButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">400dp</item>
+        <item name="android:maxWidth">400dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:background">@drawable/btn_default</item>
+    </style>
+
+    <!--/Login screen-->
+
+    <!--Main screen-->
+
+    <style name="AppTheme.Dark.MainTracksTodayContainer">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/primary_light</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:paddingLeft">30dp</item>
+    </style>
+
+    <style name="AppTheme.Dark.MainTracksTodayCount">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:textSize">60sp</item>
+        <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
+    </style>
+
+    <style name="AppTheme.Dark.MainTracksTodayLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">25sp</item>
+        <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
+    </style>
+
+    <style name="AppTheme.Dark.MainTotalTrackCountUnknown">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:textColor">@color/light_theme_text_primary</item>
+        <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
+    </style>
+
+    <style name="AppTheme.Dark.MainTotalTrackCount">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textColor">@color/light_theme_text_primary</item>
+        <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
+    </style>
+
+    <style name="AppTheme.Dark.MainTotalTrackCountLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:textColor">@color/light_theme_text_primary</item>
+        <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
+    </style>
+
+    <style name="AppTheme.Dark.MainUpdatedAtLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/light_theme_text_secondary</item>
+        <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
+    </style>
+
+    <style name="AppTheme.Dark.MainNowScrobblingTrack">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/activity_horizontal_margin</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/light_theme_text_primary</item>
+        <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
+    </style>
+
+    <style name="AppTheme.Dark.MainWailIsSadContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingTop">15dp</item>
+    </style>
+
+    <style name="AppTheme.Dark.MainWailIsSadLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/light_theme_background</item>
+        <item name="android:clickable">true</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textColor">@color/error</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="AppTheme.Dark.MainFloatingActionButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom|right</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_margin">25dp</item>
+        <item name="fab_colorNormal">@color/accent</item>
+        <item name="fab_colorPressed">@color/accent_dark</item>
+        <item name="fab_colorRipple">@color/accent_light</item>
+    </style>
+
+    <!--/Main screen-->
+
+    <!--Settings screen-->
+
+    <style name="AppTheme.Dark.SettingsCategoryTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/settings_item_padding_top_and_bottom</item>
+        <item name="android:paddingBottom">@dimen/settings_item_padding_top_and_bottom</item>
+        <item name="android:paddingLeft">@dimen/settings_item_padding_left_and_right</item>
+        <item name="android:paddingRight">@dimen/settings_item_padding_left_and_right</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="AppTheme.Dark.SettingsCategoryTitleTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/settings_padding_right_and_left</item>
+        <item name="android:paddingRight">@dimen/settings_padding_right_and_left</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/light_theme_text_primary</item>
+    </style>
+
+    <style name="AppTheme.Dark.SettingsCategoryTitleDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:background">@color/light_theme_divider</item>
+    </style>
+
+    <style name="AppTheme.Dark.SettingsItem">
+        <item name="android:clickable">true</item>
+        <item name="android:background">@color/light_theme_background</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/settings_padding_right_and_left</item>
+        <item name="android:paddingRight">@dimen/settings_padding_right_and_left</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingTop">@dimen/settings_item_padding_top_and_bottom</item>
+        <item name="android:paddingBottom">@dimen/settings_item_padding_top_and_bottom</item>
+    </style>
+
+    <style name="AppTheme.Dark.SettingsItemTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/settings_item_title</item>
+        <item name="android:textColor">@color/light_theme_text_primary</item>
+    </style>
+
+    <style name="AppTheme.Dark.SettingsItemDescription">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/settings_item_desc</item>
+        <item name="android:textColor">@color/light_theme_text_secondary</item>
+    </style>
+
+    <style name="AppTheme.Dark.SettingsItem.WithSwitch">
+        <item name="android:clickable">true</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="AppTheme.Dark.SettingsItemTitle.WithSwitch">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="AppTheme.Dark.SettingsItemSwitch">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!--/Settings screen-->
+
+    <!--Dialog-->
+
+    <style name="AppTheme.Dark.DialogTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/light_theme_background</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="AppTheme.Dark.DialogButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/btn_default</item>
+        <item name="android:textColor">@color/light_theme_background</item>
+    </style>
+
+    <!--/Dialog-->
+
+    <style name="AppTheme.Dark.DrawerItem">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/light_theme_background</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">15dp</item>
+    </style>
+
+</resources>

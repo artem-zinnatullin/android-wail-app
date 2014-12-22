@@ -10,10 +10,10 @@
         android:layout_height="wrap_content"
         android:stretchColumns="0">
 
-        <LinearLayout style="@style/SettingsCategoryTitle">
+        <LinearLayout style="?settingsCategoryTitle">
 
             <com.artemzin.android.wail.ui.TypefaceTextView
-                style="@style/SettingsCategoryTitleTitle"
+                style="?settingsCategoryTitleTitle"
                 android:text="@string/settings_sound_notifications_main_title" />
 
             <com.artemzin.android.wail.ui.TypefaceTextView
@@ -24,42 +24,42 @@
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="6dp"
                 android:textSize="13sp"
-                android:textColor="@color/text_secondary"
+                android:textColor="@color/light_theme_text_secondary"
                 android:text="@string/settings_sound_notifications_pro_tip" />
 
-            <View style="@style/SettingsCategoryTitleDivider" />
+            <View style="?settingsCategoryTitleDivider" />
 
         </LinearLayout>
 
         <TableRow
             android:id="@+id/settings_sound_notifications_track_marked_as_scrobbled"
-            style="@style/SettingsItem.WithSwitch">
+            style="?settingsItemWithSwitch">
 
             <com.artemzin.android.wail.ui.TypefaceTextView
-                style="@style/SettingsItemTitle.WithSwitch"
+                style="?settingsItemTitleWithSwitch"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="@string/settings_notifications_track_scrobbled" />
 
             <Switch
                 android:id="@+id/settings_sound_notifications_track_marked_as_scrobbled_switch"
-                style="@style/SettingsItemSwitch" />
+                style="?settingsItemSwitch" />
 
         </TableRow>
 
-        <View style="@style/SettingsCategoryTitleDivider" />
+        <View style="?settingsCategoryTitleDivider" />
 
         <TableRow
             android:id="@+id/settings_sound_notifications_track_skipped"
-            style="@style/SettingsItem.WithSwitch">
+            style="?settingsItemWithSwitch">
 
             <com.artemzin.android.wail.ui.TypefaceTextView
-                style="@style/SettingsItemTitle.WithSwitch"
+                style="?settingsItemTitleWithSwitch"
                 android:text="@string/settings_track_was_skipped" />
 
             <Switch
                 android:id="@+id/settings_sound_notifications_track_skipped_switch"
-                style="@style/SettingsItemSwitch" />
+                style="?settingsItemSwitch" />
 
         </TableRow>
 

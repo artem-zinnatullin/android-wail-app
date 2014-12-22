@@ -21,23 +21,23 @@
 
             <LinearLayout
                 android:id="@+id/main_tracks_today_view"
-                style="@style/MainTracksTodayContainer">
+                style="?mainTracksTodayContainer">
 
                 <com.artemzin.android.wail.ui.TypefaceTextView
                     android:id="@+id/main_tracks_today_count_text_view"
-                    style="@style/MainTracksTodayCount"
+                    style="?mainTracksTodayCount"
                     tools:text="12" />
 
                 <com.artemzin.android.wail.ui.TypefaceTextView
                     android:id="@+id/main_tracks_today_count_label_text_view"
-                    style="@style/MainTracksTodayLabel"
+                    style="?mainTracksTodayLabel"
                     tools:text="tracks today" />
 
             </LinearLayout>
 
             <com.artemzin.android.wail.ui.TypefaceTextView
                 android:id="@+id/main_tracks_total_count_unknown_text"
-                style="@style/MainTotalTrackCountUnknown" />
+                style="?mainTotalTrackCountUnknown" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -47,7 +47,7 @@
 
                 <com.artemzin.android.wail.ui.TypefaceTextView
                     android:id="@+id/main_tracks_total_count_text_view"
-                    style="@style/MainTotalTrackCount"
+                    style="?mainTotalTrackCount"
                     tools:text="24438" />
 
 
@@ -58,14 +58,14 @@
 
                     <com.artemzin.android.wail.ui.TypefaceTextView
                         android:id="@+id/main_tracks_total_count_label_text_view"
-                        style="@style/MainTotalTrackCountLabel"
+                        style="?mainTotalTrackCountLabel"
                         tools:text="tracks scrobbled on last.fm" />
 
                     <com.artemzin.android.wail.ui.TypefaceTextView
                         android:id="@+id/main_last_fm_user_info_update_time"
                         app:typefaceFromAssets="fonts/Roboto-Medium.ttf"
                         tools:text="updated today at 15:04"
-                        style="@style/MainUpdatedAtLabel" />
+                        style="?mainUpdatedAtLabel" />
 
                 </LinearLayout>
 
@@ -83,17 +83,17 @@
                 <com.artemzin.android.wail.ui.TypefaceTextView
                     android:id="@+id/main_now_scrobbling_track_text_view"
                     tools:text="Now scrobbling: Prodigy — Omen"
-                    style="@style/MainNowScrobblingTrack" />
+                    style="?mainNowScrobblingTrack" />
 
             </LinearLayout>
 
-            <LinearLayout style="@style/MainWailIsSadContainer">
+            <LinearLayout style="?mainWailIsSadContainer">
 
                 <com.artemzin.android.wail.ui.TypefaceTextView
                     android:id="@+id/main_feedback_please"
                     android:text="@string/main_feedback_please"
                     tools:visibility="visible"
-                    style="@style/MainWailIsSadLabel" />
+                    style="?mainWailIsSadLabel" />
 
             </LinearLayout>
 
@@ -101,7 +101,7 @@
                 android:id="@+id/main_love_current_track_button"
                 android:src="@drawable/ic_main_love_track"
 
-                style="@style/MainFloatingActionButton" />
+                style="?mainFloatingActionButton" />
 
         </LinearLayout>
 

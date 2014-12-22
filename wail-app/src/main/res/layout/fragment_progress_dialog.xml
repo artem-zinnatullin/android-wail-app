@@ -20,6 +20,6 @@
         android:layout_marginLeft="30dp"
         android:paddingRight="55dp"
         android:textSize="14sp"
-        android:textColor="@color/background"/>
+        android:textColor="@color/light_theme_background"/>
 
 </LinearLayout>

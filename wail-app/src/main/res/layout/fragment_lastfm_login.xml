@@ -25,19 +25,19 @@
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/lastfm_login_login_edit_text"
-            style="@style/LastFmLoginEditText"
+            style="?lastFmLoginEditText"
             android:hint="@string/lastfm_login_hint"
             android:inputType="textWebEmailAddress" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/lastfm_login_password_edit_text"
-            style="@style/LastFmLoginEditText"
+            style="?lastFmLoginEditText"
             android:hint="@string/lastfm_password_hint"
             android:inputType="textPassword"/>
 
         <Button
             android:id="@+id/lastfm_login_login_button"
-            style="@style/LastFmLoginEditButton"
+            style="?lastFmLoginEditButton"
             android:text="@string/lastfm_login_button"
             android:enabled="false"/>
 

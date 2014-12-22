@@ -17,7 +17,7 @@
         android:layout_gravity="start"
         android:background="#fff"
         android:cacheColorHint="#fff"
-        android:divider="@color/divider"
+        android:divider="@color/light_theme_divider"
         android:dividerHeight="1px" />
 
 </android.support.v4.widget.DrawerLayout>

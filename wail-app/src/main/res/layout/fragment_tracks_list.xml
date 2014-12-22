@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:gravity="center"
-            android:textColor="@color/text_secondary"
+            android:textColor="@color/light_theme_text_secondary"
             tools:text="@string/tracks_list_empty_motivation_text"
             app:typefaceFromAssets="fonts/Roboto-Medium.ttf" />
 
@@ -50,7 +50,7 @@
             android:id="@+id/tracks_list_view"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:divider="@color/divider"
+            android:divider="@color/light_theme_divider"
             android:dividerHeight="1px" />
 
     </LinearLayout>

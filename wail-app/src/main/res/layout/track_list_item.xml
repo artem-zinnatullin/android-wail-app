@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:clickable="true"
-    android:background="@color/background"
+    android:background="@color/light_theme_background"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -25,8 +25,7 @@
             tools:text="Geekin"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@color/text_primary" />
+            android:textSize="16sp" />
 
         <com.artemzin.android.wail.ui.TypefaceTextView
             android:id="@+id/track_list_item_artist_and_album"
@@ -34,8 +33,7 @@
             android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="13sp"
-            android:textColor="@color/text_primary" />
+            android:textSize="13sp" />
 
     </LinearLayout>
 
@@ -50,7 +48,7 @@
             tools:text="@string/track_status_waiting_for_scrobble"
             android:layout_marginTop="3dp"
             android:textSize="12sp"
-            tools:textColor="@color/text_secondary"
+            tools:textColor="@color/light_theme_text_secondary"
             android:gravity="right"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -60,7 +58,7 @@
             tools:text="18:02 26.03.2014"
             android:textSize="12sp"
             android:layout_marginTop="0dp"
-            android:textColor="@color/text_secondary"
+            android:textColor="@color/light_theme_text_secondary"
             android:gravity="bottom|right"
             android:layout_width="match_parent"
             android:layout_height="0dp"
