@@ -27,13 +27,37 @@
 
     <!--/Login screen-->
 
+    <!--Tracks-->
+
+    <style name="AppTheme.Dark.TrackListItemBackground">
+        <item name="android:clickable">true</item>
+        <item name="android:background">@color/dark_theme_background</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingLeft">14dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:weightSum">100</item>
+    </style>
+
+    <style name="AppTheme.Dark.TrackListNoTracksLabel">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/dark_theme_text_secondary</item>
+    </style>
+
+    <!--/Tracks-->
+
     <!--Main screen-->
 
     <style name="AppTheme.Dark.MainTracksTodayContainer">
         <item name="android:orientation">horizontal</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/primary_light</item>
+        <item name="android:background">@color/dark_theme_track_today_background</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
@@ -68,7 +92,6 @@
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
         <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
-        <item name="android:textColor">@color/light_theme_text_primary</item>
         <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
     </style>
 
@@ -79,7 +102,6 @@
         <item name="android:textSize">30sp</item>
         <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
         <item name="android:paddingRight">10dp</item>
-        <item name="android:textColor">@color/light_theme_text_primary</item>
         <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
     </style>
 
@@ -89,7 +111,6 @@
         <item name="android:gravity">bottom</item>
         <item name="android:textSize">15sp</item>
         <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
-        <item name="android:textColor">@color/light_theme_text_primary</item>
         <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
     </style>
 
@@ -97,7 +118,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">13sp</item>
-        <item name="android:textColor">@color/light_theme_text_secondary</item>
+        <item name="android:textColor">@color/dark_theme_text_secondary</item>
         <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
     </style>
 
@@ -106,7 +127,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">@dimen/activity_horizontal_margin</item>
         <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/light_theme_text_primary</item>
         <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
     </style>
 
@@ -124,7 +144,6 @@
     <style name="AppTheme.Dark.MainWailIsSadLabel">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/light_theme_background</item>
         <item name="android:clickable">true</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:paddingLeft">2dp</item>
@@ -165,7 +184,7 @@
         <item name="android:paddingLeft">@dimen/settings_padding_right_and_left</item>
         <item name="android:paddingRight">@dimen/settings_padding_right_and_left</item>
         <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/light_theme_text_primary</item>
+        <item name="android:textColor">@color/dark_theme_text_primary</item>
     </style>
 
     <style name="AppTheme.Dark.SettingsCategoryTitleDivider">
@@ -178,7 +197,7 @@
 
     <style name="AppTheme.Dark.SettingsItem">
         <item name="android:clickable">true</item>
-        <item name="android:background">@color/light_theme_background</item>
+        <item name="android:background">@color/dark_theme_background</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingLeft">@dimen/settings_padding_right_and_left</item>
@@ -192,14 +211,14 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/settings_item_title</item>
-        <item name="android:textColor">@color/light_theme_text_primary</item>
+        <item name="android:textColor">@color/dark_theme_text_primary</item>
     </style>
 
     <style name="AppTheme.Dark.SettingsItemDescription">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/settings_item_desc</item>
-        <item name="android:textColor">@color/light_theme_text_secondary</item>
+        <item name="android:textColor">@color/dark_theme_text_secondary</item>
     </style>
 
     <style name="AppTheme.Dark.SettingsItem.WithSwitch">
@@ -228,7 +247,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:textColor">@color/light_theme_background</item>
+        <item name="android:textColor">@color/dark_theme_text_primary</item>
         <item name="android:paddingTop">20dp</item>
         <item name="android:paddingBottom">20dp</item>
         <item name="android:textSize">20sp</item>
@@ -239,7 +258,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
         <item name="android:background">@drawable/btn_default</item>
-        <item name="android:textColor">@color/light_theme_background</item>
+        <item name="android:textColor">@color/dark_theme_background</item>
     </style>
 
     <!--/Dialog-->
@@ -247,7 +266,8 @@
     <style name="AppTheme.Dark.DrawerItem">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/light_theme_background</item>
+        <item name="android:background">@color/dark_theme_drawer_item_background</item>
+        <item name="android:textColor">@color/dark_theme_drawer_item_text</item>
         <item name="android:textSize">18sp</item>
         <item name="android:paddingBottom">15dp</item>
         <item name="android:paddingLeft">15dp</item>

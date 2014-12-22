@@ -147,6 +147,30 @@
 
     <!--/Main screen-->
 
+    <!--Tracks-->
+
+    <style name="AppTheme.Light.TrackListItemBackground">
+        <item name="android:clickable">true</item>
+        <item name="android:background">@color/light_theme_background</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingLeft">14dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:weightSum">100</item>
+    </style>
+
+    <style name="AppTheme.Light.TrackListNoTracksLabel">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/dark_theme_text_secondary</item>
+    </style>
+
+    <!--/Tracks-->
+
     <!--Settings screen-->
 
     <style name="AppTheme.Light.SettingsCategoryTitle">

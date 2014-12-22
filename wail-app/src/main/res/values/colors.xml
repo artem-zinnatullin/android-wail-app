@@ -29,10 +29,14 @@
 
     <!--Dark theme-->
 
-    <color name="dark_theme_background">#727272</color>
+    <color name="dark_theme_background">#3c3f41</color>
     <color name="dark_theme_text_primary">#FFFFFF</color>
-    <color name="dark_theme_text_secondary">#727272</color>
+    <color name="dark_theme_text_secondary">#bebebe</color>
     <color name="dark_theme_divider">#B6B6B6</color>
+
+    <color name="dark_theme_track_today_background">#666666</color>
+    <color name="dark_theme_drawer_item_text">#000</color>
+    <color name="dark_theme_drawer_item_background">#FFFFFF</color>
 
     <!--/Dark theme-->
 

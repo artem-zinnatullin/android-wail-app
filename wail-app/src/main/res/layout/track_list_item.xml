@@ -2,16 +2,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:clickable="true"
-    android:background="@color/light_theme_background"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="12dp"
-    android:paddingBottom="12dp"
-    android:paddingLeft="14dp"
-    android:paddingRight="12dp"
-    android:weightSum="100">
+    style="?trackListItemBackground">
 
     <LinearLayout
         android:orientation="vertical"
