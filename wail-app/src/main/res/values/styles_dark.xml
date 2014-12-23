@@ -57,7 +57,7 @@
         <item name="android:orientation">horizontal</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/dark_theme_track_today_background</item>
+        <item name="android:background">@drawable/dark_theme_tracks_today_background</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
@@ -192,12 +192,12 @@
         <item name="android:layout_height">1px</item>
         <item name="android:layout_marginTop">2dp</item>
         <item name="android:layout_marginBottom">2dp</item>
-        <item name="android:background">@color/light_theme_divider</item>
+        <item name="android:background">@color/dark_theme_divider</item>
     </style>
 
     <style name="AppTheme.Dark.SettingsItem">
         <item name="android:clickable">true</item>
-        <item name="android:background">@color/dark_theme_background</item>
+        <item name="android:background">@drawable/dark_theme_settings_item_title_background</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingLeft">@dimen/settings_padding_right_and_left</item>
@@ -211,14 +211,14 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/settings_item_title</item>
-        <item name="android:textColor">@color/dark_theme_text_primary</item>
+        <item name="android:textColor">@color/dark_theme_settings_item_title</item>
     </style>
 
     <style name="AppTheme.Dark.SettingsItemDescription">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/settings_item_desc</item>
-        <item name="android:textColor">@color/dark_theme_text_secondary</item>
+        <item name="android:textColor">@color/dark_theme_settings_item_description</item>
     </style>
 
     <style name="AppTheme.Dark.SettingsItem.WithSwitch">
@@ -266,7 +266,7 @@
     <style name="AppTheme.Dark.DrawerItem">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/dark_theme_drawer_item_background</item>
+        <item name="android:background">@drawable/dark_theme_drawer_item_background</item>
         <item name="android:textColor">@color/dark_theme_drawer_item_text</item>
         <item name="android:textSize">18sp</item>
         <item name="typefaceFromAssets">fonts/Roboto-Light.ttf</item>
