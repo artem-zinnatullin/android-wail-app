@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
+import com.artemzin.android.wail.R;
+import com.artemzin.android.wail.storage.WAILSettings;
 import com.google.analytics.tracking.android.EasyTracker;
 
 public abstract class BaseActivity extends ActionBarActivity {
@@ -12,8 +14,11 @@ public abstract class BaseActivity extends ActionBarActivity {
         return true;
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme();
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState == null) {
@@ -58,5 +63,18 @@ public abstract class BaseActivity extends ActionBarActivity {
     protected void onStop() {
         super.onStop();
         EasyTracker.getInstance(this).activityStop(this);
+    }
+
+    public void setTheme() {
+        if (WAILSettings.getTheme(getBaseContext()) == WAILSettings.Theme.DARK) {
+            setTheme(R.style.AppTheme_Dark);
+        } else {
+            setTheme(R.style.AppTheme_Light);
+        }
+    }
+
+    public void restart() {
+        finish();
+        startActivity(getIntent());
     }
 }

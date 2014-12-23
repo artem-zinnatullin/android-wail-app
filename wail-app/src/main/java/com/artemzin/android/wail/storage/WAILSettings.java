@@ -17,6 +17,7 @@ public class WAILSettings {
 
     // region keys
     private static final String KEY_LOCALE                         = "KEY_LOCALE";
+    private static final String KEY_THEME                          = "KEY_THEME";
     private static final String KEY_IS_ENABLED                     = "KEY_IS_ENABLED";
     private static final String KEY_START_ON_BOOT                  = "KEY_START_ON_BOOT";
     private static final String KEY_LASTFM_SESSION_KEY             = "KEY_LASTFM_SESSION_KEY";
@@ -40,8 +41,6 @@ public class WAILSettings {
 
     private static final String KEY_NOW_SCROBBLING_TRACK_ARTIST = "KEY_NOW_SCROBBLING_TRACK_ARTIST";
     private static final String KEY_NOW_SCROBBLING_TRACK_TITLE = "KEY_NOW_SCROBBLING_TRACK_TITLE";
-
-    private static final String KEY_SHOULD_SHOW_NOTIFICATION_ABOUT_MIN_TRACK_DURATION_BEHAVIOR_CHANGED = "KEY_SHOULD_SHOW_NOTIFICATION_ABOUT_MIN_TRACK_DURATION_BEHAVIOR_CHANGED";
 
     // endregion
 
@@ -109,6 +108,14 @@ public class WAILSettings {
 
     public static synchronized void setLanguage(Context context, String value) {
         getSharedPreferences(context).edit().putString(KEY_LOCALE, value).commit();
+    }
+
+    public static synchronized Theme getTheme(Context context) {
+        return Theme.valueOf(getSharedPreferences(context).getString(KEY_THEME, Theme.LIGHT.name()));
+    }
+
+    public static synchronized void setTheme(Context context, Theme theme) {
+        getSharedPreferences(context).edit().putString(KEY_THEME, theme.name()).commit();
     }
 
     public static synchronized boolean isAuthorized(Context context) {
@@ -323,5 +330,9 @@ public class WAILSettings {
     public static void setStatusBarNotificationTrackScrobblingEnabled(Context context, boolean value) {
         WAILSettings.statusBarNotificationTrackScrobblingEnabled = value;
         getSharedPreferences(context).edit().putBoolean(KEY_STATUS_BAR_NOTIFICATION_TRACK_SCROBBLING, value).commit();
+    }
+
+    public static enum  Theme {
+        LIGHT, DARK
     }
 }

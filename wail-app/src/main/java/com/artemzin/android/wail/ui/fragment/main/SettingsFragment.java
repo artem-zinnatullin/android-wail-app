@@ -19,6 +19,7 @@ import com.artemzin.android.bytes.ui.DisplayUnitsConverter;
 import com.artemzin.android.bytes.ui.ViewUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
+import com.artemzin.android.wail.ui.activity.BaseActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSelectLanguageActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSoundNotificationsActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsStatusBarNotificationsActivity;
@@ -59,6 +60,9 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
 
     @InjectView(R.id.settings_min_track_duration_in_percents_desc)
     public TextView minDurationInPercentsDescription;
+
+    @InjectView(R.id.settings_theme_switch)
+    public Switch themeSwitch;
 
     @OnClick(R.id.settings_select_language_menu_item)
     public void onSelectLanguageClick() {
@@ -107,6 +111,17 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
                         isChecked ? 1L : 0L
                 ).build()
         );
+    }
+
+    @OnCheckedChanged(R.id.settings_theme_switch)
+    public void onThemeChanged(boolean isChecked) {
+        if (isChecked == (WAILSettings.getTheme(getActivity()) == WAILSettings.Theme.DARK)) {
+            return;
+        }
+
+        WAILSettings.setTheme(getActivity(), isChecked ? WAILSettings.Theme.DARK : WAILSettings.Theme.LIGHT);
+        ((BaseActivity) getActivity()).setTheme();
+        ((BaseActivity) getActivity()).restart();
     }
 
     @OnClick(R.id.settings_sound_notifications)
@@ -194,6 +209,8 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
         isScrobblingOverMobileNetworkDisabledSwitch.setChecked(WAILSettings.isEnableScrobblingOverMobileNetwork(getActivity()));
 
         isLastfmUpdateNowplayingEnabledSwitch.setChecked(WAILSettings.isLastfmNowplayingUpdateEnabled(getActivity()));
+
+        themeSwitch.setChecked(WAILSettings.getTheme(getActivity()) == WAILSettings.Theme.DARK);
 
         try {
             buildVersionDescTextView.setText(getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0).versionName);
