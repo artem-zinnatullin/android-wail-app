@@ -4,7 +4,6 @@
     <style name="AppTheme" parent="@style/Theme.AppCompat">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
     </style>
 
     <style name="AppTheme.Light">
