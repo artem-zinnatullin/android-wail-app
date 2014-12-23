@@ -9,7 +9,7 @@
         <item name="android:minWidth">400dp</item>
         <item name="android:maxWidth">400dp</item>
         <item name="android:layout_marginTop">20dp</item>
-        <item name="baseColor">@color/light_theme_text_secondary</item>
+        <item name="baseColor">@color/light_theme_text_primary</item>
         <item name="primaryColor">@color/light_theme_text_secondary</item>
         <item name="errorColor">@color/error</item>
     </style>
