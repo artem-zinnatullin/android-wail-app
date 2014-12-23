@@ -9,7 +9,7 @@
         <item name="android:minWidth">400dp</item>
         <item name="android:maxWidth">400dp</item>
         <item name="android:layout_marginTop">20dp</item>
-        <item name="baseColor">@color/light_theme_text_secondary</item>
+        <item name="baseColor">@color/light_theme_text_primary</item>
         <item name="primaryColor">@color/light_theme_text_secondary</item>
         <item name="errorColor">@color/error</item>
     </style>
@@ -273,6 +273,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@color/light_theme_background</item>
         <item name="android:textSize">18sp</item>
+        <item name="typefaceFromAssets">fonts/Roboto-Light.ttf</item>
         <item name="android:paddingBottom">15dp</item>
         <item name="android:paddingLeft">15dp</item>
         <item name="android:paddingRight">10dp</item>

@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:layout_gravity="center">
     <com.artemzin.android.wail.ui.TypefaceTextView
-        android:id="@+id/dialog_fragment_title"
-        android:text="@string/settings_min_track_elapsed_time_in_seconds_dialog_title"
+        android:id="@+id/dialog_fragment_title_text_view"
         style="?dialogTitle" />
 </LinearLayout>

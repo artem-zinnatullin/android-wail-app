@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -16,15 +17,17 @@ import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
 
 public class DialogFragmentWithSeekBar extends DialogDecorator {
+    private String title;
     private String description;
-    private int startProgressValue;
 
+    private int startProgressValue;
     private SeekBar seekBar;
 
-    public static DialogFragmentWithSeekBar newInstance(String description, int startProgressValue) {
+    public static DialogFragmentWithSeekBar newInstance(String title, String description, int startProgressValue) {
         final DialogFragmentWithSeekBar dialog = new DialogFragmentWithSeekBar();
         dialog.description = description;
         dialog.startProgressValue = startProgressValue;
+        dialog.title = title;
         return dialog;
     }
 
@@ -33,10 +36,12 @@ public class DialogFragmentWithSeekBar extends DialogDecorator {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View view = inflater.inflate(R.layout.dialog_with_seek_bar_fragment, null);
+        View view = inflater.inflate(R.layout.dialog_with_seek_bar_fragment, (ViewGroup) getView());
+        View titleView = inflater.inflate(R.layout.dialog_fragment_title, ((ViewGroup) getView()));
+        ((TextView) titleView.findViewById(R.id.dialog_fragment_title_text_view)).setText(title);
 
         builder.setView(view)
-                .setCustomTitle(inflater.inflate(R.layout.dialog_with_seek_bar_fragment_title, null))
+                .setCustomTitle(titleView)
                 .setPositiveButton(getString(R.string.dialog_save), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

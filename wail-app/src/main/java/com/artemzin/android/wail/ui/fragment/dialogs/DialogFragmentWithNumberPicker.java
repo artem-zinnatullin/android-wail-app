@@ -6,7 +6,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
@@ -17,14 +19,20 @@ import com.google.analytics.tracking.android.MapBuilder;
 public class DialogFragmentWithNumberPicker extends DialogDecorator {
     private int minValue, maxValue, initValue;
     private NumberPicker numberPicker;
+    private String title;
 
-    public static DialogFragmentWithNumberPicker newInstance(int minValue, int maxValue, int initValue) {
-        final DialogFragmentWithNumberPicker dialogFragmentWithNumberPicker = new DialogFragmentWithNumberPicker();
-        dialogFragmentWithNumberPicker.minValue = minValue;
-        dialogFragmentWithNumberPicker.maxValue = maxValue;
-        dialogFragmentWithNumberPicker.initValue = initValue;
+    public static DialogFragmentWithNumberPicker newInstance(String title, int minValue, int maxValue, int initValue) {
+        final DialogFragmentWithNumberPicker dialog = new DialogFragmentWithNumberPicker();
+        dialog.title = title;
+        dialog.minValue = minValue;
+        dialog.maxValue = maxValue;
+        dialog.initValue = initValue;
 
-        return dialogFragmentWithNumberPicker;
+        return dialog;
+    }
+
+    public int getPickerValue() {
+        return numberPicker.getValue();
     }
 
     @Override
@@ -32,10 +40,12 @@ public class DialogFragmentWithNumberPicker extends DialogDecorator {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View view = inflater.inflate(R.layout.dialog_with_number_picker_fragment, null);
+        View view = inflater.inflate(R.layout.dialog_with_number_picker_fragment, (ViewGroup) getView());
+        View titleView = inflater.inflate(R.layout.dialog_fragment_title, ((ViewGroup) getView()));
+        ((TextView) titleView.findViewById(R.id.dialog_fragment_title_text_view)).setText(title);
 
         builder.setView(view)
-                .setCustomTitle(inflater.inflate(R.layout.dialog_with_number_picker_fragment_title, null))
+                .setCustomTitle(titleView)
                 .setPositiveButton(getString(R.string.dialog_save), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
