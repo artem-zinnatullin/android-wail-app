@@ -47,7 +47,8 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:divider="@color/light_theme_divider"
-            android:dividerHeight="1px" />
+            android:dividerHeight="1px"
+            android:scrollbars="vertical" />
 
     </LinearLayout>
 
