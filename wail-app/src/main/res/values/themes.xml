@@ -5,11 +5,13 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="android:track">@drawable/switch_track_selector</item>
+        <item name="android:scrollbarSize">4dp</item>
     </style>
 
     <style name="AppTheme.Light">
         <item name="android:windowBackground">@color/light_theme_background</item>
         <item name="android:textColor">@color/light_theme_text_primary</item>
+        <item name="android:scrollbarThumbVertical">@drawable/light_theme_scrollbar_thumb</item>
 
         <item name="lastFmLoginEditText">@style/AppTheme.Light.LastFmLoginEditText</item>
         <item name="lastFmLoginEditButton">@style/AppTheme.Light.LastFmLoginEditButton</item>
@@ -46,6 +48,7 @@
     <style name="AppTheme.Dark">
         <item name="android:windowBackground">@color/dark_theme_background</item>
         <item name="android:textColor">@color/dark_theme_text_primary</item>
+        <item name="android:scrollbarThumbVertical">@drawable/dark_theme_scrollbar_thumb</item>
 
         <item name="lastFmLoginEditText">@style/AppTheme.Dark.LastFmLoginEditText</item>
         <item name="lastFmLoginEditButton">@style/AppTheme.Dark.LastFmLoginEditButton</item>

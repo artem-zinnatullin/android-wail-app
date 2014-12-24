@@ -46,7 +46,7 @@
             android:id="@+id/tracks_list_view"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:divider="@color/light_theme_divider"
+            android:divider="@color/divider"
             android:dividerHeight="1px"
             android:scrollbars="vertical" />
 

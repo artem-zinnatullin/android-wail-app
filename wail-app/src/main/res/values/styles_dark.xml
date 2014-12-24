@@ -192,7 +192,7 @@
         <item name="android:layout_height">1px</item>
         <item name="android:layout_marginTop">2dp</item>
         <item name="android:layout_marginBottom">2dp</item>
-        <item name="android:background">@color/dark_theme_divider</item>
+        <item name="android:background">@color/divider</item>
     </style>
 
     <style name="AppTheme.Dark.SettingsItem">
