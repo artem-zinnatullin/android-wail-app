@@ -20,6 +20,9 @@
 
     <color name="pressed_item_background">@color/primary_light</color>
 
+    <color name="switch_track_off">#7bdcdcdc</color>
+    <color name="switch_track_on">#7bb3e5fc</color>
+
     <!--Light theme-->
 
     <color name="light_theme_background">#FFFFFF</color>

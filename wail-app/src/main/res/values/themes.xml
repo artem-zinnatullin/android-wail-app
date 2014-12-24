@@ -4,6 +4,7 @@
     <style name="AppTheme" parent="@style/Theme.AppCompat">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:track">@drawable/switch_track_selector</item>
     </style>
 
     <style name="AppTheme.Light">
