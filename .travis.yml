@@ -17,8 +17,6 @@ before_install:
   - echo yes | android update sdk --filter platform-tools --no-ui --force > /dev/null
   - echo yes | android update sdk --all --filter build-tools-20.0.0 --no-ui --force > /dev/null
   - echo yes | android update sdk --filter android-21 --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter android-20 --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter android-19 --no-ui --force > /dev/null
   - echo yes | android update sdk --all --filter sys-img-armeabi-v7a-android-19 --no-ui --force > /dev/null
   - echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
   - echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
@@ -26,11 +24,12 @@ before_install:
 install:
   - ./gradlew assembleRelease --info
 
-before_script:
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - adb wait-for-device
-  - adb shell input keyevent 82 &
+# before_script:
+#   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+#   - emulator -avd test -no-skin -no-audio -no-window &
+#   - adb wait-for-device
+#   - adb shell input keyevent 82 &
 
-script:
-  - ./gradlew connectedAndroidTest --info
+# TODO: make tests work on Travis CI
+# script:
+#   - ./gradlew connectedAndroidTest --info
