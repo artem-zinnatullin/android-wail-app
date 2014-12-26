@@ -1,6 +1,7 @@
 package com.artemzin.android.wail.ui.fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.artemzin.android.bytes.common.StringUtil;
@@ -56,12 +58,12 @@ public class LastfmLoginFragment extends BaseFragment {
         final String userName = loginEditText.getText().toString();
         final String password = passwordEditText.getText().toString();
 
-        final ProgressDialogFragment progressDialogFragment = ProgressDialogFragment.newInstance(
-                getString(R.string.lastfm_logging_progress_dialog_message)
-        );
-
-        progressDialogFragment.setCancelable(false);
-        progressDialogFragment.show(getFragmentManager(), "loggingProgressDialog");
+        View view = getActivity().getLayoutInflater().inflate(R.layout.fragment_progress_dialog, null);
+        ((TextView) view.findViewById(R.id.progress_dialog_message)).setText(getString(R.string.lastfm_logging_progress_dialog_message));
+        final AlertDialog progressDialog = new AlertDialog.Builder(getActivity())
+                .setView(view)
+                .setCancelable(false)
+                .show();
 
         AsyncTaskExecutor.executeConcurrently(new AsyncTask<Void, Void, Void>() {
 
@@ -126,7 +128,7 @@ public class LastfmLoginFragment extends BaseFragment {
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                progressDialogFragment.dismiss();
+                progressDialog.dismiss();
 
                 if (networkException != null) {
                     Toast.makeText(getActivity(), getString(R.string.lastfm_logging_network_error), Toast.LENGTH_LONG).show();
