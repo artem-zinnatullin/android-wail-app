@@ -2,5 +2,5 @@
 // rename it to custom_env.gradle and our build.gradle will apply it
 
 project.ext {
-    customPropery = 'customValue'
+    customProperty = 'customValue'
 }
