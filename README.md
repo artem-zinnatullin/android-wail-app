@@ -12,11 +12,13 @@
 
 **How it looks:**
 
-<img src="screenshots/screenshot_1.png" alt="Main screen" height="500px"/>
-&nbsp;<img src="screenshots/screenshot_2.png" alt="Captured tracks list" height="500px"/>
+<img src="screenshots/dark_main.png" alt="Main screen" height="400px"/>
+&nbsp;<img src="screenshots/dark_tracks.png" alt="Captured tracks list" height="400px"/>
+&nbsp;<img src="screenshots/dark_settings.png" alt="Settings screen" height="400px"/>
 
-<img src="screenshots/screenshot_3.png" alt="Settings screen" height="500px"/>
-&nbsp;<img src="screenshots/screenshot_4.png" alt="Sound notifications" height="500px"/>
+<img src="screenshots/light_main.png" alt="Main screen" height="400px"/>
+&nbsp;<img src="screenshots/light_tracks.png" alt="Captured tracks list" height="400px"/>
+&nbsp;<img src="screenshots/light_settings.png" alt="Settings screen" height="400px"/>
 
 ##Main features:
 * Scrobbling tracks to the last.fm (even if you are offline, WAIL will send them later)

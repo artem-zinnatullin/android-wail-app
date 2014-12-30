@@ -1,16 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="android:Theme.Holo">
+    <style name="AppTheme" parent="@style/Theme.AppCompat">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:track">@drawable/switch_track_selector</item>
+        <item name="android:scrollbarSize">4dp</item>
+    </style>
+
+    <style name="AppTheme.Light">
+        <item name="android:windowBackground">@color/light_theme_background</item>
+        <item name="android:textColor">@color/light_theme_text_primary</item>
+        <item name="android:scrollbarThumbVertical">@drawable/light_theme_scrollbar_thumb</item>
+
+        <item name="lastFmLoginEditText">@style/AppTheme.Light.LastFmLoginEditText</item>
+        <item name="lastFmLoginEditButton">@style/AppTheme.Light.LastFmLoginEditButton</item>
+
+        <item name="mainTracksTodayContainer">@style/AppTheme.Light.MainTracksTodayContainer</item>
+        <item name="mainTracksTodayCount">@style/AppTheme.Light.MainTracksTodayCount</item>
+        <item name="mainTracksTodayLabel">@style/AppTheme.Light.MainTracksTodayLabel</item>
+        <item name="mainTotalTrackCountUnknown">@style/AppTheme.Light.MainTotalTrackCountUnknown</item>
+        <item name="mainTotalTrackCount">@style/AppTheme.Light.MainTotalTrackCount</item>
+        <item name="mainTotalTrackCountLabel">@style/AppTheme.Light.MainTotalTrackCountLabel</item>
+        <item name="mainUpdatedAtLabel">@style/AppTheme.Light.MainUpdatedAtLabel</item>
+        <item name="mainNowScrobblingTrack">@style/AppTheme.Light.MainNowScrobblingTrack</item>
+        <item name="mainFloatingActionButton">@style/AppTheme.Light.MainFloatingActionButton</item>
+        <item name="mainWailIsSadContainer">@style/AppTheme.Light.MainWailIsSadContainer</item>
+        <item name="mainWailIsSadLabel">@style/AppTheme.Light.MainWailIsSadLabel</item>
+
+        <item name="trackListItemBackground">@style/AppTheme.Light.TrackListItemBackground</item>
+        <item name="trackListNoTracksLabel">@style/AppTheme.Light.TrackListNoTracksLabel</item>
+
+        <item name="settingsCategoryTitle">@style/AppTheme.Light.SettingsCategoryTitle</item>
+        <item name="settingsCategoryTitleTitle">@style/AppTheme.Light.SettingsCategoryTitleTitle</item>
+        <item name="settingsCategoryTitleDivider">@style/AppTheme.Light.SettingsCategoryTitleDivider</item>
+        <item name="settingsItem">@style/AppTheme.Light.SettingsItem</item>
+        <item name="settingsItemTitle">@style/AppTheme.Light.SettingsItemTitle</item>
+        <item name="settingsItemDescription">@style/AppTheme.Light.SettingsItemDescription</item>
+        <item name="settingsItemWithSwitch">@style/AppTheme.Light.SettingsItem.WithSwitch</item>
+        <item name="settingsItemTitleWithSwitch">@style/AppTheme.Light.SettingsItemTitle.WithSwitch</item>
+        <item name="settingsItemSwitch">@style/AppTheme.Light.SettingsItemSwitch</item>
+
+        <item name="drawerItem">@style/AppTheme.Light.DrawerItem</item>
+        <item name="dialogTitle">@style/AppTheme.Light.DialogTitle</item>
     </style>
 
     <style name="AppTheme.Dark">
-        <item name="android:buttonStyle">@style/ButtonDark</item>
-        <item name="android:windowBackground">@color/dark_theme_window_background</item>
-        <item name="android:actionBarItemBackground">@drawable/dark_theme_action_bar_item_background</item>
-        <item name="android:actionBarStyle">@style/ActionBarDark</item>
-        <item name="navigationDrawer">@style/NavigationDrawerDark</item>
-        <item name="navigationDrawerCategoryTextView">@style/NavigationDrawerDarkCategoryText</item>
+        <item name="android:windowBackground">@color/dark_theme_background</item>
+        <item name="android:textColor">@color/dark_theme_text_primary</item>
+        <item name="android:scrollbarThumbVertical">@drawable/dark_theme_scrollbar_thumb</item>
+
+        <item name="lastFmLoginEditText">@style/AppTheme.Dark.LastFmLoginEditText</item>
+        <item name="lastFmLoginEditButton">@style/AppTheme.Dark.LastFmLoginEditButton</item>
+
+        <item name="mainTracksTodayContainer">@style/AppTheme.Dark.MainTracksTodayContainer</item>
+        <item name="mainTracksTodayCount">@style/AppTheme.Dark.MainTracksTodayCount</item>
+        <item name="mainTracksTodayLabel">@style/AppTheme.Dark.MainTracksTodayLabel</item>
+        <item name="mainTotalTrackCountUnknown">@style/AppTheme.Dark.MainTotalTrackCountUnknown</item>
+        <item name="mainTotalTrackCount">@style/AppTheme.Dark.MainTotalTrackCount</item>
+        <item name="mainTotalTrackCountLabel">@style/AppTheme.Dark.MainTotalTrackCountLabel</item>
+        <item name="mainUpdatedAtLabel">@style/AppTheme.Dark.MainUpdatedAtLabel</item>
+        <item name="mainNowScrobblingTrack">@style/AppTheme.Dark.MainNowScrobblingTrack</item>
+        <item name="mainFloatingActionButton">@style/AppTheme.Dark.MainFloatingActionButton</item>
+        <item name="mainWailIsSadContainer">@style/AppTheme.Dark.MainWailIsSadContainer</item>
+        <item name="mainWailIsSadLabel">@style/AppTheme.Dark.MainWailIsSadLabel</item>
+
+        <item name="trackListItemBackground">@style/AppTheme.Dark.TrackListItemBackground</item>
+        <item name="trackListNoTracksLabel">@style/AppTheme.Dark.TrackListNoTracksLabel</item>
+
+        <item name="settingsCategoryTitle">@style/AppTheme.Dark.SettingsCategoryTitle</item>
+        <item name="settingsCategoryTitleTitle">@style/AppTheme.Dark.SettingsCategoryTitleTitle</item>
+        <item name="settingsCategoryTitleDivider">@style/AppTheme.Dark.SettingsCategoryTitleDivider</item>
+        <item name="settingsItem">@style/AppTheme.Dark.SettingsItem</item>
+        <item name="settingsItemTitle">@style/AppTheme.Dark.SettingsItemTitle</item>
+        <item name="settingsItemDescription">@style/AppTheme.Dark.SettingsItemDescription</item>
+        <item name="settingsItemWithSwitch">@style/AppTheme.Dark.SettingsItem.WithSwitch</item>
+        <item name="settingsItemTitleWithSwitch">@style/AppTheme.Dark.SettingsItemTitle.WithSwitch</item>
+        <item name="settingsItemSwitch">@style/AppTheme.Dark.SettingsItemSwitch</item>
+
+        <item name="drawerItem">@style/AppTheme.Dark.DrawerItem</item>
+        <item name="dialogTitle">@style/AppTheme.Dark.DialogTitle</item>
     </style>
 
 </resources>

@@ -1,35 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="dark_theme_window_background">#3c3f41</color>
-    <color name="dark_theme_action_bar_background_pressed">#6f6f6f</color>
-    <color name="dark_theme_action_bar_background_focused">#ff858585</color>
-    <color name="dark_theme_navigation_drawer_background">#797979</color>
-    <color name="dark_theme_common_background_pressed">#888888</color>
-    <color name="dark_theme_navigation_drawer_divider_line">#d1d1d1</color>
-    <color name="dark_theme_navigation_drawer_item_background_pressed">#ff5a7989</color>
 
-    <color name="dark_theme_main_today_tracks_background_normal">#666666</color>
-    <color name="dark_theme_main_today_tracks_background_pressed">#ff3580bb</color>
+    <color name="primary">#03A9F4</color>
+    <color name="primary_light">#B3E5FC</color>
+    <color name="primary_dark">#0288D1</color>
+    <color name="accent">#FF4081</color>
+    <color name="accent_light">#FF4081</color>
+    <color name="accent_dark">#FF4081</color>
 
-    <color name="dark_theme_settings_item_title_enabled">#ffffffff</color>
-    <color name="dark_theme_settings_item_title_disabled">#cccccc</color>
+    <color name="btn_disabled">#E0E0E0</color>
 
-    <color name="dark_theme_settings_item_desc_enabled">#bebebe</color>
-    <color name="dark_theme_settings_item_desc_disabled">#80bebebe</color>
+    <color name="error">#FF0000</color>
 
-    <color name="dark_theme_dialog_background">#282828</color>
-    <color name="dark_theme_dialog_button_normal">@color/dark_theme_dialog_background</color>
-    <color name="dark_theme_dialog_button_pressed">@color/dark_theme_common_background_pressed</color>
+    <color name="track_state_waiting_for_scrobble">#aaaaaa</color>
+    <color name="track_state_scrobbling">#ff73b3ff</color>
+    <color name="track_state_error">#ffff3a6d</color>
+    <color name="track_state_scrobble_success">#ff23bb3b</color>
+    <color name="track_state_unknown">#fff5f5ff</color>
 
-    <color name="dark_theme_track_title">#FFFFFF</color>
-    <color name="dark_theme_track_artist_and_album">#BBBBBB</color>
+    <color name="pressed_item_background">@color/primary_light</color>
 
-    <color name="dark_theme_track_state_waiting_for_scrobble">#aaaaaa</color>
-    <color name="dark_theme_track_state_scrobbling">#ff73b3ff</color>
-    <color name="dark_theme_track_state_error">#ffff3a6d</color>
-    <color name="dark_theme_track_state_scrobble_success">#ff23bb3b</color>
-    <color name="dark_theme_track_state_unknown">#fff5f5ff</color>
+    <color name="switch_track_off">#7bdcdcdc</color>
+    <color name="switch_track_on">#7bb3e5fc</color>
 
-    <color name="dark_theme_track_date">#ff7a7a81</color>
+    <color name="divider">#B6B6B6</color>
+
+    <!--Light theme-->
+
+    <color name="light_theme_background">#FFFFFF</color>
+    <color name="light_theme_text_primary">#212121</color>
+    <color name="light_theme_text_secondary">#727272</color>
+
+    <color name="light_theme_settings_item_title_disabled">#ffbebebe</color>
+
+    <color name="light_theme_track_today_pressed_background">@color/primary_dark</color>
+
+    <color name="light_theme_scrollbar_thumb">#ffa5a5a5</color>
+
+    <!--/Light theme-->
+
+    <!--Dark theme-->
+
+    <color name="dark_theme_background">#3c3f41</color>
+    <color name="dark_theme_text_primary">#FFFFFF</color>
+    <color name="dark_theme_text_secondary">#bebebe</color>
+
+    <color name="dark_theme_track_today_background">#666666</color>
+    <color name="dark_theme_drawer_item_text">#000</color>
+    <color name="dark_theme_drawer_item_background">#FFFFFF</color>
+
+    <color name="dark_theme_settings_item_title_disabled">#666666</color>
+
+    <color name="dark_theme_scrollbar_thumb">#7bb6b6b6</color>
+
+    <!--/Dark theme-->
 
 </resources>

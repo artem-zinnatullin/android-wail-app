@@ -8,34 +8,31 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/settings_padding_right_and_left"
-        android:paddingRight="@dimen/settings_padding_right_and_left"
         android:stretchColumns="0">
 
-        <LinearLayout style="@style/SettingsCategoryTitle">
+        <LinearLayout style="?settingsCategoryTitle">
 
             <com.artemzin.android.wail.ui.TypefaceTextView
-                style="@style/SettingsCategoryTitleTitle"
+                style="?settingsCategoryTitleTitle"
                 android:text="@string/settings_status_bar_notifications_main_title" />
 
-            <View style="@style/SettingsCategoryTitleDivider" />
+            <View style="?settingsCategoryTitleDivider" />
 
         </LinearLayout>
 
         <TableRow
             android:id="@+id/settings_status_bar_notifications_track_now_scrobbling"
-            style="@style/SettingsItem.WithSwitch"
-            android:layout_marginTop="15dp">
+            style="?settingsItemWithSwitch">
 
             <com.artemzin.android.wail.ui.TypefaceTextView
-                style="@style/SettingsItemTitle.WithSwitch"
+                style="?settingsItemTitleWithSwitch"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="@string/settings_notifications_track_now_scrobbling" />
 
             <Switch
                 android:id="@+id/settings_status_bar_notifications_track_now_scrobbling_switch"
-                style="@style/SettingsItemSwitch" />
+                style="?settingsItemSwitch" />
 
         </TableRow>
 

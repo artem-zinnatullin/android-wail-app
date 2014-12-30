@@ -29,7 +29,7 @@
     <!-- START of main screen strings -->
     <string name="main_today">heute</string>
     <string name="main_tracks_on_last_fm">auf Last.fm gescrobbelt</string>
-    <string name="main_tracks_on_last_fm_unknown">Anzahl der Titel auf Last.fm ist unbekannt. Ziehen, um manuell zu aktualisieren!</string>
+    <string name="main_tracks_on_last_fm_unknown">Anzahl der Titel auf Last.fm ist unbekannt.\nZiehen, um manuell zu aktualisieren!</string>
     <string name="main_now_scrobbling_label">Scrobbelt gerade: %1$s</string>
     <string name="main_now_scrobbling_nothing">nichts</string>
     <string name="main_pull_down_to_refresh_toast">Ziehen, um Daten zu aktualisieren</string>
@@ -90,6 +90,8 @@
     <string name="settings_sound_notifications_description">Ton wenn Titel gescrobbelt werden.</string>
     <string name="settings_status_bar_notifications_title">Statusbar-Mitteilungen</string>
     <string name="settings_status_bar_notifications_description">Mitteilung in der Statusbar, wenn Titel gescrobbelt werden.</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_theme_switch_label">Dark theme</string>
     <string name="settings_email_to_the_developer">E-Mail an Entwickler</string>
     <string name="settings_email_dialog_title">E-Mail-App auswählen</string>
     <string name="main_settings_menu_toggle_wail">WAIL an/abschalten</string>
