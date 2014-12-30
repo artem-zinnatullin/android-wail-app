@@ -6,19 +6,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.artemzin.android.bytes.ui.DisplayUnitsConverter;
 import com.artemzin.android.bytes.ui.ViewUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.api.lastfm.LFApiException;
@@ -36,6 +36,8 @@ import com.artemzin.android.wail.util.ThreadUtil;
 import com.artemzin.android.wail.util.WordFormUtil;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
+import com.melnykov.fab.FloatingActionButton;
+import com.melnykov.fab.ObservableScrollView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -44,11 +46,6 @@ import java.util.Locale;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
-import uk.co.senab.actionbarpulltorefresh.library.DefaultHeaderTransformer;
-import uk.co.senab.actionbarpulltorefresh.library.Options;
-import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
-import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 
 public class MainFragment extends BaseFragment {
 
@@ -61,8 +58,11 @@ public class MainFragment extends BaseFragment {
         }
     };
 
+    @InjectView(R.id.main_scroll_view)
+    public ObservableScrollView scrollView;
+
     @InjectView(R.id.main_pull_to_refresh_layout)
-    public PullToRefreshLayout pullToRefreshLayout;
+    public SwipeRefreshLayout pullToRefreshLayout;
 
     @InjectView(R.id.main_tracks_today_count_text_view)
     public TextView tracksTodayCountTextView;
@@ -79,11 +79,14 @@ public class MainFragment extends BaseFragment {
     @InjectView(R.id.main_tracks_total_count_label_text_view)
     public TextView tracksTotalCountOnLastfmLabelTextView;
 
+    @InjectView(R.id.main_tracks_total_count_unknown_text)
+    public TextView tracksTotalCountOnLastfmLabelUnknownTextView;
+
     @InjectView(R.id.main_last_fm_user_info_update_time)
     public TextView lastfmUserInfoUpdateTimeTextView;
 
     @InjectView(R.id.main_love_current_track_button)
-    public View loveCurrentTrackButton;
+    public FloatingActionButton loveCurrentTrackButton;
 
     @InjectView(R.id.main_feedback_please)
     public View feedbackPleaseView;
@@ -132,6 +135,7 @@ public class MainFragment extends BaseFragment {
         Track track = WAILSettings.getNowScrobblingTrack(getActivity());
         if (track != null) {
             Toast.makeText(getActivity(), getString(R.string.main_track_loved), Toast.LENGTH_SHORT).show();
+            loveCurrentTrackButton.hide();
             getActivity().startService(
                     new Intent(getActivity(), WAILService.class)
                             .setAction(WAILService.INTENT_ACTION_HANDLE_LOVED_TRACK)
@@ -142,7 +146,7 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().getActionBar().setTitle(getString(R.string.main_ab_title));
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.main_ab_title));
         loadTrackWordForms();
     }
 
@@ -159,17 +163,15 @@ public class MainFragment extends BaseFragment {
 
         final Activity activity = getActivity();
 
-        ActionBarPullToRefresh.from(activity)
-                .allChildrenArePullable()
-                .listener(new PullToRefreshListener())
-                .options(Options.create()
-                        .headerTransformer(new PullToRefreshHeaderTransformer())
-                        .build())
-                .setup(pullToRefreshLayout);
+        pullToRefreshLayout.setColorSchemeResources(R.color.primary);
+        pullToRefreshLayout.setOnRefreshListener(new PullToRefreshListener());
 
         if (WAILSettings.isShowFeedbackRequest(activity)) {
             ViewUtil.setVisibility(feedbackPleaseView, true);
         }
+
+        loveCurrentTrackButton.attachToScrollView(scrollView);
+        loveCurrentTrackButton.show(false);
     }
 
     @Override
@@ -313,7 +315,7 @@ public class MainFragment extends BaseFragment {
                 super.onPostExecute(userModel);
 
                 try {
-                    pullToRefreshLayout.setRefreshComplete();
+                    pullToRefreshLayout.setRefreshing(false);
                     updateTracksCountFromLastfm();
 
                     String toast = null;
@@ -419,9 +421,15 @@ public class MainFragment extends BaseFragment {
         final LFUserResponseModel userModel = WAILSettings.getLastfmUserInfo(getActivity());
 
         if (userModel == null || userModel.getPlayCount() == -1) {
-            tracksTotalCountOnLastfmTextView.setText("");
-            tracksTotalCountOnLastfmLabelTextView.setText(R.string.main_tracks_on_last_fm_unknown);
+            tracksTotalCountOnLastfmTextView.setVisibility(View.GONE);
+            tracksTotalCountOnLastfmLabelTextView.setVisibility(View.GONE);
+            tracksTotalCountOnLastfmLabelUnknownTextView.setVisibility(View.VISIBLE);
+            tracksTotalCountOnLastfmLabelUnknownTextView.setText(R.string.main_tracks_on_last_fm_unknown);
         } else {
+            tracksTotalCountOnLastfmTextView.setVisibility(View.VISIBLE);
+            tracksTotalCountOnLastfmLabelTextView.setVisibility(View.VISIBLE);
+            tracksTotalCountOnLastfmLabelUnknownTextView.setVisibility(View.GONE);
+
             tracksTotalCountOnLastfmTextView.setText(String.valueOf(userModel.getPlayCount()));
             tracksTotalCountOnLastfmLabelTextView.setText(
                     WordFormUtil.getWordForm(userModel.getPlayCount(), trackWordForms) + " " + getString(R.string.main_tracks_on_last_fm)
@@ -437,10 +445,13 @@ public class MainFragment extends BaseFragment {
                             R.string.main_now_scrobbling_label,
                             nowScrobblingTrack.getArtist() + " - " + nowScrobblingTrack.getTrack())
             );
-            loveCurrentTrackButton.setVisibility(View.VISIBLE);
+            if (loveCurrentTrackButton.getVisibility() != View.VISIBLE) {
+                loveCurrentTrackButton.setVisibility(View.VISIBLE);
+            }
+            loveCurrentTrackButton.show();
         } else {
             nowScrobblingTrackTextView.setText(getString(R.string.main_now_scrobbling_label, getString(R.string.main_now_scrobbling_nothing)));
-            loveCurrentTrackButton.setVisibility(View.GONE);
+            loveCurrentTrackButton.hide();
         }
     }
 
@@ -477,25 +488,11 @@ public class MainFragment extends BaseFragment {
         }
     }
 
-    private static class PullToRefreshHeaderTransformer extends DefaultHeaderTransformer {
+    private class PullToRefreshListener implements SwipeRefreshLayout.OnRefreshListener {
 
         @Override
-        public void onViewCreated(Activity activity, View headerView) {
-            super.onViewCreated(activity, headerView);
-
-            setProgressBarColor(Color.parseColor("#FFFFFF"));
-            setProgressBarHeight((int) DisplayUnitsConverter.dpToPx(activity, 3));
-
-            setPullText(activity.getString(R.string.main_pull_to_refresh_pull_text));
-            setRefreshingText(activity.getString(R.string.main_pull_to_refresh_refreshing_text));
-            setReleaseText(activity.getString(R.string.main_pull_to_refresh_release_text));
-        }
-    }
-
-    private class PullToRefreshListener implements OnRefreshListener {
-
-        @Override
-        public void onRefreshStarted(View view) {
+        public void onRefresh() {
+            Toast.makeText(getActivity(), "Refreshing...", Toast.LENGTH_SHORT).show();
             refreshDataFromLastfm();
             EasyTracker.getInstance(getActivity()).send(MapBuilder.createEvent(
                     GA_EVENT_MAIN_FRAGMENT,

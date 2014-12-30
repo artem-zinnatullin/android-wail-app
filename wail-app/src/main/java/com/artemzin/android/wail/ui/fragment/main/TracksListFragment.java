@@ -8,17 +8,16 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,7 +77,7 @@ public class TracksListFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        getActivity().getActionBar().setTitle(getString(R.string.tracks_actionbar_title));
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.tracks_actionbar_title));
         tracksListAdapter = new TracksListAdapter(tracksListDataProvider);
     }
 
@@ -297,11 +296,11 @@ public class TracksListFragment extends BaseFragment {
         private int[] loadTrackStateColors() {
             int[] colors = new int[5];
 
-            colors[0] = getResources().getColor(R.color.dark_theme_track_state_waiting_for_scrobble);
-            colors[1] = getResources().getColor(R.color.dark_theme_track_state_scrobbling);
-            colors[2] = getResources().getColor(R.color.dark_theme_track_state_error);
-            colors[3] = getResources().getColor(R.color.dark_theme_track_state_scrobble_success);
-            colors[4] = getResources().getColor(R.color.dark_theme_track_state_unknown);
+            colors[0] = getResources().getColor(R.color.track_state_waiting_for_scrobble);
+            colors[1] = getResources().getColor(R.color.track_state_scrobbling);
+            colors[2] = getResources().getColor(R.color.track_state_error);
+            colors[3] = getResources().getColor(R.color.track_state_scrobble_success);
+            colors[4] = getResources().getColor(R.color.track_state_unknown);
 
             return colors;
         }
@@ -397,49 +396,26 @@ public class TracksListFragment extends BaseFragment {
         }
     }
 
-    private class TracksSearchHandler implements TextWatcher, MenuItem.OnActionExpandListener, View.OnFocusChangeListener {
+    private class TracksSearchHandler implements SearchView.OnQueryTextListener {
 
-        private EditText searchEditText;
-        private String lastSearchText;
+        private SearchView searchViewText;
 
         public void setSearchItem(MenuItem menuItem) {
-            menuItem.setOnActionExpandListener(this);
-
-            searchEditText = ((EditText) menuItem.getActionView().findViewById(R.id.ab_main_tracks_search_edit_text));
-            searchEditText.addTextChangedListener(this);
-            searchEditText.setOnFocusChangeListener(this);
-
-            (menuItem.getActionView().findViewById(R.id.ab_main_tracks_search_clear_button)).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    searchEditText.setText("");
-                }
-            });
+            searchViewText = (SearchView) MenuItemCompat.getActionView(menuItem)
+                    .findViewById(R.id.main_tracks_ab_search);
+            searchViewText.setOnQueryTextListener(this);
         }
 
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+        public boolean onQueryTextSubmit(String s) {
+            searchAsync(s);
+            return true;
         }
 
         @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            final String text = s.toString();
-            if (lastSearchText != null && lastSearchText.equals(text)) return;
-
-            if (text.isEmpty()) {
-                reloadTracksAsync();
-                subscribeForDBUpdates();
-            } else {
-                searchAsync(text);
-            }
-
-            lastSearchText = text;
+        public boolean onQueryTextChange(String s) {
+            searchAsync(s);
+            return true;
         }
 
         public void searchAsync(String text) {
@@ -505,39 +481,6 @@ public class TracksListFragment extends BaseFragment {
                     }
                 }
             }, text);
-        }
-
-        @Override
-        public boolean onMenuItemActionExpand(MenuItem item) {
-            try {
-                searchEditText.requestFocus();
-            } catch (Exception e) {
-            }
-            return true;
-        }
-
-        @Override
-        public boolean onMenuItemActionCollapse(MenuItem item) {
-            searchEditText.setText("");
-            return true;
-        }
-
-        @Override
-        public void onFocusChange(View v, final boolean hasFocus) {
-            searchEditText.post(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-
-                        if (hasFocus) {
-                            imm.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
-                        }
-                    } catch (Exception e) {
-                        Loggi.e("TracksListFragment.TracksSearchHandler.onFocusChange() " + e);
-                    }
-                }
-            });
         }
     }
 }

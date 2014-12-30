@@ -141,9 +141,11 @@ public class IntentUtilTest extends BaseAndroidTestCase {
     }
 
     public void testGetIntentAsString() {
-        assertEquals("Intent action: null, extras: (1, value1), (3, 4), ", IntentUtil.getIntentAsString(new Intent()
+        String intentAsString = IntentUtil.getIntentAsString(new Intent()
                 .putExtra("1", "value1")
-                .putExtra("3", 4))
-        );
+                .putExtra("3", 4));
+        assertTrue(intentAsString.contains("Intent action: null, extras: "));
+        assertTrue(intentAsString.contains("(1, value1)"));
+        assertTrue(intentAsString.contains("(3, 4)"));
     }
 }
