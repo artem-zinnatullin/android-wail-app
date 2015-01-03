@@ -40,6 +40,7 @@
         <item name="settingsItemWithSwitch">@style/AppTheme.Light.SettingsItem.WithSwitch</item>
         <item name="settingsItemTitleWithSwitch">@style/AppTheme.Light.SettingsItemTitle.WithSwitch</item>
         <item name="settingsItemSwitch">@style/AppTheme.Light.SettingsItemSwitch</item>
+        <item name="settingSelectLanguageItem">@style/AppTheme.Light.SettingsSelectLanguageItem</item>
 
         <item name="drawerItem">@style/AppTheme.Light.DrawerItem</item>
         <item name="dialogTitle">@style/AppTheme.Light.DialogTitle</item>
@@ -77,6 +78,7 @@
         <item name="settingsItemWithSwitch">@style/AppTheme.Dark.SettingsItem.WithSwitch</item>
         <item name="settingsItemTitleWithSwitch">@style/AppTheme.Dark.SettingsItemTitle.WithSwitch</item>
         <item name="settingsItemSwitch">@style/AppTheme.Dark.SettingsItemSwitch</item>
+        <item name="settingSelectLanguageItem">@style/AppTheme.Dark.SettingsSelectLanguageItem</item>
 
         <item name="drawerItem">@style/AppTheme.Dark.DrawerItem</item>
         <item name="dialogTitle">@style/AppTheme.Dark.DialogTitle</item>

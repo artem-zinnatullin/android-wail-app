@@ -71,9 +71,9 @@ public class SettingsSelectLanguageFragment extends BaseFragment implements List
 
         languages = markCurrentLanguageAsSelected(getActivity(), getResources().getStringArray(R.array.settings_select_language_languages));
 
-        BaseAdapter adapter = new ArrayAdapter<String>(
+        BaseAdapter adapter = new ArrayAdapter<>(
                 getActivity(),
-                android.R.layout.simple_list_item_1,
+                R.layout.settings_select_language_item,
                 languages
         );
 

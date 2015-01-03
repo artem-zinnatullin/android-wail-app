@@ -18,7 +18,7 @@
     <color name="track_state_scrobble_success">#ff23bb3b</color>
     <color name="track_state_unknown">#fff5f5ff</color>
 
-    <color name="pressed_item_background">@color/primary_light</color>
+    <color name="pressed_item_background">#85b3e5fc</color>
 
     <color name="switch_track_off">#7bdcdcdc</color>
     <color name="switch_track_on">#7bb3e5fc</color>
@@ -33,7 +33,7 @@
 
     <color name="light_theme_settings_item_title_disabled">#ffbebebe</color>
 
-    <color name="light_theme_track_today_pressed_background">@color/primary_dark</color>
+    <color name="light_theme_track_today_pressed_background">#950288d1</color>
 
     <color name="light_theme_scrollbar_thumb">#ffa5a5a5</color>
 

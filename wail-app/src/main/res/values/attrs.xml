@@ -34,6 +34,7 @@
     <attr name="settingsItemWithSwitch" format="reference"/>
     <attr name="settingsItemTitleWithSwitch" format="reference"/>
     <attr name="settingsItemSwitch" format="reference"/>
+    <attr name="settingSelectLanguageItem" format="reference"/>
 
     <attr name="drawerItem" format="reference"/>
     <attr name="dialogTitle" format="reference"/>

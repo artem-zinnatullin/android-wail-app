@@ -173,7 +173,15 @@
 
         </LinearLayout>
 
-        <View style="?settingsCategoryTitleDivider" />
+        <LinearLayout style="?settingsCategoryTitle">
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                style="?settingsCategoryTitleTitle"
+                android:text="@string/settings_other" />
+
+            <View style="?settingsCategoryTitleDivider" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/settings_email_to_the_developer"
