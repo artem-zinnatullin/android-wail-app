@@ -101,7 +101,8 @@
 
         </LinearLayout>
 
-        <LinearLayout style="?settingsItemWithSwitch">
+        <LinearLayout style="?settingsItemWithSwitch"
+            android:id="@+id/settings_lastfm_update_nowplaying">
 
             <com.artemzin.android.wail.ui.TypefaceTextView
                 style="?settingsItemTitleWithSwitch"
@@ -161,7 +162,8 @@
 
         </LinearLayout>
 
-        <LinearLayout style="?settingsItemWithSwitch">
+        <LinearLayout style="?settingsItemWithSwitch"
+            android:id="@+id/settings_theme">
 
             <com.artemzin.android.wail.ui.TypefaceTextView
                 style="?settingsItemTitleWithSwitch"

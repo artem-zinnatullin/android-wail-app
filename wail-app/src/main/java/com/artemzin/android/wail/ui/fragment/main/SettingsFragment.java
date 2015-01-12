@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -69,6 +70,13 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
         startActivity(new Intent(getActivity(), SettingsSelectLanguageActivity.class));
     }
 
+    @OnClick(R.id.settings_disable_scrobbling_over_mobile_network)
+    public void onDisableScrobblingOverMobileChanged() {
+        View switchView = getActivity().findViewById(R.id.settings_disable_scrobbling_over_mobile_network_switch);
+        onDisableScrobblingOverMobileChanged(((Switch) switchView).isChecked());
+        ((Switch) switchView).setChecked(!((Switch) switchView).isChecked());
+    }
+
     @OnCheckedChanged(R.id.settings_disable_scrobbling_over_mobile_network_switch)
     public void onDisableScrobblingOverMobileChanged(boolean isChecked) {
         if (isChecked == WAILSettings.isEnableScrobblingOverMobileNetwork(getActivity())) {
@@ -91,6 +99,13 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
         );
     }
 
+    @OnClick(R.id.settings_lastfm_update_nowplaying)
+    public void onLastfmUpdateNowPlayingChanged() {
+        View switchView = getActivity().findViewById(R.id.settings_lastfm_update_nowplaying_switch);
+        onLastfmUpdateNowPlayingChanged(((Switch) switchView).isChecked());
+        ((Switch) switchView).setChecked(!((Switch) switchView).isChecked());
+    }
+
     @OnCheckedChanged(R.id.settings_lastfm_update_nowplaying_switch)
     public void onLastfmUpdateNowPlayingChanged(boolean isChecked) {
         if (isChecked == WAILSettings.isLastfmNowplayingUpdateEnabled(getActivity())) {
@@ -111,6 +126,13 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
                         isChecked ? 1L : 0L
                 ).build()
         );
+    }
+
+    @OnClick(R.id.settings_theme)
+    public void onThemeChanged() {
+        View switchView = getActivity().findViewById(R.id.settings_theme_switch);
+        onThemeChanged(((Switch) switchView).isChecked());
+        ((Switch) switchView).setChecked(!((Switch) switchView).isChecked());
     }
 
     @OnCheckedChanged(R.id.settings_theme_switch)
