@@ -18,8 +18,6 @@
     <color name="track_state_scrobble_success">#ff23bb3b</color>
     <color name="track_state_unknown">#fff5f5ff</color>
 
-    <color name="pressed_item_background">#85b3e5fc</color>
-
     <color name="switch_track_off">#7bdcdcdc</color>
     <color name="switch_track_on">#7bb3e5fc</color>
 
@@ -33,9 +31,11 @@
 
     <color name="light_theme_settings_item_title_disabled">#ffbebebe</color>
 
-    <color name="light_theme_track_today_pressed_background">#950288d1</color>
+    <color name="light_theme_track_today_pressed_background">#9302acff</color>
 
     <color name="light_theme_scrollbar_thumb">#ffa5a5a5</color>
+
+    <color name="light_theme_pressed_item_background">#DFDFDF</color>
 
     <!--/Light theme-->
 
@@ -47,11 +47,15 @@
 
     <color name="dark_theme_track_today_background">#666666</color>
     <color name="dark_theme_drawer_item_text">#000</color>
+
     <color name="dark_theme_drawer_item_background">#FFFFFF</color>
+    <color name="dark_theme_drawer_item_pressed_background">@color/light_theme_pressed_item_background</color>
 
     <color name="dark_theme_settings_item_title_disabled">#666666</color>
 
     <color name="dark_theme_scrollbar_thumb">#7bb6b6b6</color>
+
+    <color name="dark_theme_pressed_item_background">#919296</color>
 
     <!--/Dark theme-->
 
