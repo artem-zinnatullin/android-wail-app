@@ -23,6 +23,7 @@
         <item name="android:paddingLeft">30dp</item>
         <item name="android:paddingRight">30dp</item>
         <item name="android:background">@drawable/btn_default</item>
+        <item name="android:textColor">@color/light_theme_btn_text_color</item>
     </style>
 
     <!--/Login screen-->
@@ -123,7 +124,7 @@
     <style name="AppTheme.Light.MainWailIsSadLabel">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/light_theme_background</item>
+        <item name="android:background">@drawable/light_theme_wail_is_sad_background</item>
         <item name="android:clickable">true</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:paddingLeft">2dp</item>
@@ -287,6 +288,21 @@
         <item name="android:paddingLeft">15dp</item>
         <item name="android:paddingRight">10dp</item>
         <item name="android:paddingTop">15dp</item>
+    </style>
+
+    <style name="AppTheme.Light.SignInToLastFm">
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/light_theme_sign_in_to_last_fm_background</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginTop">100dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:paddingTop">13dp</item>
+        <item name="android:paddingBottom">13dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">#35b5e6</item>
     </style>
 
 </resources>
