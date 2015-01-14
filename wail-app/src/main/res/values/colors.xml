@@ -5,8 +5,6 @@
     <color name="primary_light">#B3E5FC</color>
     <color name="primary_dark">#0288D1</color>
     <color name="accent">#FF4081</color>
-    <color name="accent_light">#FF4081</color>
-    <color name="accent_dark">#FF4081</color>
 
     <color name="btn_disabled">#E0E0E0</color>
 
@@ -23,6 +21,9 @@
 
     <color name="divider">#B6B6B6</color>
 
+    <color name="drawer_item_background">#FFFFFF</color>
+    <color name="drawer_item_pressed_background">@color/light_theme_pressed_item_background</color>
+
     <!--Light theme-->
 
     <color name="light_theme_background">#FFFFFF</color>
@@ -36,6 +37,7 @@
     <color name="light_theme_scrollbar_thumb">#ffa5a5a5</color>
 
     <color name="light_theme_pressed_item_background">#DFDFDF</color>
+    <color name="light_theme_ripple">#C3C3C3</color>
 
     <!--/Light theme-->
 
@@ -46,10 +48,8 @@
     <color name="dark_theme_text_secondary">#bebebe</color>
 
     <color name="dark_theme_track_today_background">#666666</color>
+    <color name="dark_theme_tracks_today_ripple">#C3C3C3</color>
     <color name="dark_theme_drawer_item_text">#000</color>
-
-    <color name="dark_theme_drawer_item_background">#FFFFFF</color>
-    <color name="dark_theme_drawer_item_pressed_background">@color/light_theme_pressed_item_background</color>
 
     <color name="dark_theme_settings_item_title_disabled">#666666</color>
 

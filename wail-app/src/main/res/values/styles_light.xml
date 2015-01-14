@@ -140,8 +140,7 @@
         <item name="android:visibility">gone</item>
         <item name="android:layout_margin">25dp</item>
         <item name="fab_colorNormal">@color/accent</item>
-        <item name="fab_colorPressed">@color/accent_dark</item>
-        <item name="fab_colorRipple">@color/accent_light</item>
+        <item name="fab_colorPressed">@color/accent</item>
     </style>
 
     <!--/Main screen-->
@@ -150,7 +149,7 @@
 
     <style name="AppTheme.Light.TrackListItemBackground">
         <item name="android:clickable">true</item>
-        <item name="android:background">@color/light_theme_background</item>
+        <item name="android:background">@drawable/light_theme_track_list_item_background</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -282,7 +281,6 @@
     <style name="AppTheme.Light.DrawerItem">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/light_theme_drawer_item_background</item>
         <item name="android:textSize">18sp</item>
         <item name="typefaceFromAssets">fonts/Roboto-Light.ttf</item>
         <item name="android:paddingBottom">15dp</item>
