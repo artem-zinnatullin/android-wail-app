@@ -25,6 +25,7 @@
     <string name="main_now_scrobbling_nothing">ничего :(</string>
     <string name="main_pull_down_to_refresh_toast">Потяните вниз, чтобы обновить данные :)</string>
     <string name="main_pull_to_refresh_pull_text">Потяните вниз</string>
+    <string name="main_refreshing">Обновляем…</string>
     <string name="main_refresh_info_from_lastfm_api_error">Ошибка last.fm: %1$s</string>
     <string name="main_refresh_info_from_lastfm_network_error">Ошибка сетевого соединения, попробуйте позже</string>
     <string name="main_refresh_info_from_lastfm_unknown_error">Невозможно обновить данные с last.fm :(</string>
@@ -34,8 +35,8 @@
     <string name="main_tracks_on_last_fm">заскробблено на last.fm</string>
     <string name="main_tracks_on_last_fm_unknown">Количество заскроббленных треков на last.fm неизвестно :(\nПопробуйте обновить данные.</string>
     <string name="main_updated_common">Последнее обновление %1$s</string>
-    <string name="main_updated_today_at">Последнее обновление вчера в %1$s</string>
-    <string name="main_updated_yesterday_at">Последнее обновление сегодня в %1$s</string>
+    <string name="main_updated_today_at">Последнее обновление сегодня в %1$s</string>
+    <string name="main_updated_yesterday_at">Последнее обновление вчера в %1$s</string>
     <string name="non_authorized_sign_up_in_lastfm">Зарегистрироваться в last.fm</string>
     <string name="not_authorized_activity_label">Привет!</string>
     <string name="notifications_love_current_track">Добавить трек в любимые</string>
@@ -98,13 +99,13 @@
         <item>Настройки</item>
     </string-array>
     <string-array name="word_form_track">
-        <item>Трек</item>
-        <item>Трека</item>
-        <item>Треков</item>
+        <item>трек</item>
+        <item>трека</item>
+        <item>треков</item>
     </string-array>
     <string-array name="word_forms_second">
-        <item>Секунда</item>
-        <item>Секунды</item>
-        <item>Секунд</item>
+        <item>секунда</item>
+        <item>секунды</item>
+        <item>секунд</item>
     </string-array>
 </resources>

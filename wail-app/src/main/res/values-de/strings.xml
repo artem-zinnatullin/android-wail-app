@@ -34,6 +34,7 @@
     <string name="main_now_scrobbling_nothing">nichts</string>
     <string name="main_pull_down_to_refresh_toast">Ziehen, um Daten zu aktualisieren</string>
     <string name="main_pull_to_refresh_pull_text">Ziehen, um zu aktualisieren</string>
+    <string name="main_refreshing">Aktualisierung…</string>
     <string name="main_updated_today_at">Stand heute um %1$s</string>
     <string name="main_updated_yesterday_at">Stand gestern um %1$s</string>
     <string name="main_updated_common">Stand %1$s</string>

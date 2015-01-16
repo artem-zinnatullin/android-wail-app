@@ -492,7 +492,7 @@ public class MainFragment extends BaseFragment {
 
         @Override
         public void onRefresh() {
-            Toast.makeText(getActivity(), "Refreshing...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.main_refreshing), Toast.LENGTH_SHORT).show();
             refreshDataFromLastfm();
             EasyTracker.getInstance(getActivity()).send(MapBuilder.createEvent(
                     GA_EVENT_MAIN_FRAGMENT,
