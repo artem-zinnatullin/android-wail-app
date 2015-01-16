@@ -91,11 +91,11 @@ public class WAILSettings {
     public static synchronized String getLanguageOrNullIfAuto(Context context) {
         String savedLang = getSharedPreferences(context).getString(KEY_LOCALE, null);
 
-        String defaultLang = Locale.getDefault().getDisplayLanguage();
+        String defaultLang = Locale.getDefault().getLanguage();
 
         if (savedLang == null) {
             return null;
-        } else if (savedLang.equals(defaultLang) || savedLang.equals(LocaleUtil.lang(defaultLang))) {
+        } else if (savedLang.equals(defaultLang) || savedLang.equals(defaultLang)) {
             return null;
         } else {
             return savedLang;
@@ -103,7 +103,7 @@ public class WAILSettings {
     }
 
     public static synchronized String getLanguage(Context context) {
-        return getSharedPreferences(context).getString(KEY_LOCALE, Locale.getDefault().getDisplayLanguage());
+        return getSharedPreferences(context).getString(KEY_LOCALE, Locale.getDefault().getLanguage());
     }
 
     public static synchronized void setLanguage(Context context, String value) {

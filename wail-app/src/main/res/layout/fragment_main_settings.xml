@@ -146,10 +146,6 @@
                 style="?settingsItemTitle"
                 android:text="@string/settings_status_bar_notifications_title" />
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemDescription"
-                android:text="@string/settings_status_bar_notifications_description" />
-
         </LinearLayout>
 
         <LinearLayout style="?settingsCategoryTitle">
