@@ -4,7 +4,8 @@
     <style name="AppTheme" parent="@style/Theme.AppCompat">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="android:track">@drawable/switch_track_selector</item>
+        <item name="colorControlActivated">@color/switch_track_on</item>
+        <item name="android:colorForeground">@color/switch_track_off</item>
         <item name="android:scrollbarSize">4dp</item>
     </style>
 

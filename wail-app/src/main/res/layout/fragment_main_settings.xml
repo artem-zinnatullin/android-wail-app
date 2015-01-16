@@ -60,7 +60,7 @@
                 style="?settingsItemTitleWithSwitch"
                 android:text="@string/settings_disable_scrobbling_over_mobile_network" />
 
-            <Switch
+            <android.support.v7.widget.SwitchCompat
                 android:id="@+id/settings_disable_scrobbling_over_mobile_network_switch"
                 style="?settingsItemSwitch" />
 
@@ -108,7 +108,7 @@
                 style="?settingsItemTitleWithSwitch"
                 android:text="@string/settings_lastfm_update_nowplaying_title" />
 
-            <Switch
+            <android.support.v7.widget.SwitchCompat
                 android:id="@+id/settings_lastfm_update_nowplaying_switch"
                 style="?settingsItemSwitch" />
 
@@ -165,7 +165,7 @@
                 style="?settingsItemTitleWithSwitch"
                 android:text="@string/settings_theme_switch_label" />
 
-            <Switch
+            <android.support.v7.widget.SwitchCompat
                 android:id="@+id/settings_theme_switch"
                 style="?settingsItemSwitch" />
 

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<Switch xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.SwitchCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main_settings_is_wail_enabled_switch"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="8dp"
-    android:paddingRight="8dp"
-    android:track="@drawable/switch_track_selector"/>
+    android:paddingRight="8dp" />

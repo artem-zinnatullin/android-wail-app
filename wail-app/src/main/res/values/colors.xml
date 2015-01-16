@@ -18,8 +18,8 @@
     <color name="track_state_scrobble_success">#ff23bb3b</color>
     <color name="track_state_unknown">#fff5f5ff</color>
 
-    <color name="switch_track_off">#7bdcdcdc</color>
-    <color name="switch_track_on">#7bb3e5fc</color>
+    <color name="switch_track_off">#ffa5a5a5</color>
+    <color name="switch_track_on">#ffb3e5fc</color>
 
     <color name="divider">#B6B6B6</color>
 
