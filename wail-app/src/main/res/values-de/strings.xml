@@ -5,7 +5,6 @@
     <string name="not_authorized_activity_label">Hallo.</string>
     <string name="app_main_about_1">WAIL — What am I listening to?</string>
     <string name="app_main_about_2">WAIL scrobbelt Titel von verschiedenen Musikapps zu Last.fm</string>
-    <string name="app_main_about_3">Unterstützt #nowplaying!</string>
     <string name="text_button_sign_in_last_fm">Bei Last.fm anmelden</string>
     <string name="non_authorized_sign_up_in_lastfm">Bei Last.fm registrieren</string>
     <!-- END of Not authorized main screen -->
@@ -34,6 +33,7 @@
     <string name="main_now_scrobbling_nothing">nichts</string>
     <string name="main_pull_down_to_refresh_toast">Ziehen, um Daten zu aktualisieren</string>
     <string name="main_pull_to_refresh_pull_text">Ziehen, um zu aktualisieren</string>
+    <string name="main_refreshing">Aktualisierung…</string>
     <string name="main_updated_today_at">Stand heute um %1$s</string>
     <string name="main_updated_yesterday_at">Stand gestern um %1$s</string>
     <string name="main_updated_common">Stand %1$s</string>
@@ -85,7 +85,6 @@
     <string name="settings_sound_notifications_title">Tonmitteilungen</string>
     <string name="settings_sound_notifications_description">Ton wenn Titel gescrobbelt werden.</string>
     <string name="settings_status_bar_notifications_title">Statusbar-Mitteilungen</string>
-    <string name="settings_status_bar_notifications_description">Mitteilung in der Statusbar, wenn Titel gescrobbelt werden.</string>
     <string name="settings_theme">Theme</string>
     <string name="settings_theme_switch_label">Dark theme</string>
     <string name="settings_other">Andere</string>

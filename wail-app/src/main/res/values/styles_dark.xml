@@ -260,6 +260,8 @@
         <item name="android:textColor">@color/dark_theme_text_primary</item>
         <item name="android:paddingTop">20dp</item>
         <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingLeft">14dp</item>
+        <item name="android:paddingRight">14dp</item>
         <item name="android:textSize">20sp</item>
     </style>
 

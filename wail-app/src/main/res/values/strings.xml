@@ -5,7 +5,6 @@
     <string name="not_authorized_activity_label">Hi there!</string>
     <string name="app_main_about_1">WAIL — What am I listening to?</string>
     <string name="app_main_about_2">WAIL will scrobble music you are listening to via different music players to last.fm</string>
-    <string name="app_main_about_3">#nowplaying is supported!</string>
     <string name="text_button_sign_in_last_fm">Sign in to last.fm</string>
     <string name="non_authorized_sign_up_in_lastfm">Sign up for last.fm</string>
     <!-- END of Not authorized main screen -->
@@ -34,6 +33,7 @@
     <string name="main_now_scrobbling_nothing">nothing :(</string>
     <string name="main_pull_down_to_refresh_toast">Pull down to refresh data :)</string>
     <string name="main_pull_to_refresh_pull_text">Pull to refresh</string>
+    <string name="main_refreshing">Refreshing…</string>
     <string name="main_updated_today_at">updated today at %1$s</string>
     <string name="main_updated_yesterday_at">updated yesterday at %1$s</string>
     <string name="main_updated_common">updated %1$s</string>
@@ -86,7 +86,6 @@
     <string name="settings_sound_notifications_title">Sound notifications</string>
     <string name="settings_sound_notifications_description">Track scrobbled sound, etc…</string>
     <string name="settings_status_bar_notifications_title">Status bar notifications</string>
-    <string name="settings_status_bar_notifications_description">Now scrobbling</string>
     <string name="settings_theme">Theme</string>
     <string name="settings_theme_switch_label">Dark theme</string>
     <string name="settings_other">Other</string>
