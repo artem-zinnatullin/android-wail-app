@@ -7,6 +7,8 @@
         <attr name="typefaceFromAssets" format="string" />
     </declare-styleable>
 
+    <attr name="listViewStyle" format="reference"/>
+
     <attr name="signInToLastFm" format="reference"/>
 
     <attr name="lastFmLoginEditText" format="reference"/>
@@ -37,6 +39,7 @@
     <attr name="settingsItemTitleWithSwitch" format="reference"/>
     <attr name="settingsItemSwitch" format="reference"/>
     <attr name="settingSelectLanguageItem" format="reference"/>
+    <attr name="settingIgnoredPlayersItem" format="reference"/>
 
     <attr name="drawerItem" format="reference"/>
     <attr name="dialogTitle" format="reference"/>

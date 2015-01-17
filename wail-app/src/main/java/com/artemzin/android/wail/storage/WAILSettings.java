@@ -42,6 +42,8 @@ public class WAILSettings {
     private static final String KEY_NOW_SCROBBLING_TRACK_ARTIST = "KEY_NOW_SCROBBLING_TRACK_ARTIST";
     private static final String KEY_NOW_SCROBBLING_TRACK_TITLE = "KEY_NOW_SCROBBLING_TRACK_TITLE";
 
+    private static final String KEY_NOW_SCROBBLING_PLAYER = "KEY_NOW_SCROBBLING_PLAYER";
+
     // endregion
 
     // region default values
@@ -308,6 +310,14 @@ public class WAILSettings {
         getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_TRACK_TITLE,
                 track == null ? null : track.getTrack()
         ).apply();
+    }
+
+    public static synchronized String getNowScrobblingPlayer(Context context) {
+        return getSharedPreferences(context).getString(KEY_NOW_SCROBBLING_PLAYER, null);
+    }
+
+    public static synchronized void setNowScrobblingPlayer(Context context, String player) {
+        getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_PLAYER, player).apply();
     }
 
     public static boolean isEnableScrobblingOverMobileNetwork(Context context) {

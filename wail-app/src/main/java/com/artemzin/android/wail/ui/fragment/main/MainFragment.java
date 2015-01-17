@@ -1,8 +1,10 @@
 package com.artemzin.android.wail.ui.fragment.main;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
@@ -27,6 +29,7 @@ import com.artemzin.android.wail.api.lastfm.model.response.LFUserResponseModel;
 import com.artemzin.android.wail.api.network.NetworkException;
 import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.WAILSettings;
+import com.artemzin.android.wail.storage.db.IgnoredPlayersDBHelper;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.model.Track;
 import com.artemzin.android.wail.ui.fragment.BaseFragment;
@@ -51,6 +54,8 @@ public class MainFragment extends BaseFragment {
 
     private static final String GA_EVENT_MAIN_FRAGMENT = "MainFragment";
 
+    private IgnoredPlayersDBHelper dbHelper;
+
     private final BroadcastReceiver tracksChangedBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -72,6 +77,9 @@ public class MainFragment extends BaseFragment {
 
     @InjectView(R.id.main_now_scrobbling_track_text_view)
     public TextView nowScrobblingTrackTextView;
+
+    @InjectView(R.id.main_now_scrobbling_player_text_view)
+    public TextView nowScrobblingPlayerTextView;
 
     @InjectView(R.id.main_tracks_total_count_text_view)
     public TextView tracksTotalCountOnLastfmTextView;
@@ -143,6 +151,36 @@ public class MainFragment extends BaseFragment {
         }
     }
 
+    @OnClick(R.id.main_now_scrobbling_player_text_view)
+    public void onNowScrobblingPlayerClick() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        View titleView = inflater.inflate(R.layout.dialog_fragment_title, null);
+        final String nowScrobblingPlayer = WAILSettings.getNowScrobblingPlayer(getActivity());
+        ((TextView) titleView.findViewById(R.id.dialog_fragment_title_text_view))
+                .setText(String.format(
+                                getString(R.string.main_confirm_ignoring_player),
+                                nowScrobblingPlayer)
+                );
+
+        builder.setCustomTitle(titleView)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dbHelper.add(nowScrobblingPlayer);
+                        WAILSettings.setNowScrobblingTrack(getActivity(), null);
+                        WAILSettings.setNowScrobblingPlayer(getActivity(), null);
+                        updateLocalInfo();
+                    }
+                })
+                .setNegativeButton(getString(R.string.dialog_cancel), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -158,6 +196,8 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        dbHelper = IgnoredPlayersDBHelper.getInstance(getActivity());
 
         ButterKnife.inject(this, view);
 
@@ -439,18 +479,21 @@ public class MainFragment extends BaseFragment {
 
     private void updateNowScrobblingTrack() {
         Track nowScrobblingTrack = WAILSettings.getNowScrobblingTrack(getActivity());
+        String nowScrobblingPlayer = WAILSettings.getNowScrobblingPlayer(getActivity());
 
         if (nowScrobblingTrack != null) {
             nowScrobblingTrackTextView.setText(getString(
                             R.string.main_now_scrobbling_label,
                             nowScrobblingTrack.getArtist() + " - " + nowScrobblingTrack.getTrack())
             );
+            nowScrobblingPlayerTextView.setText(String.format(getString(R.string.main_scrobbling_from_player_label), nowScrobblingPlayer));
             if (loveCurrentTrackButton.getVisibility() != View.VISIBLE) {
                 loveCurrentTrackButton.setVisibility(View.VISIBLE);
             }
             loveCurrentTrackButton.show();
         } else {
             nowScrobblingTrackTextView.setText(getString(R.string.main_now_scrobbling_label, getString(R.string.main_now_scrobbling_nothing)));
+            nowScrobblingPlayerTextView.setText("");
             loveCurrentTrackButton.hide();
         }
     }

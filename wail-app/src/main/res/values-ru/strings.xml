@@ -91,6 +91,14 @@
     <string name="tracks_search_error_toast">Невозможно произвести поиск :(</string>
     <string name="tracks_search_hint">Искать в заскроббленных треках</string>
     <string name="tracks_search_clear_text">Очистить текст</string>
+    <string name="settings_ignored_players_item_title">Ignored media players</string>
+    <string name="settings_ignored_players_item_desc">View, delete etc.</string>
+    <string name="settings_ignored_players_activity_label">Ignored media players activity</string>
+    <string name="settings_ignored_players_image_content_description">Ignored player image</string>
+    <string name="settings_confirm_unignoring_player">Do you want to stop ignoring player \"%s\"?</string>
+    <string name="main_scrobbling_from_player_label">from %s</string>
+    <string name="main_unknown_player">Unknown player</string>
+    <string name="main_confirm_ignoring_player">Do you want to ignore %s</string>
     <string-array name="drawer_items">
         <item>Главная</item>
         <item>Треки</item>

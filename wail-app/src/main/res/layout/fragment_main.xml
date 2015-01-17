@@ -85,6 +85,11 @@
                     tools:text="Now scrobbling: Prodigy — Omen"
                     style="?mainNowScrobblingTrack" />
 
+                <com.artemzin.android.wail.ui.TypefaceTextView
+                    android:id="@+id/main_now_scrobbling_player_text_view"
+                    tools:text="from Google Music"
+                    style="?mainNowScrobblingTrack" />
+
             </LinearLayout>
 
             <LinearLayout style="?mainWailIsSadContainer">

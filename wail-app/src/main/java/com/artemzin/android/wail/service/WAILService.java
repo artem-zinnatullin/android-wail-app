@@ -15,6 +15,7 @@ import com.artemzin.android.wail.api.network.NetworkException;
 import com.artemzin.android.wail.receiver.music.CommonMusicAppReceiver;
 import com.artemzin.android.wail.notifications.SoundNotificationsManager;
 import com.artemzin.android.wail.notifications.StatusBarNotificationsManager;
+import com.artemzin.android.wail.storage.db.IgnoredPlayersDBHelper;
 import com.artemzin.android.wail.storage.db.LovedTracksDBHelper;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.WAILSettings;
@@ -49,6 +50,8 @@ public class WAILService extends Service {
 
     private long lastScrobbleTime = 0;
 
+    private IgnoredPlayersDBHelper ignoredPlayersDBHelper;
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -63,6 +66,8 @@ public class WAILService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Loggi.i("WAILService.onStartCommand() " + IntentUtil.getIntentAsString(intent));
+
+        ignoredPlayersDBHelper = IgnoredPlayersDBHelper.getInstance(getApplicationContext());
 
         if (intent == null) {
             // seems that system has recreated the service, if so
@@ -97,6 +102,13 @@ public class WAILService extends Service {
             return;
         }
 
+        final String player = intent.getStringExtra(CommonMusicAppReceiver.EXTRA_PLAYER_PACKAGE_NAME);
+
+        if (ignoredPlayersDBHelper.contains(player)) {
+            Loggi.w(String.format("WAILService track is not handled because the player %s is ignored", player));
+            return;
+        }
+
         AsyncTaskExecutor.executeConcurrently(new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -116,6 +128,7 @@ public class WAILService extends Service {
 
                 if (isCurrentTrackPlaying) {
                     WAILSettings.setNowScrobblingTrack(getApplicationContext(), currentTrack);
+                    WAILSettings.setNowScrobblingPlayer(getApplicationContext(), player);
                     StatusBarNotificationsManager.getInstance(getApplicationContext())
                             .showTrackScrobblingStatusBarNotification(currentTrack);
                     updateNowPlaying(currentTrack);
@@ -123,6 +136,7 @@ public class WAILService extends Service {
                     StatusBarNotificationsManager.getInstance(getApplicationContext())
                             .hideTrackScrobblingStatusBarNotification();
                     WAILSettings.setNowScrobblingTrack(getApplicationContext(), null);
+                    WAILSettings.setNowScrobblingPlayer(getApplicationContext(), null);
                 }
                 LocalBroadcastManager.getInstance(getApplicationContext())
                         .sendBroadcast(new Intent(TracksDBHelper.INTENT_TRACKS_CHANGED));

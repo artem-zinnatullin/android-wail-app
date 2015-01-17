@@ -33,7 +33,12 @@
         <activity
             android:name=".ui.activity.settings.SettingsSelectLanguageActivity"
             android:windowSoftInputMode="stateHidden"
-            android:label="@string/settings_select_language_activity_label" />
+            android:label="@string/settings_ignored_players_activity_label" />
+
+        <activity
+            android:name=".ui.activity.settings.SettingsIgnoredPlayersActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/settings_ignored_players_activity_label" />
 
         <activity
             android:name=".ui.activity.settings.SettingsSoundNotificationsActivity"
@@ -84,7 +89,7 @@
         <receiver
             android:name=".receiver.NotificationActionsReceiver"
             android:enabled="true"
-            android:exported="false"></receiver>
+            android:exported="false"/>
 
         <!-- music apps receivers -->
 

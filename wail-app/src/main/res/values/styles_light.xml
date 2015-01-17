@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <style name="AppTheme.Light.Clickable">
+        <item name="android:background">@drawable/light_theme_clickable_drawable</item>
+    </style>
+
+    <style name="AppTheme.Light.ListViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:divider">@color/divider</item>
+        <item name="android:dividerHeight">1px</item>
+        <item name="android:clickable">true</item>
+        <item name="android:listSelector">@drawable/light_theme_clickable_drawable</item>
+    </style>
+
     <!--Login screen-->
 
     <style name="AppTheme.Light.LastFmLoginEditText">
@@ -121,10 +135,9 @@
         <item name="android:paddingTop">15dp</item>
     </style>
 
-    <style name="AppTheme.Light.MainWailIsSadLabel">
+    <style name="AppTheme.Light.Clickable.MainWailIsSadLabel">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/light_theme_wail_is_sad_background</item>
         <item name="android:clickable">true</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:paddingLeft">2dp</item>
@@ -148,9 +161,8 @@
 
     <!--Tracks-->
 
-    <style name="AppTheme.Light.TrackListItemBackground">
+    <style name="AppTheme.Light.Clickable.TrackListItemBackground">
         <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/light_theme_track_list_item_background</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -198,9 +210,8 @@
         <item name="android:background">@color/divider</item>
     </style>
 
-    <style name="AppTheme.Light.SettingsItem">
+    <style name="AppTheme.Light.Clickable.SettingsItem">
         <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/light_theme_settings_item_background</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingLeft">@dimen/settings_padding_right_and_left</item>
@@ -224,7 +235,7 @@
         <item name="android:textColor">@color/light_theme_settings_item_description</item>
     </style>
 
-    <style name="AppTheme.Light.SettingsItem.WithSwitch">
+    <style name="AppTheme.Light.Clickable.SettingsItem.WithSwitch">
         <item name="android:clickable">true</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:gravity">center_vertical</item>
@@ -245,7 +256,6 @@
     <style name="AppTheme.Light.SettingsSelectLanguageItem">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/light_theme_settings_select_language_item_background</item>
         <item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">15dp</item>
@@ -290,9 +300,8 @@
         <item name="android:paddingTop">15dp</item>
     </style>
 
-    <style name="AppTheme.Light.SignInToLastFm">
+    <style name="AppTheme.Light.Clickable.SignInToLastFm">
         <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/light_theme_sign_in_to_last_fm_background</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_marginTop">100dp</item>
