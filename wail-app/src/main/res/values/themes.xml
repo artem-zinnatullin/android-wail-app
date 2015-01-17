@@ -14,6 +14,7 @@
         <item name="android:textColor">@color/light_theme_text_primary</item>
         <item name="android:scrollbarThumbVertical">@drawable/light_theme_scrollbar_thumb</item>
 
+        <item name="signInToLastFm">@style/AppTheme.Light.SignInToLastFm</item>
         <item name="lastFmLoginEditText">@style/AppTheme.Light.LastFmLoginEditText</item>
         <item name="lastFmLoginEditButton">@style/AppTheme.Light.LastFmLoginEditButton</item>
 
@@ -51,6 +52,8 @@
         <item name="android:windowBackground">@color/dark_theme_background</item>
         <item name="android:textColor">@color/dark_theme_text_primary</item>
         <item name="android:scrollbarThumbVertical">@drawable/dark_theme_scrollbar_thumb</item>
+
+        <item name="signInToLastFm">@style/AppTheme.Dark.SignInToLastFm</item>
 
         <item name="lastFmLoginEditText">@style/AppTheme.Dark.LastFmLoginEditText</item>
         <item name="lastFmLoginEditButton">@style/AppTheme.Dark.LastFmLoginEditButton</item>

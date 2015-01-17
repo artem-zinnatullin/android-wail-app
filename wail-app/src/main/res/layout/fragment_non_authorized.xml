@@ -38,20 +38,9 @@
 
             <com.artemzin.android.wail.ui.TypefaceTextView
                 android:id="@+id/non_authorized_sign_in_button"
-                android:clickable="true"
-                android:background="@color/light_theme_background"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="100dp"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="13dp"
-                android:paddingBottom="13dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textSize="22sp"
                 android:text="@string/text_button_sign_in_last_fm"
-                android:textColor="#35b5e6"
-                app:typefaceFromAssets="fonts/Roboto-MediumItalic.ttf" />
+                app:typefaceFromAssets="fonts/Roboto-MediumItalic.ttf"
+                style="?signInToLastFm" />
 
         </LinearLayout>
 
