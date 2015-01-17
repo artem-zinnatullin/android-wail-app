@@ -15,9 +15,11 @@ import android.os.SystemClock;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -93,6 +95,9 @@ public class MainFragment extends BaseFragment {
     @InjectView(R.id.main_last_fm_user_info_update_time)
     public TextView lastfmUserInfoUpdateTimeTextView;
 
+    @InjectView(R.id.main_ignore_player_button)
+    public TextView ignorePlayerButton;
+
     @InjectView(R.id.main_love_current_track_button)
     public FloatingActionButton loveCurrentTrackButton;
 
@@ -151,7 +156,7 @@ public class MainFragment extends BaseFragment {
         }
     }
 
-    @OnClick(R.id.main_now_scrobbling_player_text_view)
+    @OnClick(R.id.main_ignore_player_button)
     public void onNowScrobblingPlayerClick() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -491,10 +496,12 @@ public class MainFragment extends BaseFragment {
                 loveCurrentTrackButton.setVisibility(View.VISIBLE);
             }
             loveCurrentTrackButton.show();
+            ignorePlayerButton.setVisibility(View.VISIBLE);
         } else {
             nowScrobblingTrackTextView.setText(getString(R.string.main_now_scrobbling_label, getString(R.string.main_now_scrobbling_nothing)));
             nowScrobblingPlayerTextView.setText("");
             loveCurrentTrackButton.hide();
+            ignorePlayerButton.setVisibility(View.GONE);
         }
     }
 

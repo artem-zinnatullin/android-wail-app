@@ -1,7 +1,6 @@
 package com.artemzin.android.wail.ui.fragment.settings;
 
 import android.app.AlertDialog;
-import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -14,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,10 +34,11 @@ public class SettingsIgnoredPlayersFragment extends Fragment implements AdapterV
     @InjectView(R.id.settings_ignored_players_list_view)
     public ListView listView;
 
+    @InjectView(R.id.settings_ignored_players_empty)
+    public LinearLayout noPlayersContainer;
+
     private IgnoredPlayersDBHelper dbHelper;
     private PackageManager packageManager;
-    private ArrayAdapter<ApplicationInfo> adapter;
-    private List<ApplicationInfo> players;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,41 +54,46 @@ public class SettingsIgnoredPlayersFragment extends Fragment implements AdapterV
 
         ButterKnife.inject(this, view);
 
-        players = dbHelper.getAll();
-        adapter = new ArrayAdapter<ApplicationInfo>(
-                getActivity(),
-                R.layout.settings_ignored_players_item_layout,
-                players
-        ) {
-            @Override
-            public View getView(int position, View view, ViewGroup parent) {
-                ViewHolder holder;
-                View rowView = view;
+        List<ApplicationInfo> players = dbHelper.getAll();
 
-                if (rowView == null) {
-                    LayoutInflater inflater = getActivity().getLayoutInflater();
-                    rowView = inflater.inflate(R.layout.settings_ignored_players_item_layout, null, true);
-                    holder = new ViewHolder();
-                    holder.textView = (TextView) rowView
-                            .findViewById(R.id.settings_ignored_players_list_view_text);
-                    holder.imageView = (ImageView) rowView
-                            .findViewById(R.id.settings_ignored_players_list_view_image);
-                    rowView.setTag(holder);
-                } else {
-                    holder = (ViewHolder) rowView.getTag();
+        if (players.size() == 0) {
+            noPlayersContainer.setVisibility(View.VISIBLE);
+        } else {
+            ArrayAdapter<ApplicationInfo> adapter = new ArrayAdapter<ApplicationInfo>(
+                    getActivity(),
+                    R.layout.settings_ignored_players_item_layout,
+                    players
+            ) {
+                @Override
+                public View getView(int position, View view, ViewGroup parent) {
+                    ViewHolder holder;
+                    View rowView = view;
+
+                    if (rowView == null) {
+                        LayoutInflater inflater = getActivity().getLayoutInflater();
+                        rowView = inflater.inflate(R.layout.settings_ignored_players_item_layout, null, true);
+                        holder = new ViewHolder();
+                        holder.textView = (TextView) rowView
+                                .findViewById(R.id.settings_ignored_players_list_view_text);
+                        holder.imageView = (ImageView) rowView
+                                .findViewById(R.id.settings_ignored_players_list_view_image);
+                        rowView.setTag(holder);
+                    } else {
+                        holder = (ViewHolder) rowView.getTag();
+                    }
+
+                    holder.textView.setText(packageManager.getApplicationLabel(getItem(position)));
+                    holder.imageView.setImageDrawable(
+                            packageManager.getApplicationIcon(getItem(position))
+                    );
+
+                    return rowView;
                 }
+            };
 
-                holder.textView.setText(packageManager.getApplicationLabel(getItem(position)));
-                holder.imageView.setImageDrawable(
-                        packageManager.getApplicationIcon(getItem(position))
-                );
-
-                return rowView;
-            }
-        };
-
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(this);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(this);
+        }
     }
 
     @OnItemClick(R.id.settings_ignored_players_list_view)
@@ -107,8 +113,7 @@ public class SettingsIgnoredPlayersFragment extends Fragment implements AdapterV
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dbHelper.delete(applicationInfo.packageName);
-                        players = dbHelper.getAll();
-                        adapter.notifyDataSetChanged();
+                        onViewCreated(getView(), null);
                     }
                 })
                 .setNegativeButton(getString(R.string.dialog_cancel), new DialogInterface.OnClickListener() {

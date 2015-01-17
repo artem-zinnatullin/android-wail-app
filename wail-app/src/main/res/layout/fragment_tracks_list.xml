@@ -32,7 +32,7 @@
         <com.artemzin.android.wail.ui.TypefaceTextView
             android:id="@+id/tracks_list_empty_text_view"
             tools:text="@string/tracks_list_empty_motivation_text"
-            style="?trackListNoTracksLabel" />
+            style="?backgroundText" />
 
     </LinearLayout>
 

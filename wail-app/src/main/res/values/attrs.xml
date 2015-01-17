@@ -23,11 +23,12 @@
     <attr name="mainUpdatedAtLabel" format="reference"/>
     <attr name="mainNowScrobblingTrack" format="reference"/>
     <attr name="mainFloatingActionButton" format="reference"/>
+    <attr name="mainIgnorePlayerButton" format="reference"/>
     <attr name="mainWailIsSadContainer" format="reference"/>
     <attr name="mainWailIsSadLabel" format="reference"/>
 
     <attr name="trackListItemBackground" format="reference"/>
-    <attr name="trackListNoTracksLabel" format="reference"/>
+    <attr name="backgroundText" format="reference"/>
 
     <attr name="settingsCategoryTitle" format="reference"/>
     <attr name="settingsCategoryTitleTitle" format="reference"/>

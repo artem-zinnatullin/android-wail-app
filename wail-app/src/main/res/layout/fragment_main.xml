@@ -90,6 +90,12 @@
                     tools:text="from Google Music"
                     style="?mainNowScrobblingTrack" />
 
+                <com.artemzin.android.wail.ui.TypefaceTextView
+                    android:id="@+id/main_ignore_player_button"
+                    android:text="@string/main_ignore_this_player_button_text"
+                    tools:visibility="visible"
+                    style="?mainIgnorePlayerButton" />
+
             </LinearLayout>
 
             <LinearLayout style="?mainWailIsSadContainer">

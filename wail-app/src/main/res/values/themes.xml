@@ -27,12 +27,13 @@
         <item name="mainTotalTrackCountLabel">@style/AppTheme.Light.MainTotalTrackCountLabel</item>
         <item name="mainUpdatedAtLabel">@style/AppTheme.Light.MainUpdatedAtLabel</item>
         <item name="mainNowScrobblingTrack">@style/AppTheme.Light.MainNowScrobblingTrack</item>
+        <item name="mainIgnorePlayerButton">@style/AppTheme.Light.Clickable.MainIgnorePlayerButton</item>
         <item name="mainFloatingActionButton">@style/AppTheme.Light.MainFloatingActionButton</item>
         <item name="mainWailIsSadContainer">@style/AppTheme.Light.MainWailIsSadContainer</item>
         <item name="mainWailIsSadLabel">@style/AppTheme.Light.Clickable.MainWailIsSadLabel</item>
 
         <item name="trackListItemBackground">@style/AppTheme.Light.Clickable.TrackListItemBackground</item>
-        <item name="trackListNoTracksLabel">@style/AppTheme.Light.TrackListNoTracksLabel</item>
+        <item name="backgroundText">@style/AppTheme.Light.BackgroundText</item>
 
         <item name="settingsCategoryTitle">@style/AppTheme.Light.SettingsCategoryTitle</item>
         <item name="settingsCategoryTitleTitle">@style/AppTheme.Light.SettingsCategoryTitleTitle</item>
@@ -69,12 +70,13 @@
         <item name="mainTotalTrackCountLabel">@style/AppTheme.Dark.MainTotalTrackCountLabel</item>
         <item name="mainUpdatedAtLabel">@style/AppTheme.Dark.MainUpdatedAtLabel</item>
         <item name="mainNowScrobblingTrack">@style/AppTheme.Dark.MainNowScrobblingTrack</item>
+        <item name="mainIgnorePlayerButton">@style/AppTheme.Dark.Clickable.MainIgnorePlayerButton</item>
         <item name="mainFloatingActionButton">@style/AppTheme.Dark.MainFloatingActionButton</item>
         <item name="mainWailIsSadContainer">@style/AppTheme.Dark.MainWailIsSadContainer</item>
         <item name="mainWailIsSadLabel">@style/AppTheme.Dark.Clickable.MainWailIsSadLabel</item>
 
         <item name="trackListItemBackground">@style/AppTheme.Dark.Clickable.TrackListItemBackground</item>
-        <item name="trackListNoTracksLabel">@style/AppTheme.Dark.TrackListNoTracksLabel</item>
+        <item name="backgroundText">@style/AppTheme.Dark.BackgroundText</item>
 
         <item name="settingsCategoryTitle">@style/AppTheme.Dark.SettingsCategoryTitle</item>
         <item name="settingsCategoryTitleTitle">@style/AppTheme.Dark.SettingsCategoryTitleTitle</item>

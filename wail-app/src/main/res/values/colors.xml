@@ -36,8 +36,7 @@
 
     <color name="light_theme_scrollbar_thumb">#ffa5a5a5</color>
 
-    <color name="light_theme_pressed_item_background">#DFDFDF</color>
-    <color name="light_theme_ripple">#C3C3C3</color>
+    <color name="light_theme_pressed_item_background">#C3C3C3</color>
 
     <!--/Light theme-->
 

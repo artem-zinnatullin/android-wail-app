@@ -39,6 +39,9 @@
     <string name="main_updated_common">updated %1$s</string>
     <string name="main_refresh_info_from_lastfm_network_error">Network error, please try again later</string>
     <string name="main_refresh_info_from_lastfm_api_error">Last.fm error: %1$s</string>
+    <string name="main_scrobbling_from_player_label">from %s</string>
+    <string name="main_confirm_ignoring_player">Do you want to ignore %s?</string>
+    <string name="main_ignore_this_player_button_text">Ignore this player</string>
     <string name="main_refresh_info_from_lastfm_unknown_error">Can not update info from last.fm, sorry :(</string>
     <string name="main_feedback_please">WAIL is sad without your feedback on the Google Play :(</string>
     <string name="main_feedback_please_happy_toast">Now WAIL is happy ;)</string>
@@ -79,6 +82,9 @@
     <string name="settings_ignored_players_item_title">Ignored media players</string>
     <string name="settings_ignored_players_item_desc">View, delete etc.</string>
     <string name="settings_ignored_players_activity_label">Ignored media players</string>
+    <string name="settings_ignored_players_image_content_description">Ignored player image</string>
+    <string name="settings_confirm_unignoring_player">Do you want to stop ignoring player \"%s\"?</string>
+    <string name="settings_ignored_players_empty_text">You have no ignored players</string>
     <string name="settings_update_nowplaying_title" translatable="false">#nowplaying</string>
     <string name="settings_lastfm_update_nowplaying_title">Listening now on last.fm</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm update nowplaying enabled</string>
@@ -119,11 +125,7 @@
     <!-- START of some common strings -->
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_save">Save</string>
-    <string name="settings_ignored_players_image_content_description">Ignored player image</string>
-    <string name="settings_confirm_unignoring_player">Do you want to stop ignoring player \"%s\"?</string>
-    <string name="main_scrobbling_from_player_label">from %s</string>
-    <string name="main_unknown_player">unknown player</string>
-    <string name="main_confirm_ignoring_player">Do you want to ignore %s</string>
+
     <string-array name="drawer_items">
         <item>Main</item>
         <item>Tracks</item>
