@@ -2,6 +2,7 @@ package com.artemzin.android.wail.ui.fragment.settings;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.artemzin.android.wail.R;
+import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.db.IgnoredPlayersDBHelper;
 
 import java.util.List;
@@ -113,6 +115,9 @@ public class SettingsIgnoredPlayersFragment extends Fragment implements AdapterV
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dbHelper.delete(applicationInfo.packageName);
+                        getActivity().startService(
+                                new Intent(getActivity(), WAILService.class)
+                                        .setAction(WAILService.INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK));
                         onViewCreated(getView(), null);
                     }
                 })

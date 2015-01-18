@@ -2,6 +2,8 @@ package com.artemzin.android.wail.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.IBinder;
@@ -38,17 +40,19 @@ public class WAILService extends Service {
     private static final String GA_EVENT_SCROBBLE_TO_THE_LASTFM    = "scrobbleToTheLastfm";
     private static final String GA_EVENT_UPDATE_LASTFM_NOW_PLAYING = "updateLastfmNowplaying";
     private static final String GA_EVENT_LOVE_TRACK = "GA_EVENT_LOVE_TRACK";
-    private static final String GA_EVENT_UNLOVE_TRACK = "GA_EVENT_UNLOVE_TRACK";
 
-    public static final String INTENT_ACTION_HANDLE_TRACK                 = "INTENT_ACTION_HANDLE_TRACK";
-    public static final String INTENT_ACTION_SCROBBLE_PENDING_TRACKS      = "INTENT_ACTION_SCROBBLE_PENDING_TRACKS";
-    public static final String INTENT_ACTION_HANDLE_LOVED_TRACK           = "INTENT_ACTION_HANDLE_LOVED_TRACK";
+    public static final String INTENT_ACTION_HANDLE_TRACK                    = "INTENT_ACTION_HANDLE_TRACK";
+    public static final String INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK = "INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK";
+    public static final String INTENT_ACTION_SCROBBLE_PENDING_TRACKS         = "INTENT_ACTION_SCROBBLE_PENDING_TRACKS";
+    public static final String INTENT_ACTION_HANDLE_LOVED_TRACK              = "INTENT_ACTION_HANDLE_LOVED_TRACK";
 
     private static final int DEFAULT_TRACK_DURATION_IF_UNKNOWN_SECONDS = 210;
 
     private static volatile com.artemzin.android.wail.storage.model.Track lastUpdatedNowPlayingTrackInfo;
 
     private long lastScrobbleTime = 0;
+
+    private Intent lastIntent;
 
     private IgnoredPlayersDBHelper ignoredPlayersDBHelper;
 
@@ -82,11 +86,17 @@ public class WAILService extends Service {
             return START_STICKY;
         }
 
+         if (!action.equals(INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK)) {
+            lastIntent = intent;
+        }
+
         if (action.equals(INTENT_ACTION_HANDLE_TRACK)) {
             handleTrack(intent);
         } else if (action.equals(INTENT_ACTION_SCROBBLE_PENDING_TRACKS)) {
             scrobblePendingTracks(false);
             pushLovedTracks();
+        } else if (action.equals(INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK)) {
+            handleTrack(lastIntent);
         } else if (action.equals(INTENT_ACTION_HANDLE_LOVED_TRACK)) {
             handleLovedTrack();
         } else {
@@ -128,7 +138,18 @@ public class WAILService extends Service {
 
                 if (isCurrentTrackPlaying) {
                     WAILSettings.setNowScrobblingTrack(getApplicationContext(), currentTrack);
-                    WAILSettings.setNowScrobblingPlayer(getApplicationContext(), player);
+                    String applicationLabel = null;
+                    try {
+                        PackageManager packageManager = getApplication().getPackageManager();
+                        ApplicationInfo applicationInfo = packageManager.getApplicationInfo(player, 0);
+                        applicationLabel = packageManager.getApplicationLabel(applicationInfo).toString();
+                    } catch (PackageManager.NameNotFoundException e) {
+                        Loggi.w("Couldn't get player name from package name: " + player);
+                    }
+
+                    WAILSettings.setNowScrobblingPlayerLabel(getApplicationContext(), applicationLabel);
+                    WAILSettings.setNowScrobblingPlayerPackageName(getApplicationContext(), player);
+
                     StatusBarNotificationsManager.getInstance(getApplicationContext())
                             .showTrackScrobblingStatusBarNotification(currentTrack);
                     updateNowPlaying(currentTrack);
@@ -136,7 +157,7 @@ public class WAILService extends Service {
                     StatusBarNotificationsManager.getInstance(getApplicationContext())
                             .hideTrackScrobblingStatusBarNotification();
                     WAILSettings.setNowScrobblingTrack(getApplicationContext(), null);
-                    WAILSettings.setNowScrobblingPlayer(getApplicationContext(), null);
+                    WAILSettings.setNowScrobblingPlayerPackageName(getApplicationContext(), null);
                 }
                 LocalBroadcastManager.getInstance(getApplicationContext())
                         .sendBroadcast(new Intent(TracksDBHelper.INTENT_TRACKS_CHANGED));

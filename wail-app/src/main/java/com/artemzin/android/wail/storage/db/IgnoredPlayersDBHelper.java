@@ -56,12 +56,12 @@ public class IgnoredPlayersDBHelper {
 
             while (!cursor.isAfterLast()) {
                 String packageName = cursor.getString(TableInfo.NUM_COLUMN_PACKAGE_NAME);
-                ApplicationInfo applicationInfo = null;
+                ApplicationInfo applicationInfo;
                 try {
                     applicationInfo =
                             context.getPackageManager().getApplicationInfo(packageName, 0);
                 } catch (PackageManager.NameNotFoundException e) {
-                    Loggi.e("IgnoredPlayersDBHelper could not get application info: " + packageName);
+                    Loggi.w("IgnoredPlayersDBHelper could not get application info: " + packageName);
                     applicationInfo = new ApplicationInfo();
                     applicationInfo.packageName = packageName;
                 }

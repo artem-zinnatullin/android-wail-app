@@ -15,11 +15,9 @@ import android.os.SystemClock;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -157,12 +155,15 @@ public class MainFragment extends BaseFragment {
     }
 
     @OnClick(R.id.main_ignore_player_button)
-    public void onNowScrobblingPlayerClick() {
+    public void onIgnoreScrobblingPlayerClick() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         View titleView = inflater.inflate(R.layout.dialog_fragment_title, null);
-        final String nowScrobblingPlayer = WAILSettings.getNowScrobblingPlayer(getActivity());
+        String label = WAILSettings.getNowScrobblingPlayerLabel(getActivity());
+        final String packageName = WAILSettings.getNowScrobblingPlayerPackageName(getActivity());
+        final String nowScrobblingPlayer = label != null ? label : packageName;
+
         ((TextView) titleView.findViewById(R.id.dialog_fragment_title_text_view))
                 .setText(String.format(
                                 getString(R.string.main_confirm_ignoring_player),
@@ -173,9 +174,11 @@ public class MainFragment extends BaseFragment {
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dbHelper.add(nowScrobblingPlayer);
+                        dbHelper.add(packageName);
                         WAILSettings.setNowScrobblingTrack(getActivity(), null);
-                        WAILSettings.setNowScrobblingPlayer(getActivity(), null);
+                        WAILSettings.setNowScrobblingPlayerPackageName(getActivity(), null);
+                        WAILSettings.setNowScrobblingPlayerLabel(getActivity(), null);
+                        WAILSettings.setLastCapturedTrackInfo(getActivity(), null);
                         updateLocalInfo();
                     }
                 })
@@ -484,7 +487,9 @@ public class MainFragment extends BaseFragment {
 
     private void updateNowScrobblingTrack() {
         Track nowScrobblingTrack = WAILSettings.getNowScrobblingTrack(getActivity());
-        String nowScrobblingPlayer = WAILSettings.getNowScrobblingPlayer(getActivity());
+        String label = WAILSettings.getNowScrobblingPlayerLabel(getActivity());
+        String packageName = WAILSettings.getNowScrobblingPlayerPackageName(getActivity());
+        final String nowScrobblingPlayer = label != null ? label : packageName;
 
         if (nowScrobblingTrack != null) {
             nowScrobblingTrackTextView.setText(getString(
