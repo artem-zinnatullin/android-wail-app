@@ -17,6 +17,7 @@ import com.google.analytics.tracking.android.MapBuilder;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
 
 /**
  * @author Ilya Murzinov [murz42@gmail.com]
@@ -27,6 +28,13 @@ public class SettingsStatusBarNotificationsFragment extends BaseFragment {
 
     @InjectView(R.id.settings_status_bar_notifications_track_now_scrobbling_switch)
     public Switch trackNowScrobblingStatusBarNotificationsSwitch;
+
+    @OnClick(R.id.settings_status_bar_notifications_track_now_scrobbling)
+    public void onTrackSkippedChanged() {
+        View switchView = getActivity().findViewById(R.id.settings_status_bar_notifications_track_now_scrobbling_switch);
+        onStatusBarNotificationSwitchChanged(((Switch) switchView).isChecked());
+        ((Switch) switchView).setChecked(!((Switch) switchView).isChecked());
+    }
 
     @OnCheckedChanged(R.id.settings_status_bar_notifications_track_now_scrobbling_switch)
     public void onStatusBarNotificationSwitchChanged(boolean isChecked) {

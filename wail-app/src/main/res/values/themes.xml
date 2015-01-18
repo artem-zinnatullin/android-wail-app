@@ -4,7 +4,8 @@
     <style name="AppTheme" parent="@style/Theme.AppCompat">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="android:track">@drawable/switch_track_selector</item>
+        <item name="colorControlActivated">@color/switch_track_on</item>
+        <item name="android:colorForeground">@color/switch_track_off</item>
         <item name="android:scrollbarSize">4dp</item>
     </style>
 
@@ -13,6 +14,7 @@
         <item name="android:textColor">@color/light_theme_text_primary</item>
         <item name="android:scrollbarThumbVertical">@drawable/light_theme_scrollbar_thumb</item>
 
+        <item name="signInToLastFm">@style/AppTheme.Light.SignInToLastFm</item>
         <item name="lastFmLoginEditText">@style/AppTheme.Light.LastFmLoginEditText</item>
         <item name="lastFmLoginEditButton">@style/AppTheme.Light.LastFmLoginEditButton</item>
 
@@ -40,6 +42,7 @@
         <item name="settingsItemWithSwitch">@style/AppTheme.Light.SettingsItem.WithSwitch</item>
         <item name="settingsItemTitleWithSwitch">@style/AppTheme.Light.SettingsItemTitle.WithSwitch</item>
         <item name="settingsItemSwitch">@style/AppTheme.Light.SettingsItemSwitch</item>
+        <item name="settingSelectLanguageItem">@style/AppTheme.Light.SettingsSelectLanguageItem</item>
 
         <item name="drawerItem">@style/AppTheme.Light.DrawerItem</item>
         <item name="dialogTitle">@style/AppTheme.Light.DialogTitle</item>
@@ -49,6 +52,8 @@
         <item name="android:windowBackground">@color/dark_theme_background</item>
         <item name="android:textColor">@color/dark_theme_text_primary</item>
         <item name="android:scrollbarThumbVertical">@drawable/dark_theme_scrollbar_thumb</item>
+
+        <item name="signInToLastFm">@style/AppTheme.Dark.SignInToLastFm</item>
 
         <item name="lastFmLoginEditText">@style/AppTheme.Dark.LastFmLoginEditText</item>
         <item name="lastFmLoginEditButton">@style/AppTheme.Dark.LastFmLoginEditButton</item>
@@ -77,6 +82,7 @@
         <item name="settingsItemWithSwitch">@style/AppTheme.Dark.SettingsItem.WithSwitch</item>
         <item name="settingsItemTitleWithSwitch">@style/AppTheme.Dark.SettingsItemTitle.WithSwitch</item>
         <item name="settingsItemSwitch">@style/AppTheme.Dark.SettingsItemSwitch</item>
+        <item name="settingSelectLanguageItem">@style/AppTheme.Dark.SettingsSelectLanguageItem</item>
 
         <item name="drawerItem">@style/AppTheme.Dark.DrawerItem</item>
         <item name="dialogTitle">@style/AppTheme.Dark.DialogTitle</item>

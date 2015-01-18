@@ -18,6 +18,7 @@
         android:background="#fff"
         android:cacheColorHint="#fff"
         android:divider="@color/divider"
-        android:dividerHeight="1px" />
+        android:dividerHeight="1px"
+        android:listSelector="@drawable/drawer_item_background"/>
 
 </android.support.v4.widget.DrawerLayout>

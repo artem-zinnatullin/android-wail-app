@@ -5,7 +5,6 @@
     <string name="not_authorized_activity_label">Hallo.</string>
     <string name="app_main_about_1">WAIL — What am I listening to?</string>
     <string name="app_main_about_2">WAIL scrobbelt Titel von verschiedenen Musikapps zu Last.fm</string>
-    <string name="app_main_about_3">Unterstützt #nowplaying!</string>
     <string name="text_button_sign_in_last_fm">Bei Last.fm anmelden</string>
     <string name="non_authorized_sign_up_in_lastfm">Bei Last.fm registrieren</string>
     <!-- END of Not authorized main screen -->
@@ -34,15 +33,13 @@
     <string name="main_now_scrobbling_nothing">nichts</string>
     <string name="main_pull_down_to_refresh_toast">Ziehen, um Daten zu aktualisieren</string>
     <string name="main_pull_to_refresh_pull_text">Ziehen, um zu aktualisieren</string>
-    <string name="main_pull_to_refresh_refreshing_text">Wird aktualsiert …</string>
-    <string name="main_pull_to_refresh_release_text">Zum Abbrechen loslassen</string>
+    <string name="main_refreshing">Aktualisierung…</string>
     <string name="main_updated_today_at">Stand heute um %1$s</string>
     <string name="main_updated_yesterday_at">Stand gestern um %1$s</string>
     <string name="main_updated_common">Stand %1$s</string>
     <string name="main_refresh_info_from_lastfm_network_error">Netzfehrer, bitte später erneut versuchen.</string>
     <string name="main_refresh_info_from_lastfm_api_error">Last.fm-Fehler: %1$s</string>
     <string name="main_refresh_info_from_lastfm_unknown_error">Unbekannter Fehler mit Last.fm</string>
-    <string name="main_press_back_again_to_exit">Erneut drücken um App zu beenden.</string>
     <string name="main_feedback_please">Ohne Feedback auf Google Play ist WAIL traurig.</string>
     <string name="main_feedback_please_happy_toast">WAIL ist jetzt glücklich.</string>
     <string name="main_track_loved">Track geliebt :)</string>
@@ -79,7 +76,6 @@
     <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Min Titellänge in Prozent</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_description">Wird benutzt, wenn der Titel kürzer als die min. Titellänge ist. Einstellbar von 50 bis 100%.</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Aktuell: %1$s%%</string>
-    <string name="settings_update_nowplaying_title">#nowplaying</string>
     <string name="settings_lastfm_update_nowplaying_title">Auf Last.fm aktuellen Titel anzeigen</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm #nowplaying aktiviert</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm #nowplaying deaktiviert</string>
@@ -89,9 +85,9 @@
     <string name="settings_sound_notifications_title">Tonmitteilungen</string>
     <string name="settings_sound_notifications_description">Ton wenn Titel gescrobbelt werden.</string>
     <string name="settings_status_bar_notifications_title">Statusbar-Mitteilungen</string>
-    <string name="settings_status_bar_notifications_description">Mitteilung in der Statusbar, wenn Titel gescrobbelt werden.</string>
     <string name="settings_theme">Theme</string>
     <string name="settings_theme_switch_label">Dark theme</string>
+    <string name="settings_other">Andere</string>
     <string name="settings_email_to_the_developer">E-Mail an Entwickler</string>
     <string name="settings_email_dialog_title">E-Mail-App auswählen</string>
     <string name="main_settings_menu_toggle_wail">WAIL an/abschalten</string>
