@@ -5,7 +5,6 @@
     <string name="not_authorized_activity_label">Hi there!</string>
     <string name="app_main_about_1">WAIL — What am I listening to?</string>
     <string name="app_main_about_2">WAIL will scrobble music you are listening to via different music players to last.fm</string>
-    <string name="app_main_about_3">#nowplaying is supported!</string>
     <string name="text_button_sign_in_last_fm">Sign in to last.fm</string>
     <string name="non_authorized_sign_up_in_lastfm">Sign up for last.fm</string>
     <!-- END of Not authorized main screen -->
@@ -40,6 +39,9 @@
     <string name="main_updated_common">updated %1$s</string>
     <string name="main_refresh_info_from_lastfm_network_error">Network error, please try again later</string>
     <string name="main_refresh_info_from_lastfm_api_error">Last.fm error: %1$s</string>
+    <string name="main_scrobbling_from_player_label">from %s</string>
+    <string name="main_confirm_ignoring_player">Do you want to ignore %s?</string>
+    <string name="main_ignore_this_player_button_text">Ignore this player</string>
     <string name="main_refresh_info_from_lastfm_unknown_error">Can not update info from last.fm, sorry :(</string>
     <string name="main_feedback_please">WAIL is sad without your feedback on the Google Play :(</string>
     <string name="main_feedback_please_happy_toast">Now WAIL is happy ;)</string>
@@ -77,6 +79,12 @@
     <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Min track time elapsed in %</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_description">Used when you listened track for &lt; than min track elapsed time in seconds, WAIL will check this setting, you can set from 50% to 100%</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Current value %1$s%% of track</string>
+    <string name="settings_ignored_players_item_title">Ignored media players</string>
+    <string name="settings_ignored_players_item_desc">View, delete etc.</string>
+    <string name="settings_ignored_players_activity_label">Ignored media players</string>
+    <string name="settings_ignored_players_image_content_description">Ignored player image</string>
+    <string name="settings_confirm_unignoring_player">Do you want to stop ignoring player \"%s\"?</string>
+    <string name="settings_ignored_players_empty_text">You have no ignored players</string>
     <string name="settings_update_nowplaying_title" translatable="false">#nowplaying</string>
     <string name="settings_lastfm_update_nowplaying_title">Listening now on last.fm</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm update nowplaying enabled</string>
@@ -87,7 +95,6 @@
     <string name="settings_sound_notifications_title">Sound notifications</string>
     <string name="settings_sound_notifications_description">Track scrobbled sound, etc…</string>
     <string name="settings_status_bar_notifications_title">Status bar notifications</string>
-    <string name="settings_status_bar_notifications_description">Now scrobbling</string>
     <string name="settings_theme">Theme</string>
     <string name="settings_theme_switch_label">Dark theme</string>
     <string name="settings_other">Other</string>
@@ -118,6 +125,7 @@
     <!-- START of some common strings -->
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_save">Save</string>
+
     <string-array name="drawer_items">
         <item>Main</item>
         <item>Tracks</item>

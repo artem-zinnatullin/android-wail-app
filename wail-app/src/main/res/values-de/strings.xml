@@ -5,7 +5,6 @@
     <string name="not_authorized_activity_label">Hallo.</string>
     <string name="app_main_about_1">WAIL — What am I listening to?</string>
     <string name="app_main_about_2">WAIL scrobbelt Titel von verschiedenen Musikapps zu Last.fm</string>
-    <string name="app_main_about_3">Unterstützt #nowplaying!</string>
     <string name="text_button_sign_in_last_fm">Bei Last.fm anmelden</string>
     <string name="non_authorized_sign_up_in_lastfm">Bei Last.fm registrieren</string>
     <!-- END of Not authorized main screen -->
@@ -86,7 +85,6 @@
     <string name="settings_sound_notifications_title">Tonmitteilungen</string>
     <string name="settings_sound_notifications_description">Ton wenn Titel gescrobbelt werden.</string>
     <string name="settings_status_bar_notifications_title">Statusbar-Mitteilungen</string>
-    <string name="settings_status_bar_notifications_description">Mitteilung in der Statusbar, wenn Titel gescrobbelt werden.</string>
     <string name="settings_theme">Theme</string>
     <string name="settings_theme_switch_label">Dark theme</string>
     <string name="settings_other">Andere</string>
@@ -116,6 +114,15 @@
     <!-- START of some common strings -->
     <string name="dialog_cancel">Abbrechen</string>
     <string name="dialog_save">Speichern</string>
+    <string name="settings_ignored_players_item_title">Ignored media players</string>
+    <string name="settings_ignored_players_item_desc">View, delete etc.</string>
+    <string name="settings_ignored_players_activity_label">Ignored media players activity</string>
+    <string name="settings_ignored_players_image_content_description">Ignored player image</string>
+    <string name="settings_confirm_unignoring_player">Do you want to stop ignoring player \"%s\"?</string>
+    <string name="main_scrobbling_from_player_label">from %s</string>
+    <string name="main_confirm_ignoring_player">Do you want to ignore %s?</string>
+    <string name="settings_ignored_players_empty_text">You have no ignored players</string>
+    <string name="main_ignore_this_player_button_text">Ignore this player</string>
     <string-array name="drawer_items">
         <item>Allgemein</item>
         <item>Titel</item>

@@ -60,9 +60,24 @@
                 style="?settingsItemTitleWithSwitch"
                 android:text="@string/settings_disable_scrobbling_over_mobile_network" />
 
-            <Switch
+            <android.support.v7.widget.SwitchCompat
                 android:id="@+id/settings_disable_scrobbling_over_mobile_network_switch"
                 style="?settingsItemSwitch" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/settings_ignored_players"
+            style="?settingsItem">
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                style="?settingsItemTitle"
+                android:text="@string/settings_ignored_players_item_title" />
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                android:id="@+id/settings_ignored_players_desc"
+                style="?settingsItemDescription"
+                android:text="@string/settings_ignored_players_item_desc" />
 
         </LinearLayout>
 
@@ -108,7 +123,7 @@
                 style="?settingsItemTitleWithSwitch"
                 android:text="@string/settings_lastfm_update_nowplaying_title" />
 
-            <Switch
+            <android.support.v7.widget.SwitchCompat
                 android:id="@+id/settings_lastfm_update_nowplaying_switch"
                 style="?settingsItemSwitch" />
 
@@ -146,10 +161,6 @@
                 style="?settingsItemTitle"
                 android:text="@string/settings_status_bar_notifications_title" />
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemDescription"
-                android:text="@string/settings_status_bar_notifications_description" />
-
         </LinearLayout>
 
         <LinearLayout style="?settingsCategoryTitle">
@@ -169,7 +180,7 @@
                 style="?settingsItemTitleWithSwitch"
                 android:text="@string/settings_theme_switch_label" />
 
-            <Switch
+            <android.support.v7.widget.SwitchCompat
                 android:id="@+id/settings_theme_switch"
                 style="?settingsItemSwitch" />
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,6 +22,7 @@ import com.artemzin.android.bytes.ui.ViewUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.ui.activity.BaseActivity;
+import com.artemzin.android.wail.ui.activity.settings.SettingsIgnoredPlayersActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSelectLanguageActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSoundNotificationsActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsStatusBarNotificationsActivity;
@@ -48,10 +50,10 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
     public TextView languageMenuItemDescription;
 
     @InjectView(R.id.settings_disable_scrobbling_over_mobile_network_switch)
-    public Switch isScrobblingOverMobileNetworkDisabledSwitch;
+    public SwitchCompat isScrobblingOverMobileNetworkDisabledSwitch;
 
     @InjectView(R.id.settings_lastfm_update_nowplaying_switch)
-    public Switch isLastfmUpdateNowplayingEnabledSwitch;
+    public SwitchCompat isLastfmUpdateNowplayingEnabledSwitch;
 
     @InjectView(R.id.settings_container)
     public View settingContainer;
@@ -63,7 +65,12 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
     public TextView minDurationInPercentsDescription;
 
     @InjectView(R.id.settings_theme_switch)
-    public Switch themeSwitch;
+    public SwitchCompat themeSwitch;
+
+    @OnClick(R.id.settings_ignored_players)
+    public void onIgnoredPlayersClick() {
+        startActivity(new Intent(getActivity(), SettingsIgnoredPlayersActivity.class));
+    }
 
     @OnClick(R.id.settings_select_language_menu_item)
     public void onSelectLanguageClick() {
@@ -72,9 +79,9 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
 
     @OnClick(R.id.settings_disable_scrobbling_over_mobile_network)
     public void onDisableScrobblingOverMobileChanged() {
-        View switchView = getActivity().findViewById(R.id.settings_disable_scrobbling_over_mobile_network_switch);
-        onDisableScrobblingOverMobileChanged(((Switch) switchView).isChecked());
-        ((Switch) switchView).setChecked(!((Switch) switchView).isChecked());
+        SwitchCompat switchView = (SwitchCompat) getActivity().findViewById(R.id.settings_disable_scrobbling_over_mobile_network_switch);
+        onDisableScrobblingOverMobileChanged(switchView.isChecked());
+        switchView.setChecked(!switchView.isChecked());
     }
 
     @OnCheckedChanged(R.id.settings_disable_scrobbling_over_mobile_network_switch)
@@ -101,9 +108,9 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
 
     @OnClick(R.id.settings_lastfm_update_nowplaying)
     public void onLastfmUpdateNowPlayingChanged() {
-        View switchView = getActivity().findViewById(R.id.settings_lastfm_update_nowplaying_switch);
-        onLastfmUpdateNowPlayingChanged(((Switch) switchView).isChecked());
-        ((Switch) switchView).setChecked(!((Switch) switchView).isChecked());
+        SwitchCompat switchView = (SwitchCompat) getActivity().findViewById(R.id.settings_lastfm_update_nowplaying_switch);
+        onLastfmUpdateNowPlayingChanged(switchView.isChecked());
+        switchView.setChecked(!switchView.isChecked());
     }
 
     @OnCheckedChanged(R.id.settings_lastfm_update_nowplaying_switch)
@@ -130,9 +137,9 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
 
     @OnClick(R.id.settings_theme)
     public void onThemeChanged() {
-        View switchView = getActivity().findViewById(R.id.settings_theme_switch);
-        onThemeChanged(((Switch) switchView).isChecked());
-        ((Switch) switchView).setChecked(!((Switch) switchView).isChecked());
+        SwitchCompat switchView = (SwitchCompat) getActivity().findViewById(R.id.settings_theme_switch);
+        onThemeChanged(switchView.isChecked());
+        switchView.setChecked(!switchView.isChecked());
     }
 
     @OnCheckedChanged(R.id.settings_theme_switch)
@@ -173,7 +180,7 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.main_settings, menu);
 
-        Switch isWailEnabledSwitch = (Switch) MenuItemCompat.getActionView(menu
+        SwitchCompat isWailEnabledSwitch = (SwitchCompat) MenuItemCompat.getActionView(menu
                 .findItem(R.id.main_settings_menu_is_wail_enabled));
         isWailEnabledSwitch.setChecked(WAILSettings.isEnabled(getActivity()));
         isWailEnabledSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

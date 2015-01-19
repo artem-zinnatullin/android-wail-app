@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <style name="AppTheme.Light.Clickable">
+        <item name="android:background">@drawable/light_theme_clickable_drawable</item>
+    </style>
+
+    <style name="AppTheme.Light.ListViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:divider">@color/divider</item>
+        <item name="android:dividerHeight">1px</item>
+        <item name="android:clickable">true</item>
+        <item name="android:listSelector">@drawable/light_theme_clickable_drawable</item>
+    </style>
+
     <!--Login screen-->
 
     <style name="AppTheme.Light.LastFmLoginEditText">
@@ -23,6 +37,7 @@
         <item name="android:paddingLeft">30dp</item>
         <item name="android:paddingRight">30dp</item>
         <item name="android:background">@drawable/btn_default</item>
+        <item name="android:textColor">@color/light_theme_btn_text_color</item>
     </style>
 
     <!--/Login screen-->
@@ -79,6 +94,7 @@
         <item name="android:textSize">30sp</item>
         <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
         <item name="android:paddingRight">10dp</item>
+        <item name="android:layout_marginBottom">@dimen/activity_horizontal_margin</item>
         <item name="android:textColor">@color/light_theme_text_primary</item>
         <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
     </style>
@@ -98,15 +114,29 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/light_theme_text_secondary</item>
+        <item name="android:layout_marginBottom">@dimen/activity_horizontal_margin</item>
     </style>
 
     <style name="AppTheme.Light.MainNowScrobblingTrack">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginBottom">10dp</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/light_theme_text_primary</item>
         <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
+    </style>
+
+    <style name="AppTheme.Light.Clickable.MainIgnorePlayerButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="typefaceFromAssets">fonts/Roboto-Bold.ttf</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:textColor">@color/primary</item>
     </style>
 
     <style name="AppTheme.Light.MainWailIsSadContainer">
@@ -120,10 +150,9 @@
         <item name="android:paddingTop">15dp</item>
     </style>
 
-    <style name="AppTheme.Light.MainWailIsSadLabel">
+    <style name="AppTheme.Light.Clickable.MainWailIsSadLabel">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/light_theme_background</item>
         <item name="android:clickable">true</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:paddingLeft">2dp</item>
@@ -140,17 +169,15 @@
         <item name="android:visibility">gone</item>
         <item name="android:layout_margin">25dp</item>
         <item name="fab_colorNormal">@color/accent</item>
-        <item name="fab_colorPressed">@color/accent_dark</item>
-        <item name="fab_colorRipple">@color/accent_light</item>
+        <item name="fab_colorPressed">@color/accent</item>
     </style>
 
     <!--/Main screen-->
 
     <!--Tracks-->
 
-    <style name="AppTheme.Light.TrackListItemBackground">
+    <style name="AppTheme.Light.Clickable.TrackListItemBackground">
         <item name="android:clickable">true</item>
-        <item name="android:background">@color/light_theme_background</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -161,7 +188,7 @@
         <item name="android:weightSum">100</item>
     </style>
 
-    <style name="AppTheme.Light.TrackListNoTracksLabel">
+    <style name="AppTheme.Light.BackgroundText">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:gravity">center</item>
@@ -198,9 +225,8 @@
         <item name="android:background">@color/divider</item>
     </style>
 
-    <style name="AppTheme.Light.SettingsItem">
+    <style name="AppTheme.Light.Clickable.SettingsItem">
         <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/light_theme_settings_item_background</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingLeft">@dimen/settings_padding_right_and_left</item>
@@ -224,7 +250,7 @@
         <item name="android:textColor">@color/light_theme_settings_item_description</item>
     </style>
 
-    <style name="AppTheme.Light.SettingsItem.WithSwitch">
+    <style name="AppTheme.Light.Clickable.SettingsItem.WithSwitch">
         <item name="android:clickable">true</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:gravity">center_vertical</item>
@@ -245,7 +271,6 @@
     <style name="AppTheme.Light.SettingsSelectLanguageItem">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/light_theme_settings_select_language_item_background</item>
         <item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">15dp</item>
@@ -282,13 +307,26 @@
     <style name="AppTheme.Light.DrawerItem">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/light_theme_drawer_item_background</item>
         <item name="android:textSize">18sp</item>
         <item name="typefaceFromAssets">fonts/Roboto-Light.ttf</item>
         <item name="android:paddingBottom">15dp</item>
         <item name="android:paddingLeft">15dp</item>
         <item name="android:paddingRight">10dp</item>
         <item name="android:paddingTop">15dp</item>
+    </style>
+
+    <style name="AppTheme.Light.Clickable.SignInToLastFm">
+        <item name="android:clickable">true</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginTop">100dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:paddingTop">13dp</item>
+        <item name="android:paddingBottom">13dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">#35b5e6</item>
     </style>
 
 </resources>

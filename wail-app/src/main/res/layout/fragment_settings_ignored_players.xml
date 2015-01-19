@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/settings_ignored_players_empty"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <com.artemzin.android.wail.ui.TypefaceTextView
+            android:id="@+id/settings_ignored_players_empty_text_view"
+            android:text="@string/settings_ignored_players_empty_text"
+            style="?backgroundText" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/settings_ignored_players_list_view"
+        style="?listViewStyle">
+
+    </ListView>
+
+</LinearLayout>
