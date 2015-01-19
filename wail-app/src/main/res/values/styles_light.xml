@@ -199,6 +199,21 @@
 
     <!--Settings screen-->
 
+    <style name="AppTheme.Light.SettingsBackground">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/light_theme_settings_background</item>
+    </style>
+
+    <style name="AppTheme.Light.SettingsCardView">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="cardCornerRadius">0dp</item>
+    </style>
+
     <style name="AppTheme.Light.SettingsCategoryTitle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -206,15 +221,16 @@
         <item name="android:paddingLeft">@dimen/settings_item_padding_left_and_right</item>
         <item name="android:paddingRight">@dimen/settings_item_padding_left_and_right</item>
         <item name="android:orientation">vertical</item>
+        <item name="android:background">@color/light_theme_background</item>
     </style>
 
     <style name="AppTheme.Light.SettingsCategoryTitleTitle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingLeft">@dimen/settings_padding_right_and_left</item>
+        <item name="android:paddingLeft">@dimen/settings_title_padding_right_and_left</item>
         <item name="android:paddingRight">@dimen/settings_padding_right_and_left</item>
-        <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/light_theme_text_primary</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/primary_dark</item>
     </style>
 
     <style name="AppTheme.Light.SettingsCategoryTitleDivider">

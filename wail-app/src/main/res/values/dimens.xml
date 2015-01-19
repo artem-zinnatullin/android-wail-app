@@ -9,4 +9,5 @@
     <dimen name="settings_item_padding_top_and_bottom">12dp</dimen>
     <dimen name="settings_item_padding_left_and_right">2dp</dimen>
     <dimen name="settings_padding_right_and_left">18dp</dimen>
+    <dimen name="settings_title_padding_right_and_left">9dp</dimen>
 </resources>
