@@ -79,8 +79,8 @@
     <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Mindestlänge in Prozent</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_description">Kommt zur Anwendung, wenn der Titel kürzer als die Mindestlänge ist. Einstellbar von 50 bis 100%.</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Aktuell: %1$s%%</string>
-    <string name="settings_ignored_players_item_title">Ignorierte Mediaspps</string>
-    <string name="settings_ignored_players_item_desc">Ansicht, löschen, etc.</string>
+    <string name="settings_ignored_players_item_title">Ignorierte Musikapps</string>
+    <string name="settings_ignored_players_item_desc">WAIL wird Titel von diesen Musikapps nicht scrobbeln</string>
     <string name="settings_ignored_players_activity_label">Aktivität von ignorierten Musikapps</string>
     <string name="settings_ignored_players_image_content_description">Bild von ignorierten Musikapps</string>
     <string name="settings_confirm_unignoring_player">Möchtest Du App \"%s\" nicht mehr ignorieren?</string>
@@ -94,9 +94,9 @@
     <string name="settings_sound_notifications_title">Tonmitteilungen</string>
     <string name="settings_sound_notifications_description">Ton wenn Titel gescrobbelt werden.</string>
     <string name="settings_status_bar_notifications_title">Statusbar-Mitteilungen</string>
-    <string name="settings_theme">Theme</string>
-    <string name="settings_theme_switch_label">Dark theme</string>
-    <string name="settings_other">Andere</string>
+    <string name="settings_theme">Design</string>
+    <string name="settings_theme_switch_label">Dark</string>
+    <string name="settings_other">Anderes</string>
     <string name="settings_email_to_the_developer">E-Mail an Entwickler</string>
     <string name="settings_email_dialog_title">E-Mail-App auswählen</string>
     <string name="main_settings_menu_toggle_wail">WAIL an/abschalten</string>
