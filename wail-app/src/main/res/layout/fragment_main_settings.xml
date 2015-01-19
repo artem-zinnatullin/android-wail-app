@@ -66,6 +66,21 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/settings_ignored_players"
+            style="?settingsItem">
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                style="?settingsItemTitle"
+                android:text="@string/settings_ignored_players_item_title" />
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                android:id="@+id/settings_ignored_players_desc"
+                style="?settingsItemDescription"
+                android:text="@string/settings_ignored_players_item_desc" />
+
+        </LinearLayout>
+
         <LinearLayout style="?settingsCategoryTitle">
 
             <com.artemzin.android.wail.ui.TypefaceTextView

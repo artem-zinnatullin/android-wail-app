@@ -24,11 +24,13 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnItemClick;
 
-public class SettingsSelectLanguageFragment extends BaseFragment implements ListView.OnItemClickListener {
+public class SettingsSelectLanguageFragment extends BaseFragment {
 
     private final String GA_EVENT_SETTINGS_SELECT_LANGUAGE = "SettingsSelectLanguage";
+
     @InjectView(R.id.settings_select_language_list_view)
     public ListView languagesList;
+
     private String[] languages;
 
     private static String[] markCurrentLanguageAsSelected(Context context, String[] languages) {
@@ -78,7 +80,6 @@ public class SettingsSelectLanguageFragment extends BaseFragment implements List
         );
 
         languagesList.setAdapter(adapter);
-        languagesList.setOnItemClickListener(this);
     }
 
     @OnItemClick(R.id.settings_select_language_list_view)

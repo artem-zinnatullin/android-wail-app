@@ -22,6 +22,7 @@ import com.artemzin.android.bytes.ui.ViewUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.ui.activity.BaseActivity;
+import com.artemzin.android.wail.ui.activity.settings.SettingsIgnoredPlayersActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSelectLanguageActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSoundNotificationsActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsStatusBarNotificationsActivity;
@@ -65,6 +66,11 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
 
     @InjectView(R.id.settings_theme_switch)
     public SwitchCompat themeSwitch;
+
+    @OnClick(R.id.settings_ignored_players)
+    public void onIgnoredPlayersClick() {
+        startActivity(new Intent(getActivity(), SettingsIgnoredPlayersActivity.class));
+    }
 
     @OnClick(R.id.settings_select_language_menu_item)
     public void onSelectLanguageClick() {
