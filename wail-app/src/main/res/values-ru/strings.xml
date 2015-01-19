@@ -92,8 +92,8 @@
     <string name="tracks_search_hint">Искать в заскроббленных треках</string>
     <string name="tracks_search_clear_text">Очистить текст</string>
     <string name="settings_ignored_players_activity_label">Игнорируемые медиа плееры</string>
-    <string name="settings_ignored_players_item_title">Игнорируемые плееры</string>
-    <string name="settings_ignored_players_item_desc">Посмотреть, удалить…</string>
+    <string name="settings_ignored_players_item_title">Игнорируемые медиа плееры</string>
+    <string name="settings_ignored_players_item_desc">Треки, воспроизводимые этими плеерами не будут скробблиться</string>
     <string name="settings_ignored_players_image_content_description">Иконка игнорируемого плеера</string>
     <string name="settings_confirm_unignoring_player">Вы хотите перестать игнорировать плеер \"%s\"?</string>
     <string name="main_scrobbling_from_player_label">из %s</string>

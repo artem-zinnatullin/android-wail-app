@@ -80,7 +80,7 @@
     <string name="settings_min_track_elapsed_time_in_percent_dialog_description">Used when you listened track for &lt; than min track elapsed time in seconds, WAIL will check this setting, you can set from 50% to 100%</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Current value %1$s%% of track</string>
     <string name="settings_ignored_players_item_title">Ignored media players</string>
-    <string name="settings_ignored_players_item_desc">View, delete etc.</string>
+    <string name="settings_ignored_players_item_desc">WAIL will not scrobble tracks played by these players</string>
     <string name="settings_ignored_players_activity_label">Ignored media players</string>
     <string name="settings_ignored_players_image_content_description">Ignored player image</string>
     <string name="settings_confirm_unignoring_player">Do you want to stop ignoring player \"%s\"?</string>
