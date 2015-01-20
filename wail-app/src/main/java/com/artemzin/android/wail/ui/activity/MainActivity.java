@@ -27,11 +27,13 @@ import java.lang.reflect.Field;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnItemClick;
+import butterknife.Optional;
 
 public class MainActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_NON_AUTHORIZED_ACTIVITY_INTENT = 1;
 
+    @Optional
     @InjectView(R.id.main_drawer_layout)
     public DrawerLayout drawerLayout;
 
@@ -105,17 +107,17 @@ public class MainActivity extends BaseActivity {
 
             drawerLayout.setDrawerListener(actionBarDrawerToggle);
 
-            drawerList.setAdapter(new ArrayAdapter<String>(
-                    this,
-                    R.layout.activity_main_drawer_item_layout,
-                    getResources().getStringArray(R.array.drawer_items)
-            ));
-
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
-
             tryToIncreaseNavigationDrawerLeftSwipeZone(drawerLayout);
         }
+
+        drawerList.setAdapter(new ArrayAdapter<>(
+                this,
+                R.layout.activity_main_drawer_item_layout,
+                getResources().getStringArray(R.array.drawer_items)
+        ));
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     @Override
