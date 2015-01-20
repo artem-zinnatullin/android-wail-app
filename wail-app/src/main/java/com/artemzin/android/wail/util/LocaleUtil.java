@@ -19,6 +19,7 @@ public class LocaleUtil {
         Configuration configuration = new Configuration();
         String language = WAILSettings.getLanguage(context);
 
+        String lang = lang(language);
         String newLang = lang(newLanguage);
 
         if (TextUtils.isEmpty(language) && newLanguage == null) {
@@ -27,12 +28,12 @@ public class LocaleUtil {
             configuration.locale = new Locale(newLang);
             WAILSettings.setLanguage(context, newLanguage);
         } else if (!TextUtils.isEmpty(language)) {
-            configuration.locale = new Locale(language);
+            configuration.locale = new Locale(lang);
         }
 
         context.getResources().updateConfiguration(configuration, null);
 
-        if (newLang != null && !language.equals(newLang)) {
+        if (newLang != null && !lang.equals(newLang)) {
             Intent intent = context.getPackageManager()
                     .getLaunchIntentForPackage(context.getPackageName());
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

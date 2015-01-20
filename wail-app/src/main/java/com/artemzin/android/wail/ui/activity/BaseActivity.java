@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
 import com.artemzin.android.wail.R;
+import com.artemzin.android.wail.WAILApp;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.google.analytics.tracking.android.EasyTracker;
 
@@ -26,6 +27,18 @@ public abstract class BaseActivity extends ActionBarActivity {
         }
 
         setupUI(savedInstanceState);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        WAILApp.activityPaused();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        WAILApp.activityResumed();
     }
 
     /**
