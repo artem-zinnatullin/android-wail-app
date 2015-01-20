@@ -44,7 +44,7 @@
     <string name="settings_actionbar_title">Настройки WAIL</string>
     <string name="settings_disable_scrobbling_over_mobile_network">Скробблить через мобильное интернет-подключение</string>
     <string name="settings_email_dialog_title">Выберите приложение для отправки e-mail</string>
-    <string name="settings_email_to_the_developer">Написать разработчику</string>
+    <string name="settings_email_to_developers">Написать разработчикам</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">#nowplaying отключен</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">#nowplaying включен</string>
     <string name="settings_lastfm_update_nowplaying_title">Слушаю сейчас на last.fm</string>

@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name" translatable="false">WAIL Beta</string>
     <string name="main_ab_title" translatable="false">WAIL Beta</string>
-    <string name="settings_my_email" translatable="false">artem.zinnatullin@gmail.com (English or Russian)</string>
+    <string name="settings_developers_emails" translatable="false">artem.zinnatullin@gmail.com, murz42@gmail.com (English or Russian)</string>
     <string name="settings_email_to_the_developer_subj" translatable="false">WAIL</string>
     <string name="settings_build_version_label" translatable="false">Build version</string>
 

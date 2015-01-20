@@ -254,16 +254,16 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/settings_email_to_the_developer"
+                    android:id="@+id/settings_email_to_developers"
                     style="?settingsItem">
 
                     <com.artemzin.android.wail.ui.TypefaceTextView
                         style="?settingsItemTitle"
-                        android:text="@string/settings_email_to_the_developer" />
+                        android:text="@string/settings_email_to_developers" />
 
                     <com.artemzin.android.wail.ui.TypefaceTextView
                         style="?settingsItemDescription"
-                        android:text="@string/settings_my_email" />
+                        android:text="@string/settings_developers_emails" />
 
                 </LinearLayout>
 

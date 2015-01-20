@@ -97,7 +97,7 @@
     <string name="settings_theme">Design</string>
     <string name="settings_theme_switch_label">Dark</string>
     <string name="settings_other">Anderes</string>
-    <string name="settings_email_to_the_developer">E-Mail an Entwickler</string>
+    <string name="settings_email_to_developers">E-Mail an Entwickler</string>
     <string name="settings_email_dialog_title">E-Mail-App auswählen</string>
     <string name="main_settings_menu_toggle_wail">WAIL an/abschalten</string>
     <string name="settings_disable_scrobbling_over_mobile_network">Über Mobilfunk scrobbeln</string>
