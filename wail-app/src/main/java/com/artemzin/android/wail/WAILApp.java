@@ -18,6 +18,8 @@ import com.google.analytics.tracking.android.MapBuilder;
 
 public class WAILApp extends Application {
 
+    private static boolean activityVisible;
+
     @Override
     public void onCreate() {
         LocaleUtil.updateLanguage(this, null);
@@ -29,7 +31,21 @@ public class WAILApp extends Application {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        LocaleUtil.updateLanguage(this, WAILSettings.getLanguage(this));
+        if (isActivityVisible()) {
+            LocaleUtil.updateLanguage(this, WAILSettings.getLanguage(this));
+        }
+    }
+
+    public static boolean isActivityVisible() {
+        return activityVisible;
+    }
+
+    public static void activityResumed() {
+        activityVisible = true;
+    }
+
+    public static void activityPaused() {
+        activityVisible = false;
     }
 
     private void updateSupportedPlayersDB() {
