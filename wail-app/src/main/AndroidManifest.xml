@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.artemzin.android.wail"
-    android:versionCode="21"
-    android:versionName="0.6.3 beta">
+    package="com.artemzin.android.wail">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -12,8 +10,7 @@
         android:name=".WAILApp"
         android:allowBackup="true"
         android:icon="@drawable/wail_launcher_icon"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme.Dark">
+        android:label="@string/app_name">
 
         <activity
             android:name=".ui.activity.MainActivity"
@@ -34,9 +31,24 @@
             android:label="@string/lastfm_login_activity_label" />
 
         <activity
+            android:name=".ui.activity.settings.SettingsSelectLanguageActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/settings_select_language_activity_label" />
+
+        <activity
+            android:name=".ui.activity.settings.SettingsIgnoredPlayersActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/settings_ignored_players_activity_label" />
+
+        <activity
             android:name=".ui.activity.settings.SettingsSoundNotificationsActivity"
             android:windowSoftInputMode="stateHidden"
             android:label="@string/settings_sound_notifications_activity_label" />
+
+        <activity
+            android:name=".ui.activity.settings.SettingsStatusBarNotificationsActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/settings_status_bar_notifications_activity_label" />
 
         <service
             android:name=".service.WAILService"
@@ -73,6 +85,11 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
+
+        <receiver
+            android:name=".receiver.NotificationActionsReceiver"
+            android:enabled="true"
+            android:exported="false"/>
 
         <!-- music apps receivers -->
 

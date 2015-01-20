@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- START of Not authorized main screen strings -->
+    <string name="not_authorized_activity_label">Hallo.</string>
+    <string name="app_main_about_1">WAIL — What am I listening to?</string>
+    <string name="app_main_about_2">WAIL scrobbelt Titel von verschiedenen Musikapps zu Last.fm</string>
+    <string name="text_button_sign_in_last_fm">Bei Last.fm anmelden</string>
+    <string name="non_authorized_sign_up_in_lastfm">Bei Last.fm registrieren</string>
+    <!-- END of Not authorized main screen -->
+
+    <string name="lastfm_api_error_11">Last.fm ist zurzeit nicht erreichbar, versuche es später noch einmal.</string>
+
+    <!-- START of authorization screen strings -->
+    <string name="lastfm_login_activity_label">Bei Last.fm anmelden</string>
+    <string name="lastfm_login_hint">Benutzername oder E-Mail</string>
+    <string name="lastfm_password_hint">Passwort</string>
+    <string name="lastfm_login_button">Anmelden</string>
+    <string name="lastfm_login_empty">Hier Deinen Last.fm-Benutzernamen eingeben</string>
+    <string name="lastfm_password_empty">Hier Dein Last.fm-Passwort eingeben</string>
+    <string name="lastfm_logging_progress_dialog_message">Bei Last.fm anmelden …</string>
+    <string name="lastfm_logging_network_error">Anmeldung bei Last.fm nicht möglich, bitte überprüfe die Verbindung.</string>
+    <string name="lastfm_logging_api_error_unknown">Konnte die Antwort von Last.fm nicht verstehen, bitte überprüfe die Version der App.</string>
+    <string name="lastfm_logging_api_error_4">Benutzername oder Passwort ist falsch.</string>
+    <string name="lastfm_login_lastfm_icon">Last.fm-Icon</string>
+    <!-- END of authorization screen strings -->
+
+    <!-- START of main screen strings -->
+    <string name="main_today">heute</string>
+    <string name="main_tracks_on_last_fm">auf Last.fm gescrobbelt</string>
+    <string name="main_tracks_on_last_fm_unknown">Anzahl der Titel auf Last.fm ist unbekannt. Für ein manuelles aktualisieren bitte nach unten ziehen!</string>
+    <string name="main_now_scrobbling_label">Scrobbelt jetzt: %1$s</string>
+    <string name="main_now_scrobbling_nothing">nichts</string>
+    <string name="main_pull_down_to_refresh_toast">Ziehen, um Daten zu aktualisieren</string>
+    <string name="main_pull_to_refresh_pull_text">Ziehen, um zu aktualisieren</string>
+    <string name="main_refreshing">Wird aktualisiert …</string>
+    <string name="main_updated_today_at">Stand heute um %1$s</string>
+    <string name="main_updated_yesterday_at">Stand gestern um %1$s</string>
+    <string name="main_updated_common">Stand %1$s</string>
+    <string name="main_refresh_info_from_lastfm_network_error">Netzwerkfehler, bitte später erneut versuchen.</string>
+    <string name="main_refresh_info_from_lastfm_api_error">Last.fm-Fehler: %1$s</string>
+    <string name="main_scrobbling_from_player_label">von %s</string>
+    <string name="main_confirm_ignoring_player">Willst Du %s ignorieren?</string>
+    <string name="main_ignore_this_player_button_text">App ignorieren</string>
+    <string name="main_refresh_info_from_lastfm_unknown_error">Unbekannter Last.fm-Fehler</string>
+    <string name="main_feedback_please">Ohne ein Feedback auf Google Play ist WAIL traurig.</string>
+    <string name="main_feedback_please_happy_toast">Jetzt ist WAIL glücklich.</string>
+    <string name="main_track_loved">Zu Lieblingsliedern hinzugefügt.</string>
+    <string name="main_love_track_button_content_description">Lieblingslied-Taste</string>
+    <string name="main_love_track_button_label">Füge aktuellen Titel den Lieblingsliedern hinzu</string>
+    <!-- END of main screen strings -->
+
+    <!-- START of tracks list screen strings -->
+    <string name="tracks_actionbar_title">Titel</string>
+    <string name="tracks_list_empty_motivation_text">Höre Musik mit der App Deiner Wahl und sehe hier was gescrobbelt wurde.</string>
+    <string name="track_artist_and_album_no_data">Keine Daten für Interpret oder Album</string>
+    <string name="track_status_waiting_for_scrobble">Warte auf gescrobbelte Titel</string>
+    <string name="track_status_scrobbling">Scrobbeln …</string>
+    <string name="track_status_scrobble_error">Scrobbel-Fehler</string>
+    <string name="track_status_scrobble_success">Gescrobbelt</string>
+    <string name="track_status_unknown">Unbekannter Status</string>
+    <string name="tracks_search_ab_title">Suchen</string>
+    <string name="tracks_search_hint">Suche in gescrobbelten Titeln</string>
+    <string name="tracks_search_error_toast">Kann Suche nicht ausführen</string>
+    <string name="tracks_search_no_results">Zu "%1$s" nichts gefunden.</string>
+    <string name="tracks_search_clear_text">Suche leeren</string>
+    <!-- END of tracks list screen strings -->
+
+    <!-- START of settings screen strings -->
+    <string name="settings_actionbar_title">Einstellungen</string>
+    <string name="settings_wail_enabled_toast">WAIL aktiv! Auf gehts!</string>
+    <string name="settings_wail_disabled_toast">WAIL abgeschaltet</string>
+    <string name="settings_scrobbling_options_title">Scrobbel-Optionen</string>
+    <string name="settings_min_track_elapsed_time_in_percent_title">Mindest-Titellänge in Prozent</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_title">Mindest-Titellänge in Sekunden</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">Titel wird gescrobbelt, wenn er länger als %1$s Sekunden abgespielt wurde.</string>
+    <string name="settings_min_track_elapsed_time_in_percent_desc">Titel wird gescrobbelt, wenn er zu %1$s%% abgespielt wurde, jedoch nur wenn der Titel kürzer als die Mindestlänge ist.</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">Mindestlänge in Sekunden</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Mindestlänge in Prozent</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_description">Kommt zur Anwendung, wenn der Titel kürzer als die Mindestlänge ist. Einstellbar von 50 bis 100%.</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Aktuell: %1$s%%</string>
+    <string name="settings_ignored_players_item_title">Ignorierte Musikapps</string>
+    <string name="settings_ignored_players_item_desc">WAIL wird Titel von diesen Musikapps nicht scrobbeln</string>
+    <string name="settings_ignored_players_activity_label">Aktivität von ignorierten Musikapps</string>
+    <string name="settings_ignored_players_image_content_description">Bild von ignorierten Musikapps</string>
+    <string name="settings_confirm_unignoring_player">Möchtest Du App \"%s\" nicht mehr ignorieren?</string>
+    <string name="settings_ignored_players_empty_text">Du ignorierst zurzeit keine Musikapps</string>
+    <string name="settings_lastfm_update_nowplaying_title">Auf Last.fm den aktuellen Titel anzeigen</string>
+    <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm #nowplaying aktiviert</string>
+    <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm #nowplaying deaktiviert</string>
+    <string name="settings_scrobbling_over_mobile_network_enabled_toast">Scrobbeln über Mobilfunk aktiviert!</string>
+    <string name="settings_scrobbling_over_mobile_network_disabled_toast">Scrobbeln über Mobilfunk deaktiviert!</string>
+    <string name="settings_notifications_title">Mitteilungen</string>
+    <string name="settings_sound_notifications_title">Tonmitteilungen</string>
+    <string name="settings_sound_notifications_description">Ton wenn Titel gescrobbelt werden.</string>
+    <string name="settings_status_bar_notifications_title">Statusbar-Mitteilungen</string>
+    <string name="settings_theme">Design</string>
+    <string name="settings_theme_switch_label">Dark</string>
+    <string name="settings_other">Anderes</string>
+    <string name="settings_email_to_developers">E-Mail an Entwickler</string>
+    <string name="settings_email_dialog_title">E-Mail-App auswählen</string>
+    <string name="main_settings_menu_toggle_wail">WAIL an/abschalten</string>
+    <string name="settings_disable_scrobbling_over_mobile_network">Über Mobilfunk scrobbeln</string>
+    <!-- END of settings screen strings -->
+
+    <!-- START of sound notifications screen strings -->
+    <string name="settings_sound_notifications_activity_label">Tonmitteilungen</string>
+    <string name="settings_sound_notifications_main_title">Liste von Mitteilungen</string>
+    <string name="settings_sound_notifications_pro_tip">Tipp: Beschreibung berühren um Ton anzuhören</string>
+    <string name="settings_notifications_track_scrobbled">WAIL scrobbelt Titel</string>
+    <string name="settings_track_was_skipped">WAIL hat Titel wegen Länge übersprungen</string>
+    <string name="settings_sound_notifications_toast_can_not_play_sound">Ton konnte nicht abgespielt werden.</string>
+    <!-- END of sound notifications screen strings -->
+
+    <string name="settings_status_bar_notifications_activity_label">Statusbar-Mitteilungen</string>
+    <string name="settings_status_bar_notifications_main_title">Liste von Mitteilungen</string>
+    <string name="settings_notifications_track_now_scrobbling">WAIL scrobbelt Titel</string>
+
+    <string name="notifications_now_scrobbling">Scrobbelt jetzt</string>
+    <string name="notifications_love_current_track">Aktuellen Titel lieben</string>
+    <string name="notifications_track_loved">Zu Lieblingsliedern hinzugefügt</string>
+
+    <!-- START of some common strings -->
+    <string name="dialog_cancel">Abbrechen</string>
+    <string name="dialog_save">Speichern</string>
+    <string-array name="drawer_items">
+        <item>Start</item>
+        <item>Titel</item>
+        <item>Einstellungen</item>
+    </string-array>
+
+    <!-- Some languages has 3 word forms depending on word items count -->
+    <!-- But English has only 2 word forms -->
+    <string-array name="word_form_track">
+        <item>Titel</item>
+        <!-- example: 1 track -->
+        <item>Titel</item>
+        <!-- example: 2 tracks, 3, .... infinity -->
+        <!-- <item>3rd word form</item> -->
+        <!-- if your language requires 3rd word form, uncomment and  write it above -->
+
+        <!-- example for Russian language -->
+        <!-- 1 трек, 2 трека, 3 трека, 4 трека, 5 треков -->
+        <!-- as you see, we got 3 word forms: "трек", "трека", "треков" -->
+    </string-array>
+
+    <!-- same as word_form_tracks -->
+    <string-array name="word_forms_second">
+        <item>Sekunde</item>
+        <item>Sekunden</item>
+        <!-- <item>3rd word form</item> -->
+    </string-array>
+    <!-- END of some common strings -->
+
+</resources>

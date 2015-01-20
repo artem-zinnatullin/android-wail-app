@@ -5,55 +5,85 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.artemzin.android.wail.R;
-import com.artemzin.android.wail.ui.fragment.main.MainDrawerFragment;
+import com.artemzin.android.wail.storage.WAILSettings;
+import com.artemzin.android.wail.ui.TypefaceTextView;
 import com.artemzin.android.wail.ui.fragment.main.MainFragment;
 import com.artemzin.android.wail.ui.fragment.main.SettingsFragment;
 import com.artemzin.android.wail.ui.fragment.main.TracksListFragment;
-import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.util.Loggi;
 import com.artemzin.android.wail.util.SleepIfRequiredAsyncTask;
 
 import java.lang.reflect.Field;
 
-public class MainActivity extends BaseActivity implements MainDrawerFragment.MainDrawerListener {
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnItemClick;
+
+public class MainActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_NON_AUTHORIZED_ACTIVITY_INTENT = 1;
 
-    private MainDrawerFragment mainDrawerFragment;
-    private DrawerLayout drawerLayout;
+    @InjectView(R.id.main_drawer_layout)
+    public DrawerLayout drawerLayout;
+
+    @InjectView(R.id.main_left_drawer)
+    public ListView drawerList;
+
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
+    private int lastItemSelected = -1;
+
     private Fragment[] navigationFragments = new Fragment[3];
+
+    @OnItemClick(R.id.main_left_drawer)
+    public void onItemsSelected(int position) {
+        setSelectedDrawerItem(position);
+        selectNavDrawerItem(position);
+
+        SleepIfRequiredAsyncTask.newInstance(SystemClock.elapsedRealtime(), 150, new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    closeNavigationDrawer();
+                } catch (Exception e) {
+                    Loggi.e("MainActivity closeNavigationDrawer() exception: " + e.getMessage());
+                }
+            }
+        }).execute();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.inject(this);
 
         if (!WAILSettings.isAuthorized(this)) {
             startActivityForResult(new Intent(this, NonAuthorizedActivity.class), REQUEST_CODE_NON_AUTHORIZED_ACTIVITY_INTENT);
         }
-
-        drawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
 
         // in landscape orientation on big screen there wont be drawer layout
         if (drawerLayout != null) {
             actionBarDrawerToggle = new ActionBarDrawerToggle(
                     this,
                     drawerLayout,
-                    R.drawable.ic_drawer,
                     R.string.app_name,
                     R.string.app_name) {
 
                 @Override
                 public void onDrawerSlide(View drawerView, float slideOffset) {
+                    if (lastItemSelected == -1) {
+                        setSelectedDrawerItem(0);
+                    }
                     super.onDrawerSlide(drawerView, slideOffset);
                 }
 
@@ -75,8 +105,14 @@ public class MainActivity extends BaseActivity implements MainDrawerFragment.Mai
 
             drawerLayout.setDrawerListener(actionBarDrawerToggle);
 
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-            getActionBar().setHomeButtonEnabled(true);
+            drawerList.setAdapter(new ArrayAdapter<String>(
+                    this,
+                    R.layout.activity_main_drawer_item_layout,
+                    getResources().getStringArray(R.array.drawer_items)
+            ));
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
 
             tryToIncreaseNavigationDrawerLeftSwipeZone(drawerLayout);
         }
@@ -94,14 +130,7 @@ public class MainActivity extends BaseActivity implements MainDrawerFragment.Mai
         navigationFragments[1] = new TracksListFragment();
         navigationFragments[2] = new SettingsFragment();
 
-        if (savedInstanceState == null) {
-            mainDrawerFragment = new MainDrawerFragment();
-            getFragmentManager().beginTransaction().add(R.id.main_left_drawer, mainDrawerFragment).commit();
-        } else {
-            mainDrawerFragment = (MainDrawerFragment) getFragmentManager().findFragmentById(R.id.main_left_drawer);
-        }
-
-        mainDrawerFragment.setListener(this);
+        selectNavDrawerItem(0);
 
         if (WAILSettings.isFirstLaunch(this)) {
             WAILSettings.setIsFirstLaunch(this, false);
@@ -139,23 +168,14 @@ public class MainActivity extends BaseActivity implements MainDrawerFragment.Mai
         fragmentTransaction.commit();
     }
 
-    @Override
-    public void onItemsSelected(int position) {
-
-        if (mainDrawerFragment.getLastSelectedItemPos() != position) {
-            selectNavDrawerItem(position);
+    private void setSelectedDrawerItem(int position) {
+        if (lastItemSelected != -1) {
+            ((TypefaceTextView) drawerList.getChildAt(lastItemSelected))
+                    .setTypefaceFromAssets("fonts/Roboto-Light.ttf");
         }
-
-        SleepIfRequiredAsyncTask.newInstance(SystemClock.elapsedRealtime(), 150, new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    closeNavigationDrawer();
-                } catch (Exception e) {
-                    Loggi.e("MainActivity closeNavigationDrawer() exception: " + e.getMessage());
-                }
-            }
-        }).execute();
+        ((TypefaceTextView) drawerList.getChildAt(position))
+                .setTypefaceFromAssets("fonts/Roboto-Medium.ttf");
+        lastItemSelected = position;
     }
 
     private void closeNavigationDrawer() {

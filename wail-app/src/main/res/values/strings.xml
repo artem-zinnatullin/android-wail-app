@@ -5,7 +5,6 @@
     <string name="not_authorized_activity_label">Hi there!</string>
     <string name="app_main_about_1">WAIL — What am I listening to?</string>
     <string name="app_main_about_2">WAIL will scrobble music you are listening to via different music players to last.fm</string>
-    <string name="app_main_about_3">#nowplaying is supported!</string>
     <string name="text_button_sign_in_last_fm">Sign in to last.fm</string>
     <string name="non_authorized_sign_up_in_lastfm">Sign up for last.fm</string>
     <!-- END of Not authorized main screen -->
@@ -29,22 +28,26 @@
     <!-- START of main screen strings -->
     <string name="main_today">today</string>
     <string name="main_tracks_on_last_fm">scrobbled on last.fm</string>
-    <string name="main_tracks_on_last_fm_unknown">total tracks count on last.fm is unknown :( try to do manual pull to refresh!</string>
+    <string name="main_tracks_on_last_fm_unknown">Total tracks count on last.fm is unknown :(\nTry to do manual pull to refresh!</string>
     <string name="main_now_scrobbling_label">Now scrobbling: %1$s</string>
     <string name="main_now_scrobbling_nothing">nothing :(</string>
     <string name="main_pull_down_to_refresh_toast">Pull down to refresh data :)</string>
     <string name="main_pull_to_refresh_pull_text">Pull to refresh</string>
-    <string name="main_pull_to_refresh_refreshing_text">Updating info from last.fm</string>
-    <string name="main_pull_to_refresh_release_text">Release to cancel refresh</string>
+    <string name="main_refreshing">Refreshing…</string>
     <string name="main_updated_today_at">updated today at %1$s</string>
     <string name="main_updated_yesterday_at">updated yesterday at %1$s</string>
     <string name="main_updated_common">updated %1$s</string>
     <string name="main_refresh_info_from_lastfm_network_error">Network error, please try again later</string>
     <string name="main_refresh_info_from_lastfm_api_error">Last.fm error: %1$s</string>
+    <string name="main_scrobbling_from_player_label">from %s</string>
+    <string name="main_confirm_ignoring_player">Do you want to ignore %s?</string>
+    <string name="main_ignore_this_player_button_text">Ignore this player</string>
     <string name="main_refresh_info_from_lastfm_unknown_error">Can not update info from last.fm, sorry :(</string>
-    <string name="main_press_back_again_to_exit">Press back again to exit</string>
-    <string name="main_feedback_please">WAIL is sad without your feedback on the Google PLay :(</string>
+    <string name="main_feedback_please">WAIL is sad without your feedback on the Google Play :(</string>
     <string name="main_feedback_please_happy_toast">Now WAIL is happy ;)</string>
+    <string name="main_track_loved">Track loved :)</string>
+    <string name="main_love_track_button_content_description">Love track button</string>
+    <string name="main_love_track_button_label">Love current track</string>
     <!-- END of main screen strings -->
 
     <!-- START of tracks list screen strings -->
@@ -74,21 +77,32 @@
     <string name="settings_min_track_elapsed_time_in_percent_desc">current value %1$s%%, used only if track elapsed time was &lt; than min track elapsed time in seconds</string>
     <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">Min track el. time in secs</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Min track time elapsed in %</string>
-    <string name="settings_min_track_elapsed_time_in_percent_dialog_description">Used when you listened track for &lt; than min track elapsed time in seconds, WAIL will check this setting, you can set from %50 to 100%</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_description">Used when you listened track for &lt; than min track elapsed time in seconds, WAIL will check this setting, you can set from 50% to 100%</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Current value %1$s%% of track</string>
-    <string name="settings_update_nowplaying_title">#nowplaying</string>
-    <string name="settings_lastfm_update_nowplaying_title">Listening now on Last.fm</string>
+    <string name="settings_ignored_players_item_title">Ignored media players</string>
+    <string name="settings_ignored_players_item_desc">WAIL will not scrobble tracks played by these players</string>
+    <string name="settings_ignored_players_activity_label">Ignored media players</string>
+    <string name="settings_ignored_players_image_content_description">Ignored player image</string>
+    <string name="settings_confirm_unignoring_player">Do you want to stop ignoring player \"%s\"?</string>
+    <string name="settings_ignored_players_empty_text">You have no ignored players</string>
+    <string name="settings_update_nowplaying_title" translatable="false">#nowplaying</string>
+    <string name="settings_lastfm_update_nowplaying_title">Listening now on last.fm</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm update nowplaying enabled</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm update nowplaying turned off</string>
+    <string name="settings_scrobbling_over_mobile_network_enabled_toast">Scrobbling over mobile network enabled!</string>
+    <string name="settings_scrobbling_over_mobile_network_disabled_toast">Scrobbling over mobile network disabled!</string>
     <string name="settings_notifications_title">Notifications</string>
     <string name="settings_sound_notifications_title">Sound notifications</string>
     <string name="settings_sound_notifications_description">Track scrobbled sound, etc…</string>
     <string name="settings_status_bar_notifications_title">Status bar notifications</string>
-    <string name="settings_status_bar_notifications_description">This feature is coming soon…</string>
-    <string name="settings_email_to_the_developer">Email developer</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_theme_switch_label">Dark theme</string>
+    <string name="settings_other">Other</string>
+    <string name="settings_email_to_developers">Email developers</string>
     <string name="settings_email_dialog_title">Select email app</string>
     <string name="main_settings_menu_toggle_wail">Toggle WAIL</string>
-    <string name="settings_disable_scrobbling_over_mobile_network">Disable scrobbling over mobile network</string>
+    <string name="settings_disable_scrobbling_over_mobile_network">Scrobbling over mobile network</string>
+
     <!-- END of settings screen strings -->
 
     <!-- START of sound notifications screen strings -->
@@ -102,19 +116,29 @@
 
     <string name="settings_status_bar_notifications_activity_label">Status bar notifications</string>
     <string name="settings_status_bar_notifications_main_title">List of status bar notifications</string>
+    <string name="settings_notifications_track_now_scrobbling">WAIL is now scrobbling track</string>
+
+    <string name="notifications_now_scrobbling">Now scrobbling</string>
+    <string name="notifications_love_current_track">Love this track</string>
+    <string name="notifications_track_loved">Track loved</string>
 
     <!-- START of some common strings -->
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_save">Save</string>
-    <string name="drawer_main">Main</string>
-    <string name="drawer_tracks">Tracks</string>
-    <string name="drawer_settings">Settings</string>
+
+    <string-array name="drawer_items">
+        <item>Main</item>
+        <item>Tracks</item>
+        <item>Settings</item>
+    </string-array>
 
     <!-- Some languages has 3 word forms depending on word items count -->
     <!-- But English has only 2 word forms -->
     <string-array name="word_form_track">
-        <item>track</item>  <!-- example: 1 track -->
-        <item>tracks</item> <!-- example: 2 tracks, 3, .... infinity -->
+        <item>track</item>
+        <!-- example: 1 track -->
+        <item>tracks</item>
+        <!-- example: 2 tracks, 3, .... infinity -->
         <!-- <item>3rd word form</item> -->
         <!-- if your language requires 3rd word form, uncomment and  write it above -->
 

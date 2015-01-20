@@ -14,7 +14,7 @@ public class BaseSettingsActivity extends BaseActivity {
     protected void setupUI(Bundle savedInstanceState) {
         super.setupUI(savedInstanceState);
         overridePendingTransition(R.anim.activity_pull_from_right_to_left, R.anim.activity_pull_from_current_to_left);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

@@ -31,11 +31,8 @@
 
         <com.artemzin.android.wail.ui.TypefaceTextView
             android:id="@+id/tracks_list_empty_text_view"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:gravity="center"
             tools:text="@string/tracks_list_empty_motivation_text"
-            app:typefaceFromAssets="fonts/Roboto-Medium.ttf" />
+            style="?backgroundText" />
 
     </LinearLayout>
 
@@ -48,7 +45,10 @@
         <ListView
             android:id="@+id/tracks_list_view"
             android:layout_height="match_parent"
-            android:layout_width="match_parent" />
+            android:layout_width="match_parent"
+            android:divider="@color/divider"
+            android:dividerHeight="1px"
+            android:scrollbars="vertical" />
 
     </LinearLayout>
 

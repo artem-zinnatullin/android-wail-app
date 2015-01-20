@@ -1,32 +1,36 @@
 package com.artemzin.android.wail.ui.fragment.main;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.artemzin.android.bytes.ui.DisplayUnitsConverter;
 import com.artemzin.android.bytes.ui.ViewUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.api.lastfm.LFApiException;
 import com.artemzin.android.wail.api.lastfm.LFUserApi;
 import com.artemzin.android.wail.api.lastfm.model.response.LFUserResponseModel;
 import com.artemzin.android.wail.api.network.NetworkException;
-import com.artemzin.android.wail.storage.db.TracksDBHelper;
+import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.WAILSettings;
+import com.artemzin.android.wail.storage.db.IgnoredPlayersDBHelper;
+import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.model.Track;
 import com.artemzin.android.wail.ui.fragment.BaseFragment;
 import com.artemzin.android.wail.util.AsyncTaskExecutor;
@@ -35,35 +39,160 @@ import com.artemzin.android.wail.util.ThreadUtil;
 import com.artemzin.android.wail.util.WordFormUtil;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
+import com.melnykov.fab.FloatingActionButton;
+import com.melnykov.fab.ObservableScrollView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
-import uk.co.senab.actionbarpulltorefresh.library.DefaultHeaderTransformer;
-import uk.co.senab.actionbarpulltorefresh.library.Options;
-import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
-import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 
-public class MainFragment extends BaseFragment implements View.OnClickListener {
+public class MainFragment extends BaseFragment {
 
     private static final String GA_EVENT_MAIN_FRAGMENT = "MainFragment";
 
-    private PullToRefreshLayout pullToRefreshLayout;
-    private TextView tracksTodayCountTextView,
-            tracksTodayCountLabelTextView,
-            nowScrobblingTrackTextView,
-            tracksTotalCountOnLastfmTextView,
-            tracksTotalCountOnLastfmLabelTextView,
-            lastfmUserInfoUpdateTimeTextView;
-    private View feedbackPleaseView;
+    private IgnoredPlayersDBHelper dbHelper;
+
+    private final BroadcastReceiver tracksChangedBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateLocalInfo();
+        }
+    };
+
+    @InjectView(R.id.main_scroll_view)
+    public ObservableScrollView scrollView;
+
+    @InjectView(R.id.main_pull_to_refresh_layout)
+    public SwipeRefreshLayout pullToRefreshLayout;
+
+    @InjectView(R.id.main_tracks_today_count_text_view)
+    public TextView tracksTodayCountTextView;
+
+    @InjectView(R.id.main_tracks_today_count_label_text_view)
+    public TextView tracksTodayCountLabelTextView;
+
+    @InjectView(R.id.main_now_scrobbling_track_text_view)
+    public TextView nowScrobblingTrackTextView;
+
+    @InjectView(R.id.main_now_scrobbling_player_text_view)
+    public TextView nowScrobblingPlayerTextView;
+
+    @InjectView(R.id.main_tracks_total_count_text_view)
+    public TextView tracksTotalCountOnLastfmTextView;
+
+    @InjectView(R.id.main_tracks_total_count_label_text_view)
+    public TextView tracksTotalCountOnLastfmLabelTextView;
+
+    @InjectView(R.id.main_tracks_total_count_unknown_text)
+    public TextView tracksTotalCountOnLastfmLabelUnknownTextView;
+
+    @InjectView(R.id.main_last_fm_user_info_update_time)
+    public TextView lastfmUserInfoUpdateTimeTextView;
+
+    @InjectView(R.id.main_ignore_player_button)
+    public TextView ignorePlayerButton;
+
+    @InjectView(R.id.main_love_current_track_button)
+    public FloatingActionButton loveCurrentTrackButton;
+
+    @InjectView(R.id.main_feedback_please)
+    public View feedbackPleaseView;
+
     private String[] trackWordForms;
+
+    @OnClick(R.id.main_tracks_today_view)
+    public void onTracksTodayViewClick() {
+        Toast.makeText(getActivity(), getString(R.string.main_pull_down_to_refresh_toast), Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.main_feedback_please)
+    public void onFeedbackPleaseClick() {
+        final Activity activity = getActivity();
+
+        WAILSettings.setShowFeedbackRequest(activity, false);
+        ViewUtil.setVisibility(feedbackPleaseView, false);
+
+        Toast.makeText(activity, getString(R.string.main_feedback_please_happy_toast), Toast.LENGTH_LONG)
+                .show();
+
+        final String appPackageName = activity.getPackageName();
+
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            EasyTracker.getInstance(activity).send(MapBuilder.createEvent(
+                    GA_EVENT_MAIN_FRAGMENT,
+                    "feedback_please_click",
+                    "Google Play opened",
+                    1L
+            ).build());
+        } catch (Exception e) {
+            // will open browser if failed with Google Play app
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
+            EasyTracker.getInstance(activity).send(MapBuilder.createEvent(
+                    GA_EVENT_MAIN_FRAGMENT,
+                    "feedback_please_click",
+                    "Browser opened",
+                    1L
+            ).build());
+        }
+    }
+
+    @OnClick(R.id.main_love_current_track_button)
+    public void onLoveCurrentTrackButtonClick() {
+        Track track = WAILSettings.getNowScrobblingTrack(getActivity());
+        if (track != null) {
+            Toast.makeText(getActivity(), getString(R.string.main_track_loved), Toast.LENGTH_SHORT).show();
+            loveCurrentTrackButton.hide();
+            getActivity().startService(
+                    new Intent(getActivity(), WAILService.class)
+                            .setAction(WAILService.INTENT_ACTION_HANDLE_LOVED_TRACK)
+            );
+        }
+    }
+
+    @OnClick(R.id.main_ignore_player_button)
+    public void onIgnoreScrobblingPlayerClick() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        View titleView = inflater.inflate(R.layout.dialog_fragment_title, null);
+        String label = WAILSettings.getNowScrobblingPlayerLabel(getActivity());
+        final String packageName = WAILSettings.getNowScrobblingPlayerPackageName(getActivity());
+        final String nowScrobblingPlayer = label != null ? label : packageName;
+
+        ((TextView) titleView.findViewById(R.id.dialog_fragment_title_text_view))
+                .setText(String.format(
+                                getString(R.string.main_confirm_ignoring_player),
+                                nowScrobblingPlayer)
+                );
+
+        builder.setCustomTitle(titleView)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dbHelper.add(packageName);
+                        WAILSettings.setNowScrobblingTrack(getActivity(), null);
+                        WAILSettings.setNowScrobblingPlayerPackageName(getActivity(), null);
+                        WAILSettings.setNowScrobblingPlayerLabel(getActivity(), null);
+                        WAILSettings.setLastCapturedTrackInfo(getActivity(), null);
+                        updateLocalInfo();
+                    }
+                })
+                .setNegativeButton(getString(R.string.dialog_cancel), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().getActionBar().setTitle(getString(R.string.main_ab_title));
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.main_ab_title));
         loadTrackWordForms();
     }
 
@@ -76,36 +205,21 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        dbHelper = IgnoredPlayersDBHelper.getInstance(getActivity());
+
+        ButterKnife.inject(this, view);
+
         final Activity activity = getActivity();
 
-        pullToRefreshLayout = (PullToRefreshLayout) view.findViewById(R.id.main_pull_to_refresh_layout);
-        ActionBarPullToRefresh.from(activity)
-                .allChildrenArePullable()
-                .listener(new PullToRefreshListener())
-                .options(Options.create()
-                            .headerTransformer(new PullToRefreshHeaderTransformer())
-                            .build())
-                .setup(pullToRefreshLayout);
-
-        view.findViewById(R.id.main_tracks_today_view).setOnClickListener(this);
-
-        tracksTodayCountTextView      = (TextView) view.findViewById(R.id.main_tracks_today_count_text_view);
-        tracksTodayCountLabelTextView = (TextView) view.findViewById(R.id.main_tracks_today_count_label_text_view);
-
-        nowScrobblingTrackTextView = (TextView) view.findViewById(R.id.main_now_scrobbling_track_text_view);
-
-        tracksTotalCountOnLastfmTextView      = (TextView) view.findViewById(R.id.main_tracks_total_count_text_view);
-        tracksTotalCountOnLastfmLabelTextView = (TextView) view.findViewById(R.id.main_tracks_total_count_label_text_view);
-
-        lastfmUserInfoUpdateTimeTextView      = (TextView) view.findViewById(R.id.main_last_fm_user_info_update_time);
-
-        feedbackPleaseView = view.findViewById(R.id.main_feedback_please);
+        pullToRefreshLayout.setColorSchemeResources(R.color.primary);
+        pullToRefreshLayout.setOnRefreshListener(new PullToRefreshListener());
 
         if (WAILSettings.isShowFeedbackRequest(activity)) {
             ViewUtil.setVisibility(feedbackPleaseView, true);
         }
 
-        feedbackPleaseView.setOnClickListener(this);
+        loveCurrentTrackButton.attachToScrollView(scrollView);
+        loveCurrentTrackButton.show(false);
     }
 
     @Override
@@ -249,7 +363,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
                 super.onPostExecute(userModel);
 
                 try {
-                    pullToRefreshLayout.setRefreshComplete();
+                    pullToRefreshLayout.setRefreshing(false);
                     updateTracksCountFromLastfm();
 
                     String toast = null;
@@ -355,9 +469,15 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
         final LFUserResponseModel userModel = WAILSettings.getLastfmUserInfo(getActivity());
 
         if (userModel == null || userModel.getPlayCount() == -1) {
-            tracksTotalCountOnLastfmTextView.setText("");
-            tracksTotalCountOnLastfmLabelTextView.setText(R.string.main_tracks_on_last_fm_unknown);
+            tracksTotalCountOnLastfmTextView.setVisibility(View.GONE);
+            tracksTotalCountOnLastfmLabelTextView.setVisibility(View.GONE);
+            tracksTotalCountOnLastfmLabelUnknownTextView.setVisibility(View.VISIBLE);
+            tracksTotalCountOnLastfmLabelUnknownTextView.setText(R.string.main_tracks_on_last_fm_unknown);
         } else {
+            tracksTotalCountOnLastfmTextView.setVisibility(View.VISIBLE);
+            tracksTotalCountOnLastfmLabelTextView.setVisibility(View.VISIBLE);
+            tracksTotalCountOnLastfmLabelUnknownTextView.setVisibility(View.GONE);
+
             tracksTotalCountOnLastfmTextView.setText(String.valueOf(userModel.getPlayCount()));
             tracksTotalCountOnLastfmLabelTextView.setText(
                     WordFormUtil.getWordForm(userModel.getPlayCount(), trackWordForms) + " " + getString(R.string.main_tracks_on_last_fm)
@@ -366,11 +486,27 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void updateNowScrobblingTrack() {
-        String nowScrobblingTrack = WAILSettings.getNowScrobblingTrack(getActivity().getApplicationContext());
+        Track nowScrobblingTrack = WAILSettings.getNowScrobblingTrack(getActivity());
+        String label = WAILSettings.getNowScrobblingPlayerLabel(getActivity());
+        String packageName = WAILSettings.getNowScrobblingPlayerPackageName(getActivity());
+        final String nowScrobblingPlayer = label != null ? label : packageName;
+
         if (nowScrobblingTrack != null) {
-            nowScrobblingTrackTextView.setText(getString(R.string.main_now_scrobbling_label, nowScrobblingTrack));
+            nowScrobblingTrackTextView.setText(getString(
+                            R.string.main_now_scrobbling_label,
+                            nowScrobblingTrack.getArtist() + " - " + nowScrobblingTrack.getTrack())
+            );
+            nowScrobblingPlayerTextView.setText(String.format(getString(R.string.main_scrobbling_from_player_label), nowScrobblingPlayer));
+            if (loveCurrentTrackButton.getVisibility() != View.VISIBLE) {
+                loveCurrentTrackButton.setVisibility(View.VISIBLE);
+            }
+            loveCurrentTrackButton.show();
+            ignorePlayerButton.setVisibility(View.VISIBLE);
         } else {
             nowScrobblingTrackTextView.setText(getString(R.string.main_now_scrobbling_label, getString(R.string.main_now_scrobbling_nothing)));
+            nowScrobblingPlayerTextView.setText("");
+            loveCurrentTrackButton.hide();
+            ignorePlayerButton.setVisibility(View.GONE);
         }
     }
 
@@ -407,82 +543,17 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
         }
     }
 
-    private final BroadcastReceiver tracksChangedBroadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            updateLocalInfo();
-        }
-    };
-
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.main_tracks_today_view) {
-            onTracksTodayViewClick();
-        } else if (v.getId() == R.id.main_feedback_please) {
-            onFeedbackPleaseClick();
-        }
-    }
-
-    private void onTracksTodayViewClick() {
-        Toast.makeText(getActivity(), getString(R.string.main_pull_down_to_refresh_toast), Toast.LENGTH_SHORT).show();
-    }
-
-    private void onFeedbackPleaseClick() {
-        final Activity activity = getActivity();
-
-        WAILSettings.setShowFeedbackRequest(activity, false);
-        ViewUtil.setVisibility(feedbackPleaseView, false);
-
-        Toast.makeText(activity, getString(R.string.main_feedback_please_happy_toast), Toast.LENGTH_LONG)
-                .show();
-
-        final String appPackageName = activity.getPackageName();
-
-        try {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-            EasyTracker.getInstance(activity).send(MapBuilder.createEvent(
-                    GA_EVENT_MAIN_FRAGMENT,
-                    "feedback_please_click",
-                    "Google Play opened",
-                    1L
-            ).build());
-        } catch (Exception e) {
-            // will open browser if failed with Google Play app
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
-            EasyTracker.getInstance(activity).send(MapBuilder.createEvent(
-                    GA_EVENT_MAIN_FRAGMENT,
-                    "feedback_please_click",
-                    "Browser opened",
-                    1L
-            ).build());
-        }
-    }
-
-    private class PullToRefreshListener implements OnRefreshListener {
+    private class PullToRefreshListener implements SwipeRefreshLayout.OnRefreshListener {
 
         @Override
-        public void onRefreshStarted(View view) {
+        public void onRefresh() {
+            Toast.makeText(getActivity(), getString(R.string.main_refreshing), Toast.LENGTH_SHORT).show();
             refreshDataFromLastfm();
             EasyTracker.getInstance(getActivity()).send(MapBuilder.createEvent(
                     GA_EVENT_MAIN_FRAGMENT,
                     "pullToRefresh",
                     null,
                     1L).build());
-        }
-    }
-
-    private static class PullToRefreshHeaderTransformer extends DefaultHeaderTransformer {
-
-        @Override
-        public void onViewCreated(Activity activity, View headerView) {
-            super.onViewCreated(activity, headerView);
-
-            setProgressBarColor(Color.parseColor("#FFFFFF"));
-            setProgressBarHeight((int) DisplayUnitsConverter.dpToPx(activity, 3));
-
-            setPullText(activity.getString(R.string.main_pull_to_refresh_pull_text));
-            setRefreshingText(activity.getString(R.string.main_pull_to_refresh_refreshing_text));
-            setReleaseText(activity.getString(R.string.main_pull_to_refresh_release_text));
         }
     }
 }

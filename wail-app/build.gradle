@@ -1,3 +1,8 @@
+// for applying custom environment properties
+if (new File('wail-app/custom_env.gradle').exists()) {
+    apply from: 'custom_env.gradle'
+}
+
 apply plugin: 'com.android.application'
 
 repositories {
@@ -5,41 +10,51 @@ repositories {
 }
 
 android {
-    compileSdkVersion 20
+    compileSdkVersion 21
     buildToolsVersion '20.0.0'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 20
-        versionCode 22
-        versionName '0.6.4 beta'
+        targetSdkVersion 21
+        versionCode 24
+        versionName '0.7.0 beta'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+    lintOptions {
+        disable 'InvalidPackage'
     }
 
     signingConfigs {
-        release
+        googlePlay
     }
 
     buildTypes {
         debug {
             versionNameSuffix ' debug ' + getDateForVersionName()
+            signingConfig signingConfigs.googlePlay
         }
 
         release {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.googlePlay
         }
     }
 
-    if (project.hasProperty('signingConfig.storeFile')
-        && project.hasProperty('signingConfig.storePassword')
-        && project.hasProperty('signingConfig.keyAlias')
-        && project.hasProperty('signingConfig.keyPassword')
+    if (project.hasProperty('signingConfigStoreFile')
+            && project.hasProperty('signingConfigStorePassword')
+            && project.hasProperty('signingConfigKeyAlias')
+            && project.hasProperty('signingConfigKeyPassword')
     ) {
-        android.signingConfigs.release.storeFile     = file(project.getProperty('signingConfig.storeFile'))
-        android.signingConfigs.release.storePassword = project.getProperty('signingConfig.storePassword')
-        android.signingConfigs.release.keyAlias      = project.getProperty('signingConfig.keyAlias')
-        android.signingConfigs.release.keyPassword   = project.getProperty('signingConfig.keyPassword')
+        android.signingConfigs.googlePlay.storeFile = file(project.ext['signingConfigStoreFile'])
+        android.signingConfigs.googlePlay.storePassword = project.ext['signingConfigStorePassword']
+        android.signingConfigs.googlePlay.keyAlias = project.ext['signingConfigKeyAlias']
+        android.signingConfigs.googlePlay.keyPassword = project.ext['signingConfigKeyPassword']
     } else {
-        buildTypes.release.signingConfig = null
+        buildTypes.all { bt ->
+            bt.signingConfig = null
+        }
     }
 }
 
@@ -48,7 +63,12 @@ dependencies {
     // because gradle can automatically load newer version which can add bugs and have to be tested
 
     compile 'com.android.support:support-v13:20.0.0'
-    compile 'com.github.chrisbanes.actionbarpulltorefresh:library:0.9.3'
+    compile 'com.android.support:support-v4:21.0.3'
+    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:cardview-v7:21.0.3'
+    compile 'com.melnykov:floatingactionbutton:1.1.0'
+    compile 'com.rengwuxian.materialedittext:library:1.7.1'
+    compile 'com.jakewharton:butterknife:5.1.2'
 
     compile fileTree(dir: 'libs', include: '*.jar')
 }

@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">WAIL Beta</string>
-    <string name="main_ab_title">WAIL Beta</string>
-    <string name="settings_my_email">artem.zinnatullin@gmail.com (English or Russian)</string>
-    <string name="settings_email_to_the_developer_subj">WAIL</string>
-    <string name="settings_build_version_label">Build version</string>
+    <string name="app_name" translatable="false">WAIL Beta</string>
+    <string name="main_ab_title" translatable="false">WAIL Beta</string>
+    <string name="settings_developers_emails" translatable="false">artem.zinnatullin@gmail.com, murz42@gmail.com (English or Russian)</string>
+    <string name="settings_email_to_the_developer_subj" translatable="false">WAIL</string>
+    <string name="settings_build_version_label" translatable="false">Build version</string>
+
+    <string-array name="settings_select_language_languages" translatable="false">
+        <!-- Please do not change position of "Auto" item! -->
+        <item>Auto</item>
+        <item>English</item>
+        <item>Deutsch</item>
+        <item>Russian</item>
+    </string-array>
+
+    <string name="settings_select_language_title" translatable="false">Language</string>
+    <string name="settings_select_language" translatable="false">Select language</string>
+    <string name="settings_select_language_activity_label" translatable="false">Select language</string>
+    <string name="settings_select_language_current_lang" translatable="false">%s (current)</string>
 </resources>

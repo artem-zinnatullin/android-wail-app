@@ -6,12 +6,17 @@ import android.content.SharedPreferences;
 import com.artemzin.android.bytes.common.StringUtil;
 import com.artemzin.android.wail.api.lastfm.model.response.LFUserResponseModel;
 import com.artemzin.android.wail.service.WAILService;
+import com.artemzin.android.wail.storage.model.Track;
+
+import java.util.Locale;
 
 public class WAILSettings {
 
     private static final String APP_SETTINGS                       = "APP_SETTINGS";
 
     // region keys
+    private static final String KEY_LOCALE                         = "KEY_LOCALE";
+    private static final String KEY_THEME                          = "KEY_THEME";
     private static final String KEY_IS_ENABLED                     = "KEY_IS_ENABLED";
     private static final String KEY_START_ON_BOOT                  = "KEY_START_ON_BOOT";
     private static final String KEY_LASTFM_SESSION_KEY             = "KEY_LASTFM_SESSION_KEY";
@@ -31,9 +36,13 @@ public class WAILSettings {
     private static final String KEY_SOUND_NOTIFICATION_TRACK_MARKED_AS_SCROBBLED_ENABLED = "KEY_SOUND_NOTIFICATION_TRACK_MARKED_AS_SCROBBLED_ENABLED";
     private static final String KEY_SOUND_NOTIFICATION_TRACK_SKIPPED_ENABLED = "KEY_SOUND_NOTIFICATION_TRACK_SKIPPED_ENABLED";
 
-    private static final String KEY_NOW_SCROBBLING_TRACK = "KEY_NOW_SCROBBLING_TRACK";
+    private static final String KEY_STATUS_BAR_NOTIFICATION_TRACK_SCROBBLING = "KEY_STATUS_BAR_NOTIFICATION_TRACK_SCROBBLING";
 
-    private static final String KEY_SHOULD_SHOW_NOTIFICATION_ABOUT_MIN_TRACK_DURATION_BEHAVIOR_CHANGED = "KEY_SHOULD_SHOW_NOTIFICATION_ABOUT_MIN_TRACK_DURATION_BEHAVIOR_CHANGED";
+    private static final String KEY_NOW_SCROBBLING_TRACK_ARTIST = "KEY_NOW_SCROBBLING_TRACK_ARTIST";
+    private static final String KEY_NOW_SCROBBLING_TRACK_TITLE = "KEY_NOW_SCROBBLING_TRACK_TITLE";
+
+    private static final String KEY_NOW_SCROBBLING_PLAYER_PACKAGE_NAME = "KEY_NOW_SCROBBLING_PLAYER_PACKAGE_NAME";
+    private static final String KEY_NOW_SCROBBLING_PLAYER_LABEL = "KEY_NOW_SCROBBLING_PLAYER_LABEL";
 
     // endregion
 
@@ -47,7 +56,7 @@ public class WAILSettings {
     private static Boolean isEnabled;
     private static Integer minTrackDurationInPercents;
     private static Integer minTrackDurationInSeconds;
-    private static Boolean disableScrobblingOverMobileNetwork;
+    private static Boolean enableScrobblingOverMobileNetwork;
     private static Long    totalHandledTracksCount;
     private static Boolean isLastfmNowplayingUpdateEnabled;
     private static String  lastfmUserName;
@@ -55,6 +64,8 @@ public class WAILSettings {
 
     private static Boolean soundNotificationTrackScrobbledEnabled;
     private static Boolean soundNotificationTrackSkippedEnabled;
+
+    private static Boolean statusBarNotificationTrackScrobblingEnabled;
     // endregion
 
     private WAILSettings() {}
@@ -76,7 +87,37 @@ public class WAILSettings {
         soundNotificationTrackScrobbledEnabled = null;
         soundNotificationTrackSkippedEnabled   = null;
 
-        getSharedPreferences(context).edit().clear().commit();
+        getSharedPreferences(context).edit().clear().apply();
+    }
+
+    public static synchronized String getLanguageOrNullIfAuto(Context context) {
+        String savedLang = getSharedPreferences(context).getString(KEY_LOCALE, null);
+
+        String defaultLang = Locale.getDefault().getLanguage();
+
+        if (savedLang == null) {
+            return null;
+        } else if (savedLang.equals(defaultLang) || savedLang.equals(defaultLang)) {
+            return null;
+        } else {
+            return savedLang;
+        }
+    }
+
+    public static synchronized String getLanguage(Context context) {
+        return getSharedPreferences(context).getString(KEY_LOCALE, Locale.getDefault().getLanguage());
+    }
+
+    public static synchronized void setLanguage(Context context, String value) {
+        getSharedPreferences(context).edit().putString(KEY_LOCALE, value).apply();
+    }
+
+    public static synchronized Theme getTheme(Context context) {
+        return Theme.valueOf(getSharedPreferences(context).getString(KEY_THEME, Theme.LIGHT.name()));
+    }
+
+    public static synchronized void setTheme(Context context, Theme theme) {
+        getSharedPreferences(context).edit().putString(KEY_THEME, theme.name()).apply();
     }
 
     public static synchronized boolean isAuthorized(Context context) {
@@ -97,7 +138,7 @@ public class WAILSettings {
 
     public static synchronized void setEnabled(Context context, boolean value) {
         isEnabled = value;
-        getSharedPreferences(context).edit().putBoolean(KEY_IS_ENABLED, value).commit();
+        getSharedPreferences(context).edit().putBoolean(KEY_IS_ENABLED, value).apply();
     }
 
     public static synchronized boolean isStartOnBoot(Context context) {
@@ -105,7 +146,7 @@ public class WAILSettings {
     }
 
     public static synchronized void setStartOnBoot(Context context, boolean value) {
-        getSharedPreferences(context).edit().putBoolean(KEY_START_ON_BOOT, value).commit();
+        getSharedPreferences(context).edit().putBoolean(KEY_START_ON_BOOT, value).apply();
     }
 
     public static synchronized String getLastfmSessionKey(Context context) {
@@ -115,7 +156,7 @@ public class WAILSettings {
 
     public static synchronized void setLastfmSessionKey(Context context, String value) {
         lastfmSessionKey = value;
-        getSharedPreferences(context).edit().putString(KEY_LASTFM_SESSION_KEY, value).commit();
+        getSharedPreferences(context).edit().putString(KEY_LASTFM_SESSION_KEY, value).apply();
     }
 
     public static synchronized int getMinTrackDurationInPercents(Context context) {
@@ -125,7 +166,7 @@ public class WAILSettings {
 
     public static synchronized void setMinTrackDurationInPercents(Context context, int value) {
         minTrackDurationInPercents = value;
-        getSharedPreferences(context).edit().putInt(KEY_MIN_TRACK_DURATION_IN_PERCENTS, value).commit();
+        getSharedPreferences(context).edit().putInt(KEY_MIN_TRACK_DURATION_IN_PERCENTS, value).apply();
     }
 
     public static synchronized int getMinTrackDurationInSeconds(Context context) {
@@ -135,7 +176,7 @@ public class WAILSettings {
 
     public static synchronized void setMinTrackDurationInSeconds(Context context, int value) {
         minTrackDurationInSeconds = value;
-        getSharedPreferences(context).edit().putInt(KEY_MIN_TRACK_DURATION_IN_SECONDS, value).commit();
+        getSharedPreferences(context).edit().putInt(KEY_MIN_TRACK_DURATION_IN_SECONDS, value).apply();
     }
 
     public static synchronized long getTotalHandledTracksCount(Context context) {
@@ -145,7 +186,7 @@ public class WAILSettings {
 
     public static synchronized void setTotalHandledTracksCount(Context context, long value) {
         totalHandledTracksCount = value;
-        getSharedPreferences(context).edit().putLong(KEY_TOTAL_HANDLED_TRACKS_COUNT, value).commit();
+        getSharedPreferences(context).edit().putLong(KEY_TOTAL_HANDLED_TRACKS_COUNT, value).apply();
     }
 
     public static synchronized boolean isLastfmNowplayingUpdateEnabled(Context context) {
@@ -155,7 +196,7 @@ public class WAILSettings {
 
     public static synchronized void setLastfmNowplayingUpdateEnabled(Context context, boolean value) {
         isLastfmNowplayingUpdateEnabled = value;
-        getSharedPreferences(context).edit().putBoolean(KEY_IS_LASTFM_NOWPLAYING_UPDATE_ENABLED, value).commit();
+        getSharedPreferences(context).edit().putBoolean(KEY_IS_LASTFM_NOWPLAYING_UPDATE_ENABLED, value).apply();
     }
 
     public static synchronized String getLastfmUserName(Context context) {
@@ -172,7 +213,7 @@ public class WAILSettings {
         lastfmUserName = userName;
         final SharedPreferences.Editor editor = getSharedPreferences(context).edit();
         editor.putString(KEY_LASTFM_USER_NAME, userName);
-        editor.commit();
+        editor.apply();
     }
 
     public static synchronized boolean isFirstLaunch(Context context) {
@@ -180,7 +221,7 @@ public class WAILSettings {
     }
 
     public static synchronized void setIsFirstLaunch(Context context, boolean isFirstLaunch) {
-        getSharedPreferences(context).edit().putBoolean(KEY_IS_FIRST_LAUNCH, isFirstLaunch).commit();
+        getSharedPreferences(context).edit().putBoolean(KEY_IS_FIRST_LAUNCH, isFirstLaunch).apply();
     }
 
     public static synchronized WAILService.LastCapturedTrackInfo getLastCapturedTrackInfo(Context context) {
@@ -190,7 +231,11 @@ public class WAILSettings {
     }
 
     public static synchronized void setLastCapturedTrackInfo(Context context, WAILService.LastCapturedTrackInfo lastCapturedTrackInfo) {
-        getSharedPreferences(context).edit().putString(KEY_LAST_CAPTURED_TRACK_INFO, lastCapturedTrackInfo.toJSON()).commit();
+        String value = null;
+        if (lastCapturedTrackInfo != null) {
+            value = lastCapturedTrackInfo.toJSON();
+        }
+        getSharedPreferences(context).edit().putString(KEY_LAST_CAPTURED_TRACK_INFO, value).apply();
     }
 
     public static synchronized LFUserResponseModel getLastfmUserInfo(Context context) {
@@ -206,7 +251,7 @@ public class WAILSettings {
     public static synchronized void setLastfmUserInfo(Context context, String json) {
         getSharedPreferences(context).edit()
                 .putString(KEY_LASTFM_USER_INFO, json)
-                .commit();
+                .apply();
     }
 
     public static synchronized long getLastfmUserInfoUpdateTimestamp(Context context) {
@@ -214,7 +259,7 @@ public class WAILSettings {
     }
 
     public static synchronized void setLastfmUserInfoUpdateTimestamp(Context context, long timestamp) {
-        getSharedPreferences(context).edit().putLong(KEY_LASTFM_USER_INFO_UPDATE_TIMESTAMP, timestamp).commit();
+        getSharedPreferences(context).edit().putLong(KEY_LASTFM_USER_INFO_UPDATE_TIMESTAMP, timestamp).apply();
     }
 
     public static synchronized boolean isSoundNotificationTrackMarkedAsScrobbledEnabled(Context context) {
@@ -225,7 +270,7 @@ public class WAILSettings {
 
     public static synchronized void setSoundNotificationTrackMarkedAsScrobbledEnabled(Context context, boolean value) {
         soundNotificationTrackScrobbledEnabled = value;
-        getSharedPreferences(context).edit().putBoolean(KEY_SOUND_NOTIFICATION_TRACK_MARKED_AS_SCROBBLED_ENABLED, value).commit();
+        getSharedPreferences(context).edit().putBoolean(KEY_SOUND_NOTIFICATION_TRACK_MARKED_AS_SCROBBLED_ENABLED, value).apply();
     }
 
     public static synchronized boolean isSoundNotificationTrackSkippedEnabled(Context context) {
@@ -236,7 +281,7 @@ public class WAILSettings {
 
     public static synchronized void setSoundNotificationTrackSkippedEnabled(Context context, boolean value) {
         soundNotificationTrackSkippedEnabled = value;
-        getSharedPreferences(context).edit().putBoolean(KEY_SOUND_NOTIFICATION_TRACK_SKIPPED_ENABLED, value).commit();
+        getSharedPreferences(context).edit().putBoolean(KEY_SOUND_NOTIFICATION_TRACK_SKIPPED_ENABLED, value).apply();
     }
 
     public static synchronized boolean isShowFeedbackRequest(Context context) {
@@ -247,25 +292,69 @@ public class WAILSettings {
 
     public static synchronized void setShowFeedbackRequest(Context context, boolean value) {
         isShowFeedbackRequest = value;
-        getSharedPreferences(context).edit().putBoolean(KEY_IS_SHOW_FEEDBACK_REQUEST, value).commit();
+        getSharedPreferences(context).edit().putBoolean(KEY_IS_SHOW_FEEDBACK_REQUEST, value).apply();
     }
 
-    public static synchronized String getNowScrobblingTrack(Context context) {
-        return getSharedPreferences(context).getString(KEY_NOW_SCROBBLING_TRACK, null);
+    public static synchronized Track getNowScrobblingTrack(Context context) {
+        String artist = getSharedPreferences(context).getString(KEY_NOW_SCROBBLING_TRACK_ARTIST, null);
+        String title = getSharedPreferences(context).getString(KEY_NOW_SCROBBLING_TRACK_TITLE, null);
+        if (artist == null && title == null) {
+            return null;
+        }
+        Track track = new Track();
+        track.setArtist(artist);
+        track.setTrack(title);
+        return track;
     }
 
-    public static synchronized void setNowScrobblingTrack(Context context, String value) {
-        getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_TRACK, value).commit();
+    public static synchronized void setNowScrobblingTrack(Context context, Track track) {
+        getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_TRACK_ARTIST,
+                track == null ? null : track.getArtist()
+        ).apply();
+        getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_TRACK_TITLE,
+                track == null ? null : track.getTrack()
+        ).apply();
     }
 
-    public static boolean isDisableScrobblingOverMobileNetwork(Context context) {
-        return disableScrobblingOverMobileNetwork != null
-                ? disableScrobblingOverMobileNetwork
-                : getSharedPreferences(context).getBoolean(KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK, false);
+    public static synchronized String getNowScrobblingPlayerPackageName(Context context) {
+        return getSharedPreferences(context).getString(KEY_NOW_SCROBBLING_PLAYER_PACKAGE_NAME, null);
+    }
+
+    public static synchronized void setNowScrobblingPlayerPackageName(Context context, String player) {
+        getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_PLAYER_PACKAGE_NAME, player).apply();
+    }
+
+    public static synchronized String getNowScrobblingPlayerLabel(Context context) {
+        return getSharedPreferences(context).getString(KEY_NOW_SCROBBLING_PLAYER_LABEL, null);
+    }
+
+    public static synchronized void setNowScrobblingPlayerLabel(Context context, String player) {
+        getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_PLAYER_LABEL, player).apply();
+    }
+
+    public static boolean isEnableScrobblingOverMobileNetwork(Context context) {
+        return enableScrobblingOverMobileNetwork != null
+                ? enableScrobblingOverMobileNetwork
+                : getSharedPreferences(context).getBoolean(KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK, true);
     }
 
     public static void setDisableScrobblingOverMobileNetwork(Context context, boolean value) {
-        disableScrobblingOverMobileNetwork = value;
-        getSharedPreferences(context).edit().putBoolean(KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK, value).commit();
+        enableScrobblingOverMobileNetwork = value;
+        getSharedPreferences(context).edit().putBoolean(KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK, value).apply();
+    }
+
+    public static boolean isStatusBarNotificationTrackScrobblingEnabled(Context context) {
+        return statusBarNotificationTrackScrobblingEnabled != null
+                ? statusBarNotificationTrackScrobblingEnabled
+                : getSharedPreferences(context).getBoolean(KEY_STATUS_BAR_NOTIFICATION_TRACK_SCROBBLING, false);
+    }
+
+    public static void setStatusBarNotificationTrackScrobblingEnabled(Context context, boolean value) {
+        WAILSettings.statusBarNotificationTrackScrobblingEnabled = value;
+        getSharedPreferences(context).edit().putBoolean(KEY_STATUS_BAR_NOTIFICATION_TRACK_SCROBBLING, value).apply();
+    }
+
+    public static enum  Theme {
+        LIGHT, DARK
     }
 }

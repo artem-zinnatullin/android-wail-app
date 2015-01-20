@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class AppDBManager extends SQLiteOpenHelper {
 
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 3;
     private static final String DB_NAME = "WAIL_DB";
 
     private static volatile AppDBManager instance;
@@ -33,10 +33,20 @@ public class AppDBManager extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TracksDBHelper.TableInfo.CREATE_TABLE_QUERY);
         db.execSQL(PlayersDBHelper.TableInfo.CREATE_TABLE_QUERY);
+        db.execSQL(LovedTracksDBHelper.TableInfo.CREATE_TABLE_QUERY);
+        db.execSQL(IgnoredPlayersDBHelper.TableInfo.CREATE_TABLE_QUERY);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (oldVersion == 1 && newVersion == 2) {
+            db.execSQL(LovedTracksDBHelper.TableInfo.CREATE_TABLE_QUERY);
+        } else if (oldVersion == 2 && newVersion == 3) {
+            db.execSQL(IgnoredPlayersDBHelper.TableInfo.CREATE_TABLE_QUERY);
+        } else if (oldVersion == 1 && newVersion == 3) {
+            db.execSQL(LovedTracksDBHelper.TableInfo.CREATE_TABLE_QUERY);
+            db.execSQL(IgnoredPlayersDBHelper.TableInfo.CREATE_TABLE_QUERY);
+        }
     }
 
     @Override
@@ -59,5 +69,7 @@ public class AppDBManager extends SQLiteOpenHelper {
     public void clearAll() {
         PlayersDBHelper.getInstance(context).removeAll();
         TracksDBHelper.getInstance(context).deleteAll();
+        LovedTracksDBHelper.getInstance(context).deleteAll();
+        IgnoredPlayersDBHelper.getInstance(context).deleteAll();
     }
 }

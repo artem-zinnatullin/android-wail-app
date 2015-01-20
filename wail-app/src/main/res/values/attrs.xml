@@ -6,4 +6,44 @@
     <declare-styleable name="TypefaceTextView">
         <attr name="typefaceFromAssets" format="string" />
     </declare-styleable>
+
+    <attr name="listViewStyle" format="reference"/>
+
+    <attr name="signInToLastFm" format="reference"/>
+
+    <attr name="lastFmLoginEditText" format="reference"/>
+    <attr name="lastFmLoginEditButton" format="reference"/>
+
+    <attr name="mainTracksTodayContainer" format="reference"/>
+    <attr name="mainTracksTodayCount" format="reference"/>
+    <attr name="mainTracksTodayLabel" format="reference"/>
+    <attr name="mainTotalTrackCountUnknown" format="reference"/>
+    <attr name="mainTotalTrackCount" format="reference"/>
+    <attr name="mainTotalTrackCountLabel" format="reference"/>
+    <attr name="mainUpdatedAtLabel" format="reference"/>
+    <attr name="mainNowScrobblingTrack" format="reference"/>
+    <attr name="mainFloatingActionButton" format="reference"/>
+    <attr name="mainIgnorePlayerButton" format="reference"/>
+    <attr name="mainWailIsSadContainer" format="reference"/>
+    <attr name="mainWailIsSadLabel" format="reference"/>
+
+    <attr name="trackListItemBackground" format="reference"/>
+    <attr name="backgroundText" format="reference"/>
+
+    <attr name="settingsBackground" format="reference"/>
+    <attr name="settingsCardView" format="reference"/>
+    <attr name="settingsCategoryTitle" format="reference"/>
+    <attr name="settingsCategoryTitleTitle" format="reference"/>
+    <attr name="settingsCategoryTitleDivider" format="reference"/>
+    <attr name="settingsItem" format="reference"/>
+    <attr name="settingsItemTitle" format="reference"/>
+    <attr name="settingsItemDescription" format="reference"/>
+    <attr name="settingsItemWithSwitch" format="reference"/>
+    <attr name="settingsItemTitleWithSwitch" format="reference"/>
+    <attr name="settingsItemSwitch" format="reference"/>
+    <attr name="settingSelectLanguageItem" format="reference"/>
+    <attr name="settingIgnoredPlayersItem" format="reference"/>
+
+    <attr name="drawerItem" format="reference"/>
+    <attr name="dialogTitle" format="reference"/>
 </resources>

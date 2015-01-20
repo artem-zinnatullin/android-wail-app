@@ -1,20 +1,17 @@
 package com.artemzin.android.wail;
 
 import android.app.Application;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.SystemClock;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 
 import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.storage.db.PlayersDBHelper;
-import com.artemzin.android.wail.ui.activity.MainActivity;
 import com.artemzin.android.wail.util.AsyncTaskExecutor;
+import com.artemzin.android.wail.util.LocaleUtil;
 import com.artemzin.android.wail.util.Loggi;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
@@ -23,9 +20,16 @@ public class WAILApp extends Application {
 
     @Override
     public void onCreate() {
+        LocaleUtil.updateLanguage(this, null);
         super.onCreate();
         Loggi.w("WAILApp onCreate()");
         updateSupportedPlayersDB();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        LocaleUtil.updateLanguage(this, WAILSettings.getLanguage(this));
     }
 
     private void updateSupportedPlayersDB() {

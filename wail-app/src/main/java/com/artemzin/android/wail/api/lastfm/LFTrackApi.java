@@ -74,4 +74,20 @@ public class LFTrackApi {
                 requestParams.generateRequestParamsAsStringWithSign()
        ).getResponse();
     }
+
+    public static String love(String sessionKey, String apiKey, String secret, LFTrackRequestModel track)
+            throws NetworkException {
+        LFRequestParamContainer requestParams = new LFRequestParamContainer("track.love", secret);
+
+        requestParams.addParam("artist", track.getArtist());
+        requestParams.addParam("track", track.getTrack());
+
+        requestParams.addParam(LFApiCommon.PARAM_API_KEY, apiKey);
+        requestParams.addParam(LFApiCommon.PARAM_SK, sessionKey);
+
+        return NetworkRequest.newPostRequestInstance(
+                LFApiCommon.API_ROOT_URL,
+                requestParams.generateRequestParamsAsStringWithSign()
+        ).getResponse();
+    }
 }

@@ -12,7 +12,8 @@
         android:layout_gravity="start"
         android:divider="@null"
         android:dividerHeight="0dp"
-        android:background="#111" />
+        android:background="#111"
+        android:listSelector="@drawable/drawer_item_background" />
 
     <FrameLayout
         android:id="@+id/main_content"

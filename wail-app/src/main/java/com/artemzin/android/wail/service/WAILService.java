@@ -2,6 +2,8 @@ package com.artemzin.android.wail.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.IBinder;
@@ -13,7 +15,10 @@ import com.artemzin.android.wail.api.lastfm.LFTrackApi;
 import com.artemzin.android.wail.api.lastfm.model.request.LFTrackRequestModel;
 import com.artemzin.android.wail.api.network.NetworkException;
 import com.artemzin.android.wail.receiver.music.CommonMusicAppReceiver;
-import com.artemzin.android.wail.sound.SoundNotificationsManager;
+import com.artemzin.android.wail.notifications.SoundNotificationsManager;
+import com.artemzin.android.wail.notifications.StatusBarNotificationsManager;
+import com.artemzin.android.wail.storage.db.IgnoredPlayersDBHelper;
+import com.artemzin.android.wail.storage.db.LovedTracksDBHelper;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.storage.model.Track;
@@ -34,15 +39,22 @@ public class WAILService extends Service {
 
     private static final String GA_EVENT_SCROBBLE_TO_THE_LASTFM    = "scrobbleToTheLastfm";
     private static final String GA_EVENT_UPDATE_LASTFM_NOW_PLAYING = "updateLastfmNowplaying";
+    private static final String GA_EVENT_LOVE_TRACK = "GA_EVENT_LOVE_TRACK";
 
-    public static final String INTENT_ACTION_HANDLE_TRACK                 = "INTENT_ACTION_HANDLE_TRACK";
-    public static final String INTENT_ACTION_SCROBBLE_PENDING_TRACKS      = "INTENT_ACTION_SCROBBLE_PENDING_TRACKS";
+    public static final String INTENT_ACTION_HANDLE_TRACK                    = "INTENT_ACTION_HANDLE_TRACK";
+    public static final String INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK = "INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK";
+    public static final String INTENT_ACTION_SCROBBLE_PENDING_TRACKS         = "INTENT_ACTION_SCROBBLE_PENDING_TRACKS";
+    public static final String INTENT_ACTION_HANDLE_LOVED_TRACK              = "INTENT_ACTION_HANDLE_LOVED_TRACK";
 
     private static final int DEFAULT_TRACK_DURATION_IF_UNKNOWN_SECONDS = 210;
 
     private static volatile com.artemzin.android.wail.storage.model.Track lastUpdatedNowPlayingTrackInfo;
 
     private long lastScrobbleTime = 0;
+
+    private Intent lastIntent;
+
+    private IgnoredPlayersDBHelper ignoredPlayersDBHelper;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -59,6 +71,8 @@ public class WAILService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Loggi.i("WAILService.onStartCommand() " + IntentUtil.getIntentAsString(intent));
 
+        ignoredPlayersDBHelper = IgnoredPlayersDBHelper.getInstance(getApplicationContext());
+
         if (intent == null) {
             // seems that system has recreated the service, if so
             // we should return START_STICKY
@@ -72,10 +86,19 @@ public class WAILService extends Service {
             return START_STICKY;
         }
 
+         if (!action.equals(INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK)) {
+            lastIntent = intent;
+        }
+
         if (action.equals(INTENT_ACTION_HANDLE_TRACK)) {
             handleTrack(intent);
         } else if (action.equals(INTENT_ACTION_SCROBBLE_PENDING_TRACKS)) {
             scrobblePendingTracks(false);
+            pushLovedTracks();
+        } else if (action.equals(INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK)) {
+            handleTrack(lastIntent);
+        } else if (action.equals(INTENT_ACTION_HANDLE_LOVED_TRACK)) {
+            handleLovedTrack();
         } else {
             // unknown intent action
         }
@@ -86,6 +109,13 @@ public class WAILService extends Service {
     private void handleTrack(final Intent intent) {
         if (intent == null || !WAILSettings.isEnabled(this)) {
             Loggi.w("WAILService track is not handled because WAIL is disabled");
+            return;
+        }
+
+        final String player = intent.getStringExtra(CommonMusicAppReceiver.EXTRA_PLAYER_PACKAGE_NAME);
+
+        if (ignoredPlayersDBHelper.contains(player)) {
+            Loggi.w(String.format("WAILService track is not handled because the player %s is ignored", player));
             return;
         }
 
@@ -107,12 +137,27 @@ public class WAILService extends Service {
                 final Track currentTrack = CommonMusicAppReceiver.parseFromIntentExtras(intent);
 
                 if (isCurrentTrackPlaying) {
-                    WAILSettings.setNowScrobblingTrack(
-                            getApplicationContext(),
-                            currentTrack.getArtist() + " - " + currentTrack.getTrack());
+                    WAILSettings.setNowScrobblingTrack(getApplicationContext(), currentTrack);
+                    String applicationLabel = null;
+                    try {
+                        PackageManager packageManager = getApplication().getPackageManager();
+                        ApplicationInfo applicationInfo = packageManager.getApplicationInfo(player, 0);
+                        applicationLabel = packageManager.getApplicationLabel(applicationInfo).toString();
+                    } catch (PackageManager.NameNotFoundException e) {
+                        Loggi.w("Couldn't get player name from package name: " + player);
+                    }
+
+                    WAILSettings.setNowScrobblingPlayerLabel(getApplicationContext(), applicationLabel);
+                    WAILSettings.setNowScrobblingPlayerPackageName(getApplicationContext(), player);
+
+                    StatusBarNotificationsManager.getInstance(getApplicationContext())
+                            .showTrackScrobblingStatusBarNotification(currentTrack);
                     updateNowPlaying(currentTrack);
                 } else {
+                    StatusBarNotificationsManager.getInstance(getApplicationContext())
+                            .hideTrackScrobblingStatusBarNotification();
                     WAILSettings.setNowScrobblingTrack(getApplicationContext(), null);
+                    WAILSettings.setNowScrobblingPlayerPackageName(getApplicationContext(), null);
                 }
                 LocalBroadcastManager.getInstance(getApplicationContext())
                         .sendBroadcast(new Intent(TracksDBHelper.INTENT_TRACKS_CHANGED));
@@ -201,7 +246,7 @@ public class WAILService extends Service {
         if (!NetworkUtil.isAvailable(this)) {
             Loggi.e("WAILService scrobblePendingTracks() stopped, network is not available");
             return;
-        } else if (WAILSettings.isDisableScrobblingOverMobileNetwork(getApplicationContext())
+        } else if (!WAILSettings.isEnableScrobblingOverMobileNetwork(getApplicationContext())
                 && NetworkUtil.isMobileNetwork(this)) {
             Loggi.e("WAILService scrobblePendingTracks() stopped, scrobbling over mobile network disabled");
             return;
@@ -351,7 +396,7 @@ public class WAILService extends Service {
         if (!NetworkUtil.isAvailable(getApplicationContext())) {
             Loggi.w("WAILService.updateNowPlaying() network is not available, update skipped: " + track);
             return;
-        } else if (WAILSettings.isDisableScrobblingOverMobileNetwork(getApplicationContext())
+        } else if (!WAILSettings.isEnableScrobblingOverMobileNetwork(getApplicationContext())
                 && NetworkUtil.isMobileNetwork(getApplicationContext())) {
             Loggi.w("WAILService.updateNowPlaying() scrobbling over mobile network is disabled, update skipped: " + track);
             return;
@@ -445,6 +490,84 @@ public class WAILService extends Service {
                         .build());
             }
         }
+    }
+
+    private void handleLovedTrack() {
+        AsyncTaskExecutor.executeConcurrently(new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... objects) {
+                Track track = WAILSettings.getNowScrobblingTrack(getApplicationContext());
+                LovedTracksDBHelper.getInstance(getApplicationContext()).add(track);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void o) {
+                pushLovedTracks();
+            }
+        });
+    }
+
+    private void pushLovedTracks() {
+        AsyncTaskExecutor.executeConcurrently(new AsyncTask<Void, Void, Void>() {
+            private void loveTrack(Track track) {
+                if (track != null) {
+                    Loggi.i("Wail is going to love track: " + track);
+
+                    LFTrackRequestModel trackForRequest = new LFTrackRequestModel(track);
+
+                    try {
+                        Loggi.w("Result: " + LFTrackApi.love(
+                                        WAILSettings.getLastfmSessionKey(getApplicationContext()),
+                                        WAILSettings.getLastfmApiKey(),
+                                        WAILSettings.getLastfmSecret(),
+                                        trackForRequest)
+                        );
+
+                        LovedTracksDBHelper.getInstance(getApplicationContext()).delete(track);
+
+                        EasyTracker.getInstance(getApplicationContext()).send(
+                                MapBuilder.createEvent(GA_EVENT_LOVE_TRACK,
+                                        "success",
+                                        null,
+                                        1L)
+                                        .build()
+                        );
+                    } catch (NetworkException e) {
+                        Loggi.e("Can not love track: " + track + ", exception: " + e.getMessage());
+
+                        EasyTracker.getInstance(getApplicationContext()).send(
+                                MapBuilder.createEvent(GA_EVENT_LOVE_TRACK,
+                                        "failed with NetworkException: " + e.getMessage(),
+                                        null,
+                                        0L)
+                                        .build()
+                        );
+                    }
+                }
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                Cursor tracksCursor = LovedTracksDBHelper.getInstance(getApplicationContext()).getAllDesc();
+
+                if (tracksCursor.moveToFirst()) {
+                    do {
+                        Track track = LovedTracksDBHelper.parseFromCursor(tracksCursor);
+                        loveTrack(track);
+                    } while (tracksCursor.moveToNext());
+                }
+
+                SystemClock.sleep(1500); // for better user experience with notification
+
+                return null;
+            }
+
+            @Override protected void onPostExecute(Void aVoid) {
+                StatusBarNotificationsManager.getInstance(getApplicationContext())
+                        .hideTrackLovedStatusBarNotification();
+            }
+        });
     }
 
     public static class LastCapturedTrackInfo {
