@@ -35,7 +35,9 @@
         <item name="trackListItemBackground">@style/AppTheme.Light.Clickable.TrackListItemBackground</item>
         <item name="backgroundText">@style/AppTheme.Light.BackgroundText</item>
 
+        <item name="settingsBackground">@style/AppTheme.Light.SettingsBackground</item>
         <item name="settingsCategoryTitle">@style/AppTheme.Light.SettingsCategoryTitle</item>
+        <item name="settingsCardView">@style/AppTheme.Light.SettingsCardView</item>
         <item name="settingsCategoryTitleTitle">@style/AppTheme.Light.SettingsCategoryTitleTitle</item>
         <item name="settingsCategoryTitleDivider">@style/AppTheme.Light.SettingsCategoryTitleDivider</item>
         <item name="settingsItem">@style/AppTheme.Light.Clickable.SettingsItem</item>
@@ -78,6 +80,8 @@
         <item name="trackListItemBackground">@style/AppTheme.Dark.Clickable.TrackListItemBackground</item>
         <item name="backgroundText">@style/AppTheme.Dark.BackgroundText</item>
 
+        <item name="settingsBackground">@style/AppTheme.Dark.SettingsBackground</item>
+        <item name="settingsCardView">@style/AppTheme.Dark.SettingsCardView</item>
         <item name="settingsCategoryTitle">@style/AppTheme.Dark.SettingsCategoryTitle</item>
         <item name="settingsCategoryTitleTitle">@style/AppTheme.Dark.SettingsCategoryTitleTitle</item>
         <item name="settingsCategoryTitleDivider">@style/AppTheme.Dark.SettingsCategoryTitleDivider</item>

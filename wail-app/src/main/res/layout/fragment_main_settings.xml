@@ -8,222 +8,283 @@
 
     <LinearLayout
         android:id="@+id/settings_container"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        style="?settingsBackground">
 
-        <LinearLayout style="?settingsCategoryTitle">
+        <android.support.v7.widget.CardView
+            style="?settingsCardView">
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsCategoryTitleTitle"
-                android:text="@string/settings_scrobbling_options_title" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <View style="?settingsCategoryTitleDivider" />
+                <LinearLayout style="?settingsCategoryTitle">
 
-        </LinearLayout>
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsCategoryTitleTitle"
+                        android:text="@string/settings_scrobbling_options_title" />
 
-        <LinearLayout
-            android:id="@+id/settings_min_track_duration_in_seconds"
-            style="?settingsItem">
+                </LinearLayout>
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemTitle"
-                android:text="@string/settings_min_track_elapsed_time_in_seconds_title" />
+                <LinearLayout
+                    android:id="@+id/settings_min_track_duration_in_seconds"
+                    style="?settingsItem">
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                android:id="@+id/settings_min_track_duration_in_seconds_desc"
-                style="?settingsItemDescription"
-                android:text="@string/settings_min_track_elapsed_time_in_seconds_desc" />
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitle"
+                        android:text="@string/settings_min_track_elapsed_time_in_seconds_title" />
 
-        </LinearLayout>
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        android:id="@+id/settings_min_track_duration_in_seconds_desc"
+                        style="?settingsItemDescription"
+                        android:text="@string/settings_min_track_elapsed_time_in_seconds_desc" />
 
-        <LinearLayout
-            android:id="@+id/settings_min_track_duration_in_percents"
-            style="?settingsItem">
+                </LinearLayout>
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemTitle"
-                android:text="@string/settings_min_track_elapsed_time_in_percent_title" />
+                <LinearLayout
+                    android:id="@+id/settings_min_track_duration_in_percents"
+                    style="?settingsItem">
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                android:id="@+id/settings_min_track_duration_in_percents_desc"
-                style="?settingsItemDescription"
-                android:text="@string/settings_min_track_elapsed_time_in_percent_desc" />
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitle"
+                        android:text="@string/settings_min_track_elapsed_time_in_percent_title" />
 
-        </LinearLayout>
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        android:id="@+id/settings_min_track_duration_in_percents_desc"
+                        style="?settingsItemDescription"
+                        android:text="@string/settings_min_track_elapsed_time_in_percent_desc" />
 
-        <LinearLayout
-            android:id="@+id/settings_disable_scrobbling_over_mobile_network"
-            style="?settingsItemWithSwitch">
+                </LinearLayout>
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemTitleWithSwitch"
-                android:text="@string/settings_disable_scrobbling_over_mobile_network" />
+                <LinearLayout
+                    android:id="@+id/settings_disable_scrobbling_over_mobile_network"
+                    style="?settingsItemWithSwitch">
 
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/settings_disable_scrobbling_over_mobile_network_switch"
-                style="?settingsItemSwitch" />
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitleWithSwitch"
+                        android:text="@string/settings_disable_scrobbling_over_mobile_network" />
 
-        </LinearLayout>
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/settings_disable_scrobbling_over_mobile_network_switch"
+                        style="?settingsItemSwitch" />
 
-        <LinearLayout
-            android:id="@+id/settings_ignored_players"
-            style="?settingsItem">
+                </LinearLayout>
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemTitle"
-                android:text="@string/settings_ignored_players_item_title" />
+                <LinearLayout
+                    android:id="@+id/settings_ignored_players"
+                    style="?settingsItem">
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                android:id="@+id/settings_ignored_players_desc"
-                style="?settingsItemDescription"
-                android:text="@string/settings_ignored_players_item_desc" />
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitle"
+                        android:text="@string/settings_ignored_players_item_title" />
 
-        </LinearLayout>
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        android:id="@+id/settings_ignored_players_desc"
+                        style="?settingsItemDescription"
+                        android:text="@string/settings_ignored_players_item_desc" />
 
-        <LinearLayout style="?settingsCategoryTitle">
+                </LinearLayout>
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsCategoryTitleTitle"
-                android:text="@string/settings_select_language_title" />
+            </LinearLayout>
 
-            <View style="?settingsCategoryTitleDivider" />
+        </android.support.v7.widget.CardView>
 
-        </LinearLayout>
+        <android.support.v7.widget.CardView
+            style="?settingsCardView">
 
-        <LinearLayout
-            style="?settingsItem"
-            android:id="@+id/settings_select_language_menu_item">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemTitle"
-                android:text="@string/settings_select_language" />
+                <LinearLayout style="?settingsCategoryTitle">
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemDescription"
-                android:id="@+id/settings_select_language_description"
-                tools:text="English" />
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsCategoryTitleTitle"
+                        android:text="@string/settings_select_language_title" />
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout style="?settingsCategoryTitle">
+                <LinearLayout
+                    style="?settingsItem"
+                    android:id="@+id/settings_select_language_menu_item">
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsCategoryTitleTitle"
-                android:text="@string/settings_update_nowplaying_title" />
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitle"
+                        android:text="@string/settings_select_language" />
 
-            <View style="?settingsCategoryTitleDivider" />
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemDescription"
+                        android:id="@+id/settings_select_language_description"
+                        tools:text="English" />
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout style="?settingsItemWithSwitch"
-            android:id="@+id/settings_lastfm_update_nowplaying">
+            </LinearLayout>
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemTitleWithSwitch"
-                android:text="@string/settings_lastfm_update_nowplaying_title" />
+        </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/settings_lastfm_update_nowplaying_switch"
-                style="?settingsItemSwitch" />
+        <android.support.v7.widget.CardView
+            style="?settingsCardView">
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <LinearLayout style="?settingsCategoryTitle">
+                <LinearLayout style="?settingsCategoryTitle">
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsCategoryTitleTitle"
-                android:text="@string/settings_notifications_title" />
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsCategoryTitleTitle"
+                        android:text="@string/settings_update_nowplaying_title" />
 
-            <View style="?settingsCategoryTitleDivider" />
+                </LinearLayout>
 
-        </LinearLayout>
+                <LinearLayout
+                    style="?settingsItemWithSwitch"
+                    android:id="@+id/settings_lastfm_update_nowplaying">
 
-        <LinearLayout
-            android:id="@+id/settings_sound_notifications"
-            style="?settingsItem">
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitleWithSwitch"
+                        android:text="@string/settings_lastfm_update_nowplaying_title" />
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemTitle"
-                android:text="@string/settings_sound_notifications_title" />
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/settings_lastfm_update_nowplaying_switch"
+                        style="?settingsItemSwitch" />
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemDescription"
-                android:text="@string/settings_sound_notifications_description" />
+                </LinearLayout>
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/settings_status_bar_notifications"
-            style="?settingsItem">
+        </android.support.v7.widget.CardView>
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemTitle"
-                android:text="@string/settings_status_bar_notifications_title" />
+        <android.support.v7.widget.CardView
+            style="?settingsCardView">
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <LinearLayout style="?settingsCategoryTitle">
+                <LinearLayout style="?settingsCategoryTitle">
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsCategoryTitleTitle"
-                android:text="@string/settings_theme" />
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsCategoryTitleTitle"
+                        android:text="@string/settings_notifications_title" />
 
-            <View style="?settingsCategoryTitleDivider" />
+                </LinearLayout>
 
-        </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/settings_sound_notifications"
+                    style="?settingsItem">
 
-        <LinearLayout style="?settingsItemWithSwitch"
-            android:id="@+id/settings_theme">
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitle"
+                        android:text="@string/settings_sound_notifications_title" />
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemTitleWithSwitch"
-                android:text="@string/settings_theme_switch_label" />
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemDescription"
+                        android:text="@string/settings_sound_notifications_description" />
 
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/settings_theme_switch"
-                style="?settingsItemSwitch" />
+                </LinearLayout>
 
-        </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/settings_status_bar_notifications"
+                    style="?settingsItem">
 
-        <LinearLayout style="?settingsCategoryTitle">
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitle"
+                        android:text="@string/settings_status_bar_notifications_title" />
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsCategoryTitleTitle"
-                android:text="@string/settings_other" />
+                </LinearLayout>
 
-            <View style="?settingsCategoryTitleDivider" />
+            </LinearLayout>
 
-        </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-        <LinearLayout
-            android:id="@+id/settings_email_to_the_developer"
-            style="?settingsItem">
+        <android.support.v7.widget.CardView
+            style="?settingsCardView">
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemTitle"
-                android:text="@string/settings_email_to_the_developer" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemDescription"
-                android:text="@string/settings_my_email" />
+                <LinearLayout style="?settingsCategoryTitle">
 
-        </LinearLayout>
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsCategoryTitleTitle"
+                        android:text="@string/settings_theme" />
 
-        <LinearLayout
-            style="?settingsItem"
-            android:clickable="false">
+                </LinearLayout>
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsItemTitle"
-                android:text="@string/settings_build_version_label" />
+                <LinearLayout
+                    style="?settingsItemWithSwitch"
+                    android:id="@+id/settings_theme">
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                android:id="@+id/settings_build_version_desc"
-                style="?settingsItemDescription"
-                tools:text="v0.5 dev beta" />
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitleWithSwitch"
+                        android:text="@string/settings_theme_switch_label" />
 
-        </LinearLayout>
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/settings_theme_switch"
+                        style="?settingsItemSwitch" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            style="?settingsCardView"
+            android:layout_marginBottom="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout style="?settingsCategoryTitle">
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsCategoryTitleTitle"
+                        android:text="@string/settings_other" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/settings_email_to_the_developer"
+                    style="?settingsItem">
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitle"
+                        android:text="@string/settings_email_to_the_developer" />
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemDescription"
+                        android:text="@string/settings_my_email" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="?settingsItem"
+                    android:clickable="false">
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitle"
+                        android:text="@string/settings_build_version_label" />
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        android:id="@+id/settings_build_version_desc"
+                        style="?settingsItemDescription"
+                        tools:text="v0.5 dev beta" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
 
     </LinearLayout>
 

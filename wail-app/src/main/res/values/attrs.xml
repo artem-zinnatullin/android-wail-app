@@ -30,6 +30,8 @@
     <attr name="trackListItemBackground" format="reference"/>
     <attr name="backgroundText" format="reference"/>
 
+    <attr name="settingsBackground" format="reference"/>
+    <attr name="settingsCardView" format="reference"/>
     <attr name="settingsCategoryTitle" format="reference"/>
     <attr name="settingsCategoryTitleTitle" format="reference"/>
     <attr name="settingsCategoryTitleDivider" format="reference"/>
