@@ -11,9 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +20,7 @@ import com.artemzin.android.bytes.ui.ViewUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.ui.activity.BaseActivity;
+import com.artemzin.android.wail.ui.activity.settings.SettingsIgnoredPlayersActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSelectLanguageActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSoundNotificationsActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsStatusBarNotificationsActivity;
@@ -65,6 +64,11 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
 
     @InjectView(R.id.settings_theme_switch)
     public SwitchCompat themeSwitch;
+
+    @OnClick(R.id.settings_ignored_players)
+    public void onIgnoredPlayersClick() {
+        startActivity(new Intent(getActivity(), SettingsIgnoredPlayersActivity.class));
+    }
 
     @OnClick(R.id.settings_select_language_menu_item)
     public void onSelectLanguageClick() {
@@ -309,12 +313,15 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
         );
     }
 
-    @OnClick(R.id.settings_email_to_the_developer)
+    @OnClick(R.id.settings_email_to_developers)
     public void emailToTheDeveloper() {
         try {
             final Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
-            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.settings_my_email)});
+            String emailsString = getString(R.string.settings_developers_emails);
+            String[] emails = emailsString.substring(0, emailsString.indexOf('(') - 1).split(",");
+
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, emails);
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_email_to_the_developer_subj) + " " + buildVersionDescTextView.getText().toString());
             emailIntent.setType("message/rfc822");
 

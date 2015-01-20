@@ -4,11 +4,11 @@
     <string name="app_main_about_2">WAIL будет скробблить на last.fm музыку, которую Вы слушаете в различных плеерах.</string>
     <string name="dialog_cancel">Отменить</string>
     <string name="dialog_save">Сохранить</string>
-    <string name="lastfm_api_error_11">Ух ты, last.fm недоступен, попробуйте позже</string>
+    <string name="lastfm_api_error_11">last.fm недоступен, попробуйте позже</string>
     <string name="lastfm_logging_api_error_4">Неверный логин или пароль ;(</string>
     <string name="lastfm_logging_api_error_unknown">Невозможно разобрать ответ сервера, может быть надо обновить приложение?</string>
     <string name="lastfm_logging_network_error">Сеть недоступна, проверьте интернет-соединение</string>
-    <string name="lastfm_logging_progress_dialog_message">Авторизуюсь в last.fm</string>
+    <string name="lastfm_logging_progress_dialog_message">Авторизация в last.fm…</string>
     <string name="lastfm_login_activity_label">Авторизация в last.fm</string>
     <string name="lastfm_login_button">Войти</string>
     <string name="lastfm_login_empty">Введите логин</string>
@@ -20,11 +20,11 @@
     <string name="main_feedback_please_happy_toast">Теперь WAIL счастлив :)</string>
     <string name="main_love_track_button_content_description">Кнопка "Добавить трек в любимые"</string>
     <string name="main_love_track_button_label">Добавить трек в любимые</string>
-    <string name="main_now_scrobbling_label">Скробблим: %1$s </string>
+    <string name="main_now_scrobbling_label">Скробблится: %1$s </string>
     <string name="main_now_scrobbling_nothing">ничего :(</string>
     <string name="main_pull_down_to_refresh_toast">Потяните вниз, чтобы обновить данные :)</string>
     <string name="main_pull_to_refresh_pull_text">Потяните вниз</string>
-    <string name="main_refreshing">Обновляем…</string>
+    <string name="main_refreshing">Обновление…</string>
     <string name="main_refresh_info_from_lastfm_api_error">Ошибка last.fm: %1$s</string>
     <string name="main_refresh_info_from_lastfm_network_error">Ошибка сетевого соединения, попробуйте позже</string>
     <string name="main_refresh_info_from_lastfm_unknown_error">Невозможно обновить данные с last.fm :(</string>
@@ -39,12 +39,12 @@
     <string name="non_authorized_sign_up_in_lastfm">Зарегистрироваться в last.fm</string>
     <string name="not_authorized_activity_label">Привет!</string>
     <string name="notifications_love_current_track">Добавить трек в любимые</string>
-    <string name="notifications_now_scrobbling">Скробблим</string>
+    <string name="notifications_now_scrobbling">Скробблится трек</string>
     <string name="notifications_track_loved">Трек добавлен в любимые</string>
     <string name="settings_actionbar_title">Настройки WAIL</string>
     <string name="settings_disable_scrobbling_over_mobile_network">Скробблить через мобильное интернет-подключение</string>
     <string name="settings_email_dialog_title">Выберите приложение для отправки e-mail</string>
-    <string name="settings_email_to_the_developer">Написать разработчику</string>
+    <string name="settings_email_to_developers">Написать разработчикам</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">#nowplaying отключен</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">#nowplaying включен</string>
     <string name="settings_lastfm_update_nowplaying_title">Слушаю сейчас на last.fm</string>
@@ -83,7 +83,7 @@
     <string name="track_status_scrobble_success">Заскробблен</string>
     <string name="track_status_scrobbling">Скробблится</string>
     <string name="track_status_unknown">Неизвестно</string>
-    <string name="track_status_waiting_for_scrobble">Ожидает</string>
+    <string name="track_status_waiting_for_scrobble">Ожидает скроббинга</string>
     <string name="tracks_actionbar_title">Треки</string>
     <string name="tracks_search_ab_title">Поиск</string>
     <string name="tracks_list_empty_motivation_text">Попробуйте послушать музыку в своем любимом плеере и прослушанные треки появятся здесь!</string>
@@ -91,6 +91,15 @@
     <string name="tracks_search_error_toast">Невозможно произвести поиск :(</string>
     <string name="tracks_search_hint">Искать в заскроббленных треках</string>
     <string name="tracks_search_clear_text">Очистить текст</string>
+    <string name="settings_ignored_players_activity_label">Игнорируемые медиа плееры</string>
+    <string name="settings_ignored_players_item_title">Игнорируемые медиа плееры</string>
+    <string name="settings_ignored_players_item_desc">Треки, воспроизводимые этими плеерами не будут скробблиться</string>
+    <string name="settings_ignored_players_image_content_description">Иконка игнорируемого плеера</string>
+    <string name="settings_confirm_unignoring_player">Вы хотите перестать игнорировать плеер \"%s\"?</string>
+    <string name="main_scrobbling_from_player_label">из %s</string>
+    <string name="main_confirm_ignoring_player">Вы хотите добавить в игнорируемые плеер %s</string>
+    <string name="settings_ignored_players_empty_text">У Вас нет игнорируемых плееров</string>
+    <string name="main_ignore_this_player_button_text">Игнорировать этот плеер</string>
     <string-array name="drawer_items">
         <item>Главная</item>
         <item>Треки</item>

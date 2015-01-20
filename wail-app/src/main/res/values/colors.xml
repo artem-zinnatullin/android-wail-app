@@ -30,14 +30,15 @@
     <color name="light_theme_text_primary">#212121</color>
     <color name="light_theme_text_secondary">#727272</color>
 
+    <color name="light_theme_settings_background">#ffd7d7d7</color>
+
     <color name="light_theme_settings_item_title_disabled">#ffbebebe</color>
 
     <color name="light_theme_track_today_pressed_background">#9302acff</color>
 
     <color name="light_theme_scrollbar_thumb">#ffa5a5a5</color>
 
-    <color name="light_theme_pressed_item_background">#DFDFDF</color>
-    <color name="light_theme_ripple">#C3C3C3</color>
+    <color name="light_theme_pressed_item_background">#C3C3C3</color>
 
     <!--/Light theme-->
 
@@ -47,9 +48,11 @@
     <color name="dark_theme_text_primary">#FFFFFF</color>
     <color name="dark_theme_text_secondary">#bebebe</color>
 
-    <color name="dark_theme_track_today_background">#666666</color>
+    <color name="dark_theme_track_today_background">#ff5d5d5d</color>
     <color name="dark_theme_tracks_today_ripple">#C3C3C3</color>
     <color name="dark_theme_drawer_item_text">#000</color>
+
+    <color name="dark_theme_settings_background">#ff646769</color>
 
     <color name="dark_theme_settings_item_title_disabled">#666666</color>
 

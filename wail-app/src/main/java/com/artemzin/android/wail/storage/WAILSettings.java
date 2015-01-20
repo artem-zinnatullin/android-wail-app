@@ -7,7 +7,6 @@ import com.artemzin.android.bytes.common.StringUtil;
 import com.artemzin.android.wail.api.lastfm.model.response.LFUserResponseModel;
 import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.model.Track;
-import com.artemzin.android.wail.util.LocaleUtil;
 
 import java.util.Locale;
 
@@ -41,6 +40,9 @@ public class WAILSettings {
 
     private static final String KEY_NOW_SCROBBLING_TRACK_ARTIST = "KEY_NOW_SCROBBLING_TRACK_ARTIST";
     private static final String KEY_NOW_SCROBBLING_TRACK_TITLE = "KEY_NOW_SCROBBLING_TRACK_TITLE";
+
+    private static final String KEY_NOW_SCROBBLING_PLAYER_PACKAGE_NAME = "KEY_NOW_SCROBBLING_PLAYER_PACKAGE_NAME";
+    private static final String KEY_NOW_SCROBBLING_PLAYER_LABEL = "KEY_NOW_SCROBBLING_PLAYER_LABEL";
 
     // endregion
 
@@ -229,7 +231,11 @@ public class WAILSettings {
     }
 
     public static synchronized void setLastCapturedTrackInfo(Context context, WAILService.LastCapturedTrackInfo lastCapturedTrackInfo) {
-        getSharedPreferences(context).edit().putString(KEY_LAST_CAPTURED_TRACK_INFO, lastCapturedTrackInfo.toJSON()).apply();
+        String value = null;
+        if (lastCapturedTrackInfo != null) {
+            value = lastCapturedTrackInfo.toJSON();
+        }
+        getSharedPreferences(context).edit().putString(KEY_LAST_CAPTURED_TRACK_INFO, value).apply();
     }
 
     public static synchronized LFUserResponseModel getLastfmUserInfo(Context context) {
@@ -308,6 +314,22 @@ public class WAILSettings {
         getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_TRACK_TITLE,
                 track == null ? null : track.getTrack()
         ).apply();
+    }
+
+    public static synchronized String getNowScrobblingPlayerPackageName(Context context) {
+        return getSharedPreferences(context).getString(KEY_NOW_SCROBBLING_PLAYER_PACKAGE_NAME, null);
+    }
+
+    public static synchronized void setNowScrobblingPlayerPackageName(Context context, String player) {
+        getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_PLAYER_PACKAGE_NAME, player).apply();
+    }
+
+    public static synchronized String getNowScrobblingPlayerLabel(Context context) {
+        return getSharedPreferences(context).getString(KEY_NOW_SCROBBLING_PLAYER_LABEL, null);
+    }
+
+    public static synchronized void setNowScrobblingPlayerLabel(Context context, String player) {
+        getSharedPreferences(context).edit().putString(KEY_NOW_SCROBBLING_PLAYER_LABEL, player).apply();
     }
 
     public static boolean isEnableScrobblingOverMobileNetwork(Context context) {

@@ -39,6 +39,9 @@
     <string name="main_updated_common">updated %1$s</string>
     <string name="main_refresh_info_from_lastfm_network_error">Network error, please try again later</string>
     <string name="main_refresh_info_from_lastfm_api_error">Last.fm error: %1$s</string>
+    <string name="main_scrobbling_from_player_label">from %s</string>
+    <string name="main_confirm_ignoring_player">Do you want to ignore %s?</string>
+    <string name="main_ignore_this_player_button_text">Ignore this player</string>
     <string name="main_refresh_info_from_lastfm_unknown_error">Can not update info from last.fm, sorry :(</string>
     <string name="main_feedback_please">WAIL is sad without your feedback on the Google Play :(</string>
     <string name="main_feedback_please_happy_toast">Now WAIL is happy ;)</string>
@@ -76,6 +79,12 @@
     <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Min track time elapsed in %</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_description">Used when you listened track for &lt; than min track elapsed time in seconds, WAIL will check this setting, you can set from 50% to 100%</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Current value %1$s%% of track</string>
+    <string name="settings_ignored_players_item_title">Ignored media players</string>
+    <string name="settings_ignored_players_item_desc">WAIL will not scrobble tracks played by these players</string>
+    <string name="settings_ignored_players_activity_label">Ignored media players</string>
+    <string name="settings_ignored_players_image_content_description">Ignored player image</string>
+    <string name="settings_confirm_unignoring_player">Do you want to stop ignoring player \"%s\"?</string>
+    <string name="settings_ignored_players_empty_text">You have no ignored players</string>
     <string name="settings_update_nowplaying_title" translatable="false">#nowplaying</string>
     <string name="settings_lastfm_update_nowplaying_title">Listening now on last.fm</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm update nowplaying enabled</string>
@@ -89,7 +98,7 @@
     <string name="settings_theme">Theme</string>
     <string name="settings_theme_switch_label">Dark theme</string>
     <string name="settings_other">Other</string>
-    <string name="settings_email_to_the_developer">Email developer</string>
+    <string name="settings_email_to_developers">Email developers</string>
     <string name="settings_email_dialog_title">Select email app</string>
     <string name="main_settings_menu_toggle_wail">Toggle WAIL</string>
     <string name="settings_disable_scrobbling_over_mobile_network">Scrobbling over mobile network</string>
@@ -116,6 +125,7 @@
     <!-- START of some common strings -->
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_save">Save</string>
+
     <string-array name="drawer_items">
         <item>Main</item>
         <item>Tracks</item>
