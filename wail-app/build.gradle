@@ -17,7 +17,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 23
-        versionName '0.6.5 beta'
+        versionName '0.7.0 beta'
     }
 
     packagingOptions {
