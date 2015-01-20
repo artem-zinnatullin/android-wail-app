@@ -24,7 +24,9 @@
 * Sound notifications
 * Status bar notifications
 * "Love" track
+* Option to ignore any player
 * Light and dark theme
+* English, German and Russian languages
 
 -------------------
 ###BEFORE CONTRIBUTING TO THE WAIL APP!
