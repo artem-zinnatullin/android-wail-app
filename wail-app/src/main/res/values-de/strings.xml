@@ -73,7 +73,7 @@
     <string name="settings_scrobbling_options_title">Scrobbel-Optionen</string>
     <string name="settings_min_track_elapsed_time_in_percent_title">Mindest-Titellänge in Prozent</string>
     <string name="settings_min_track_elapsed_time_in_seconds_title">Mindest-Titellänge in Sekunden</string>
-    <string name="settings_min_track_elapsed_time_in_seconds_desc">Titel wird gescrobbelt, wenn er länger als %1$s Sekunden abgespielt wurde.</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">Titel wird gescrobbelt, wenn er länger als %1$s abgespielt wurde.</string>
     <string name="settings_min_track_elapsed_time_in_percent_desc">Titel wird gescrobbelt, wenn er zu %1$s%% abgespielt wurde, jedoch nur wenn der Titel kürzer als die Mindestlänge ist.</string>
     <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">Mindestlänge in Sekunden</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Mindestlänge in Prozent</string>
@@ -95,8 +95,8 @@
     <string name="settings_sound_notifications_description">Ton wenn Titel gescrobbelt werden.</string>
     <string name="settings_status_bar_notifications_title">Statusbar-Mitteilungen</string>
     <string name="settings_theme">Design</string>
-    <string name="settings_theme_switch_label">Dark</string>
-    <string name="settings_other">Anderes</string>
+    <string name="settings_theme_switch_label">Material Dark</string>
+    <string name="settings_other">Über WAIL</string>
     <string name="settings_email_to_the_developer">E-Mail an Entwickler</string>
     <string name="settings_email_dialog_title">E-Mail-App auswählen</string>
     <string name="main_settings_menu_toggle_wail">WAIL an/abschalten</string>
