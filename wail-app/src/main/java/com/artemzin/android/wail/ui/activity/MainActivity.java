@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
@@ -19,6 +20,8 @@ import com.artemzin.android.wail.ui.TypefaceTextView;
 import com.artemzin.android.wail.ui.fragment.main.MainFragment;
 import com.artemzin.android.wail.ui.fragment.main.SettingsFragment;
 import com.artemzin.android.wail.ui.fragment.main.TracksListFragment;
+import com.artemzin.android.wail.util.Loggi;
+import com.artemzin.android.wail.util.SleepIfRequiredAsyncTask;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -46,9 +49,21 @@ public class MainActivity extends BaseActivity {
     public void onItemsSelected(int position) {
         setSelectedDrawerItem(position);
         selectNavDrawerItem(position);
+
         if (drawerLayout != null) {
-            drawerLayout.closeDrawers();
+            SleepIfRequiredAsyncTask.newInstance(SystemClock.elapsedRealtime(), 150, new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        drawerLayout.closeDrawers();
+                    } catch (Exception e) {
+                        Loggi.e("MainActivity closeNavigationDrawer() exception: " + e.getMessage());
+                    }
+                }
+            }).execute();
         }
+
+
     }
 
     @Override
