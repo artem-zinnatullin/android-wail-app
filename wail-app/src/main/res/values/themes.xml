@@ -49,7 +49,6 @@
         <item name="settingSelectLanguageItem">@style/AppTheme.Light.SettingsSelectLanguageItem</item>
         <item name="settingIgnoredPlayersItem">@style/AppTheme.Light.Clickable</item>
 
-        <item name="drawerItem">@style/AppTheme.Light.DrawerItem</item>
         <item name="dialogTitle">@style/AppTheme.Light.DialogTitle</item>
     </style>
 
@@ -94,7 +93,6 @@
         <item name="settingSelectLanguageItem">@style/AppTheme.Dark.SettingsSelectLanguageItem</item>
         <item name="settingIgnoredPlayersItem">@style/AppTheme.Dark.Clickable</item>
 
-        <item name="drawerItem">@style/AppTheme.Dark.DrawerItem</item>
         <item name="dialogTitle">@style/AppTheme.Dark.DialogTitle</item>
     </style>
 

@@ -10,4 +10,35 @@
         <item name="android:textColor">#fbfbfb</item>
     </style>
 
+    <style name="AppTheme.DrawerItemText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:paddingLeft">32dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:textColor">@color/drawer_item_text</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+        <item name="typefaceFromAssets">fonts/Roboto-Medium.ttf</item>
+    </style>
+
+    <style name="AppTheme.DrawerTitleMainText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#85000000</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="typefaceFromAssets">fonts/Roboto-Medium.ttf</item>
+    </style>
+
+    <style name="AppTheme.DrawerTitleSecondaryText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#85000000</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="typefaceFromAssets">fonts/Roboto-Regular.ttf</item>
+    </style>
+
 </resources>

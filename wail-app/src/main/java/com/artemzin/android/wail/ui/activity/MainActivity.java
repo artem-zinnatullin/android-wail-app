@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.artemzin.android.wail.R;
@@ -41,13 +42,10 @@ public class MainActivity extends BaseActivity {
 
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
-    private int lastItemSelected = -1;
-
     private Fragment[] navigationFragments = new Fragment[3];
 
     @OnItemClick(R.id.main_left_drawer)
     public void onItemsSelected(int position) {
-        setSelectedDrawerItem(position);
         selectNavDrawerItem(position);
 
         if (drawerLayout != null) {
@@ -75,6 +73,11 @@ public class MainActivity extends BaseActivity {
         if (!WAILSettings.isAuthorized(this)) {
             startActivityForResult(new Intent(this, NonAuthorizedActivity.class), REQUEST_CODE_NON_AUTHORIZED_ACTIVITY_INTENT);
         }
+
+        ((TypefaceTextView) findViewById(R.id.main_left_drawer_title_main)).setText(WAILSettings.getLastfmUserName(this));
+        ((TypefaceTextView) findViewById(R.id.main_left_drawer_title_secondary)).setText(
+                "Registered at " + WAILSettings.getLastfmUserRegistered(this)
+        );
 
         // in landscape orientation on big screen there wont be drawer layout
         if (drawerLayout != null) {
@@ -105,7 +108,8 @@ public class MainActivity extends BaseActivity {
                     LayoutInflater inflater = getLayoutInflater();
                     rowView = inflater.inflate(R.layout.activity_main_drawer_item_layout, null, true);
                     holder = new ViewHolder();
-                    holder.textView = (TypefaceTextView) rowView;
+                    holder.textView = (TypefaceTextView) rowView.findViewById(R.id.activity_main_drawer_item_text);
+                    holder.imageView = (ImageView) rowView.findViewById(R.id.activity_main_drawer_item_image);
                     rowView.setTag(holder);
                 } else {
                     holder = (ViewHolder) rowView.getTag();
@@ -113,9 +117,16 @@ public class MainActivity extends BaseActivity {
 
                 holder.textView.setText(getItem(position));
 
-                if (position == 0 && lastItemSelected == -1) {
-                    holder.textView.setTypefaceFromAssets("fonts/Roboto-Medium.ttf");
-                    lastItemSelected = 0;
+                switch (position) {
+                    case 0:
+                        holder.imageView.setImageResource(R.drawable.ic_home_grey600_24dp);
+                        break;
+                    case 1:
+                        holder.imageView.setImageResource(R.drawable.ic_list_grey600_24dp);
+                        break;
+                    case 2:
+                        holder.imageView.setImageResource(R.drawable.ic_settings_grey600_24dp);
+                        break;
                 }
 
                 return rowView;
@@ -123,6 +134,7 @@ public class MainActivity extends BaseActivity {
 
             class ViewHolder {
                 TypefaceTextView textView;
+                ImageView imageView;
             }
         };
 
@@ -177,15 +189,5 @@ public class MainActivity extends BaseActivity {
         fragmentTransaction.setCustomAnimations(R.anim.fragment_transaction_alpha_up, R.anim.fragment_transaction_alpha_down);
         fragmentTransaction.replace(R.id.main_content, navigationFragments[position]);
         fragmentTransaction.commit();
-    }
-
-    private void setSelectedDrawerItem(int position) {
-        if (lastItemSelected != -1) {
-            ((TypefaceTextView) drawerList.getChildAt(lastItemSelected))
-                    .setTypefaceFromAssets("fonts/Roboto-Light.ttf");
-        }
-        ((TypefaceTextView) drawerList.getChildAt(position))
-                .setTypefaceFromAssets("fonts/Roboto-Medium.ttf");
-        lastItemSelected = position;
     }
 }

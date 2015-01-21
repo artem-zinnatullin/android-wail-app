@@ -44,6 +44,5 @@
     <attr name="settingSelectLanguageItem" format="reference"/>
     <attr name="settingIgnoredPlayersItem" format="reference"/>
 
-    <attr name="drawerItem" format="reference"/>
     <attr name="dialogTitle" format="reference"/>
 </resources>
