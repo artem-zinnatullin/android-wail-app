@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.artemzin.android.wail.R;
@@ -33,18 +37,24 @@ public class MainActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_NON_AUTHORIZED_ACTIVITY_INTENT = 1;
 
+    @InjectView(R.id.toolbar)
+    public Toolbar toolbar;
+
     @Optional
     @InjectView(R.id.main_drawer_layout)
     public DrawerLayout drawerLayout;
 
-    @InjectView(R.id.main_left_drawer)
+    @InjectView(R.id.main_left_drawer_list)
     public ListView drawerList;
+
+    @InjectView(R.id.main_drawer)
+    public LinearLayout drawer;
 
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
     private Fragment[] navigationFragments = new Fragment[3];
 
-    @OnItemClick(R.id.main_left_drawer)
+    @OnItemClick(R.id.main_left_drawer_list)
     public void onItemsSelected(int position) {
         selectNavDrawerItem(position);
 
@@ -70,17 +80,28 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
+        setSupportActionBar(toolbar);
+
+        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primary_light));
+
         if (!WAILSettings.isAuthorized(this)) {
             startActivityForResult(new Intent(this, NonAuthorizedActivity.class), REQUEST_CODE_NON_AUTHORIZED_ACTIVITY_INTENT);
         }
 
         ((TypefaceTextView) findViewById(R.id.main_left_drawer_title_main)).setText(WAILSettings.getLastfmUserName(this));
         ((TypefaceTextView) findViewById(R.id.main_left_drawer_title_secondary)).setText(
-                "Registered at " + WAILSettings.getLastfmUserRegistered(this)
+                getString(R.string.drawer_registered_at) + WAILSettings.getLastfmUserRegistered(this)
         );
 
         // in landscape orientation on big screen there wont be drawer layout
         if (drawerLayout != null) {
+            DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, displayMetrics);
+
+            ViewGroup.LayoutParams params = drawer.getLayoutParams();
+            params.width = displayMetrics.widthPixels - Math.round(px);
+            drawer.setLayoutParams(params);
+
             actionBarDrawerToggle = new ActionBarDrawerToggle(
                     this,
                     drawerLayout,

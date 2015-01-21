@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/main_drawer"
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:background="#fff"
@@ -15,31 +16,39 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:paddingBottom="3dp"
-            android:orientation="vertical"
-            android:gravity="start|center_vertical"
+            android:layout_height="136dp"
             android:clickable="true"
+            android:gravity="bottom"
             android:background="@color/drawer_header_background">
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                android:id="@+id/main_left_drawer_title_main"
-                style="@style/AppTheme.DrawerTitleMainText"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:paddingBottom="3dp"
+                android:orientation="vertical"
+                android:gravity="start|center_vertical"
+                android:clickable="true">
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                android:id="@+id/main_left_drawer_title_secondary"
-                style="@style/AppTheme.DrawerTitleSecondaryText"/>
+                <com.artemzin.android.wail.ui.TypefaceTextView
+                    android:id="@+id/main_left_drawer_title_main"
+                    style="@style/AppTheme.DrawerTitleMainText"/>
+
+                <com.artemzin.android.wail.ui.TypefaceTextView
+                    android:id="@+id/main_left_drawer_title_secondary"
+                    style="@style/AppTheme.DrawerTitleSecondaryText"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
             android:background="@color/divider"/>
 
         <ListView
-            android:id="@+id/main_left_drawer"
+            android:id="@+id/main_left_drawer_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
@@ -56,9 +65,23 @@
         android:layout_height="fill_parent"
         android:background="@color/divider" />
 
-    <FrameLayout
-        android:id="@+id/main_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="match_parent"/>
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:minHeight="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" />
+
+        <FrameLayout
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
 </LinearLayout>

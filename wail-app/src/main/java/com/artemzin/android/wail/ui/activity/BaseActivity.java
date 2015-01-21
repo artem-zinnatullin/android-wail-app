@@ -15,8 +15,6 @@ public abstract class BaseActivity extends ActionBarActivity {
         return true;
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme();
@@ -25,6 +23,8 @@ public abstract class BaseActivity extends ActionBarActivity {
         if (savedInstanceState == null) {
             onCreteWithNullState();
         }
+
+
 
         setupUI(savedInstanceState);
     }
