@@ -7,6 +7,10 @@
         <attr name="typefaceFromAssets" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="ScrimInsetsView">
+        <attr name="insetForeground" format="reference|color" />
+    </declare-styleable>
+
     <attr name="listViewStyle" format="reference"/>
 
     <attr name="signInToLastFm" format="reference"/>

@@ -15,8 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.artemzin.android.wail.R;
@@ -44,11 +44,15 @@ public class MainActivity extends BaseActivity {
     @InjectView(R.id.main_drawer_layout)
     public DrawerLayout drawerLayout;
 
+    @Optional
+    @InjectView(R.id.main_drawer_layout_land)
+    public DrawerLayout drawerLayoutLand;
+
     @InjectView(R.id.main_left_drawer_list)
     public ListView drawerList;
 
     @InjectView(R.id.main_drawer)
-    public LinearLayout drawer;
+    public FrameLayout drawer;
 
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
@@ -91,6 +95,8 @@ public class MainActivity extends BaseActivity {
 
         // in landscape orientation on big screen there wont be drawer layout
         if (drawerLayout != null) {
+            drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primary_dark));
+
             DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
             float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, displayMetrics);
 
@@ -109,6 +115,8 @@ public class MainActivity extends BaseActivity {
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
+        } else if (drawerLayoutLand != null) {
+            drawerLayoutLand.setStatusBarBackgroundColor(getResources().getColor(R.color.primary_dark));
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(

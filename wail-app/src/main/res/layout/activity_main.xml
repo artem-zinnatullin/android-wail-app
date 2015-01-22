@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:layout_gravity="start">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,53 +27,61 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <com.artemzin.android.wail.ui.ScrimInsetsFrameLayout
         android:id="@+id/main_drawer"
         android:layout_width="240dp"
         android:layout_height="match_parent"
-        android:background="@color/drawer_header_background"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        android:orientation="vertical">
+        app:insetForeground="#4000">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="136dp"
-            android:clickable="true"
-            android:gravity="bottom"
-            android:background="@android:color/transparent">
+            android:layout_height="match_parent"
+            android:background="@color/drawer_header_background"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:paddingBottom="3dp"
-                android:orientation="vertical"
-                android:gravity="start|center_vertical"
-                android:clickable="true">
+                android:layout_height="136dp"
+                android:clickable="true"
+                android:gravity="bottom"
+                android:background="@android:color/transparent">
 
-                <com.artemzin.android.wail.ui.TypefaceTextView
-                    android:id="@+id/main_left_drawer_title_main"
-                    style="@style/AppTheme.DrawerTitleMainText"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:paddingBottom="3dp"
+                    android:orientation="vertical"
+                    android:gravity="start|center_vertical"
+                    android:clickable="true">
 
-                <com.artemzin.android.wail.ui.TypefaceTextView
-                    android:id="@+id/main_left_drawer_title_secondary"
-                    style="@style/AppTheme.DrawerTitleSecondaryText"/>
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        android:id="@+id/main_left_drawer_title_main"
+                        style="@style/AppTheme.DrawerTitleMainText" />
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        android:id="@+id/main_left_drawer_title_secondary"
+                        style="@style/AppTheme.DrawerTitleSecondaryText" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
+            <ListView
+                android:id="@+id/main_left_drawer_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:background="#fff"
+                android:cacheColorHint="#fff"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:listSelector="@drawable/drawer_item_background" />
+
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/main_left_drawer_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="#fff"
-            android:cacheColorHint="#fff"
-            android:divider="@null"
-            android:dividerHeight="0dp"
-            android:listSelector="@drawable/drawer_item_background" />
-
-    </LinearLayout>
+    </com.artemzin.android.wail.ui.ScrimInsetsFrameLayout>
 
 </android.support.v4.widget.DrawerLayout>
