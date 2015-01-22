@@ -70,8 +70,6 @@ public class MainActivity extends BaseActivity {
                 }
             }).execute();
         }
-
-
     }
 
     @Override
@@ -81,8 +79,6 @@ public class MainActivity extends BaseActivity {
         ButterKnife.inject(this);
 
         setSupportActionBar(toolbar);
-
-        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primary_light));
 
         if (!WAILSettings.isAuthorized(this)) {
             startActivityForResult(new Intent(this, NonAuthorizedActivity.class), REQUEST_CODE_NON_AUTHORIZED_ACTIVITY_INTENT);
