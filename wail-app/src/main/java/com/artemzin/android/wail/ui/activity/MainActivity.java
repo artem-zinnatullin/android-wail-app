@@ -19,6 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.artemzin.android.bytes.common.StringUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.ui.TypefaceTextView;
@@ -53,6 +54,12 @@ public class MainActivity extends BaseActivity {
 
     @InjectView(R.id.main_drawer)
     public FrameLayout drawer;
+
+    @InjectView(R.id.main_left_drawer_title_main)
+    public TypefaceTextView drawerTitleMain;
+
+    @InjectView(R.id.main_left_drawer_title_secondary)
+    public TypefaceTextView drawerTitleSecondary;
 
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
@@ -92,10 +99,7 @@ public class MainActivity extends BaseActivity {
             startActivityForResult(new Intent(this, NonAuthorizedActivity.class), REQUEST_CODE_NON_AUTHORIZED_ACTIVITY_INTENT);
         }
 
-        ((TypefaceTextView) findViewById(R.id.main_left_drawer_title_main)).setText(WAILSettings.getLastfmUserName(this));
-        ((TypefaceTextView) findViewById(R.id.main_left_drawer_title_secondary)).setText(
-                getString(R.string.drawer_registered_at) + WAILSettings.getLastfmUserRegistered(this).split(" ")[0]
-        );
+        setDrawerHeaderText();
 
         // in landscape orientation on big screen there wont be drawer layout
         if (drawerLayout != null) {
@@ -113,7 +117,16 @@ public class MainActivity extends BaseActivity {
                     drawerLayout,
                     R.string.app_name,
                     R.string.app_name
-            );
+            ) {
+                @Override
+                public void onDrawerOpened(View drawerView) {
+                    super.onDrawerOpened(drawerView);
+                    if (StringUtil.isNullOrEmpty(drawerTitleMain.getText().toString()) ||
+                            StringUtil.isNullOrEmpty(drawerTitleSecondary.getText().toString())) {
+                        setDrawerHeaderText();
+                    }
+                }
+            } ;
 
             drawerLayout.setDrawerListener(actionBarDrawerToggle);
 
@@ -175,6 +188,13 @@ public class MainActivity extends BaseActivity {
         };
 
         drawerList.setAdapter(adapter);
+    }
+
+    private void setDrawerHeaderText() {
+        drawerTitleMain.setText(WAILSettings.getLastfmUserName(this));
+        drawerTitleSecondary.setText(
+                getString(R.string.drawer_registered_at) + WAILSettings.getLastfmUserRegistered(this).split(" ")[0]
+        );
     }
 
     @Override
