@@ -94,7 +94,7 @@ public class MainActivity extends BaseActivity {
 
         ((TypefaceTextView) findViewById(R.id.main_left_drawer_title_main)).setText(WAILSettings.getLastfmUserName(this));
         ((TypefaceTextView) findViewById(R.id.main_left_drawer_title_secondary)).setText(
-                getString(R.string.drawer_registered_at) + WAILSettings.getLastfmUserRegistered(this)
+                getString(R.string.drawer_registered_at) + WAILSettings.getLastfmUserRegistered(this).split(" ")[0]
         );
 
         // in landscape orientation on big screen there wont be drawer layout

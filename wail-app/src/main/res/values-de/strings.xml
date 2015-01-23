@@ -123,7 +123,7 @@
     <!-- START of some common strings -->
     <string name="dialog_cancel">Abbrechen</string>
     <string name="dialog_save">Speichern</string>
-    <string name="drawer_registered_at">"Registered at "</string>
+    <string name="drawer_registered_at">"Registrierte "</string>
     <string-array name="drawer_items">
         <item>Start</item>
         <item>Titel</item>
