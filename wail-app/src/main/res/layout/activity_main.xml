@@ -36,18 +36,17 @@
         app:insetForeground="#4000">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/drawer_header_background"
             android:fitsSystemWindows="true"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="136dp"
+                android:layout_height="156dp"
                 android:clickable="true"
                 android:gravity="bottom"
-                android:background="@android:color/transparent">
+                android:background="@drawable/drawer_header_background">
 
                 <LinearLayout
                     android:layout_width="match_parent"

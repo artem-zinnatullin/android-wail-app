@@ -21,8 +21,12 @@
 
     <color name="divider">#B6B6B6</color>
 
-    <color name="drawer_item_background">#FFFFFF</color>
-    <color name="drawer_item_pressed_background">@color/light_theme_pressed_item_background</color>
+    <color name="drawer_background">#FFFFFF</color>
+
+    <color name="drawer_item_background">@android:color/transparent</color>
+    <color name="drawer_item_pressed_background">#C3C3C3</color>
+
+    <color name="drawer_item_selected_background">#14000000</color>
 
     <color name="drawer_item_text">#dd000000</color>
     <color name="drawer_header_background">#fff2f2f2</color>

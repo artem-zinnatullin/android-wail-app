@@ -58,6 +58,8 @@ public class MainActivity extends BaseActivity {
 
     private Fragment[] navigationFragments = new Fragment[3];
 
+    private int lastItemSelected = -1;
+
     @OnItemClick(R.id.main_left_drawer_list)
     public void onItemsSelected(int position) {
         selectNavDrawerItem(position);
@@ -74,6 +76,8 @@ public class MainActivity extends BaseActivity {
                 }
             }).execute();
         }
+
+        setSelectedItem(position);
     }
 
     @Override
@@ -133,6 +137,7 @@ public class MainActivity extends BaseActivity {
                     LayoutInflater inflater = getLayoutInflater();
                     rowView = inflater.inflate(R.layout.activity_main_drawer_item_layout, null, true);
                     holder = new ViewHolder();
+                    holder.background = rowView;
                     holder.textView = (TypefaceTextView) rowView.findViewById(R.id.activity_main_drawer_item_text);
                     holder.imageView = (ImageView) rowView.findViewById(R.id.activity_main_drawer_item_image);
                     rowView.setTag(holder);
@@ -154,10 +159,16 @@ public class MainActivity extends BaseActivity {
                         break;
                 }
 
+                if (position == 0 && lastItemSelected == -1) {
+                    holder.background.setBackgroundColor(getResources().getColor(R.color.drawer_item_selected_background));
+                    lastItemSelected = 0;
+                }
+
                 return rowView;
             }
 
             class ViewHolder {
+                View background;
                 TypefaceTextView textView;
                 ImageView imageView;
             }
@@ -214,5 +225,17 @@ public class MainActivity extends BaseActivity {
         fragmentTransaction.setCustomAnimations(R.anim.fragment_transaction_alpha_up, R.anim.fragment_transaction_alpha_down);
         fragmentTransaction.replace(R.id.main_content, navigationFragments[position]);
         fragmentTransaction.commit();
+    }
+
+    private void setSelectedItem(int position) {
+        if (lastItemSelected != -1) {
+            drawerList.getChildAt(lastItemSelected)
+                    .setBackgroundColor(getResources().getColor(R.color.drawer_item_background));
+        }
+
+        drawerList.getChildAt(position)
+                .setBackgroundColor(getResources().getColor(R.color.drawer_item_selected_background));
+
+        lastItemSelected = position;
     }
 }
