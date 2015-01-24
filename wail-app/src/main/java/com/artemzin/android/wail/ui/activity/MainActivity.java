@@ -105,8 +105,10 @@ public class MainActivity extends BaseActivity {
         if (drawerLayout != null) {
             drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primary_dark));
 
+            TypedValue typedValue = new TypedValue();
+            getTheme().resolveAttribute(R.attr.actionBarSize, typedValue, true);
             DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, displayMetrics);
+            float px = typedValue.getDimension(displayMetrics);
 
             ViewGroup.LayoutParams params = drawer.getLayoutParams();
             params.width = displayMetrics.widthPixels - Math.round(px);
@@ -126,7 +128,7 @@ public class MainActivity extends BaseActivity {
                         setDrawerHeaderText();
                     }
                 }
-            } ;
+            };
 
             drawerLayout.setDrawerListener(actionBarDrawerToggle);
 
