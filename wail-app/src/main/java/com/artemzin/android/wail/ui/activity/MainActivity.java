@@ -3,6 +3,7 @@ package com.artemzin.android.wail.ui.activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.widget.DrawerLayout;
@@ -105,8 +106,6 @@ public class MainActivity extends BaseActivity {
         if (drawerLayout != null) {
             drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primary_dark));
 
-            setDrawerWidth();
-
             actionBarDrawerToggle = new ActionBarDrawerToggle(
                     this,
                     drawerLayout,
@@ -183,6 +182,7 @@ public class MainActivity extends BaseActivity {
         };
 
         drawerList.setAdapter(adapter);
+        setDrawerWidth();
     }
 
     private void setDrawerWidth() {
@@ -192,10 +192,20 @@ public class MainActivity extends BaseActivity {
         float px = typedValue.getDimension(displayMetrics);
 
         ViewGroup.LayoutParams params = drawer.getLayoutParams();
-        params.width = (int) Math.min(
-                displayMetrics.widthPixels - px,
-                getResources().getDimension(R.dimen.main_drawer_standard_increment) * 5
-        );
+
+        if (getResources().getBoolean(R.bool.isTablet)) {
+            params.width = (int) Math.min(
+                    displayMetrics.widthPixels - px,
+                    getResources().getDimension(R.dimen.main_drawer_standard_increment) * 5
+            );
+        } else {
+            if (getResources().getConfiguration().orientation ==
+                    Configuration.ORIENTATION_PORTRAIT) {
+                params.width = (int) (displayMetrics.widthPixels - px);
+            } else {
+                params.width = (int) (displayMetrics.heightPixels - px);
+            }
+        }
         drawer.setLayoutParams(params);
     }
 

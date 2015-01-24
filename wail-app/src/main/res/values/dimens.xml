@@ -14,4 +14,6 @@
     <dimen name="main_drawer_padding">16dp</dimen>
     <dimen name="main_drawer_text_padding">32dp</dimen>
     <dimen name="main_drawer_standard_increment">56dp</dimen>
+
+    <bool name="isTablet">false</bool>
 </resources>
