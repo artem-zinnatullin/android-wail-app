@@ -6,10 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -21,8 +22,6 @@ import com.artemzin.android.wail.ui.fragment.main.SettingsFragment;
 import com.artemzin.android.wail.ui.fragment.main.TracksListFragment;
 import com.artemzin.android.wail.util.Loggi;
 import com.artemzin.android.wail.util.SleepIfRequiredAsyncTask;
-
-import java.lang.reflect.Field;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -51,16 +50,20 @@ public class MainActivity extends BaseActivity {
         setSelectedDrawerItem(position);
         selectNavDrawerItem(position);
 
-        SleepIfRequiredAsyncTask.newInstance(SystemClock.elapsedRealtime(), 150, new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    closeNavigationDrawer();
-                } catch (Exception e) {
-                    Loggi.e("MainActivity closeNavigationDrawer() exception: " + e.getMessage());
+        if (drawerLayout != null) {
+            SleepIfRequiredAsyncTask.newInstance(SystemClock.elapsedRealtime(), 150, new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        drawerLayout.closeDrawers();
+                    } catch (Exception e) {
+                        Loggi.e("MainActivity closeNavigationDrawer() exception: " + e.getMessage());
+                    }
                 }
-            }
-        }).execute();
+            }).execute();
+        }
+
+
     }
 
     @Override
@@ -79,45 +82,51 @@ public class MainActivity extends BaseActivity {
                     this,
                     drawerLayout,
                     R.string.app_name,
-                    R.string.app_name) {
-
-                @Override
-                public void onDrawerSlide(View drawerView, float slideOffset) {
-                    if (lastItemSelected == -1) {
-                        setSelectedDrawerItem(0);
-                    }
-                    super.onDrawerSlide(drawerView, slideOffset);
-                }
-
-                @Override
-                public void onDrawerOpened(View drawerView) {
-                    super.onDrawerOpened(drawerView);
-                }
-
-                @Override
-                public void onDrawerClosed(View drawerView) {
-                    super.onDrawerClosed(drawerView);
-                }
-
-                @Override
-                public void onDrawerStateChanged(int newState) {
-                    super.onDrawerStateChanged(newState);
-                }
-            };
+                    R.string.app_name
+            );
 
             drawerLayout.setDrawerListener(actionBarDrawerToggle);
 
-            tryToIncreaseNavigationDrawerLeftSwipeZone(drawerLayout);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
         }
 
-        drawerList.setAdapter(new ArrayAdapter<>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this,
-                R.layout.activity_main_drawer_item_layout,
+                R.layout.settings_ignored_players_item_layout,
                 getResources().getStringArray(R.array.drawer_items)
-        ));
+        ) {
+            @Override
+            public View getView(int position, View view, ViewGroup parent) {
+                ViewHolder holder;
+                View rowView = view;
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+                if (rowView == null) {
+                    LayoutInflater inflater = getLayoutInflater();
+                    rowView = inflater.inflate(R.layout.activity_main_drawer_item_layout, null, true);
+                    holder = new ViewHolder();
+                    holder.textView = (TypefaceTextView) rowView;
+                    rowView.setTag(holder);
+                } else {
+                    holder = (ViewHolder) rowView.getTag();
+                }
+
+                holder.textView.setText(getItem(position));
+
+                if (position == 0 && lastItemSelected == -1) {
+                    holder.textView.setTypefaceFromAssets("fonts/Roboto-Medium.ttf");
+                    lastItemSelected = 0;
+                }
+
+                return rowView;
+            }
+
+            class ViewHolder {
+                TypefaceTextView textView;
+            }
+        };
+
+        drawerList.setAdapter(adapter);
     }
 
     @Override
@@ -178,30 +187,5 @@ public class MainActivity extends BaseActivity {
         ((TypefaceTextView) drawerList.getChildAt(position))
                 .setTypefaceFromAssets("fonts/Roboto-Medium.ttf");
         lastItemSelected = position;
-    }
-
-    private void closeNavigationDrawer() {
-        if (drawerLayout != null) {
-            drawerLayout.closeDrawers();
-        }
-    }
-
-    private void tryToIncreaseNavigationDrawerLeftSwipeZone(DrawerLayout drawerLayout) {
-        try {
-            Field mDragger = drawerLayout.getClass().getDeclaredField("mLeftDragger");
-
-            mDragger.setAccessible(true);
-
-            ViewDragHelper draggerObj = (ViewDragHelper) mDragger.get(drawerLayout);
-
-            Field mEdgeSize = draggerObj.getClass().getDeclaredField("mEdgeSize");
-            mEdgeSize.setAccessible(true);
-
-            int edge = mEdgeSize.getInt(draggerObj);
-
-            mEdgeSize.setInt(draggerObj, (int) (edge * 1.3)); // increasing drag zone * 1.3
-        } catch (Exception e) {
-            Loggi.w("MainActivity.tryToIncreaseNavigationDrawerLeftSwipeZone() exception: " + e);
-        }
     }
 }
