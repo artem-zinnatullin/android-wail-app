@@ -25,7 +25,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="@dimen/main_drawer_standard_increment"
                 android:orientation="vertical"
                 android:gravity="start|center_vertical"
                 android:clickable="true">

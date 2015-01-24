@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_drawer_padding">24dp</dimen>
+    <dimen name="main_drawer_text_padding">32dp</dimen>
+    <dimen name="main_drawer_standard_increment">64dp</dimen>
+</resources>
