@@ -10,26 +10,18 @@
         android:layout_height="wrap_content"
         android:stretchColumns="0">
 
-        <LinearLayout style="?settingsCategoryTitle">
+        <com.artemzin.android.wail.ui.TypefaceTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/settings_padding_right_and_left"
+            android:paddingRight="@dimen/settings_padding_right_and_left"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:textSize="13sp"
+            android:textColor="@color/light_theme_text_secondary"
+            android:text="@string/settings_sound_notifications_pro_tip" />
 
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsCategoryTitleTitle"
-                android:text="@string/settings_sound_notifications_main_title" />
-
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/settings_padding_right_and_left"
-                android:paddingRight="@dimen/settings_padding_right_and_left"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp"
-                android:textSize="13sp"
-                android:textColor="@color/light_theme_text_secondary"
-                android:text="@string/settings_sound_notifications_pro_tip" />
-
-            <View style="?settingsCategoryTitleDivider" />
-
-        </LinearLayout>
+        <View style="?settingsCategoryTitleDivider" />
 
         <TableRow
             android:id="@+id/settings_sound_notifications_track_marked_as_scrobbled"
@@ -46,8 +38,6 @@
                 style="?settingsItemSwitch" />
 
         </TableRow>
-
-        <View style="?settingsCategoryTitleDivider" />
 
         <TableRow
             android:id="@+id/settings_sound_notifications_track_skipped"
