@@ -27,35 +27,35 @@ android {
         disable 'InvalidPackage'
     }
 
-//    signingConfigs {
-//        googlePlay
-//    }
-//
-//    buildTypes {
-//        debug {
-//            versionNameSuffix ' debug ' + getDateForVersionName()
-//            signingConfig signingConfigs.googlePlay
-//        }
-//
-//        release {
-//            signingConfig signingConfigs.googlePlay
-//        }
-//    }
-//
-//    if (project.hasProperty('signingConfigStoreFile')
-//            && project.hasProperty('signingConfigStorePassword')
-//            && project.hasProperty('signingConfigKeyAlias')
-//            && project.hasProperty('signingConfigKeyPassword')
-//    ) {
-//        android.signingConfigs.googlePlay.storeFile = file(project.ext['signingConfigStoreFile'])
-//        android.signingConfigs.googlePlay.storePassword = project.ext['signingConfigStorePassword']
-//        android.signingConfigs.googlePlay.keyAlias = project.ext['signingConfigKeyAlias']
-//        android.signingConfigs.googlePlay.keyPassword = project.ext['signingConfigKeyPassword']
-//    } else {
-//        buildTypes.all { bt ->
-//            bt.signingConfig = null
-//        }
-//    }
+    signingConfigs {
+        googlePlay
+    }
+
+    buildTypes {
+        debug {
+            versionNameSuffix ' debug ' + getDateForVersionName()
+            signingConfig signingConfigs.googlePlay
+        }
+
+        release {
+            signingConfig signingConfigs.googlePlay
+        }
+    }
+
+    if (project.hasProperty('signingConfigStoreFile')
+            && project.hasProperty('signingConfigStorePassword')
+            && project.hasProperty('signingConfigKeyAlias')
+            && project.hasProperty('signingConfigKeyPassword')
+    ) {
+        android.signingConfigs.googlePlay.storeFile = file(project.ext['signingConfigStoreFile'])
+        android.signingConfigs.googlePlay.storePassword = project.ext['signingConfigStorePassword']
+        android.signingConfigs.googlePlay.keyAlias = project.ext['signingConfigKeyAlias']
+        android.signingConfigs.googlePlay.keyPassword = project.ext['signingConfigKeyPassword']
+    } else {
+        buildTypes.all { bt ->
+            bt.signingConfig = null
+        }
+    }
 }
 
 dependencies {
