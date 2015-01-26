@@ -222,7 +222,7 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
             setUIStateWailDisabled();
         }
 
-        String lang = WAILSettings.getLanguageOrNullIfAuto(getActivity());
+        String lang = WAILSettings.getLanguage(getActivity());
 
         if (lang == null) {
             lang = getResources().getStringArray(R.array.settings_select_language_languages)[0];

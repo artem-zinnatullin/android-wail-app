@@ -89,7 +89,11 @@ public class SettingsSelectLanguageFragment extends BaseFragment {
                 LocaleUtil.updateLanguage(getActivity(), Locale.getDefault().getDisplayLanguage());
                 break;
             default:
-                LocaleUtil.updateLanguage(getActivity(), languages[i]);
+                String language = languages[i];
+                if (language.contains("(")) {
+                    language = language.substring(0, language.indexOf("(") - 1);
+                }
+                LocaleUtil.updateLanguage(getActivity(), language);
                 break;
         }
 
