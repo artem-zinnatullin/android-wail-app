@@ -15,8 +15,6 @@ public abstract class BaseActivity extends ActionBarActivity {
         return true;
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme();
@@ -25,6 +23,8 @@ public abstract class BaseActivity extends ActionBarActivity {
         if (savedInstanceState == null) {
             onCreteWithNullState();
         }
+
+
 
         setupUI(savedInstanceState);
     }
@@ -80,9 +80,17 @@ public abstract class BaseActivity extends ActionBarActivity {
 
     public void setTheme() {
         if (WAILSettings.getTheme(getBaseContext()) == WAILSettings.Theme.DARK) {
-            setTheme(R.style.AppTheme_Dark);
+            if (this instanceof MainActivity) {
+                setTheme(R.style.AppTheme_Dark_NoActionBar);
+            } else {
+                setTheme(R.style.AppTheme_Dark);
+            }
         } else {
-            setTheme(R.style.AppTheme_Light);
+            if (this instanceof MainActivity) {
+                setTheme(R.style.AppTheme_Light_NoActionBar);
+            } else {
+                setTheme(R.style.AppTheme_Light);
+            }
         }
     }
 

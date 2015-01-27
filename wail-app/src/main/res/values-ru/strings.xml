@@ -100,6 +100,7 @@
     <string name="main_confirm_ignoring_player">Вы хотите добавить в игнорируемые плеер %s</string>
     <string name="settings_ignored_players_empty_text">У Вас нет игнорируемых плееров</string>
     <string name="main_ignore_this_player_button_text">Игнорировать этот плеер</string>
+    <string name="drawer_registered_at">"Зарегистрирован(а) "</string>
     <string-array name="drawer_items">
         <item>Главная</item>
         <item>Треки</item>

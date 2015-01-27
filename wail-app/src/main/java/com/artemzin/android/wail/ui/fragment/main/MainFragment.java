@@ -338,6 +338,7 @@ public class MainFragment extends BaseFragment {
                     userModel = LFUserResponseModel.parseFromJSON(response);
                     WAILSettings.setLastfmUserInfo(getActivity(), response);
                     WAILSettings.setLastfmUserName(getActivity(), userModel.getName());
+                    WAILSettings.setLastfmUserRegistered(getActivity(), userModel.getRegistered().getText());
                     WAILSettings.setLastfmUserInfoUpdateTimestamp(getActivity(), System.currentTimeMillis());
                 } catch (Exception e) {
                     EasyTracker.getInstance(getActivity()).send(MapBuilder.createEvent(
