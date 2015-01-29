@@ -1,10 +1,10 @@
 package com.artemzin.android.wail.ui.fragment.settings;
 
 import android.os.Bundle;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
 
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.notifications.StatusBarNotificationsManager;
@@ -27,13 +27,13 @@ public class SettingsStatusBarNotificationsFragment extends BaseFragment {
     private final String GA_EVENT_SETTINGS_STATUS_BAR_NOTIFICATIONS = "SettingsStatusBarNotifications";
 
     @InjectView(R.id.settings_status_bar_notifications_track_now_scrobbling_switch)
-    public Switch trackNowScrobblingStatusBarNotificationsSwitch;
+    public SwitchCompat trackNowScrobblingStatusBarNotificationsSwitch;
 
     @OnClick(R.id.settings_status_bar_notifications_track_now_scrobbling)
     public void onTrackSkippedChanged() {
         View switchView = getActivity().findViewById(R.id.settings_status_bar_notifications_track_now_scrobbling_switch);
-        onStatusBarNotificationSwitchChanged(((Switch) switchView).isChecked());
-        ((Switch) switchView).setChecked(!((Switch) switchView).isChecked());
+        onStatusBarNotificationSwitchChanged(((SwitchCompat) switchView).isChecked());
+        ((SwitchCompat) switchView).setChecked(!((SwitchCompat) switchView).isChecked());
     }
 
     @OnCheckedChanged(R.id.settings_status_bar_notifications_track_now_scrobbling_switch)

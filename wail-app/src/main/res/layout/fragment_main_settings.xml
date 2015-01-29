@@ -10,13 +10,13 @@
         android:id="@+id/settings_container"
         style="?settingsBackground">
 
-        <android.support.v7.widget.CardView
-            style="?settingsCardView">
+        <android.support.v7.widget.CardView style="?settingsCardView">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="6dp">
 
                 <LinearLayout style="?settingsCategoryTitle">
 
@@ -41,6 +41,11 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/divider" />
+
                 <LinearLayout
                     android:id="@+id/settings_min_track_duration_in_percents"
                     style="?settingsItem">
@@ -56,6 +61,30 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/divider" />
+
+                <LinearLayout
+                    style="?settingsItemWithSwitch"
+                    android:id="@+id/settings_lastfm_update_nowplaying">
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitleWithSwitch"
+                        android:text="@string/settings_lastfm_update_nowplaying_title" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/settings_lastfm_update_nowplaying_switch"
+                        style="?settingsItemSwitch" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/divider" />
+
                 <LinearLayout
                     android:id="@+id/settings_disable_scrobbling_over_mobile_network"
                     style="?settingsItemWithSwitch">
@@ -69,6 +98,11 @@
                         style="?settingsItemSwitch" />
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/divider" />
 
                 <LinearLayout
                     android:id="@+id/settings_ignored_players"
@@ -89,82 +123,13 @@
 
         </android.support.v7.widget.CardView>
 
-        <android.support.v7.widget.CardView
-            style="?settingsCardView">
+        <android.support.v7.widget.CardView style="?settingsCardView">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout style="?settingsCategoryTitle">
-
-                    <com.artemzin.android.wail.ui.TypefaceTextView
-                        style="?settingsCategoryTitleTitle"
-                        android:text="@string/settings_select_language_title" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    style="?settingsItem"
-                    android:id="@+id/settings_select_language_menu_item">
-
-                    <com.artemzin.android.wail.ui.TypefaceTextView
-                        style="?settingsItemTitle"
-                        android:text="@string/settings_select_language" />
-
-                    <com.artemzin.android.wail.ui.TypefaceTextView
-                        style="?settingsItemDescription"
-                        android:id="@+id/settings_select_language_description"
-                        tools:text="English" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            style="?settingsCardView">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout style="?settingsCategoryTitle">
-
-                    <com.artemzin.android.wail.ui.TypefaceTextView
-                        style="?settingsCategoryTitleTitle"
-                        android:text="@string/settings_update_nowplaying_title" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    style="?settingsItemWithSwitch"
-                    android:id="@+id/settings_lastfm_update_nowplaying">
-
-                    <com.artemzin.android.wail.ui.TypefaceTextView
-                        style="?settingsItemTitleWithSwitch"
-                        android:text="@string/settings_lastfm_update_nowplaying_title" />
-
-                    <android.support.v7.widget.SwitchCompat
-                        android:id="@+id/settings_lastfm_update_nowplaying_switch"
-                        style="?settingsItemSwitch" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            style="?settingsCardView">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="6dp">
 
                 <LinearLayout style="?settingsCategoryTitle">
 
@@ -188,6 +153,11 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/divider" />
+
                 <LinearLayout
                     android:id="@+id/settings_status_bar_notifications"
                     style="?settingsItem">
@@ -195,40 +165,6 @@
                     <com.artemzin.android.wail.ui.TypefaceTextView
                         style="?settingsItemTitle"
                         android:text="@string/settings_status_bar_notifications_title" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            style="?settingsCardView">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout style="?settingsCategoryTitle">
-
-                    <com.artemzin.android.wail.ui.TypefaceTextView
-                        style="?settingsCategoryTitleTitle"
-                        android:text="@string/settings_theme" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    style="?settingsItemWithSwitch"
-                    android:id="@+id/settings_theme">
-
-                    <com.artemzin.android.wail.ui.TypefaceTextView
-                        style="?settingsItemTitleWithSwitch"
-                        android:text="@string/settings_theme_switch_label" />
-
-                    <android.support.v7.widget.SwitchCompat
-                        android:id="@+id/settings_theme_switch"
-                        style="?settingsItemSwitch" />
 
                 </LinearLayout>
 
@@ -254,6 +190,45 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    style="?settingsItemWithSwitch"
+                    android:id="@+id/settings_theme">
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitleWithSwitch"
+                        android:text="@string/settings_theme_switch_label" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/settings_theme_switch"
+                        style="?settingsItemSwitch" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/divider" />
+
+                <LinearLayout
+                    style="?settingsItem"
+                    android:id="@+id/settings_select_language_menu_item">
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitle"
+                        android:text="@string/settings_select_language" />
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemDescription"
+                        android:id="@+id/settings_select_language_description"
+                        tools:text="English" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/divider" />
+
+                <LinearLayout
                     android:id="@+id/settings_email_to_developers"
                     style="?settingsItem">
 
@@ -266,6 +241,11 @@
                         android:text="@string/settings_developers_emails" />
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/divider" />
 
                 <LinearLayout
                     style="?settingsItem"

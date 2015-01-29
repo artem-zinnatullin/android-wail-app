@@ -33,7 +33,7 @@
                 android:layout_weight="1"
                 android:text="@string/settings_notifications_track_scrobbled" />
 
-            <Switch
+            <android.support.v7.widget.SwitchCompat
                 android:id="@+id/settings_sound_notifications_track_marked_as_scrobbled_switch"
                 style="?settingsItemSwitch" />
 
@@ -47,7 +47,7 @@
                 style="?settingsItemTitleWithSwitch"
                 android:text="@string/settings_track_was_skipped" />
 
-            <Switch
+            <android.support.v7.widget.SwitchCompat
                 android:id="@+id/settings_sound_notifications_track_skipped_switch"
                 style="?settingsItemSwitch" />
 
