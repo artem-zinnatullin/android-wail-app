@@ -94,7 +94,7 @@ public class WAILSettings {
     }
 
     public static synchronized String getLanguage(Context context) {
-        return getSharedPreferences(context).getString(KEY_LOCALE, Locale.getDefault().getLanguage());
+        return getSharedPreferences(context).getString(KEY_LOCALE, null);
     }
 
     public static synchronized void setLanguage(Context context, String value) {
