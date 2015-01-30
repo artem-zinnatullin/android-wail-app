@@ -212,6 +212,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">4dp</item>
         <item name="cardCornerRadius">0dp</item>
+        <item name="contentPaddingBottom">5dp</item>
+        <item name="cardBackgroundColor">@color/light_theme_background</item>
     </style>
 
     <style name="AppTheme.Light.SettingsCategoryTitle">

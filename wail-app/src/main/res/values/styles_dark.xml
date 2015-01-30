@@ -209,6 +209,8 @@
         <item name="android:layout_marginBottom">4dp</item>
         <item name="android:paddingBottom">2dp</item>
         <item name="cardCornerRadius">0dp</item>
+        <item name="contentPaddingBottom">5dp</item>
+        <item name="cardBackgroundColor">@color/dark_theme_background</item>
     </style>
 
     <style name="AppTheme.Dark.SettingsCategoryTitle">
