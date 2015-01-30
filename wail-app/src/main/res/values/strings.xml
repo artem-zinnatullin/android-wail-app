@@ -112,6 +112,8 @@
     <string name="settings_notifications_track_scrobbled">WAIL marked track as scrobbled</string>
     <string name="settings_track_was_skipped">WAIL skipped track because it was not played required time</string>
     <string name="settings_sound_notifications_toast_can_not_play_sound">Can not play sound :(</string>
+    <string name="settings_logout">Logout</string>
+    <string name="setting_logout_warning">All scrobbling data will be deleted! Are you sure?</string>
     <!-- END of sound notifications screen strings -->
 
     <string name="settings_status_bar_notifications_activity_label">Status bar notifications</string>
@@ -126,8 +128,6 @@
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_save">Save</string>
     <string name="drawer_registered_at">"Registered "</string>
-    <string name="settings_logout">Logout</string>
-    <string name="setting_logout_warning">All scrobbling data will be deleted! Are you sure?</string>
 
     <string-array name="drawer_items">
         <item>Main</item>
