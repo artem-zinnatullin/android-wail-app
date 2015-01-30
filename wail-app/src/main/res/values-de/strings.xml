@@ -101,6 +101,8 @@
     <string name="settings_email_dialog_title">E-Mail-App auswählen</string>
     <string name="main_settings_menu_toggle_wail">WAIL an/abschalten</string>
     <string name="settings_disable_scrobbling_over_mobile_network">Über Mobilfunk scrobbeln</string>
+    <string name="settings_logout">Logout</string>
+    <string name="setting_logout_warning">All scrobbling data will be deleted! Are you sure?</string>
     <!-- END of settings screen strings -->
 
     <!-- START of sound notifications screen strings -->
