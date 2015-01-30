@@ -229,6 +229,26 @@
                     android:background="@color/divider" />
 
                 <LinearLayout
+                    style="?settingsItem"
+                    android:id="@+id/settings_logout_menu_item">
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitle"
+                        android:text="@string/settings_logout" />
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemDescription"
+                        android:id="@+id/settings_logout_description"
+                        tools:text="Murzinov_Ilia" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/divider" />
+
+                <LinearLayout
                     android:id="@+id/settings_email_to_developers"
                     style="?settingsItem">
 

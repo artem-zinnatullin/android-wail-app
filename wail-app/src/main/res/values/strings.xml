@@ -126,6 +126,8 @@
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_save">Save</string>
     <string name="drawer_registered_at">"Registered "</string>
+    <string name="settings_logout">Logout</string>
+    <string name="setting_logout_warning">All scrobbling data will be deleted! Are you sure?</string>
 
     <string-array name="drawer_items">
         <item>Main</item>

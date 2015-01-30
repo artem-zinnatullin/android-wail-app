@@ -101,6 +101,8 @@
     <string name="settings_ignored_players_empty_text">У Вас нет игнорируемых плееров</string>
     <string name="main_ignore_this_player_button_text">Игнорировать этот плеер</string>
     <string name="drawer_registered_at">"Зарегистрирован(а) "</string>
+    <string name="settings_logout">Logout</string>
+    <string name="setting_logout_warning">All scrobbling data will be deleted! Are you sure?</string>
     <string-array name="drawer_items">
         <item>Главная</item>
         <item>Треки</item>

@@ -1,5 +1,7 @@
 package com.artemzin.android.wail.ui.fragment.main;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
@@ -19,7 +21,9 @@ import com.artemzin.android.bytes.ui.DisplayUnitsConverter;
 import com.artemzin.android.bytes.ui.ViewUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
+import com.artemzin.android.wail.storage.db.AppDBManager;
 import com.artemzin.android.wail.ui.activity.BaseActivity;
+import com.artemzin.android.wail.ui.activity.NonAuthorizedActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsIgnoredPlayersActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSelectLanguageActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSoundNotificationsActivity;
@@ -64,6 +68,9 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
 
     @InjectView(R.id.settings_theme_switch)
     public SwitchCompat themeSwitch;
+
+    @InjectView(R.id.settings_logout_description)
+    public TextView logoutDescription;
 
     @OnClick(R.id.settings_ignored_players)
     public void onIgnoredPlayersClick() {
@@ -237,6 +244,8 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
 
         isLastfmUpdateNowplayingEnabledSwitch.setChecked(WAILSettings.isLastfmNowplayingUpdateEnabled(getActivity()));
 
+        logoutDescription.setText(WAILSettings.getLastfmUserName(getActivity()));
+
         themeSwitch.setChecked(WAILSettings.getTheme(getActivity()) == WAILSettings.Theme.DARK);
 
         try {
@@ -311,6 +320,33 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
                         WAILSettings.getMinTrackDurationInPercents(getActivity())
                 )
         );
+    }
+
+    @OnClick(R.id.settings_logout_menu_item)
+    public void logout() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        View titleView = inflater.inflate(R.layout.dialog_fragment_title, null);
+
+        ((TextView) titleView.findViewById(R.id.dialog_fragment_title_text_view))
+                .setText(getString(R.string.setting_logout_warning));
+
+        builder.setCustomTitle(titleView)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        WAILSettings.clearAllSettings(getActivity());
+                        AppDBManager.getInstance(getActivity()).clearAll();
+                        startActivity(new Intent(getActivity(), NonAuthorizedActivity.class));
+                        getActivity().finish();
+                    }
+                })
+                .setNegativeButton(getString(R.string.dialog_cancel), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 
     @OnClick(R.id.settings_email_to_developers)
