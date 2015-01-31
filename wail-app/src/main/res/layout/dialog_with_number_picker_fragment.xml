@@ -3,27 +3,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="20dp">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <NumberPicker
+        android:id="@+id/dialog_with_number_picker_picker"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="14dp"
-        android:paddingRight="14dp"
-        android:orientation="vertical">
-
-        <com.artemzin.android.wail.ui.TypefaceTextView
-            android:id="@+id/custom_dialog_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <NumberPicker
-            android:id="@+id/dialog_with_number_picker_picker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal" />
-
-    </LinearLayout>
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
