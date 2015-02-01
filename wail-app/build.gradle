@@ -6,9 +6,8 @@ if (new File('wail-app/custom_env.gradle').exists()) {
 apply plugin: 'com.android.application'
 
 repositories {
-    mavenCentral()
     maven() {
-        url 'http://dl.bintray.com/drummer-aidan/maven'
+        url 'http://jcenter.bintray.com'
     }
 }
 
