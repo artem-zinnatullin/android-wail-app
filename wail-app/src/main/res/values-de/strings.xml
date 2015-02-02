@@ -92,7 +92,7 @@
     <string name="settings_scrobbling_over_mobile_network_disabled_toast">Scrobbeln über Mobilfunk deaktiviert!</string>
     <string name="settings_notifications_title">Mitteilungen</string>
     <string name="settings_sound_notifications_title">Tonmitteilungen</string>
-    <string name="settings_sound_notifications_description">Ton wenn Titel gescrobbelt werden.</string>
+    <string name="settings_sound_notifications_description">Ton wenn Titel gescrobbelt werden oder wenn dies nicht möglich gewesen ist.</string>
     <string name="settings_status_bar_notifications_title">Statusbar-Mitteilungen</string>
     <string name="settings_theme">Design</string>
     <string name="settings_theme_switch_label">Material Dark</string>
@@ -101,8 +101,8 @@
     <string name="settings_email_dialog_title">E-Mail-App auswählen</string>
     <string name="main_settings_menu_toggle_wail">WAIL an/abschalten</string>
     <string name="settings_disable_scrobbling_over_mobile_network">Über Mobilfunk scrobbeln</string>
-    <string name="settings_logout">Logout</string>
-    <string name="setting_logout_warning">All scrobbling data will be deleted! Are you sure?</string>
+    <string name="settings_logout">Abmelden</string>
+    <string name="settings_logout_warning">Alle Daten werden gelöscht! Bist Du dir sicher?</string
     <!-- END of settings screen strings -->
 
     <!-- START of sound notifications screen strings -->
