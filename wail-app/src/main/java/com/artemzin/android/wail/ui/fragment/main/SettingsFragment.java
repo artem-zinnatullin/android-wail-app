@@ -1,7 +1,5 @@
 package com.artemzin.android.wail.ui.fragment.main;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
@@ -17,6 +15,8 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.artemzin.android.bytes.ui.DisplayUnitsConverter;
 import com.artemzin.android.bytes.ui.ViewUtil;
 import com.artemzin.android.wail.R;
@@ -324,29 +324,25 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
 
     @OnClick(R.id.settings_logout_menu_item)
     public void logout() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-
-        View titleView = inflater.inflate(R.layout.dialog_fragment_title, null);
-
-        ((TextView) titleView.findViewById(R.id.dialog_fragment_title_text_view))
-                .setText(getString(R.string.setting_logout_warning));
-
-        builder.setCustomTitle(titleView)
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        new MaterialDialog.Builder(getActivity())
+                .theme(Theme.DARK)
+                .title(R.string.setting_logout_warning)
+                .positiveText("Ok")
+                .negativeText(R.string.dialog_cancel)
+                .callback(new MaterialDialog.ButtonCallback() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onPositive(MaterialDialog dialog) {
                         WAILSettings.clearAllSettings(getActivity());
                         AppDBManager.getInstance(getActivity()).clearAll();
                         startActivity(new Intent(getActivity(), NonAuthorizedActivity.class));
                         getActivity().finish();
                     }
-                })
-                .setNegativeButton(getString(R.string.dialog_cancel), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+
+                    @Override
+                    public void onNegative(MaterialDialog dialog) {
                         dialog.dismiss();
                     }
-                }).show();
+                }).build().show();
     }
 
     @OnClick(R.id.settings_email_to_developers)
