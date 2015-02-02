@@ -29,7 +29,7 @@
     <string name="main_today">heute</string>
     <string name="main_tracks_on_last_fm">auf Last.fm gescrobbelt</string>
     <string name="main_tracks_on_last_fm_unknown">Anzahl der Titel auf Last.fm ist unbekannt. Für ein manuelles aktualisieren bitte nach unten ziehen!</string>
-    <string name="main_now_scrobbling_label">Scrobbelt jetzt: %1$s</string>
+    <string name="main_now_scrobbling_label">Scrobbelt zurzeit: %1$s</string>
     <string name="main_now_scrobbling_nothing">nichts</string>
     <string name="main_pull_down_to_refresh_toast">Ziehen, um Daten zu aktualisieren</string>
     <string name="main_pull_to_refresh_pull_text">Ziehen, um zu aktualisieren</string>
@@ -85,6 +85,7 @@
     <string name="settings_ignored_players_image_content_description">Bild von ignorierten Musikapps</string>
     <string name="settings_confirm_unignoring_player">Möchtest Du App \"%s\" nicht mehr ignorieren?</string>
     <string name="settings_ignored_players_empty_text">Du ignorierst zurzeit keine Musikapps</string>
+    <string name="settings_update_nowplaying_title" translatable="false">#nowplaying</string>
     <string name="settings_lastfm_update_nowplaying_title">Auf Last.fm den aktuellen Titel anzeigen</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm #nowplaying aktiviert</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm #nowplaying deaktiviert</string>
@@ -95,14 +96,13 @@
     <string name="settings_sound_notifications_description">Ton wenn Titel gescrobbelt werden oder wenn dies nicht möglich gewesen ist.</string>
     <string name="settings_status_bar_notifications_title">Statusbar-Mitteilungen</string>
     <string name="settings_theme">Design</string>
-    <string name="settings_theme_switch_label">Material Dark</string>
-    <string name="settings_other">Über WAIL</string>
-    <string name="settings_email_to_developers">E-Mail an Entwickler</string>
+    <string name="settings_theme_switch_label">Material-Dark-Design</string>
+    <string name="settings_other">Andere Einstellungen</string>
+    <string name="settings_email_to_the_developer">E-Mail an Entwickler</string>
     <string name="settings_email_dialog_title">E-Mail-App auswählen</string>
     <string name="main_settings_menu_toggle_wail">WAIL an/abschalten</string>
     <string name="settings_disable_scrobbling_over_mobile_network">Über Mobilfunk scrobbeln</string>
-    <string name="settings_logout">Abmelden</string>
-    <string name="setting_logout_warning">Alle Daten werden gelöscht! Bist Du dir sicher?</string>
+
     <!-- END of settings screen strings -->
 
     <!-- START of sound notifications screen strings -->
@@ -112,6 +112,8 @@
     <string name="settings_notifications_track_scrobbled">WAIL scrobbelt Titel</string>
     <string name="settings_track_was_skipped">WAIL hat Titel wegen Länge übersprungen</string>
     <string name="settings_sound_notifications_toast_can_not_play_sound">Ton konnte nicht abgespielt werden.</string>
+    <string name="settings_logout">Abmelden</string>
+    <string name="setting_logout_warning">Alle Daten werden gelöscht! Bist Du dir sicher?</string>
     <!-- END of sound notifications screen strings -->
 
     <string name="settings_status_bar_notifications_activity_label">Statusbar-Mitteilungen</string>
@@ -125,7 +127,8 @@
     <!-- START of some common strings -->
     <string name="dialog_cancel">Abbrechen</string>
     <string name="dialog_save">Speichern</string>
-    <string name="drawer_registered_at">"Registrierte "</string>
+    <string name="drawer_registered_at">"Mitglied seit "</string>
+
     <string-array name="drawer_items">
         <item>Start</item>
         <item>Titel</item>
