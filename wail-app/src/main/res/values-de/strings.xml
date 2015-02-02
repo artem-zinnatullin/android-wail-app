@@ -102,7 +102,7 @@
     <string name="main_settings_menu_toggle_wail">WAIL an/abschalten</string>
     <string name="settings_disable_scrobbling_over_mobile_network">Über Mobilfunk scrobbeln</string>
     <string name="settings_logout">Abmelden</string>
-    <string name="setting_logout_warning">Alle Daten werden gelöscht! Bist Du dir sicher?</string
+    <string name="setting_logout_warning">Alle Daten werden gelöscht! Bist Du dir sicher?</string>
     <!-- END of settings screen strings -->
 
     <!-- START of sound notifications screen strings -->
