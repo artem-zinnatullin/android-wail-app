@@ -23,7 +23,7 @@ import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.storage.db.AppDBManager;
 import com.artemzin.android.wail.ui.activity.BaseActivity;
-import com.artemzin.android.wail.ui.activity.NonAuthorizedActivity;
+import com.artemzin.android.wail.ui.activity.MainActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsIgnoredPlayersActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSelectLanguageActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSoundNotificationsActivity;
@@ -32,6 +32,7 @@ import com.artemzin.android.wail.ui.fragment.BaseFragment;
 import com.artemzin.android.wail.ui.fragment.dialogs.DialogDecorator;
 import com.artemzin.android.wail.ui.fragment.dialogs.DialogFragmentWithNumberPicker;
 import com.artemzin.android.wail.ui.fragment.dialogs.DialogFragmentWithSeekBar;
+import com.artemzin.android.wail.util.LocaleUtil;
 import com.artemzin.android.wail.util.WordFormUtil;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
@@ -207,11 +208,11 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
                 toast.show();
 
                 EasyTracker.getInstance(getActivity()).send(MapBuilder
-                        .createEvent(
-                                GA_EVENT_SETTINGS_FRAGMENT,
-                                "isWailEnabled changed, enabled: " + isChecked,
-                                null,
-                                isChecked ? 1L : 0L).build()
+                                .createEvent(
+                                        GA_EVENT_SETTINGS_FRAGMENT,
+                                        "isWailEnabled changed, enabled: " + isChecked,
+                                        null,
+                                        isChecked ? 1L : 0L).build()
                 );
             }
         });
@@ -334,7 +335,8 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
                     public void onPositive(MaterialDialog dialog) {
                         WAILSettings.clearAllSettings(getActivity());
                         AppDBManager.getInstance(getActivity()).clearAll();
-                        startActivity(new Intent(getActivity(), NonAuthorizedActivity.class));
+                        LocaleUtil.updateLanguage(getActivity(), null);
+                        startActivity(new Intent(getActivity(), MainActivity.class));
                         getActivity().finish();
                     }
 
