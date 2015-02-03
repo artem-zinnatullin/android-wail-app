@@ -21,6 +21,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.artemzin.android.bytes.ui.ViewUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.api.lastfm.LFApiException;
@@ -156,24 +158,21 @@ public class MainFragment extends BaseFragment {
 
     @OnClick(R.id.main_ignore_player_button)
     public void onIgnoreScrobblingPlayerClick() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-
-        View titleView = inflater.inflate(R.layout.dialog_fragment_title, null);
         String label = WAILSettings.getNowScrobblingPlayerLabel(getActivity());
         final String packageName = WAILSettings.getNowScrobblingPlayerPackageName(getActivity());
         final String nowScrobblingPlayer = label != null ? label : packageName;
 
-        ((TextView) titleView.findViewById(R.id.dialog_fragment_title_text_view))
-                .setText(String.format(
-                                getString(R.string.main_confirm_ignoring_player),
-                                nowScrobblingPlayer)
-                );
-
-        builder.setCustomTitle(titleView)
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        new MaterialDialog.Builder(getActivity())
+                .theme(Theme.DARK)
+                .title(String.format(
+                        getString(R.string.main_confirm_ignoring_player),
+                        nowScrobblingPlayer)
+                )
+                .positiveText("Ok")
+                .negativeText(R.string.dialog_cancel)
+                .callback(new MaterialDialog.ButtonCallback() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onPositive(MaterialDialog dialog) {
                         dbHelper.add(packageName);
                         WAILSettings.setNowScrobblingTrack(getActivity(), null);
                         WAILSettings.setNowScrobblingPlayerPackageName(getActivity(), null);
@@ -181,12 +180,12 @@ public class MainFragment extends BaseFragment {
                         WAILSettings.setLastCapturedTrackInfo(getActivity(), null);
                         updateLocalInfo();
                     }
-                })
-                .setNegativeButton(getString(R.string.dialog_cancel), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+
+                    @Override
+                    public void onNegative(MaterialDialog dialog) {
                         dialog.dismiss();
                     }
-                }).show();
+                }).build().show();
     }
 
     @Override
@@ -338,6 +337,7 @@ public class MainFragment extends BaseFragment {
                     userModel = LFUserResponseModel.parseFromJSON(response);
                     WAILSettings.setLastfmUserInfo(getActivity(), response);
                     WAILSettings.setLastfmUserName(getActivity(), userModel.getName());
+                    WAILSettings.setLastfmUserRegistered(getActivity(), userModel.getRegistered().getText());
                     WAILSettings.setLastfmUserInfoUpdateTimestamp(getActivity(), System.currentTimeMillis());
                 } catch (Exception e) {
                     EasyTracker.getInstance(getActivity()).send(MapBuilder.createEvent(

@@ -3,17 +3,24 @@ package com.artemzin.android.wail.ui.activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.artemzin.android.bytes.common.StringUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.ui.TypefaceTextView;
@@ -32,22 +39,37 @@ public class MainActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_NON_AUTHORIZED_ACTIVITY_INTENT = 1;
 
+    @InjectView(R.id.toolbar)
+    public Toolbar toolbar;
+
     @Optional
     @InjectView(R.id.main_drawer_layout)
     public DrawerLayout drawerLayout;
 
-    @InjectView(R.id.main_left_drawer)
+    @Optional
+    @InjectView(R.id.main_drawer_layout_land)
+    public DrawerLayout drawerLayoutLand;
+
+    @InjectView(R.id.main_left_drawer_list)
     public ListView drawerList;
+
+    @InjectView(R.id.main_drawer)
+    public FrameLayout drawer;
+
+    @InjectView(R.id.main_left_drawer_title_main)
+    public TypefaceTextView drawerTitleMain;
+
+    @InjectView(R.id.main_left_drawer_title_secondary)
+    public TypefaceTextView drawerTitleSecondary;
 
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
-    private int lastItemSelected = -1;
-
     private Fragment[] navigationFragments = new Fragment[3];
 
-    @OnItemClick(R.id.main_left_drawer)
+    private int lastItemSelected = -1;
+
+    @OnItemClick(R.id.main_left_drawer_list)
     public void onItemsSelected(int position) {
-        setSelectedDrawerItem(position);
         selectNavDrawerItem(position);
 
         if (drawerLayout != null) {
@@ -63,7 +85,7 @@ public class MainActivity extends BaseActivity {
             }).execute();
         }
 
-
+        setSelectedItem(position);
     }
 
     @Override
@@ -72,23 +94,40 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
+        setSupportActionBar(toolbar);
+
         if (!WAILSettings.isAuthorized(this)) {
             startActivityForResult(new Intent(this, NonAuthorizedActivity.class), REQUEST_CODE_NON_AUTHORIZED_ACTIVITY_INTENT);
         }
 
+        setDrawerHeaderText();
+
         // in landscape orientation on big screen there wont be drawer layout
         if (drawerLayout != null) {
+            drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primary_dark));
+
             actionBarDrawerToggle = new ActionBarDrawerToggle(
                     this,
                     drawerLayout,
                     R.string.app_name,
                     R.string.app_name
-            );
+            ) {
+                @Override
+                public void onDrawerOpened(View drawerView) {
+                    super.onDrawerOpened(drawerView);
+                    if (StringUtil.isNullOrEmpty(drawerTitleMain.getText().toString()) ||
+                            StringUtil.isNullOrEmpty(drawerTitleSecondary.getText().toString())) {
+                        setDrawerHeaderText();
+                    }
+                }
+            };
 
             drawerLayout.setDrawerListener(actionBarDrawerToggle);
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
+        } else if (drawerLayoutLand != null) {
+            drawerLayoutLand.setStatusBarBackgroundColor(getResources().getColor(R.color.primary_dark));
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
@@ -105,7 +144,9 @@ public class MainActivity extends BaseActivity {
                     LayoutInflater inflater = getLayoutInflater();
                     rowView = inflater.inflate(R.layout.activity_main_drawer_item_layout, null, true);
                     holder = new ViewHolder();
-                    holder.textView = (TypefaceTextView) rowView;
+                    holder.background = rowView;
+                    holder.textView = (TypefaceTextView) rowView.findViewById(R.id.activity_main_drawer_item_text);
+                    holder.imageView = (ImageView) rowView.findViewById(R.id.activity_main_drawer_item_image);
                     rowView.setTag(holder);
                 } else {
                     holder = (ViewHolder) rowView.getTag();
@@ -113,8 +154,20 @@ public class MainActivity extends BaseActivity {
 
                 holder.textView.setText(getItem(position));
 
+                switch (position) {
+                    case 0:
+                        holder.imageView.setImageResource(R.drawable.ic_home_grey600_24dp);
+                        break;
+                    case 1:
+                        holder.imageView.setImageResource(R.drawable.ic_list_grey600_24dp);
+                        break;
+                    case 2:
+                        holder.imageView.setImageResource(R.drawable.ic_settings_grey600_24dp);
+                        break;
+                }
+
                 if (position == 0 && lastItemSelected == -1) {
-                    holder.textView.setTypefaceFromAssets("fonts/Roboto-Medium.ttf");
+                    holder.background.setBackgroundColor(getResources().getColor(R.color.drawer_item_selected_background));
                     lastItemSelected = 0;
                 }
 
@@ -122,11 +175,45 @@ public class MainActivity extends BaseActivity {
             }
 
             class ViewHolder {
+                View background;
                 TypefaceTextView textView;
+                ImageView imageView;
             }
         };
 
         drawerList.setAdapter(adapter);
+        setDrawerWidth();
+    }
+
+    private void setDrawerWidth() {
+        TypedValue typedValue = new TypedValue();
+        getTheme().resolveAttribute(R.attr.actionBarSize, typedValue, true);
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        float px = typedValue.getDimension(displayMetrics);
+
+        ViewGroup.LayoutParams params = drawer.getLayoutParams();
+
+        if (getResources().getBoolean(R.bool.isTablet)) {
+            params.width = (int) Math.min(
+                    displayMetrics.widthPixels - px,
+                    getResources().getDimension(R.dimen.main_drawer_standard_increment) * 5
+            );
+        } else {
+            if (getResources().getConfiguration().orientation ==
+                    Configuration.ORIENTATION_PORTRAIT) {
+                params.width = (int) (displayMetrics.widthPixels - px);
+            } else {
+                params.width = (int) (displayMetrics.heightPixels - px);
+            }
+        }
+        drawer.setLayoutParams(params);
+    }
+
+    private void setDrawerHeaderText() {
+        drawerTitleMain.setText(WAILSettings.getLastfmUserName(this));
+        drawerTitleSecondary.setText(
+                getString(R.string.drawer_registered_at) + WAILSettings.getLastfmUserRegistered(this).split(" ")[0]
+        );
     }
 
     @Override
@@ -179,13 +266,15 @@ public class MainActivity extends BaseActivity {
         fragmentTransaction.commit();
     }
 
-    private void setSelectedDrawerItem(int position) {
+    private void setSelectedItem(int position) {
         if (lastItemSelected != -1) {
-            ((TypefaceTextView) drawerList.getChildAt(lastItemSelected))
-                    .setTypefaceFromAssets("fonts/Roboto-Light.ttf");
+            drawerList.getChildAt(lastItemSelected)
+                    .setBackgroundColor(getResources().getColor(R.color.drawer_item_background));
         }
-        ((TypefaceTextView) drawerList.getChildAt(position))
-                .setTypefaceFromAssets("fonts/Roboto-Medium.ttf");
+
+        drawerList.getChildAt(position)
+                .setBackgroundColor(getResources().getColor(R.color.drawer_item_selected_background));
+
         lastItemSelected = position;
     }
 }

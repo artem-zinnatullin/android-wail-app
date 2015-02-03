@@ -7,6 +7,7 @@
         <item name="colorControlActivated">@color/switch_track_on</item>
         <item name="android:colorForeground">@color/switch_track_off</item>
         <item name="android:scrollbarSize">4dp</item>
+        <item name="android:windowActionBar">false</item>
     </style>
 
     <style name="AppTheme.Light">
@@ -49,7 +50,6 @@
         <item name="settingSelectLanguageItem">@style/AppTheme.Light.SettingsSelectLanguageItem</item>
         <item name="settingIgnoredPlayersItem">@style/AppTheme.Light.Clickable</item>
 
-        <item name="drawerItem">@style/AppTheme.Light.DrawerItem</item>
         <item name="dialogTitle">@style/AppTheme.Light.DialogTitle</item>
     </style>
 
@@ -94,8 +94,17 @@
         <item name="settingSelectLanguageItem">@style/AppTheme.Dark.SettingsSelectLanguageItem</item>
         <item name="settingIgnoredPlayersItem">@style/AppTheme.Dark.Clickable</item>
 
-        <item name="drawerItem">@style/AppTheme.Dark.DrawerItem</item>
         <item name="dialogTitle">@style/AppTheme.Dark.DialogTitle</item>
+    </style>
+
+    <style name="AppTheme.Dark.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
 </resources>

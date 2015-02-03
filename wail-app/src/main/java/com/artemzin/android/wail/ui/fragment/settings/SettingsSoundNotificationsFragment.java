@@ -2,10 +2,10 @@ package com.artemzin.android.wail.ui.fragment.settings;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.artemzin.android.wail.R;
@@ -29,10 +29,10 @@ public class SettingsSoundNotificationsFragment extends BaseFragment {
     private final String GA_EVENT_SETTINGS_SOUND_NOTIFICATIONS = "SettingsSoundNotifications";
 
     @InjectView(R.id.settings_sound_notifications_track_marked_as_scrobbled_switch)
-    public Switch trackMarkedAsScrobbledSoundSwitch;
+    public SwitchCompat trackMarkedAsScrobbledSoundSwitch;
 
     @InjectView(R.id.settings_sound_notifications_track_skipped_switch)
-    public Switch trackSkippedSoundSwitch;
+    public SwitchCompat trackSkippedSoundSwitch;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

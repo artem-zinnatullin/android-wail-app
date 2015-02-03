@@ -1,15 +1,11 @@
 package com.artemzin.android.wail.ui.fragment.dialogs;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.NumberPicker;
-import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.ui.fragment.main.SettingsFragment;
@@ -31,24 +27,17 @@ public class DialogFragmentWithNumberPicker extends DialogDecorator {
         return dialog;
     }
 
-    public int getPickerValue() {
-        return numberPicker.getValue();
-    }
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-
-        View view = inflater.inflate(R.layout.dialog_with_number_picker_fragment, (ViewGroup) getView());
-        View titleView = inflater.inflate(R.layout.dialog_fragment_title, ((ViewGroup) getView()));
-        ((TextView) titleView.findViewById(R.id.dialog_fragment_title_text_view)).setText(title);
-
-        builder.setView(view)
-                .setCustomTitle(titleView)
-                .setPositiveButton(getString(R.string.dialog_save), new DialogInterface.OnClickListener() {
+        MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
+                .customView(R.layout.dialog_with_number_picker_fragment, false)
+                .theme(Theme.DARK)
+                .title(title)
+                .positiveText(R.string.dialog_save)
+                .negativeText(R.string.dialog_cancel)
+                .callback(new MaterialDialog.ButtonCallback() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onPositive(MaterialDialog dialog) {
                         WAILSettings.setMinTrackDurationInSeconds(
                                 getActivity(),
                                 numberPicker.getValue()
@@ -64,21 +53,22 @@ public class DialogFragmentWithNumberPicker extends DialogDecorator {
                                         .build()
                         );
                     }
-                })
-                .setNegativeButton(getString(R.string.dialog_cancel), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        DialogFragmentWithNumberPicker.this.getDialog().cancel();
+
+                    @Override
+                    public void onNegative(MaterialDialog dialog) {
+                        dialog.dismiss();
                     }
-                });
+                }).build();
 
 
-        numberPicker = (NumberPicker) view.findViewById(R.id.dialog_with_number_picker_picker);
+        numberPicker = (NumberPicker) dialog.getCustomView()
+                .findViewById(R.id.dialog_with_number_picker_picker);
 
         numberPicker.setMinValue(minValue);
         numberPicker.setMaxValue(maxValue);
         numberPicker.setValue(initValue);
         numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
 
-        return builder.create();
+        return dialog;
     }
 }
