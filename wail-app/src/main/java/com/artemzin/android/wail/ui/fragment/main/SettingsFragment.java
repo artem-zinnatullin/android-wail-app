@@ -15,11 +15,15 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.artemzin.android.bytes.ui.DisplayUnitsConverter;
 import com.artemzin.android.bytes.ui.ViewUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
+import com.artemzin.android.wail.storage.db.AppDBManager;
 import com.artemzin.android.wail.ui.activity.BaseActivity;
+import com.artemzin.android.wail.ui.activity.MainActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsIgnoredPlayersActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSelectLanguageActivity;
 import com.artemzin.android.wail.ui.activity.settings.SettingsSoundNotificationsActivity;
@@ -28,6 +32,7 @@ import com.artemzin.android.wail.ui.fragment.BaseFragment;
 import com.artemzin.android.wail.ui.fragment.dialogs.DialogDecorator;
 import com.artemzin.android.wail.ui.fragment.dialogs.DialogFragmentWithNumberPicker;
 import com.artemzin.android.wail.ui.fragment.dialogs.DialogFragmentWithSeekBar;
+import com.artemzin.android.wail.util.LocaleUtil;
 import com.artemzin.android.wail.util.WordFormUtil;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
@@ -64,6 +69,9 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
 
     @InjectView(R.id.settings_theme_switch)
     public SwitchCompat themeSwitch;
+
+    @InjectView(R.id.settings_logout_description)
+    public TextView logoutDescription;
 
     @OnClick(R.id.settings_ignored_players)
     public void onIgnoredPlayersClick() {
@@ -200,11 +208,11 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
                 toast.show();
 
                 EasyTracker.getInstance(getActivity()).send(MapBuilder
-                        .createEvent(
-                                GA_EVENT_SETTINGS_FRAGMENT,
-                                "isWailEnabled changed, enabled: " + isChecked,
-                                null,
-                                isChecked ? 1L : 0L).build()
+                                .createEvent(
+                                        GA_EVENT_SETTINGS_FRAGMENT,
+                                        "isWailEnabled changed, enabled: " + isChecked,
+                                        null,
+                                        isChecked ? 1L : 0L).build()
                 );
             }
         });
@@ -222,7 +230,7 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
             setUIStateWailDisabled();
         }
 
-        String lang = WAILSettings.getLanguageOrNullIfAuto(getActivity());
+        String lang = WAILSettings.getLanguage(getActivity());
 
         if (lang == null) {
             lang = getResources().getStringArray(R.array.settings_select_language_languages)[0];
@@ -236,6 +244,8 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
         isScrobblingOverMobileNetworkDisabledSwitch.setChecked(WAILSettings.isEnableScrobblingOverMobileNetwork(getActivity()));
 
         isLastfmUpdateNowplayingEnabledSwitch.setChecked(WAILSettings.isLastfmNowplayingUpdateEnabled(getActivity()));
+
+        logoutDescription.setText(WAILSettings.getLastfmUserName(getActivity()));
 
         themeSwitch.setChecked(WAILSettings.getTheme(getActivity()) == WAILSettings.Theme.DARK);
 
@@ -311,6 +321,30 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
                         WAILSettings.getMinTrackDurationInPercents(getActivity())
                 )
         );
+    }
+
+    @OnClick(R.id.settings_logout_menu_item)
+    public void logout() {
+        new MaterialDialog.Builder(getActivity())
+                .theme(Theme.DARK)
+                .title(R.string.setting_logout_warning)
+                .positiveText("Ok")
+                .negativeText(R.string.dialog_cancel)
+                .callback(new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        WAILSettings.clearAllSettings(getActivity());
+                        AppDBManager.getInstance(getActivity()).clearAll();
+                        LocaleUtil.updateLanguage(getActivity(), null);
+                        startActivity(new Intent(getActivity(), MainActivity.class));
+                        getActivity().finish();
+                    }
+
+                    @Override
+                    public void onNegative(MaterialDialog dialog) {
+                        dialog.dismiss();
+                    }
+                }).build().show();
     }
 
     @OnClick(R.id.settings_email_to_developers)

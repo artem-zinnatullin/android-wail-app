@@ -1,15 +1,12 @@
 package com.artemzin.android.wail.ui.fragment.dialogs;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.ui.fragment.main.SettingsFragment;
@@ -33,18 +30,15 @@ public class DialogFragmentWithSeekBar extends DialogDecorator {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-
-        View view = inflater.inflate(R.layout.dialog_with_seek_bar_fragment, (ViewGroup) getView());
-        View titleView = inflater.inflate(R.layout.dialog_fragment_title, ((ViewGroup) getView()));
-        ((TextView) titleView.findViewById(R.id.dialog_fragment_title_text_view)).setText(title);
-
-        builder.setView(view)
-                .setCustomTitle(titleView)
-                .setPositiveButton(getString(R.string.dialog_save), new DialogInterface.OnClickListener() {
+        MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
+                .customView(R.layout.dialog_with_seek_bar_fragment, false)
+                .theme(Theme.DARK)
+                .title(title)
+                .positiveText(R.string.dialog_save)
+                .negativeText(R.string.dialog_cancel)
+                .callback(new MaterialDialog.ButtonCallback() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onPositive(MaterialDialog dialog) {
                         WAILSettings.setMinTrackDurationInPercents(
                                 getActivity(),
                                 seekBar.getProgress()
@@ -60,21 +54,21 @@ public class DialogFragmentWithSeekBar extends DialogDecorator {
                                         .build()
                         );
                     }
-                })
-                .setNegativeButton(getString(R.string.dialog_cancel), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        DialogFragmentWithSeekBar.this.getDialog().cancel();
-                    }
-                });
 
-        seekBar = (SeekBar) view.findViewById(R.id.dialog_with_seek_bar_seek_bar);
+                    @Override
+                    public void onNegative(MaterialDialog dialog) {
+                        dialog.dismiss();
+                    }
+                }).build();
+
+        seekBar = (SeekBar) dialog.getCustomView().findViewById(R.id.dialog_with_seek_bar_seek_bar);
         seekBar.setProgress(startProgressValue);
-        final TextView label = (TextView) view.findViewById(R.id.dialog_with_seek_bar_bottom_text);
+        final TextView label = (TextView) dialog.getCustomView().findViewById(R.id.dialog_with_seek_bar_bottom_text);
         label.setText(getString(
                 R.string.settings_min_track_elapsed_time_in_percent_dialog_bottom_text,
                 seekBar.getProgress()));
 
-        ((TextView) view.findViewById(R.id.custom_dialog_description)).setText(description);
+        ((TextView) dialog.getCustomView().findViewById(R.id.custom_dialog_description)).setText(description);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -98,6 +92,6 @@ public class DialogFragmentWithSeekBar extends DialogDecorator {
             }
         });
 
-        return builder.create();
+        return dialog;
     }
 }

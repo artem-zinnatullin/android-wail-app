@@ -209,6 +209,8 @@
         <item name="android:layout_marginBottom">4dp</item>
         <item name="android:paddingBottom">2dp</item>
         <item name="cardCornerRadius">0dp</item>
+        <item name="contentPaddingBottom">5dp</item>
+        <item name="cardBackgroundColor">@color/dark_theme_background</item>
     </style>
 
     <style name="AppTheme.Dark.SettingsCategoryTitle">
@@ -316,18 +318,6 @@
     </style>
 
     <!--/Dialog-->
-
-    <style name="AppTheme.Dark.DrawerItem">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/dark_theme_drawer_item_text</item>
-        <item name="android:textSize">18sp</item>
-        <item name="typefaceFromAssets">fonts/Roboto-Light.ttf</item>
-        <item name="android:paddingBottom">15dp</item>
-        <item name="android:paddingLeft">15dp</item>
-        <item name="android:paddingRight">10dp</item>
-        <item name="android:paddingTop">15dp</item>
-    </style>
 
     <style name="AppTheme.Dark.Clickable.SignInToLastFm">
         <item name="android:clickable">true</item>

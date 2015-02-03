@@ -25,6 +25,7 @@ public class WAILSettings {
     private static final String KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK = "KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK";
     private static final String KEY_TOTAL_HANDLED_TRACKS_COUNT     = "KEY_TOTAL_HANDLED_TRACKS_COUNT";
     private static final String KEY_LASTFM_USER_NAME               = "KEY_LASTFM_USER_NAME";
+    private static final String KEY_LASTFM_USER_REGISTERED         = "KEY_LASTFM_USER_REGISTERED";
     private static final String KEY_IS_FIRST_LAUNCH                = "KEY_IS_FIRST_LAUNCH";
     private static final String KEY_IS_SHOW_FEEDBACK_REQUEST       = "KEY_IS_SHOW_FEEDBACK_REQUEST";
 
@@ -60,11 +61,12 @@ public class WAILSettings {
     private static Long    totalHandledTracksCount;
     private static Boolean isLastfmNowplayingUpdateEnabled;
     private static String  lastfmUserName;
+    private static String  lastfmUserRegistered;
+
     private static Boolean isShowFeedbackRequest;
-
     private static Boolean soundNotificationTrackScrobbledEnabled;
-    private static Boolean soundNotificationTrackSkippedEnabled;
 
+    private static Boolean soundNotificationTrackSkippedEnabled;
     private static Boolean statusBarNotificationTrackScrobblingEnabled;
     // endregion
 
@@ -82,6 +84,7 @@ public class WAILSettings {
         totalHandledTracksCount                = null;
         isLastfmNowplayingUpdateEnabled        = null;
         lastfmUserName                         = null;
+        lastfmUserRegistered                   = null;
         isShowFeedbackRequest                  = null;
         isShowFeedbackRequest                  = null;
         soundNotificationTrackScrobbledEnabled = null;
@@ -90,22 +93,8 @@ public class WAILSettings {
         getSharedPreferences(context).edit().clear().apply();
     }
 
-    public static synchronized String getLanguageOrNullIfAuto(Context context) {
-        String savedLang = getSharedPreferences(context).getString(KEY_LOCALE, null);
-
-        String defaultLang = Locale.getDefault().getLanguage();
-
-        if (savedLang == null) {
-            return null;
-        } else if (savedLang.equals(defaultLang) || savedLang.equals(defaultLang)) {
-            return null;
-        } else {
-            return savedLang;
-        }
-    }
-
     public static synchronized String getLanguage(Context context) {
-        return getSharedPreferences(context).getString(KEY_LOCALE, Locale.getDefault().getLanguage());
+        return getSharedPreferences(context).getString(KEY_LOCALE, null);
     }
 
     public static synchronized void setLanguage(Context context, String value) {
@@ -213,6 +202,23 @@ public class WAILSettings {
         lastfmUserName = userName;
         final SharedPreferences.Editor editor = getSharedPreferences(context).edit();
         editor.putString(KEY_LASTFM_USER_NAME, userName);
+        editor.apply();
+    }
+
+    public static synchronized String getLastfmUserRegistered(Context context) {
+        final String lastfmUserRegisteredRefCopy = lastfmUserRegistered;
+
+        if (!StringUtil.isNullOrEmpty(lastfmUserRegisteredRefCopy)) {
+            return lastfmUserRegisteredRefCopy;
+        }
+
+        return lastfmUserRegistered = getSharedPreferences(context).getString(KEY_LASTFM_USER_REGISTERED, "");
+    }
+
+    public static synchronized void setLastfmUserRegistered(Context context, String userRegistered) {
+        lastfmUserRegistered = userRegistered;
+        final SharedPreferences.Editor editor = getSharedPreferences(context).edit();
+        editor.putString(KEY_LASTFM_USER_REGISTERED, userRegistered);
         editor.apply();
     }
 

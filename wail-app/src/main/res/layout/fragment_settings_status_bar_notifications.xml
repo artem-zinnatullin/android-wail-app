@@ -10,16 +10,6 @@
         android:layout_height="wrap_content"
         android:stretchColumns="0">
 
-        <LinearLayout style="?settingsCategoryTitle">
-
-            <com.artemzin.android.wail.ui.TypefaceTextView
-                style="?settingsCategoryTitleTitle"
-                android:text="@string/settings_status_bar_notifications_main_title" />
-
-            <View style="?settingsCategoryTitleDivider" />
-
-        </LinearLayout>
-
         <TableRow
             android:id="@+id/settings_status_bar_notifications_track_now_scrobbling"
             style="?settingsItemWithSwitch">
@@ -30,7 +20,7 @@
                 android:layout_weight="1"
                 android:text="@string/settings_notifications_track_now_scrobbling" />
 
-            <Switch
+            <android.support.v7.widget.SwitchCompat
                 android:id="@+id/settings_status_bar_notifications_track_now_scrobbling_switch"
                 style="?settingsItemSwitch" />
 

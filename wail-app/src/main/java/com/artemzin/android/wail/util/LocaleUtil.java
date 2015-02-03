@@ -33,7 +33,7 @@ public class LocaleUtil {
 
         context.getResources().updateConfiguration(configuration, null);
 
-        if (newLang != null && !lang.equals(newLang)) {
+        if (newLang != null && !newLang.equals(lang)) {
             Intent intent = context.getPackageManager()
                     .getLaunchIntentForPackage(context.getPackageName());
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
