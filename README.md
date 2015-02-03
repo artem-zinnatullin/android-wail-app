@@ -1,4 +1,6 @@
 ##Android WAIL Beta — nice last.fm scrobbler
+
+[![Join the chat at https://gitter.im/artem-zinnatullin/android-wail-app](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/artem-zinnatullin/android-wail-app?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 **WAIL — What am I listening** 
 
 *Android [last.fm](http://last.fm) scrobbler and "now playing" updater*
