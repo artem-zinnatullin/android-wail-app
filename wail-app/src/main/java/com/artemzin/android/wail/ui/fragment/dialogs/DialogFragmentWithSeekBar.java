@@ -15,14 +15,12 @@ import com.google.analytics.tracking.android.MapBuilder;
 
 public class DialogFragmentWithSeekBar extends DialogDecorator {
     private String title;
-    private String description;
 
     private int startProgressValue;
     private SeekBar seekBar;
 
-    public static DialogFragmentWithSeekBar newInstance(String title, String description, int startProgressValue) {
+    public static DialogFragmentWithSeekBar newInstance(String title, int startProgressValue) {
         final DialogFragmentWithSeekBar dialog = new DialogFragmentWithSeekBar();
-        dialog.description = description;
         dialog.startProgressValue = startProgressValue;
         dialog.title = title;
         return dialog;
@@ -67,8 +65,6 @@ public class DialogFragmentWithSeekBar extends DialogDecorator {
         label.setText(getString(
                 R.string.settings_min_track_elapsed_time_in_percent_dialog_bottom_text,
                 seekBar.getProgress()));
-
-        ((TextView) dialog.getCustomView().findViewById(R.id.custom_dialog_description)).setText(description);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

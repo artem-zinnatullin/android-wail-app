@@ -172,25 +172,42 @@ public class WAILService extends Service {
 
                     if ((!isCurrentTrackPlaying && mLastCapturedTrackInfo.isPlaying()) || mLastCapturedTrackInfo.isPlaying()) {
                         if (trackPlayingDurationInMillis >= minTrackDurationInMillis) {
-                            Loggi.w("Track playing duration in millis == " + trackPlayingDurationInMillis + " >= min track duration in millis == " + (WAILSettings.getMinTrackDurationInSeconds(getApplicationContext()) * 1000));
+                            Loggi.w("Track playing duration in millis == " + trackPlayingDurationInMillis
+                                    + " >= min track duration in millis == "
+                                    + (WAILSettings.getMinTrackDurationInSeconds(getApplicationContext()) * 1000));
 
-                            mLastCapturedTrackInfo.getTrack().setStateTimestamp(System.currentTimeMillis());
-                            addTrackToDB(mLastCapturedTrackInfo.getTrack());
-                        } else {
-                            if (mLastCapturedTrackInfo.getTrack().getDuration() != -1) {
-                                final int trackDurationInPercents = (int) (100 * trackPlayingDurationInMillis / (mLastCapturedTrackInfo.getTrack().getDuration() + 2500));
+                            long capturedDuration = mLastCapturedTrackInfo.getTrack().getDuration();
+                            // Some players set duration in seconds, some in milliseconds
+                            // If duration is greater then 30000 we assume that it measured in milliseconds
+                            long duration =
+                                    capturedDuration < 30000 && capturedDuration != -1
+                                    ? capturedDuration * 1000
+                                    : capturedDuration;
 
-                                if (trackDurationInPercents >= WAILSettings.getMinTrackDurationInPercents(getApplicationContext())) {
-                                    Loggi.w("Track playing duration in millis == " + trackPlayingDurationInMillis + ", in % == " + trackDurationInPercents + " >= min track duration in % == " + WAILSettings.getMinTrackDurationInPercents(getApplicationContext()));
+                            if (duration != -1) {
+                                final int trackDurationInPercents = (int) (100 * trackPlayingDurationInMillis / (duration + 2500));
+                                int minTrackDurationInPercents = WAILSettings.getMinTrackDurationInPercents(getApplicationContext());
+
+                                if (trackDurationInPercents >= minTrackDurationInPercents) {
+                                    Loggi.w("Track playing duration in millis == " + trackPlayingDurationInMillis
+                                            + ", in % == " + trackDurationInPercents + " >= min track duration in % == "
+                                            + minTrackDurationInPercents);
                                     mLastCapturedTrackInfo.getTrack().setStateTimestamp(System.currentTimeMillis());
                                     addTrackToDB(mLastCapturedTrackInfo.getTrack());
                                 } else {
-                                    Loggi.w("Track playing duration is too small to scrobble it! Track duration in millis == " + trackPlayingDurationInMillis + ", in percents == " + trackDurationInPercents + "%, min duration == " + WAILSettings.getMinTrackDurationInPercents(getApplicationContext()));
+                                    Loggi.w("Track playing duration is too small to scrobble it! Track duration in millis == "
+                                            + trackPlayingDurationInMillis + ", in percents == " + trackDurationInPercents
+                                            + "%, min duration == " + minTrackDurationInPercents);
                                     SoundNotificationsManager.getInstance(getApplicationContext()).playTrackSkippedSound();
                                 }
                             } else {
-                                Loggi.w("Skipping track, playing duration in millis == " + trackPlayingDurationInMillis + ", it does not played required time(" + minTrackDurationInMillis + " millis) and WAIL can not calculate playing time in percents");
+                                Loggi.w("Skipping track, playing duration in millis == " + trackPlayingDurationInMillis
+                                        + ", it does not played required time(" + minTrackDurationInMillis
+                                        + " millis) and WAIL can not calculate playing time in percents");
                             }
+                        } else {
+                            mLastCapturedTrackInfo.getTrack().setStateTimestamp(System.currentTimeMillis());
+                            addTrackToDB(mLastCapturedTrackInfo.getTrack());
                         }
                     } else {
                         Loggi.w("Skipping track");

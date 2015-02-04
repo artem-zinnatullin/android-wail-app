@@ -77,7 +77,6 @@
     <string name="settings_min_track_elapsed_time_in_percent_desc">Titel wird gescrobbelt, wenn er zu %1$s%% abgespielt wurde, jedoch nur wenn der Titel kürzer als die Mindestlänge ist.</string>
     <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">Mindestlänge in Sekunden</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Mindestlänge in Prozent</string>
-    <string name="settings_min_track_elapsed_time_in_percent_dialog_description">Kommt zur Anwendung, wenn der Titel kürzer als die Mindestlänge ist. Einstellbar von 50 bis 100%.</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Aktuell: %1$s%%</string>
     <string name="settings_ignored_players_item_title">Ignorierte Musikapps</string>
     <string name="settings_ignored_players_item_desc">WAIL wird Titel von diesen Musikapps nicht scrobbeln</string>

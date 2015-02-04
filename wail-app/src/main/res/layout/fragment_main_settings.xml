@@ -26,26 +26,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/settings_min_track_duration_in_seconds"
-                    style="?settingsItem">
-
-                    <com.artemzin.android.wail.ui.TypefaceTextView
-                        style="?settingsItemTitle"
-                        android:text="@string/settings_min_track_elapsed_time_in_seconds_title" />
-
-                    <com.artemzin.android.wail.ui.TypefaceTextView
-                        android:id="@+id/settings_min_track_duration_in_seconds_desc"
-                        style="?settingsItemDescription"
-                        android:text="@string/settings_min_track_elapsed_time_in_seconds_desc" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="@color/divider" />
-
-                <LinearLayout
                     android:id="@+id/settings_min_track_duration_in_percents"
                     style="?settingsItem">
 
@@ -57,6 +37,26 @@
                         android:id="@+id/settings_min_track_duration_in_percents_desc"
                         style="?settingsItemDescription"
                         android:text="@string/settings_min_track_elapsed_time_in_percent_desc" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/divider" />
+
+                <LinearLayout
+                    android:id="@+id/settings_min_track_duration_in_seconds"
+                    style="?settingsItem">
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitle"
+                        android:text="@string/settings_min_track_elapsed_time_in_seconds_title" />
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        android:id="@+id/settings_min_track_duration_in_seconds_desc"
+                        style="?settingsItemDescription"
+                        android:text="@string/settings_min_track_elapsed_time_in_seconds_desc" />
 
                 </LinearLayout>
 

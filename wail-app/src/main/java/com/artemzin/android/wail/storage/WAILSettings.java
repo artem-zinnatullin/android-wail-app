@@ -49,7 +49,7 @@ public class WAILSettings {
 
     // region default values
     public static final int DEFAULT_MIN_TRACK_DURATION_IN_PERCENT = 50;
-    public static final int DEFAULT_MIN_TRACK_DURATION_IN_SECONDS = 90;
+    public static final int DEFAULT_MIN_TRACK_DURATION_IN_SECONDS = 30;
     // endregion
 
     // region memory cached values
