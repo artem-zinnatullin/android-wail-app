@@ -2,6 +2,7 @@ package com.artemzin.android.wail.ui.fragment.settings;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,10 @@ import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.ui.fragment.BaseFragment;
 import com.artemzin.android.wail.util.LocaleUtil;
-import com.artemzin.android.wail.util.Loggi;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
 
+import java.util.LinkedHashMap;
 import java.util.Locale;
 
 import butterknife.ButterKnife;
@@ -31,37 +32,40 @@ public class SettingsSelectLanguageFragment extends BaseFragment {
     @InjectView(R.id.settings_select_language_list_view)
     public ListView languagesList;
 
-    private String[] languages;
+    /**
+     * Map (LangAndroidCode, LangDisplayName)
+     */
+    private LinkedHashMap<String, String> languagesMapping;
 
-    private static String[] markCurrentLanguageAsSelected(Context context, String[] languages) {
-        try {
-            final String currentLanguage = WAILSettings.getLanguage(context);
+    @NonNull private static String[] markCurrentLanguageAsSelected(@NonNull Context context, @NonNull LinkedHashMap<String, String> languagesMapping) {
+        final String currentLanguage = WAILSettings.getLanguage(context);
+        final String[] langsDisplayNames = new String[languagesMapping.size()];
 
-            boolean languageWasSelected = false;
+        int i = 0;
 
-            for (int i = 0; i < languages.length; i++) {
-                final String lang = languages[i];
+        for (String langCode : languagesMapping.keySet()) {
+            final String langDisplayName = languagesMapping.get(langCode);
 
-                if (currentLanguage.equalsIgnoreCase(lang)) {
-                    languages[i] = context.getString(R.string.settings_select_language_current_lang, lang);
-                    languageWasSelected = true;
-                    break;
-                }
+            if (currentLanguage.equalsIgnoreCase(langCode)) {
+                langsDisplayNames[i] = context.getString(R.string.settings_select_language_current_lang, langDisplayName);
+            } else {
+                langsDisplayNames[i] = langDisplayName;
             }
 
-            if (!languageWasSelected) {
-                languages[0] = context.getString(R.string.settings_select_language_current_lang, languages[0]);
-            }
-
-            return languages;
-        } catch (Exception e) {
-            Loggi.e(e.toString());
-            return languages;
+            i++;
         }
+
+        return langsDisplayNames;
+    }
+
+    @Override public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        languagesMapping = LocaleUtil.parseLanguagesMapping(getResources().getStringArray(R.array.supported_languages_mapping));
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(
+            @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_settings_select_language, container, false);
     }
 
@@ -71,12 +75,12 @@ public class SettingsSelectLanguageFragment extends BaseFragment {
 
         ButterKnife.inject(this, view);
 
-        languages = markCurrentLanguageAsSelected(getActivity(), getResources().getStringArray(R.array.settings_select_language_languages));
+        String[] languagesDisplayNames = markCurrentLanguageAsSelected(getActivity(), languagesMapping);
 
         BaseAdapter adapter = new ArrayAdapter<>(
                 getActivity(),
                 R.layout.settings_select_language_item,
-                languages
+                languagesDisplayNames
         );
 
         languagesList.setAdapter(adapter);
@@ -84,23 +88,24 @@ public class SettingsSelectLanguageFragment extends BaseFragment {
 
     @OnItemClick(R.id.settings_select_language_list_view)
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        final String langCodeForAnalytics;
+
         switch (i) {
             case 0:
-                LocaleUtil.updateLanguage(getActivity(), Locale.getDefault().getDisplayLanguage());
+                LocaleUtil.setLanguage(getActivity(), Locale.getDefault().getDisplayLanguage());
+                langCodeForAnalytics = "Auto";
                 break;
             default:
-                String language = languages[i];
-                if (language.contains("(")) {
-                    language = language.substring(0, language.indexOf("(") - 1);
-                }
-                LocaleUtil.updateLanguage(getActivity(), language);
+                String languageCode = (String) languagesMapping.keySet().toArray()[i]; // thanks to LinkedHashMap "good" API
+                LocaleUtil.setLanguage(getActivity(), languageCode);
+                langCodeForAnalytics = languageCode;
                 break;
         }
 
         EasyTracker.getInstance(getActivity()).send(MapBuilder.createEvent(
                 GA_EVENT_SETTINGS_SELECT_LANGUAGE,
                 "languageChangedTo",
-                i == 0 ? "default" : languages[i],
+                langCodeForAnalytics,
                 0L
         ).build());
 

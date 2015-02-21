@@ -6,12 +6,12 @@
     <string name="settings_email_to_the_developer_subj" translatable="false">WAIL</string>
     <string name="settings_build_version_label" translatable="false">Build version</string>
 
-    <string-array name="settings_select_language_languages" translatable="false">
+    <string-array name="supported_languages_mapping" translatable="false">
         <!-- Please do not change position of "Auto" item! -->
-        <item>Auto</item>
-        <item>English</item>
-        <item>Deutsch</item>
-        <item>Russian</item>
+        <item>Auto;Auto</item>
+        <item>en;English</item>
+        <item>de;Deutsch</item>
+        <item>ru;Russian</item>
     </string-array>
 
     <string name="settings_select_language_title" translatable="false">Language</string>

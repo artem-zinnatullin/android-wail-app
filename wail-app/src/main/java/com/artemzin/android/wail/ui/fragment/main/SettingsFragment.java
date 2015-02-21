@@ -37,6 +37,8 @@ import com.artemzin.android.wail.util.WordFormUtil;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
 
+import java.util.LinkedHashMap;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnCheckedChanged;
@@ -230,13 +232,19 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
             setUIStateWailDisabled();
         }
 
-        String lang = WAILSettings.getLanguage(getActivity());
+        final LinkedHashMap<String, String> languagesMapping = LocaleUtil.parseLanguagesMapping(getResources().getStringArray(R.array.supported_languages_mapping));
 
-        if (lang == null) {
-            lang = getResources().getStringArray(R.array.settings_select_language_languages)[0];
+        final String selectedLangAndroidCode = WAILSettings.getLanguage(getActivity());
+        final String selectedLangDisplayName;
+
+        if (selectedLangAndroidCode == null) {
+            //noinspection SuspiciousMethodCalls
+            selectedLangDisplayName = languagesMapping.get(languagesMapping.keySet().toArray()[0]);
+        } else {
+            selectedLangDisplayName = languagesMapping.get(selectedLangAndroidCode);
         }
 
-        languageMenuItemDescription.setText(lang);
+        languageMenuItemDescription.setText(selectedLangDisplayName);
 
         refreshMinTrackDurationInPercents();
         refreshMinTrackDurationInSeconds();
@@ -335,7 +343,7 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
                     public void onPositive(MaterialDialog dialog) {
                         WAILSettings.clearAllSettings(getActivity());
                         AppDBManager.getInstance(getActivity()).clearAll();
-                        LocaleUtil.updateLanguage(getActivity(), null);
+                        LocaleUtil.setLanguage(getActivity(), null);
                         startActivity(new Intent(getActivity(), MainActivity.class));
                         getActivity().finish();
                     }

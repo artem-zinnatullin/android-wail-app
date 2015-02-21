@@ -22,7 +22,7 @@ public class WAILApp extends Application {
 
     @Override
     public void onCreate() {
-        LocaleUtil.updateLanguage(this, null);
+        LocaleUtil.setLanguage(this, null);
         super.onCreate();
         Loggi.w("WAILApp onCreate()");
         updateSupportedPlayersDB();
@@ -32,7 +32,7 @@ public class WAILApp extends Application {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (isActivityVisible()) {
-            LocaleUtil.updateLanguage(this, WAILSettings.getLanguage(this));
+            LocaleUtil.setLanguage(this, WAILSettings.getLanguage(this));
         }
     }
 
