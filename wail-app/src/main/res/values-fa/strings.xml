@@ -85,7 +85,6 @@
     <string name="settings_ignored_players_image_content_description">تصویر پلیرهای مخفی</string>
     <string name="settings_confirm_unignoring_player">آیا تمایل به برگرداندن \"%s\" دارید ؟</string>
     <string name="settings_ignored_players_empty_text">شما پلیر مخفی ای ندارید</string>
-    <string name="settings_update_nowplaying_title" translatable="false">#nowplaying</string>
     <string name="settings_lastfm_update_nowplaying_title">درحال گوش دادن در last.fm</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">در حال گوش دادن به موسیقی فعال میباشد .</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">در حال گوش دادن به موسیقی غیر فعال شد.</string>
