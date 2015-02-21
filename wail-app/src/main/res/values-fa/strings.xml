@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- START of Not authorized main screen strings -->
+    <string name="not_authorized_activity_label">سلام !</string>
+    <string name="app_main_about_1">WAIL — دارم به چی گوش میدم ؟</string>
+    <string name="app_main_about_2">WAIL آهنگ هایی را که با موزیک پلیر دلخواهتان گوش میدهید را در last.fm شما نشان میدهد .</string>
+    <string name="text_button_sign_in_last_fm">ورود به حساب last.fm</string>
+    <string name="non_authorized_sign_up_in_lastfm">عضویت در last.fm</string>
+    <!-- END of Not authorized main screen -->
+
+    <string name="lastfm_api_error_11">هه هه ، شبکه last.fm غیرفعاله،بعدا دوباره تلاش کنید.</string>
+
+    <!-- START of authorization screen strings -->
+    <string name="lastfm_login_activity_label">مجوز last.fm</string>
+    <string name="lastfm_login_hint">نام کاربری یا ایمیل</string>
+    <string name="lastfm_password_hint">رمز عبور</string>
+    <string name="lastfm_login_button">ورود</string>
+    <string name="lastfm_login_empty">لطفا مشخصات ورود last.fm خود را وارد کنید</string>
+    <string name="lastfm_password_empty">لطفا رمز last.fm خود را وارد کنید</string>
+    <string name="lastfm_logging_progress_dialog_message">دریافت مجوز از last.fm .... </string>
+    <string name="lastfm_logging_network_error">عدم موفقیت در اتصال به last.fm، لطفا اینترنت خود را بررسی کنید.</string>
+    <string name="lastfm_logging_api_error_unknown">پاسخ last.fm نامشخصه ، شاید برنامه قدیمی شده ؟</string>
+    <string name="lastfm_logging_api_error_4">نام کاربری یا رمز اشتباهه ;(</string>
+    <string name="lastfm_login_lastfm_icon">آیکون last.fm</string>
+    <!-- END of authorization screen strings -->
+
+    <!-- START of main screen strings -->
+    <string name="main_today">امروز</string>
+    <string name="main_tracks_on_last_fm">پخش شده در last.fm</string>
+    <string name="main_tracks_on_last_fm_unknown">میزان کلی آهنگ های گوش داده در last.fm معلوم نیست:(\nصفحه را به پایین بکش تا به صورت دستی آپدیت شروع شود.</string>
+    <string name="main_now_scrobbling_label">در حال پخش : %1$s</string>
+    <string name="main_now_scrobbling_nothing">هیچی :(</string>
+    <string name="main_pull_down_to_refresh_toast">برای رفرش صفحه را پایین بکشید :)</string>
+    <string name="main_pull_to_refresh_pull_text">برای بروزرسانی بکشید</string>
+    <string name="main_refreshing">بروزرسانی ...</string>
+    <string name="main_updated_today_at">بروزرسانی امروز در ساعت %1$s</string>
+    <string name="main_updated_yesterday_at">بروزرسانی دیروز %1$s</string>
+    <string name="main_updated_common">بروز شده در %1$s</string>
+    <string name="main_refresh_info_from_lastfm_network_error">خطا در شبکه ، دوباره تلاش کنید</string>
+    <string name="main_refresh_info_from_lastfm_api_error">خطا در last.fm : %1$s</string>
+    <string name="main_scrobbling_from_player_label">از %s</string>
+    <string name="main_confirm_ignoring_player">آیا قصد نادیده گرفتنه %s را دارید ؟</string>
+    <string name="main_ignore_this_player_button_text">این پلیر رو بیخیال شو</string>
+    <string name="main_refresh_info_from_lastfm_unknown_error">مشکلی در بروز رسانی پیش آمده ، ببخشید :(</string>
+    <string name="main_feedback_please">دلم میگیره وقتی میبینم بهم رای ندادی :(</string>
+    <string name="main_feedback_please_happy_toast">اینقدر خوشحالم بهم رای دادی که نگو :)</string>
+    <string name="main_track_loved">آهنگ رو عشقه :)</string>
+    <string name="main_love_track_button_content_description">دکمه ثبت</string>
+    <string name="main_love_track_button_label">دکمه ی ابراز علاقه</string>
+    <!-- END of main screen strings -->
+
+    <!-- START of tracks list screen strings -->
+    <string name="tracks_actionbar_title">آهنگ ها</string>
+    <string name="tracks_list_empty_motivation_text">با موزیک پلیر مورد علاقتون،شروع به گوش دادن آهنگ بکنید تا آهنگ هاتون اینجا ثبت بشه!</string>
+    <string name="track_artist_and_album_no_data">اطلاعاتی از خواننده یا آلبوم وجود نداره :(</string>
+    <string name="track_status_waiting_for_scrobble">در انتظار ثبت</string>
+    <string name="track_status_scrobbling">در حال ثبت</string>
+    <string name="track_status_scrobble_error">حله</string>
+    <string name="track_status_scrobble_success">وضعیت نامشخص :(</string>
+    <string name="track_status_unknown">جستجو</string>
+    <string name="tracks_search_ab_title">جستجو در آهنگ های گوش داده</string>
+    <string name="tracks_search_hint">عدم امکان جستجو :(</string>
+    <string name="tracks_search_error_toast">نتیجه ای برای \"%1$s\" پیدا نشد</string>
+    <string name="tracks_search_no_results"></string>
+    <string name="tracks_search_clear_text">پاک کردن عبارت جستجو</string>
+    <!-- END of tracks list screen strings -->
+
+    <!-- START of settings screen strings -->
+    <string name="settings_actionbar_title">تتظیمات WAIL</string>
+    <string name="settings_wail_enabled_toast">WAIL فعاله ! برو تا بریم!</string>
+    <string name="settings_wail_disabled_toast">WAIL غیرفعاله ;(</string>
+    <string name="settings_scrobbling_options_title">تنظیمات ثبت آنلاین</string>
+    <string name="settings_min_track_elapsed_time_in_percent_title">کمترین زمان پخش آهنگ به صورت درصد</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_title">کمترین زمان پخش آهنگ به صورت ثانیه</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">این گزینه  در ابتدا برای برنامه و سپس برای سایت اصلی میباشد، درصورتی که شما بیشتر از %1$s ثانیه به آهنگ گوش دهید برنامه شروع به ثبت آهنگ میکند.</string>
+    <string name="settings_min_track_elapsed_time_in_percent_desc">مقدار کنونی %1$s%%, تنها در صورتی مورد استفاده قرار میگیرد که مدت آهنگ پخش شده کمتر از تنظیمات قبلی باشد.</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">مدت زمان رفته از آهنگ</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_title">درصد کمترین زمان گذشت موسیقی</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_description">زمانی که آهنگ شما زمان کمترین از زمان تعیین شده به ثانیه داره ، WAIL از این تنظیمات استفاده میکند،میتوانید از 50 تا 100 درصد تنظیم کنید.</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">مقدار کنونی 	%1$s%% آهنگ</string>
+    <string name="settings_ignored_players_item_title">موزیک پلیر های  مخفی</string>
+    <string name="settings_ignored_players_item_desc">WAIL هیچ گونه فضولی در آهنگ های پخش شده ی این موزیک پلیر ها نمیکند.</string>
+    <string name="settings_ignored_players_activity_label">موزیک پلیر های مخفی</string>
+    <string name="settings_ignored_players_image_content_description">تصویر پلیرهای مخفی</string>
+    <string name="settings_confirm_unignoring_player">آیا تمایل به برگرداندن \"%s\" دارید ؟</string>
+    <string name="settings_ignored_players_empty_text">شما پلیر مخفی ای ندارید</string>
+    <string name="settings_update_nowplaying_title" translatable="false">#nowplaying</string>
+    <string name="settings_lastfm_update_nowplaying_title">درحال گوش دادن در last.fm</string>
+    <string name="settings_lastfm_update_nowplaying_enabled_toast">در حال گوش دادن به موسیقی فعال میباشد .</string>
+    <string name="settings_lastfm_update_nowplaying_disabled_toast">در حال گوش دادن به موسیقی غیر فعال شد.</string>
+    <string name="settings_scrobbling_over_mobile_network_enabled_toast">استفاده از داده ی سیم کارت فعال است!</string>
+    <string name="settings_scrobbling_over_mobile_network_disabled_toast">استفاده از داده ی سیم کارت غیرفعال شد!</string>
+    <string name="settings_notifications_title">اطلاعیه ها</string>
+    <string name="settings_sound_notifications_title">صدای اطلاعیه ها</string>
+    <string name="settings_sound_notifications_description">صدای ثبت آهنگ و غیره ...</string>
+    <string name="settings_status_bar_notifications_title">اطلاعیه نوار وضعیت </string>
+    <string name="settings_theme">تم</string>
+    <string name="settings_theme_switch_label">تم تاریک</string>
+    <string name="settings_other">دیگر</string>
+    <string name="settings_email_to_developers">ایمیل به توسعه دهندگان</string>
+    <string name="settings_email_dialog_title">انتخاب برنامه ی ایمیل</string>
+    <string name="main_settings_menu_toggle_wail">فعال/غیرفعال کردن WAIL</string>
+    <string name="settings_disable_scrobbling_over_mobile_network">اتصال به کمک داده ی سیم کارت</string>
+
+    <!-- END of settings screen strings -->
+
+    <!-- START of sound notifications screen strings -->
+    <string name="settings_sound_notifications_activity_label">صدای اطلاعیه</string>
+    <string name="settings_sound_notifications_main_title">فهرست صداهای اطلاعیه</string>
+    <string name="settings_sound_notifications_pro_tip">ترفند : برای پخش روی گزینه ضربه بزنید </string>
+    <string name="settings_notifications_track_scrobbled">هنگام ثبت شدن آهنگ توصط WAIL</string>
+    <string name="settings_track_was_skipped">هنگام رد شدن آهنگ بخاطر نداشتن زمان پخش کافی</string>
+    <string name="settings_sound_notifications_toast_can_not_play_sound">مشکل در پخش آهنگ :(</string>
+    <string name="settings_logout">خروج</string>
+    <string name="setting_logout_warning">اطلاعات آهنگ های ثبت شده از برنامه حذف میشود ، مطمئنید ؟</string>
+    <!-- END of sound notifications screen strings -->
+
+    <string name="settings_status_bar_notifications_activity_label">اطلاعیه های نوار وضعیت</string>
+    <string name="settings_status_bar_notifications_main_title">فهرست اطلاعیه های نوار وضعیت</string>
+    <string name="settings_notifications_track_now_scrobbling">WAIL در حال ثبت آهنگ میباشد.</string>
+
+    <string name="notifications_now_scrobbling">در حال ثبت</string>
+    <string name="notifications_love_current_track">آهنگ توپیه</string>
+    <string name="notifications_track_loved">آهنگ رو عشقه</string>
+
+    <!-- START of some common strings -->
+    <string name="dialog_cancel">کنسل</string>
+    <string name="dialog_save">ذخیره</string>
+    <string name="drawer_registered_at">"ثبت نام کرده در"</string>
+
+    <string-array name="drawer_items">
+        <item>صفحه ی اصلی</item>
+        <item>آهنگ ها</item>
+        <item>تنظیمات</item>
+    </string-array>
+
+   <!--> Persian has one in this particular scenario , </!-->
+    <string-array name="word_form_track">
+        <item>آهنگ</item>
+
+    </string-array>
+
+    <!-- same as word_form_tracks -->
+    <string-array name="word_forms_second">
+        <item>ثانیه</item>
+    </string-array>
+    <!-- END of some common strings -->
+
+
+</resources>
