@@ -73,14 +73,15 @@
     <string name="settings_scrobbling_options_title">تنظیمات ثبت آنلاین</string>
     <string name="settings_min_track_elapsed_time_in_percent_title">کمترین زمان پخش آهنگ به صورت درصد</string>
     <string name="settings_min_track_elapsed_time_in_seconds_title">کمترین زمان پخش آهنگ به صورت ثانیه</string>
-    <string name="settings_min_track_elapsed_time_in_seconds_desc">این گزینه  در ابتدا برای برنامه و سپس برای سایت اصلی میباشد، درصورتی که شما بیشتر از %1$s ثانیه به آهنگ گوش دهید برنامه شروع به ثبت آهنگ میکند.</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">این گزینه  در ابتدا برای برنامه و سپس برای سایت اصلی میباشد، درصورتی که شما بیشتر از %1$s به آهنگ گوش دهید برنامه شروع به ثبت آهنگ میکند.</string>
     <string name="settings_min_track_elapsed_time_in_percent_desc">مقدار کنونی %1$s%%, تنها در صورتی مورد استفاده قرار میگیرد که مدت آهنگ پخش شده کمتر از تنظیمات قبلی باشد.</string>
-    <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">مدت زمان رفته از آهنگ</string>
-    <string name="settings_min_track_elapsed_time_in_percent_dialog_title">درصد کمترین زمان گذشت موسیقی</string>
-    <string name="settings_min_track_elapsed_time_in_percent_dialog_description">زمانی که آهنگ شما زمان کمترین از زمان تعیین شده به ثانیه داره ، WAIL از این تنظیمات استفاده میکند،میتوانید از 50 تا 100 درصد تنظیم کنید.</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">کمترین زمان پخش موسیقی به ثانیه</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_title">درصد کمترین زمان پخش موسیقی</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_description">زمانی که آهنگ درحال پخش شما زمان کمتری از زمان تعیین شده به ثانیه داشته باشد، WAIL از این تنظیمات استفاده میکند،میتوانید از 50 تا 100 درصد تنظیم کنید.</string>
+
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">مقدار کنونی 	%1$s%% آهنگ</string>
     <string name="settings_ignored_players_item_title">موزیک پلیر های  مخفی</string>
-    <string name="settings_ignored_players_item_desc">WAIL هیچ گونه فضولی در آهنگ های پخش شده ی این موزیک پلیر ها نمیکند.</string>
+    <string name="settings_ignored_players_item_desc">WAIL هیچ گونه آهنگی را این این پلیر ها ثبت نمیکند.</string>
     <string name="settings_ignored_players_activity_label">موزیک پلیر های مخفی</string>
     <string name="settings_ignored_players_image_content_description">تصویر پلیرهای مخفی</string>
     <string name="settings_confirm_unignoring_player">آیا تمایل به برگرداندن \"%s\" دارید ؟</string>
@@ -92,7 +93,7 @@
     <string name="settings_scrobbling_over_mobile_network_disabled_toast">استفاده از داده ی سیم کارت غیرفعال شد!</string>
     <string name="settings_notifications_title">اطلاعیه ها</string>
     <string name="settings_sound_notifications_title">صدای اطلاعیه ها</string>
-    <string name="settings_sound_notifications_description">صدای ثبت آهنگ و غیره ...</string>
+    <string name="settings_sound_notifications_description">صدای اعلان ثبت و ...</string>
     <string name="settings_status_bar_notifications_title">اطلاعیه نوار وضعیت </string>
     <string name="settings_theme">تم</string>
     <string name="settings_theme_switch_label">تم تاریک</string>
@@ -107,8 +108,8 @@
     <!-- START of sound notifications screen strings -->
     <string name="settings_sound_notifications_activity_label">صدای اطلاعیه</string>
     <string name="settings_sound_notifications_main_title">فهرست صداهای اطلاعیه</string>
-    <string name="settings_sound_notifications_pro_tip">ترفند : برای پخش روی گزینه ضربه بزنید </string>
-    <string name="settings_notifications_track_scrobbled">هنگام ثبت شدن آهنگ توصط WAIL</string>
+    <string name="settings_sound_notifications_pro_tip">ترفند : برای پخش صدا روی گزینه ضربه بزنید </string>
+    <string name="settings_notifications_track_scrobbled">هنگام ثبت شدن آهنگ توسط WAIL </string>
     <string name="settings_track_was_skipped">هنگام رد شدن آهنگ بخاطر نداشتن زمان پخش کافی</string>
     <string name="settings_sound_notifications_toast_can_not_play_sound">مشکل در پخش آهنگ :(</string>
     <string name="settings_logout">خروج</string>
