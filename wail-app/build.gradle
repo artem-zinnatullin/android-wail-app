@@ -1,8 +1,3 @@
-// for applying custom environment properties
-if (new File('wail-app/custom_env.gradle').exists()) {
-    apply from: 'custom_env.gradle'
-}
-
 apply plugin: 'com.android.application'
 
 repositories {
@@ -30,33 +25,29 @@ android {
     }
 
     signingConfigs {
-        googlePlay
+        // can be overwritten from custom_env.gradle script
+        wail {
+            storeFile file('debug-keystore.jks')
+            storePassword '123456'
+            keyAlias '123456'
+            keyPassword '123456'
+        }
     }
 
     buildTypes {
         debug {
             versionNameSuffix ' debug ' + getDateForVersionName()
-            signingConfig signingConfigs.googlePlay
+            signingConfig signingConfigs.wail
         }
 
         release {
-            signingConfig signingConfigs.googlePlay
+            signingConfig signingConfigs.wail
         }
     }
 
-    if (project.hasProperty('signingConfigStoreFile')
-            && project.hasProperty('signingConfigStorePassword')
-            && project.hasProperty('signingConfigKeyAlias')
-            && project.hasProperty('signingConfigKeyPassword')
-    ) {
-        android.signingConfigs.googlePlay.storeFile = file(project.ext['signingConfigStoreFile'])
-        android.signingConfigs.googlePlay.storePassword = project.ext['signingConfigStorePassword']
-        android.signingConfigs.googlePlay.keyAlias = project.ext['signingConfigKeyAlias']
-        android.signingConfigs.googlePlay.keyPassword = project.ext['signingConfigKeyPassword']
-    } else {
-        buildTypes.all { bt ->
-            bt.signingConfig = null
-        }
+    // for applying custom environment properties
+    if (new File('wail-app/custom_env.gradle').exists()) {
+        apply from: 'custom_env.gradle'
     }
 }
 

@@ -4,3 +4,8 @@
 project.ext {
     customProperty = 'customValue'
 }
+
+android.signingConfigs.wail.storeFile = file('your_keystore.jks')
+android.signingConfigs.wail.storePassword = 'your_keystore_pass'
+android.signingConfigs.wail.keyAlias = 'your_key_alias'
+android.signingConfigs.wail.keyPassword = 'your_key_password'
