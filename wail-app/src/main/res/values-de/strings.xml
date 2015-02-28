@@ -85,7 +85,6 @@
     <string name="settings_ignored_players_image_content_description">Bild von ignorierten Musikapps</string>
     <string name="settings_confirm_unignoring_player">Möchtest Du App \"%s\" nicht mehr ignorieren?</string>
     <string name="settings_ignored_players_empty_text">Du ignorierst zurzeit keine Musikapps</string>
-    <string name="settings_update_nowplaying_title" translatable="false">#nowplaying</string>
     <string name="settings_lastfm_update_nowplaying_title">Auf Last.fm den aktuellen Titel anzeigen</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm #nowplaying aktiviert</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm #nowplaying deaktiviert</string>
@@ -98,7 +97,7 @@
     <string name="settings_theme">Design</string>
     <string name="settings_theme_switch_label">Dunkles Design benutzen</string>
     <string name="settings_other">Weitere Einstellungen</string>
-    <string name="settings_email_to_the_developer">E-Mail an Entwickler senden</string>
+    <string name="settings_email_to_developers">E-Mail an Entwickler senden</string>
     <string name="settings_email_dialog_title">E-Mail-App auswählen</string>
     <string name="main_settings_menu_toggle_wail">WAIL an/abschalten</string>
     <string name="settings_disable_scrobbling_over_mobile_network">Über Mobilfunk scrobbeln</string>
