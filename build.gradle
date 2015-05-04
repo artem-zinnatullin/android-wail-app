@@ -3,9 +3,12 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+            url 'https://dl.bintray.com/drummer-aidan/maven'
+        }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.0'
+        classpath 'com.android.tools.build:gradle:1.2.2'
     }
 }
