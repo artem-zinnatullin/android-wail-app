@@ -37,6 +37,7 @@ Please read small wiki about commits style guides, git work flow and sources sty
 -------------------
 Questions and answers:
 
+* What about code quality & architecture? — Code is pretty old and bad, please take a look at issues list with proposed improvements.
 * Why repo has small amount of commits? — Because original repo has my personal data, which I decided to remove before making WAIL Open Source. I decided to not use git filter-branch or bfg to delete these files, so I just created new repo with source code. Sorry guys, about ~250 commits were lost...
 * Why you have last.fm secret api keys in Open Source project? — Just because it's very easy to decompile the apk and get them from it, so, please do not use them for evil purposes :)
 * Will WAIL be released to Google Play with your fixes? — YES, of course! This is the main purpose of making WAIL Open Source project, I have no time to work on it, so I hope you will help WAIL!
