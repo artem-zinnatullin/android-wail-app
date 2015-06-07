@@ -5,9 +5,9 @@ import com.artemzin.android.bytes.common.StringUtil;
 public class Track {
 
     public static final int STATE_WAITING_FOR_SCROBBLE = 0;
-    public static final int STATE_SCROBBLING           = 1;
-    public static final int STATE_SCROBBLE_SUCCESS     = 2;
-    public static final int STATE_SCROBBLE_ERROR       = 3;
+    public static final int STATE_SCROBBLING = 1;
+    public static final int STATE_SCROBBLE_SUCCESS = 2;
+    public static final int STATE_SCROBBLE_ERROR = 3;
 
     private long internalDBId;
     private String playerPackageName;
@@ -59,8 +59,12 @@ public class Track {
         this.album = album;
     }
 
-    public long getDuration() {
-        return duration;
+    public long getDurationInMillis() {
+        // Some players set duration in seconds, some in milliseconds
+        // If duration is greater then 30000 we assume that it measured in milliseconds
+        return duration < 30000 && duration != -1
+                ? duration * 1000
+                : duration;
     }
 
     public void setDuration(long duration) {
@@ -104,18 +108,19 @@ public class Track {
         final Track trackCopy = new Track();
 
         trackCopy.playerPackageName = playerPackageName;
-        trackCopy.track             = track;
-        trackCopy.artist            = artist;
-        trackCopy.album             = album;
-        trackCopy.duration          = duration;
-        trackCopy.timestamp         = timestamp;
-        trackCopy.state             = state;
+        trackCopy.track = track;
+        trackCopy.artist = artist;
+        trackCopy.album = album;
+        trackCopy.duration = duration;
+        trackCopy.timestamp = timestamp;
+        trackCopy.state = state;
 
         return trackCopy;
     }
 
     /**
      * Checks equality only of some Track's fields
+     *
      * @param track to compare
      * @return true if special fields are equal, false otherwise
      */
@@ -135,7 +140,7 @@ public class Track {
             return false;
         }
 
-        if (duration != track.getDuration()) {
+        if (duration != track.getDurationInMillis()) {
             return false;
         }
 

@@ -14,13 +14,13 @@ import com.artemzin.android.wail.api.lastfm.LFApiException;
 import com.artemzin.android.wail.api.lastfm.LFTrackApi;
 import com.artemzin.android.wail.api.lastfm.model.request.LFTrackRequestModel;
 import com.artemzin.android.wail.api.network.NetworkException;
-import com.artemzin.android.wail.receiver.music.CommonMusicAppReceiver;
 import com.artemzin.android.wail.notifications.SoundNotificationsManager;
 import com.artemzin.android.wail.notifications.StatusBarNotificationsManager;
+import com.artemzin.android.wail.receiver.music.CommonMusicAppReceiver;
+import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.storage.db.IgnoredPlayersDBHelper;
 import com.artemzin.android.wail.storage.db.LovedTracksDBHelper;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
-import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.storage.model.Track;
 import com.artemzin.android.wail.util.AsyncTaskExecutor;
 import com.artemzin.android.wail.util.IntentUtil;
@@ -37,14 +37,14 @@ import java.util.Random;
 
 public class WAILService extends Service {
 
-    private static final String GA_EVENT_SCROBBLE_TO_THE_LASTFM    = "scrobbleToTheLastfm";
+    private static final String GA_EVENT_SCROBBLE_TO_THE_LASTFM = "scrobbleToTheLastfm";
     private static final String GA_EVENT_UPDATE_LASTFM_NOW_PLAYING = "updateLastfmNowplaying";
     private static final String GA_EVENT_LOVE_TRACK = "GA_EVENT_LOVE_TRACK";
 
-    public static final String INTENT_ACTION_HANDLE_TRACK                    = "INTENT_ACTION_HANDLE_TRACK";
+    public static final String INTENT_ACTION_HANDLE_TRACK = "INTENT_ACTION_HANDLE_TRACK";
     public static final String INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK = "INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK";
-    public static final String INTENT_ACTION_SCROBBLE_PENDING_TRACKS         = "INTENT_ACTION_SCROBBLE_PENDING_TRACKS";
-    public static final String INTENT_ACTION_HANDLE_LOVED_TRACK              = "INTENT_ACTION_HANDLE_LOVED_TRACK";
+    public static final String INTENT_ACTION_SCROBBLE_PENDING_TRACKS = "INTENT_ACTION_SCROBBLE_PENDING_TRACKS";
+    public static final String INTENT_ACTION_HANDLE_LOVED_TRACK = "INTENT_ACTION_HANDLE_LOVED_TRACK";
 
     private static final int DEFAULT_TRACK_DURATION_IF_UNKNOWN_SECONDS = 210;
 
@@ -86,7 +86,7 @@ public class WAILService extends Service {
             return START_STICKY;
         }
 
-         if (!action.equals(INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK)) {
+        if (!action.equals(INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK)) {
             lastIntent = intent;
         }
 
@@ -176,13 +176,7 @@ public class WAILService extends Service {
                                     + " >= min track duration in millis == "
                                     + (WAILSettings.getMinTrackDurationInSeconds(getApplicationContext()) * 1000));
 
-                            long capturedDuration = mLastCapturedTrackInfo.getTrack().getDuration();
-                            // Some players set duration in seconds, some in milliseconds
-                            // If duration is greater then 30000 we assume that it measured in milliseconds
-                            long duration =
-                                    capturedDuration < 30000 && capturedDuration != -1
-                                    ? capturedDuration * 1000
-                                    : capturedDuration;
+                            long duration = mLastCapturedTrackInfo.getTrack().getDurationInMillis();
 
                             if (duration != -1) {
                                 final int trackDurationInPercents = (int) (100 * trackPlayingDurationInMillis / (duration + 2500));
@@ -347,7 +341,7 @@ public class WAILService extends Service {
                                     "success",
                                     null,
                                     (long) tracksToScrobbleListForDB.size())
-                            .build()
+                                    .build()
                     );
 
                     if (isTracksToScrobbleCountMoreThanMaxForRequest) {
@@ -378,7 +372,7 @@ public class WAILService extends Service {
                                     "failed with NetworkException: " + e.getMessage(),
                                     null,
                                     0L)
-                            .build()
+                                    .build()
                     );
                 } catch (LFApiException e) {
                     Loggi.e("WAILService tracks scrobbling to Last.fm failed with api error: " + e.getMessage());
@@ -395,7 +389,7 @@ public class WAILService extends Service {
                                     "failed with LFApiException: " + e.getMessage(),
                                     null,
                                     0L)
-                            .build()
+                                    .build()
                     );
                 }
 
@@ -453,10 +447,10 @@ public class WAILService extends Service {
                     }
 
                     Loggi.w("Result: " + LFTrackApi.updateNowPlaying(
-                            WAILSettings.getLastfmSessionKey(getApplicationContext()),
-                            WAILSettings.getLastfmApiKey(),
-                            WAILSettings.getLastfmSecret(),
-                            trackForRequest)
+                                    WAILSettings.getLastfmSessionKey(getApplicationContext()),
+                                    WAILSettings.getLastfmApiKey(),
+                                    WAILSettings.getLastfmSecret(),
+                                    trackForRequest)
                     );
 
                     EasyTracker.getInstance(getApplicationContext()).send(
@@ -580,7 +574,8 @@ public class WAILService extends Service {
                 return null;
             }
 
-            @Override protected void onPostExecute(Void aVoid) {
+            @Override
+            protected void onPostExecute(Void aVoid) {
                 StatusBarNotificationsManager.getInstance(getApplicationContext())
                         .hideTrackLovedStatusBarNotification();
             }
@@ -593,7 +588,7 @@ public class WAILService extends Service {
         private boolean isPlaying;
 
         public LastCapturedTrackInfo(com.artemzin.android.wail.storage.model.Track track, boolean isPlaying) {
-            this.track     = track;
+            this.track = track;
             this.isPlaying = isPlaying;
         }
 
@@ -613,7 +608,7 @@ public class WAILService extends Service {
                 json.put("track", track.getTrack());
                 json.put("artist", track.getArtist());
                 json.put("album", track.getAlbum());
-                json.put("duration", track.getDuration());
+                json.put("duration", track.getDurationInMillis());
                 json.put("timestamp", track.getTimestamp());
                 json.put("state", track.getState());
                 json.put("stateTimestamp", track.getStateTimestamp());
