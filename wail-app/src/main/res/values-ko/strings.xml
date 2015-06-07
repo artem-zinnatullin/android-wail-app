@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- START of Not authorized main screen strings -->
+    <string name="not_authorized_activity_label">안녕하세요!</string>
+    <string name="app_main_about_1">WAIL — 지금 무슨 노래를 듣고 있나요?</string>
+    <string name="app_main_about_2">WAIL은 당신의 음악 플레이어에서 재생된 음악을 집계하여 last.fm으로 보낼 것입니다</string>
+    <string name="text_button_sign_in_last_fm">Last.fm에 로그인</string>
+    <string name="non_authorized_sign_up_in_lastfm">Last.fm 가입</string>
+    <!-- END of Not authorized main screen -->
+
+    <string name="lastfm_api_error_11">Last.fm에 연결되지 않습니다. 잠시 후에 다시 시도해주세요</string>
+
+    <!-- START of authorization screen strings -->
+    <string name="lastfm_login_activity_label">Last.fm 권한 허가</string>
+    <string name="lastfm_login_hint">아이디 혹은 이메일 주소</string>
+    <string name="lastfm_password_hint">비밀번호</string>
+    <string name="lastfm_login_button">로그인</string>
+    <string name="lastfm_login_empty">Last.fm 아이디 혹은 이메일 주소를 입력해주세요</string>
+    <string name="lastfm_password_empty">Last.fm 비밀번호를 입력해주세요</string>
+    <string name="lastfm_logging_progress_dialog_message">Last.fm에 로그인 중…</string>
+    <string name="lastfm_logging_network_error">Last.fm에 로그인할 수 없습니다. 네트워크 연결을 확인해주세요.</string>
+    <string name="lastfm_logging_api_error_unknown">Last.fm 응답을 처리할 수 없습니다. 현재 앱이 최신버전입니까?</string>
+    <string name="lastfm_logging_api_error_4">계정정보가 올바르지 않습니다</string>
+    <string name="lastfm_login_lastfm_icon">Last.fm 아이콘</string>
+    <!-- END of authorization screen strings -->
+
+    <!-- START of main screen strings -->
+    <string name="main_today">오늘 집계됨</string>
+    <string name="main_tracks_on_last_fm">last.fm에서 집계됨</string>
+    <string name="main_tracks_on_last_fm_unknown">last.fm의 총 트랙 수를 표시할 수 없습니다 :(\n당겨서 새로고침 해보세요!</string>
+    <string name="main_now_scrobbling_label">현재 집계 중인 곡: %1$s</string>
+    <string name="main_now_scrobbling_nothing">없네요 :(</string>
+    <string name="main_pull_down_to_refresh_toast">새로고침하려면 아래로 당겨주세요 :)</string>
+    <string name="main_pull_to_refresh_pull_text">당겨서 새로고침</string>
+    <string name="main_refreshing">새로고침 중…</string>
+    <string name="main_updated_today_at">오늘 %1$s에 업데이트됨</string>
+    <string name="main_updated_yesterday_at">어제 %1$s에 업데이트됨</string>
+    <string name="main_updated_common">%1$s에 업데이트됨</string>
+    <string name="main_refresh_info_from_lastfm_network_error">네트워크 오류 발생, 다음에 다시 시도하세요</string>
+    <string name="main_refresh_info_from_lastfm_api_error">Last.fm 오류: %1$s</string>
+    <string name="main_scrobbling_from_player_label">현재 플레이어: %s</string>
+    <string name="main_confirm_ignoring_player">%s을 제외하시겠습니까??</string>
+    <string name="main_ignore_this_player_button_text">이 플레이어 제외</string>
+    <string name="main_refresh_info_from_lastfm_unknown_error">last.fm으로부터 정보를 가져올 수 없습니다. 죄송해요 :(</string>
+    <string name="main_feedback_please">Google Play에 WAIL 피드백을 남겨주지 않으셔서 슬프네요 :(</string>
+    <string name="main_feedback_please_happy_toast">이제 WAIL은 행복합니다 ;)</string>
+    <string name="main_track_loved">해당 트랙이 선호 목록에 추가되었습니다 :)</string>
+    <string name="main_love_track_button_content_description">선호 목록에 추가 버튼</string>
+    <string name="main_love_track_button_label">현재 재생 중인 트랙을 선호 목록에 추가</string>
+    <!-- END of main screen strings -->
+
+    <!-- START of tracks list screen strings -->
+    <string name="tracks_actionbar_title">트랙</string>
+    <string name="tracks_list_empty_motivation_text">현재 사용하는 음악 플레이어로 음악을 들으면 집계된 트랙들을 여기에서 볼 수 있습니다!</string>
+    <string name="track_artist_and_album_no_data">가수, 앨범 정보가 없습니다 :(</string>
+    <string name="track_status_waiting_for_scrobble">집계 대기 중</string>
+    <string name="track_status_scrobbling">집계 중…</string>
+    <string name="track_status_scrobble_error">집계 오류</string>
+    <string name="track_status_scrobble_success">집계됨</string>
+    <string name="track_status_unknown">알 수 없는 상태입니다 :(</string>
+    <string name="tracks_search_ab_title">검색</string>
+    <string name="tracks_search_hint">집계된 트랙 검색</string>
+    <string name="tracks_search_error_toast">검색을 진행할 수 없습니다 :(</string>
+    <string name="tracks_search_no_results">해당 검색어에 대한 검색 결과 없음: %1$s :(</string>
+    <string name="tracks_search_clear_text">검색어 삭제</string>
+    <!-- END of tracks list screen strings -->
+
+    <!-- START of settings screen strings -->
+    <string name="settings_actionbar_title">WAIL 설정</string>
+    <string name="settings_wail_enabled_toast">WAIL 사용 중! 신난다!</string>
+    <string name="settings_wail_disabled_toast">WAIL 사용 중지됨 ;(</string>
+    <string name="settings_scrobbling_options_title">집계 옵션</string>
+    <string name="settings_min_track_elapsed_time_in_percent_title">최소 트랙 재생 시간(\%%)</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_title">최소 트랙 재생 시간(초)</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">이 설정은 퍼센트 값보다 우선 순위가 높습니다. 트랙이 현재 값인 %1$s 이상 재생되면 집계될 것입니다.</string>
+    <string name="settings_min_track_elapsed_time_in_percent_desc">현재 값은 %1$s%%입니다. 트랙 시간이 최소 트랙 재생시간(초)보다 짧을 때만 사용됩니다.</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">최소 트랙 재생 시간(초)</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_title">최소 트랙 재생 시간(\%%)</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_description">트랙 시간이 최소 트랙 재생시간(초)보다 짧을 때만 사용됩니다. WAIL이 이 설정을 확인할 것입니다. 50\%%에서 100\%% 사이로 설정할 수 있습니다.</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">현재 값: 트랙의 %1$s%%</string>
+    <string name="settings_ignored_players_item_title">제외된 플레이어 목록</string>
+    <string name="settings_ignored_players_item_desc">WAIL은 이 플레이어로 재생된 곡들을 집계하지 않을 것입니다</string>
+    <string name="settings_ignored_players_activity_label">제외된 플레이어 목록</string>
+    <string name="settings_ignored_players_image_content_description">제외된 플레이어 이미지</string>
+    <string name="settings_confirm_unignoring_player">이 플레이어 \"%s\"를 다시 포함시키겠습니까?</string>
+    <string name="settings_ignored_players_empty_text">제외된 플레이어가 없습니다</string>
+    <string name="settings_lastfm_update_nowplaying_title">last.fm을 통해 현재 듣고 있는 곡</string>
+    <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm update now 사용 시작됨</string>
+    <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm update now 사용 중지됨</string>
+    <string name="settings_scrobbling_over_mobile_network_enabled_toast">모바일 네트워크로 집계 시작!</string>
+    <string name="settings_scrobbling_over_mobile_network_disabled_toast">모바일 네트워크로 집계 중지됨</string>
+    <string name="settings_notifications_title">알림</string>
+    <string name="settings_sound_notifications_title">사운드 알림</string>
+    <string name="settings_sound_notifications_description">Track scrobbled sound, etc…</string>
+    <string name="settings_status_bar_notifications_title">상태바 알림</string>
+    <string name="settings_theme">테마</string>
+    <string name="settings_theme_switch_label">다크 테마</string>
+    <string name="settings_other">기타</string>
+    <string name="settings_email_to_developers">개발자에게 이메일 전송</string>
+    <string name="settings_email_dialog_title">이메일 앱을 선택하세요</string>
+    <string name="main_settings_menu_toggle_wail">WAIL 토글</string>
+    <string name="settings_disable_scrobbling_over_mobile_network">모바일 네트워크로 집계</string>
+
+    <!-- END of settings screen strings -->
+
+    <!-- START of sound notifications screen strings -->
+    <string name="settings_sound_notifications_activity_label">사운드 알림</string>
+    <string name="settings_sound_notifications_main_title">알림 사운드 목록</string>
+    <string name="settings_sound_notifications_pro_tip">프로팁: 사운드 요약을 탭하여 재생하세요</string>
+    <string name="settings_notifications_track_scrobbled">WAIL이 집계된 트랙을 표시합니다</string>
+    <string name="settings_track_was_skipped">WAIL이 재생곡이 최소 시간동안 재생되지 않아 스킵합니다</string>
+    <string name="settings_sound_notifications_toast_can_not_play_sound">사운드를 재생할 수 없습니다 :(</string>
+    <string name="settings_logout">로그아웃</string>
+    <string name="setting_logout_warning">모든 집계 데이터가 삭제됩니다! 진행하시겠습니까?</string>
+    <!-- END of sound notifications screen strings -->
+
+    <string name="settings_status_bar_notifications_activity_label">상태바 알림</string>
+    <string name="settings_status_bar_notifications_main_title">상태바 알림 목록</string>
+    <string name="settings_notifications_track_now_scrobbling">WAIL이 이제 음악 트랙을 집계합니다</string>
+
+    <string name="notifications_now_scrobbling">현재 집계 중</string>
+    <string name="notifications_love_current_track">현재 재생 중인 트랙을 선호 목록에 추가</string>
+    <string name="notifications_track_loved">해당 트랙이 선호 목록에 추가되었습니다</string>
+
+    <!-- START of some common strings -->
+    <string name="dialog_cancel">취소</string>
+    <string name="dialog_save">저장</string>
+    <string name="drawer_registered_at">"등록 날짜: "</string>
+
+    <string-array name="drawer_items">
+        <item>메인</item>
+        <item>트랙</item>
+        <item>설정</item>
+    </string-array>
+
+    <!-- Some languages has 3 word forms depending on word items count -->
+    <!-- But English has only 2 word forms -->
+    <string-array name="word_form_track">
+        <item>트랙이</item>
+        <!-- example: 1 track -->
+        <item>트랙들이</item>
+        <!-- example: 2 tracks, 3, .... infinity -->
+        <!-- <item>3rd word form</item> -->
+        <!-- if your language requires 3rd word form, uncomment and  write it above -->
+
+        <!-- example for Russian language -->
+        <!-- 1 трек, 2 трека, 3 трека, 4 трека, 5 треков -->
+        <!-- as you see, we got 3 word forms: "трек", "трека", "треков" -->
+    </string-array>
+
+    <!-- same as word_form_tracks -->
+    <string-array name="word_forms_second">
+        <item>초</item>
+        <item>초</item>
+        <!-- <item>3rd word form</item> -->
+    </string-array>
+    <!-- END of some common strings -->
+
+</resources>

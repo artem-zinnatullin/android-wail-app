@@ -12,6 +12,7 @@
         <item>English</item>
         <item>Deutsch</item>
         <item>Russian</item>
+        <item>Korean</item>
     </string-array>
 
     <string name="settings_select_language_title" translatable="false">Language</string>
