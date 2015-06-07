@@ -48,11 +48,10 @@
     <string name="settings_lastfm_update_nowplaying_disabled_toast">#nowplaying отключен</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">#nowplaying включен</string>
     <string name="settings_lastfm_update_nowplaying_title">Слушаю сейчас на last.fm</string>
-    <string name="settings_min_track_elapsed_time_in_percent_desc">Текущее значение %1$s%% используется только если время прослушивания трека было &lt; чем минимальное время прослушивания в секундах</string>
+    <string name="settings_min_track_elapsed_time_in_percent_desc">WAIL скробблит трек только если он был прослушан хотя бы %1$s%% его продолжительности</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Текущее значение %1$s%% продолжительности трека</string>
-    <string name="settings_min_track_elapsed_time_in_percent_dialog_description">Используется если время прослушивания трека время прослушивания трека было &lt; чем минимальное время прослушивания в секундах, Вы можете установить значение между 50% и 100%</string>
     <string name="settings_min_track_elapsed_time_in_percent_title">Минимальное время прослушивания в процентах</string>
-    <string name="settings_min_track_elapsed_time_in_seconds_desc">Это значение более приоритетно, чем значение в процентах, трек будет заскробблен если Вы слушали его &gt;= текущего значения %1$s</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">WAIL скробблит трек только если он был прослушан хотя бы %1$s секунд</string>
     <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">Минимальное время прослушивания в секундах</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Минимальное время прослушивания в %</string>
     <string name="settings_min_track_elapsed_time_in_seconds_title">Минимальное время прослушивания в секундах</string>

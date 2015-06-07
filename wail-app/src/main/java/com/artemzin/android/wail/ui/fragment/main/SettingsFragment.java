@@ -281,7 +281,6 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
     void showMinTrackDurationInPercentsEditDialog() {
         final DialogFragmentWithSeekBar dialogFragmentWithSeekBar = DialogFragmentWithSeekBar.newInstance(
                 getString(R.string.settings_min_track_elapsed_time_in_percent_dialog_title),
-                getString(R.string.settings_min_track_elapsed_time_in_percent_dialog_description),
                 WAILSettings.getMinTrackDurationInPercents(getActivity())
         );
 
@@ -294,8 +293,8 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
     void showMinTrackDurationInSecondsEditDialog() {
         final DialogFragmentWithNumberPicker minTrackDurationInSecondsDialog = DialogFragmentWithNumberPicker.newInstance(
                 getString(R.string.settings_min_track_elapsed_time_in_seconds_dialog_title),
-                30,
-                600,
+                15,
+                180,
                 WAILSettings.getMinTrackDurationInSeconds(getActivity()));
 
         minTrackDurationInSecondsDialog.setListener(this);

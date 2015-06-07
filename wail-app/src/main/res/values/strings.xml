@@ -73,11 +73,10 @@
     <string name="settings_scrobbling_options_title">Scrobbling options</string>
     <string name="settings_min_track_elapsed_time_in_percent_title">Min track time elapsed in percent</string>
     <string name="settings_min_track_elapsed_time_in_seconds_title">Min track time elapsed in seconds</string>
-    <string name="settings_min_track_elapsed_time_in_seconds_desc">this setting is now more prior for WAIL than percents value, track will be scrobbled if you had listened it for >= current value %1$s</string>
-    <string name="settings_min_track_elapsed_time_in_percent_desc">current value %1$s%%, used only if track elapsed time was &lt; than min track elapsed time in seconds</string>
+    <string name="settings_min_track_elapsed_time_in_percent_desc">WAIL will scrobble a track only if you have played it at least for %1$s%% of its duration</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">WAIL will scrobble a track only if you have played it at least for %1$s seconds</string>
     <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">Min track el. time in secs</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Min track time elapsed in percents</string>
-    <string name="settings_min_track_elapsed_time_in_percent_dialog_description">Used when you listened track for &lt; than min track elapsed time in seconds, WAIL will check this setting, you can set from 50% to 100%</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Current value %1$s%% of track</string>
     <string name="settings_ignored_players_item_title">Ignored media players</string>
     <string name="settings_ignored_players_item_desc">WAIL will not scrobble tracks played by these players</string>
