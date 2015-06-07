@@ -85,7 +85,6 @@
     <string name="settings_ignored_players_image_content_description">제외된 플레이어 이미지</string>
     <string name="settings_confirm_unignoring_player">이 플레이어 \"%s\"를 다시 포함시키겠습니까?</string>
     <string name="settings_ignored_players_empty_text">제외된 플레이어가 없습니다</string>
-    <string name="settings_update_nowplaying_title" translatable="false">#nowplaying</string>
     <string name="settings_lastfm_update_nowplaying_title">last.fm을 통해 현재 듣고 있는 곡</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm update now 사용 시작됨</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm update now 사용 중지됨</string>
