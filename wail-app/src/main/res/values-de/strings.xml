@@ -32,7 +32,6 @@
     <string name="main_now_scrobbling_label">Scrobbelt zurzeit: %1$s</string>
     <string name="main_now_scrobbling_nothing">nichts</string>
     <string name="main_pull_down_to_refresh_toast">Ziehen, um Daten zu aktualisieren</string>
-    <string name="main_pull_to_refresh_pull_text">Ziehen, um zu aktualisieren</string>
     <string name="main_refreshing">Wird aktualisiert …</string>
     <string name="main_updated_today_at">Stand heute um %1$s</string>
     <string name="main_updated_yesterday_at">Stand gestern um %1$s</string>
@@ -46,8 +45,6 @@
     <string name="main_feedback_please">Ohne ein Feedback auf Google Play ist WAIL traurig.</string>
     <string name="main_feedback_please_happy_toast">Jetzt ist WAIL glücklich.</string>
     <string name="main_track_loved">Zu Lieblingsliedern hinzugefügt.</string>
-    <string name="main_love_track_button_content_description">Lieblingslied-Taste</string>
-    <string name="main_love_track_button_label">Füge aktuellen Titel den Lieblingsliedern hinzu</string>
     <!-- END of main screen strings -->
 
     <!-- START of tracks list screen strings -->
@@ -60,10 +57,8 @@
     <string name="track_status_scrobble_success">Gescrobbelt</string>
     <string name="track_status_unknown">Unbekannter Status</string>
     <string name="tracks_search_ab_title">Suchen</string>
-    <string name="tracks_search_hint">Suche in gescrobbelten Titeln</string>
     <string name="tracks_search_error_toast">Kann Suche nicht ausführen</string>
     <string name="tracks_search_no_results">Zu "%1$s" nichts gefunden.</string>
-    <string name="tracks_search_clear_text">Suche leeren</string>
     <!-- END of tracks list screen strings -->
 
     <!-- START of settings screen strings -->
@@ -93,7 +88,6 @@
     <string name="settings_sound_notifications_title">Tonmitteilungen</string>
     <string name="settings_sound_notifications_description">Ton wenn Titel gescrobbelt werden oder wenn dies nicht möglich gewesen ist.</string>
     <string name="settings_status_bar_notifications_title">Statusbar-Mitteilungen</string>
-    <string name="settings_theme">Design</string>
     <string name="settings_theme_switch_label">Dunkles Design benutzen</string>
     <string name="settings_other">Weitere Einstellungen</string>
     <string name="settings_email_to_developers">E-Mail an Entwickler senden</string>
@@ -105,7 +99,6 @@
 
     <!-- START of sound notifications screen strings -->
     <string name="settings_sound_notifications_activity_label">Tonmitteilungen</string>
-    <string name="settings_sound_notifications_main_title">Liste von Mitteilungen</string>
     <string name="settings_sound_notifications_pro_tip">Tipp: Beschreibung berühren um Ton anzuhören</string>
     <string name="settings_notifications_track_scrobbled">WAIL scrobbelt Titel</string>
     <string name="settings_track_was_skipped">WAIL hat Titel wegen Länge übersprungen</string>
@@ -115,7 +108,6 @@
     <!-- END of sound notifications screen strings -->
 
     <string name="settings_status_bar_notifications_activity_label">Statusbar-Mitteilungen</string>
-    <string name="settings_status_bar_notifications_main_title">Liste von Mitteilungen</string>
     <string name="settings_notifications_track_now_scrobbling">WAIL scrobbelt Titel</string>
     <string name="settings_notifications_min_priority">Minimum notification priority</string>
 

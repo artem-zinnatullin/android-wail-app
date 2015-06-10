@@ -32,7 +32,6 @@
     <string name="main_now_scrobbling_label">Now scrobbling: %1$s</string>
     <string name="main_now_scrobbling_nothing">nothing :(</string>
     <string name="main_pull_down_to_refresh_toast">Pull down to refresh data :)</string>
-    <string name="main_pull_to_refresh_pull_text">Pull to refresh</string>
     <string name="main_refreshing">Refreshing…</string>
     <string name="main_updated_today_at">updated today at %1$s</string>
     <string name="main_updated_yesterday_at">updated yesterday at %1$s</string>
@@ -46,8 +45,6 @@
     <string name="main_feedback_please">WAIL is sad without your feedback on the Google Play :(</string>
     <string name="main_feedback_please_happy_toast">Now WAIL is happy ;)</string>
     <string name="main_track_loved">Track loved :)</string>
-    <string name="main_love_track_button_content_description">Love track button</string>
-    <string name="main_love_track_button_label">Love current track</string>
     <!-- END of main screen strings -->
 
     <!-- START of tracks list screen strings -->
@@ -60,10 +57,8 @@
     <string name="track_status_scrobble_success">Scrobbled</string>
     <string name="track_status_unknown">Unknown state :(</string>
     <string name="tracks_search_ab_title">Search</string>
-    <string name="tracks_search_hint">Search scrobbled tracks</string>
     <string name="tracks_search_error_toast">Can not proceed search :(</string>
     <string name="tracks_search_no_results">No search results for text: %1$s :(</string>
-    <string name="tracks_search_clear_text">Clear search text</string>
     <!-- END of tracks list screen strings -->
 
     <!-- START of settings screen strings -->
@@ -84,7 +79,6 @@
     <string name="settings_ignored_players_image_content_description">Ignored player image</string>
     <string name="settings_confirm_unignoring_player">Do you want to stop ignoring player \"%s\"?</string>
     <string name="settings_ignored_players_empty_text">You have no ignored players</string>
-    <string name="settings_update_nowplaying_title" translatable="false">#nowplaying</string>
     <string name="settings_lastfm_update_nowplaying_title">Listening now on last.fm</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm update nowplaying enabled</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm update nowplaying turned off</string>
@@ -94,7 +88,6 @@
     <string name="settings_sound_notifications_title">Sound notifications</string>
     <string name="settings_sound_notifications_description">Track scrobbled sound, etc…</string>
     <string name="settings_status_bar_notifications_title">Status bar notifications</string>
-    <string name="settings_theme">Theme</string>
     <string name="settings_theme_switch_label">Dark theme</string>
     <string name="settings_other">Other</string>
     <string name="settings_email_to_developers">Email developers</string>
@@ -106,7 +99,6 @@
 
     <!-- START of sound notifications screen strings -->
     <string name="settings_sound_notifications_activity_label">Sound notifications</string>
-    <string name="settings_sound_notifications_main_title">List of notifications sounds</string>
     <string name="settings_sound_notifications_pro_tip">Pro tip: tap on the sound description to play it</string>
     <string name="settings_notifications_track_scrobbled">WAIL marked track as scrobbled</string>
     <string name="settings_track_was_skipped">WAIL skipped track because it was not played required time</string>
@@ -116,7 +108,6 @@
     <!-- END of sound notifications screen strings -->
 
     <string name="settings_status_bar_notifications_activity_label">Status bar notifications</string>
-    <string name="settings_status_bar_notifications_main_title">List of status bar notifications</string>
     <string name="settings_notifications_track_now_scrobbling">WAIL is now scrobbling track</string>
     <string name="settings_notifications_min_priority">Minimum notification priority</string>
 

@@ -18,12 +18,9 @@
     <string name="lastfm_password_hint">Пароль</string>
     <string name="main_feedback_please">WAIL в печали без Вашего отзыва в Google Play :(</string>
     <string name="main_feedback_please_happy_toast">Теперь WAIL счастлив :)</string>
-    <string name="main_love_track_button_content_description">Кнопка "Добавить трек в любимые"</string>
-    <string name="main_love_track_button_label">Добавить трек в любимые</string>
     <string name="main_now_scrobbling_label">Скробблится: %1$s </string>
     <string name="main_now_scrobbling_nothing">ничего :(</string>
     <string name="main_pull_down_to_refresh_toast">Потяните вниз, чтобы обновить данные :)</string>
-    <string name="main_pull_to_refresh_pull_text">Потяните вниз</string>
     <string name="main_refreshing">Обновление…</string>
     <string name="main_refresh_info_from_lastfm_api_error">Ошибка last.fm: %1$s</string>
     <string name="main_refresh_info_from_lastfm_network_error">Ошибка сетевого соединения, попробуйте позже</string>
@@ -64,14 +61,11 @@
     <string name="settings_scrobbling_over_mobile_network_enabled_toast">Скробблинг через мобильное интернет-подключение включен!</string>
     <string name="settings_sound_notifications_activity_label">Звуковые уведомления</string>
     <string name="settings_sound_notifications_description">Можно прослушать звук уведомленй и т.д.</string>
-    <string name="settings_sound_notifications_main_title">Список звуковых уведомлений</string>
     <string name="settings_sound_notifications_pro_tip">Подсказка: коснитесь чтобы проиграть звук</string>
     <string name="settings_sound_notifications_title">Звуковые уведомления</string>
     <string name="settings_sound_notifications_toast_can_not_play_sound">Невозможно воспроизвести звук :(</string>
     <string name="settings_status_bar_notifications_activity_label">Уведомления в статус баре</string>
     <string name="settings_status_bar_notifications_title">Уведомления в статус баре</string>
-    <string name="settings_status_bar_notifications_main_title">Спискок уведомлений в статус баре</string>
-    <string name="settings_theme">Тема</string>
     <string name="settings_theme_switch_label">Темная тема</string>
     <string name="settings_track_was_skipped">WAIL пропустил трек потому что трек не был прослушан достаточно долго</string>
     <string name="settings_wail_disabled_toast">WAIL отключен</string>
@@ -88,8 +82,6 @@
     <string name="tracks_list_empty_motivation_text">Попробуйте послушать музыку в своем любимом плеере и прослушанные треки появятся здесь!</string>
     <string name="tracks_search_no_results">Нет результатов для: %1$s :(</string>
     <string name="tracks_search_error_toast">Невозможно произвести поиск :(</string>
-    <string name="tracks_search_hint">Искать в заскроббленных треках</string>
-    <string name="tracks_search_clear_text">Очистить текст</string>
     <string name="settings_ignored_players_activity_label">Игнорируемые медиа плееры</string>
     <string name="settings_ignored_players_item_title">Игнорируемые медиа плееры</string>
     <string name="settings_ignored_players_item_desc">Треки, воспроизводимые этими плеерами не будут скробблиться</string>

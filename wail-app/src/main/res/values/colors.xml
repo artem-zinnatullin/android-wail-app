@@ -29,7 +29,6 @@
     <color name="drawer_item_selected_background">#14000000</color>
 
     <color name="drawer_item_text">#dd000000</color>
-    <color name="drawer_header_background">#fff2f2f2</color>
 
     <!--Light theme-->
 
@@ -56,7 +55,6 @@
     <color name="dark_theme_text_secondary">#bebebe</color>
 
     <color name="dark_theme_track_today_background">#ff5d5d5d</color>
-    <color name="dark_theme_tracks_today_ripple">#C3C3C3</color>
 
     <color name="dark_theme_settings_background">#ff646769</color>
 
