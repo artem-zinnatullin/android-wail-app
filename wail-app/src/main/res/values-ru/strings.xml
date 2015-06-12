@@ -102,6 +102,7 @@
     <string name="drawer_registered_at">"Зарегистрирован(а) "</string>
     <string name="settings_logout">Выйти</string>
     <string name="setting_logout_warning">Все данные о скробблинге будут удалены! Вы уверены?</string>
+    <string name="settings_notifications_min_priority">Минимальный приоритет уведомлений</string>
     <string-array name="drawer_items">
         <item>Главная</item>
         <item>Треки</item>

@@ -117,6 +117,7 @@
     <string name="settings_status_bar_notifications_activity_label">상태바 알림</string>
     <string name="settings_status_bar_notifications_main_title">상태바 알림 목록</string>
     <string name="settings_notifications_track_now_scrobbling">WAIL이 이제 음악 트랙을 집계합니다</string>
+    <string name="settings_notifications_min_priority">Minimum notification priority</string>
 
     <string name="notifications_now_scrobbling">현재 집계 중</string>
     <string name="notifications_love_current_track">현재 재생 중인 트랙을 선호 목록에 추가</string>

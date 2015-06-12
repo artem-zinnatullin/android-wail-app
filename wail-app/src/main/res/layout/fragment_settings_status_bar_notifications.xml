@@ -26,6 +26,22 @@
 
         </TableRow>
 
+        <TableRow
+            android:id="@+id/settings_status_bar_notifications_min_priority"
+            style="?settingsItemWithSwitch">
+
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                style="?settingsItemTitleWithSwitch"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/settings_notifications_min_priority" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/settings_status_bar_notifications_min_priority_switch"
+                style="?settingsItemSwitch" />
+
+        </TableRow>
+
     </TableLayout>
 
 </ScrollView>

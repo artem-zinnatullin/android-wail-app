@@ -118,6 +118,7 @@
     <string name="settings_status_bar_notifications_activity_label">Status bar notifications</string>
     <string name="settings_status_bar_notifications_main_title">List of status bar notifications</string>
     <string name="settings_notifications_track_now_scrobbling">WAIL is now scrobbling track</string>
+    <string name="settings_notifications_min_priority">Minimum notification priority</string>
 
     <string name="notifications_now_scrobbling">Now scrobbling</string>
     <string name="notifications_love_current_track">Love this track</string>
