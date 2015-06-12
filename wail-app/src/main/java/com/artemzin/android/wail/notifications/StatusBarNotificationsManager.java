@@ -61,7 +61,10 @@ public class StatusBarNotificationsManager {
         Intent loveIntent = new Intent(context, NotificationActionsReceiver.class);
         PendingIntent lovePendingIntent = PendingIntent.getBroadcast(context, 0, loveIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        boolean minPriority = WAILSettings.isStatusBarNotificationMinPriority(context);
+
         Notification notification = new NotificationCompat.Builder(context)
+                .setPriority(minPriority ? -2 : 0)
                 .setContentTitle(context.getString(R.string.notifications_now_scrobbling))
                 .setContentText(track.getArtist() + " - " + track.getTrack())
                 .setSmallIcon(R.drawable.ic_status_wail_notifications)

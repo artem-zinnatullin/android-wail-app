@@ -117,6 +117,7 @@
     <string name="settings_status_bar_notifications_activity_label">Statusbar-Mitteilungen</string>
     <string name="settings_status_bar_notifications_main_title">Liste von Mitteilungen</string>
     <string name="settings_notifications_track_now_scrobbling">WAIL scrobbelt Titel</string>
+    <string name="settings_notifications_min_priority">Minimum notification priority</string>
 
     <string name="notifications_now_scrobbling">Scrobbelt jetzt</string>
     <string name="notifications_love_current_track">Aktuellen Titel lieben</string>

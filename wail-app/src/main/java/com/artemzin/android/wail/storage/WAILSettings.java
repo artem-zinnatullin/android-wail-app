@@ -8,8 +8,6 @@ import com.artemzin.android.wail.api.lastfm.model.response.LFUserResponseModel;
 import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.model.Track;
 
-import java.util.Locale;
-
 public class WAILSettings {
 
     private static final String APP_SETTINGS                       = "APP_SETTINGS";
@@ -38,6 +36,7 @@ public class WAILSettings {
     private static final String KEY_SOUND_NOTIFICATION_TRACK_SKIPPED_ENABLED = "KEY_SOUND_NOTIFICATION_TRACK_SKIPPED_ENABLED";
 
     private static final String KEY_STATUS_BAR_NOTIFICATION_TRACK_SCROBBLING = "KEY_STATUS_BAR_NOTIFICATION_TRACK_SCROBBLING";
+    private static final String KEY_STATUS_BAR_NOTIFICATION_MIN_PRIORITY = "KEY_STATUS_BAR_NOTIFICATION_MIN_PRIORITY";
 
     private static final String KEY_NOW_SCROBBLING_TRACK_ARTIST = "KEY_NOW_SCROBBLING_TRACK_ARTIST";
     private static final String KEY_NOW_SCROBBLING_TRACK_TITLE = "KEY_NOW_SCROBBLING_TRACK_TITLE";
@@ -64,10 +63,12 @@ public class WAILSettings {
     private static String  lastfmUserRegistered;
 
     private static Boolean isShowFeedbackRequest;
-    private static Boolean soundNotificationTrackScrobbledEnabled;
 
+    private static Boolean soundNotificationTrackScrobbledEnabled;
     private static Boolean soundNotificationTrackSkippedEnabled;
     private static Boolean statusBarNotificationTrackScrobblingEnabled;
+
+    private static Boolean statusBarNotificationMinPriority;
     // endregion
 
     private WAILSettings() {}
@@ -358,6 +359,17 @@ public class WAILSettings {
     public static void setStatusBarNotificationTrackScrobblingEnabled(Context context, boolean value) {
         WAILSettings.statusBarNotificationTrackScrobblingEnabled = value;
         getSharedPreferences(context).edit().putBoolean(KEY_STATUS_BAR_NOTIFICATION_TRACK_SCROBBLING, value).apply();
+    }
+
+    public static boolean isStatusBarNotificationMinPriority(Context context) {
+        return statusBarNotificationMinPriority != null
+                ? statusBarNotificationMinPriority
+                : getSharedPreferences(context).getBoolean(KEY_STATUS_BAR_NOTIFICATION_MIN_PRIORITY, false);
+    }
+
+    public static void setStatusBarNotificationMinPriority(Context context, boolean value) {
+        WAILSettings.statusBarNotificationMinPriority = value;
+        getSharedPreferences(context).edit().putBoolean(KEY_STATUS_BAR_NOTIFICATION_MIN_PRIORITY, value).apply();
     }
 
     public static enum  Theme {
