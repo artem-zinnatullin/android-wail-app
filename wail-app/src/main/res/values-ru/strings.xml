@@ -10,13 +10,6 @@
     <string name="lastfm_logging_api_error_unknown">Невозможно разобрать ответ сервера, может быть надо обновить приложение?</string>
     <string name="lastfm_logging_network_error">Сеть недоступна, проверьте интернет-соединение</string>
     <string name="lastfm_logging_progress_dialog_message">Авторизация в last.fm…</string>
-    <string name="lastfm_login_activity_label">Авторизация в last.fm</string>
-    <string name="lastfm_login_button">Войти</string>
-    <string name="lastfm_login_empty">Введите логин</string>
-    <string name="lastfm_login_hint">Логин или e-mail</string>
-    <string name="lastfm_login_lastfm_icon">Иконка last.fm</string>
-    <string name="lastfm_password_empty">Введите пароль</string>
-    <string name="lastfm_password_hint">Пароль</string>
     <string name="main_feedback_please">WAIL в печали без Вашего отзыва в Google Play :(</string>
     <string name="main_feedback_please_happy_toast">Теперь WAIL счастлив :)</string>
     <string name="main_now_scrobbling_label">Скробблится: %1$s </string>

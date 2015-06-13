@@ -15,33 +15,6 @@
         <item name="android:listSelector">@drawable/light_theme_clickable_drawable</item>
     </style>
 
-    <!--Login screen-->
-
-    <style name="AppTheme.Light.LastFmLoginEditText">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:minWidth">400dp</item>
-        <item name="android:maxWidth">400dp</item>
-        <item name="android:layout_marginTop">20dp</item>
-        <item name="baseColor">@color/light_theme_text_primary</item>
-        <item name="primaryColor">@color/light_theme_text_secondary</item>
-        <item name="errorColor">@color/error</item>
-    </style>
-
-    <style name="AppTheme.Light.LastFmLoginEditButton">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:minWidth">400dp</item>
-        <item name="android:maxWidth">400dp</item>
-        <item name="android:layout_marginTop">20dp</item>
-        <item name="android:paddingLeft">30dp</item>
-        <item name="android:paddingRight">30dp</item>
-        <item name="android:background">@drawable/btn_default</item>
-        <item name="android:textColor">@color/light_theme_btn_text_color</item>
-    </style>
-
-    <!--/Login screen-->
-
     <!--Main screen-->
 
     <style name="AppTheme.Light.MainTracksTodayContainer">
