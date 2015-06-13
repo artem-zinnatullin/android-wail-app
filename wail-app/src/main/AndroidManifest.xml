@@ -28,11 +28,6 @@
             android:label="@string/not_authorized_activity_label" />
 
         <activity
-            android:name=".ui.activity.LastfmLoginActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:label="@string/lastfm_login_activity_label" />
-
-        <activity
             android:name=".ui.activity.settings.SettingsSelectLanguageActivity"
             android:windowSoftInputMode="stateHidden"
             android:label="@string/settings_select_language_activity_label" />

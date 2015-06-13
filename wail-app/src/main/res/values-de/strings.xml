@@ -21,7 +21,8 @@
     <string name="lastfm_logging_progress_dialog_message">Bei Last.fm anmelden …</string>
     <string name="lastfm_logging_network_error">Anmeldung bei Last.fm nicht möglich, bitte überprüfe die Verbindung.</string>
     <string name="lastfm_logging_api_error_unknown">Konnte die Antwort von Last.fm nicht verstehen, bitte überprüfe die Version der App.</string>
-    <string name="lastfm_logging_api_error_4">Benutzername oder Passwort ist falsch.</string>
+    <string name="lastfm_logging_api_error_15">You authorized WAIL in Last.FM too long ago. Please try again.</string>
+    <string name="lastfm_logging_api_error_14">You did not authorize WAIL in Last.FM :(</string>
     <string name="lastfm_login_lastfm_icon">Last.fm-Icon</string>
     <!-- END of authorization screen strings -->
 

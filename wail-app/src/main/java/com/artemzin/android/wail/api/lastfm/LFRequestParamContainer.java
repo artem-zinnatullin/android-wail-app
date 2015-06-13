@@ -78,10 +78,6 @@ public class LFRequestParamContainer {
         return stringBuilder.toString();
     }
 
-    public String generateUrlForRequestWithSign() {
-        return LFApiCommon.API_ROOT_URL + "?" + generateRequestParamsAsStringWithSign();
-    }
-
     public String generateRequestParamsAsStringWithSign() {
         try {
             return getParamsAsGETParamsStringWithSign();

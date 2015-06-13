@@ -21,7 +21,8 @@
     <string name="lastfm_logging_progress_dialog_message">Last.fm에 로그인 중…</string>
     <string name="lastfm_logging_network_error">Last.fm에 로그인할 수 없습니다. 네트워크 연결을 확인해주세요.</string>
     <string name="lastfm_logging_api_error_unknown">Last.fm 응답을 처리할 수 없습니다. 현재 앱이 최신버전입니까?</string>
-    <string name="lastfm_logging_api_error_4">계정정보가 올바르지 않습니다</string>
+    <string name="lastfm_logging_api_error_15">You authorized WAIL in Last.FM too long ago. Please try again.</string>
+    <string name="lastfm_logging_api_error_14">You did not authorize WAIL in Last.FM :(</string>
     <string name="lastfm_login_lastfm_icon">Last.fm 아이콘</string>
     <!-- END of authorization screen strings -->
 

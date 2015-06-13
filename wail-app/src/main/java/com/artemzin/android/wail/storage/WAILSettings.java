@@ -18,6 +18,7 @@ public class WAILSettings {
     private static final String KEY_IS_ENABLED                     = "KEY_IS_ENABLED";
     private static final String KEY_START_ON_BOOT                  = "KEY_START_ON_BOOT";
     private static final String KEY_LASTFM_SESSION_KEY             = "KEY_LASTFM_SESSION_KEY";
+    private static final String KEY_LASTFM_TOKEN                   = "KEY_LASTFM_TOKEN";
     private static final String KEY_MIN_TRACK_DURATION_IN_PERCENTS = "KEY_MIN_TRACK_DURATION_IN_PERCENTS";
     private static final String KEY_MIN_TRACK_DURATION_IN_SECONDS  = "KEY_MIN_TRACK_DURATION_IN_SECONDS";
     private static final String KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK = "KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK";
@@ -53,6 +54,7 @@ public class WAILSettings {
 
     // region memory cached values
     private static String  lastfmSessionKey;
+    private static String  lastfmToken;
     private static Boolean isEnabled;
     private static Integer minTrackDurationInPercents;
     private static Integer minTrackDurationInSeconds;
@@ -60,14 +62,14 @@ public class WAILSettings {
     private static Long    totalHandledTracksCount;
     private static Boolean isLastfmNowplayingUpdateEnabled;
     private static String  lastfmUserName;
+
     private static String  lastfmUserRegistered;
 
     private static Boolean isShowFeedbackRequest;
-
     private static Boolean soundNotificationTrackScrobbledEnabled;
     private static Boolean soundNotificationTrackSkippedEnabled;
-    private static Boolean statusBarNotificationTrackScrobblingEnabled;
 
+    private static Boolean statusBarNotificationTrackScrobblingEnabled;
     private static Boolean statusBarNotificationMinPriority;
     // endregion
 
@@ -79,6 +81,7 @@ public class WAILSettings {
 
     public static synchronized void clearAllSettings(Context context) {
         lastfmSessionKey                       = null;
+        lastfmToken                            = null;
         isEnabled                              = null;
         minTrackDurationInPercents             = null;
         minTrackDurationInSeconds              = null;
@@ -147,6 +150,16 @@ public class WAILSettings {
     public static synchronized void setLastfmSessionKey(Context context, String value) {
         lastfmSessionKey = value;
         getSharedPreferences(context).edit().putString(KEY_LASTFM_SESSION_KEY, value).apply();
+    }
+
+    public static synchronized String getKeyLastfmToken(Context context) {
+        return lastfmToken != null ? lastfmToken
+                : (lastfmToken = getSharedPreferences(context).getString(KEY_LASTFM_TOKEN, null));
+    }
+
+    public static synchronized void setKeyLastfmToken(Context context, String value) {
+        lastfmToken = value;
+        getSharedPreferences(context).edit().putString(KEY_LASTFM_TOKEN, value).apply();
     }
 
     public static synchronized int getMinTrackDurationInPercents(Context context) {
