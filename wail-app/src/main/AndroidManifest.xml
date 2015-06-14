@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.artemzin.android.wail">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -62,7 +63,8 @@
         <receiver
             android:name="com.google.analytics.tracking.android.CampaignTrackingReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
@@ -96,7 +98,8 @@
         <receiver
             android:name=".receiver.music.WAILReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.artemzin.android.wail.api.metachanged" />
             </intent-filter>
@@ -105,7 +108,8 @@
         <receiver
             android:name=".receiver.music.AndroidMusicReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.android.music.metachanged" />
                 <action android:name="com.android.music.playstatechanged" />
@@ -116,7 +120,8 @@
         <receiver
             android:name=".receiver.music.SonyEricssonMusicAppReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.sonyericsson.music.playbackcontrol.ACTION_TRACK_STARTED" />
                 <action android:name="com.sonyericsson.music.playbackcontrol.ACTION_PAUSED" />
@@ -127,7 +132,8 @@
         <receiver
             android:name=".receiver.music.HtcMusicAppReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.htc.music.metachanged" />
                 <action android:name="com.htc.music.playbackcomplete" />
@@ -138,7 +144,8 @@
         <receiver
             android:name=".receiver.music.RocketMusicPlayerReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.jrtstudio.music.metachanged" />
                 <action android:name="com.jrtstudio.music.playstatechanged" />
@@ -149,7 +156,8 @@
         <receiver
             android:name=".receiver.music.MIUIPlayerReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.miui.player.metachanged" />
                 <action android:name="com.miui.player.playstatechanged" />
@@ -160,7 +168,8 @@
         <receiver
             android:name=".receiver.music.RdioPlayerReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.rdio.android.playstatechanged" />
                 <action android:name="com.rdio.android.metachanged" />
@@ -171,7 +180,8 @@
         <receiver
             android:name=".receiver.music.samsung.SamsungSecAndroidMusicPlayerReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.samsung.sec.android.MusicPlayer.metachanged" />
                 <action android:name="com.samsung.sec.android.MusicPlayer.playbackcomplete" />
@@ -182,7 +192,8 @@
         <receiver
             android:name=".receiver.music.samsung.SamsungMusicReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.samsung.music.metachanged" />
                 <action android:name="com.samsung.music.playbackcomplete" />
@@ -193,7 +204,8 @@
         <receiver
             android:name=".receiver.music.samsung.SamsungSecReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.samsung.sec.metachanged" />
                 <action android:name="com.samsung.sec.playbackcomplete" />
@@ -204,7 +216,8 @@
         <receiver
             android:name=".receiver.music.samsung.SamsungSecAndroidReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.samsung.sec.android.metachanged" />
                 <action android:name="com.samsung.sec.android.playbackcomplete" />
@@ -215,7 +228,8 @@
         <receiver
             android:name=".receiver.music.samsung.SamsungMusicPlayerReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.samsung.MusicPlayer.metachanged" />
                 <action android:name="com.samsung.MusicPlayer.playbackcomplete" />
@@ -228,7 +242,8 @@
         <receiver
             android:name=".receiver.music.WinampReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.nullsoft.winamp.metachanged" />
                 <action android:name="com.nullsoft.winamp.playbackcomplete" />
@@ -239,7 +254,8 @@
         <receiver
             android:name=".receiver.music.AmazonMP3Receiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.amazon.mp3.metachanged" />
                 <action android:name="com.amazon.mp3.playbackcomplete" />
@@ -250,7 +266,8 @@
         <receiver
             android:name=".receiver.music.RhapsodyReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.rhapsody.metachanged" />
                 <action android:name="com.rhapsody.playbackcomplete" />
@@ -261,7 +278,8 @@
         <receiver
             android:name=".receiver.music.AppoloReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.andrew.appolo.metachanged" />
                 <action android:name="com.andrew.appolo.playbackcomplete" />
@@ -272,7 +290,8 @@
         <receiver
             android:name=".receiver.music.JetAudioReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.jetappfactory.jetaudio.metachanged" />
                 <action android:name="com.jetappfactory.jetaudio.playbackcomplete" />
@@ -283,7 +302,8 @@
         <receiver
             android:name=".receiver.music.PlayerProTrialReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.tbig.playerprotrial.metachanged" />
                 <action android:name="com.tbig.playerprotrial.playbackcomplete" />
@@ -294,7 +314,8 @@
         <receiver
             android:name=".receiver.music.PlayerProReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.tbig.playerpro.metachanged" />
                 <action android:name="com.tbig.playerpro.playbackcomplete" />
@@ -305,7 +326,8 @@
         <receiver
             android:name=".receiver.music.LGMusicAppReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.lge.music.metachanged" />
                 <action android:name="com.lge.music.playstatechanged" />
@@ -316,7 +338,8 @@
         <receiver
             android:name=".receiver.music.SpotifyReceiver"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.spotify.mobile.android.metadatachanged" />
                 <action android:name="com.spotify.mobile.android.playbackstatechanged" />
