@@ -20,7 +20,7 @@ public class LFTokenResponseModel extends LFBaseResponseModel {
             final LFTokenResponseModel tokenModel = new LFTokenResponseModel(json);
             final JSONObject tokenJson = tokenModel.getJsonObject();
 
-            tokenModel.setToken(tokenJson.getString("token"));
+            tokenModel.token = tokenJson.getString("token");
 
             return tokenModel;
         } catch (JSONException e) {
@@ -30,9 +30,5 @@ public class LFTokenResponseModel extends LFBaseResponseModel {
 
     public String getToken() {
         return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 }
