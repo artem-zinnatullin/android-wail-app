@@ -119,6 +119,7 @@
     <string name="dialog_cancel">Abbrechen</string>
     <string name="dialog_save">Speichern</string>
     <string name="drawer_registered_at">"Mitglied seit "</string>
+    <string name="drawer_item_image_content_description">Drawer item image</string>
 
     <string-array name="drawer_items">
         <item>Start</item>

@@ -12,7 +12,7 @@ import java.util.Locale;
 public class LocaleUtil {
 
     private static String lang(String originalLangName) {
-        return originalLangName == null ? null : originalLangName.substring(0, 2).toLowerCase();
+        return originalLangName == null ? null : originalLangName.substring(0, 2).toLowerCase(Locale.US);
     }
 
     public static void updateLanguage(Context context, String newLanguage) {

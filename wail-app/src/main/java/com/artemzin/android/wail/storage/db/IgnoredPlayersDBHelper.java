@@ -70,6 +70,8 @@ public class IgnoredPlayersDBHelper {
             }
         }
 
+        cursor.close();
+
         return result;
     }
 

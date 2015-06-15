@@ -119,6 +119,7 @@
     <string name="dialog_cancel">취소</string>
     <string name="dialog_save">저장</string>
     <string name="drawer_registered_at">"등록 날짜: "</string>
+    <string name="drawer_item_image_content_description">서랍장 항목 이미지</string>
 
     <string-array name="drawer_items">
         <item>메인</item>
