@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="65"
-        android:paddingRight="15dp">
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp">
 
         <com.artemzin.android.wail.ui.TypefaceTextView
             android:id="@+id/track_list_item_track"

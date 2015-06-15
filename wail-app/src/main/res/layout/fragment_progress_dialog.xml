@@ -20,7 +20,8 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="30dp"
         android:layout_marginStart="30dp"
-        android:paddingRight="55dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginEnd="55dp"
         android:textSize="14sp"
         android:textColor="@color/light_theme_background"/>
 
