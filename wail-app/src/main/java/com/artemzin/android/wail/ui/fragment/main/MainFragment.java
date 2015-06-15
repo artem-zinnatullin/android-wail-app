@@ -1,10 +1,8 @@
 package com.artemzin.android.wail.ui.fragment.main;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
@@ -14,7 +12,6 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -166,8 +163,8 @@ public class MainFragment extends BaseFragment {
         new MaterialDialog.Builder(getActivity())
                 .theme(Theme.DARK)
                 .title(String.format(
-                        getString(R.string.main_confirm_ignoring_player),
-                        nowScrobblingPlayer)
+                                getString(R.string.main_confirm_ignoring_player),
+                                nowScrobblingPlayer)
                 )
                 .positiveText("Ok")
                 .negativeText(R.string.dialog_cancel)

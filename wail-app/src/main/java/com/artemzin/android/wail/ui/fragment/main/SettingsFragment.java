@@ -3,7 +3,7 @@ package com.artemzin.android.wail.ui.fragment.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -173,7 +173,7 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(R.string.settings_actionbar_title);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.settings_actionbar_title);
     }
 
     @Override
