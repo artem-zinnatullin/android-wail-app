@@ -27,10 +27,6 @@ import butterknife.OnClick;
 
 public class NonAuthorizedMainFragment extends BaseFragment {
 
-    private static final String ERROR_NOT_AUTHORIZED_TOKEN = "14";
-    private static final String ERROR_TOKEN_EXPIRED = "15";
-    private static final String ERROR_SERVICE_OFFLINE = "11";
-
     private final String GA_CATEGORY = "non_authorized";
 
     private AlertDialog progressDialog;
@@ -180,19 +176,19 @@ public class NonAuthorizedMainFragment extends BaseFragment {
         } else if (exception instanceof LFApiException) {
             LFApiException lfApiException = (LFApiException) exception;
 
-            if (ERROR_TOKEN_EXPIRED.equals(lfApiException.getError())) {
+            if (LFApiException.ERROR_TOKEN_EXPIRED.equals(lfApiException.getError())) {
                 Toast.makeText(
                         getActivity(),
                         getString(R.string.lastfm_logging_api_error_15),
                         Toast.LENGTH_LONG
                 ).show();
-            } else if (ERROR_NOT_AUTHORIZED_TOKEN.equals(lfApiException.getError())) {
+            } else if (LFApiException.ERROR_NOT_AUTHORIZED_TOKEN.equals(lfApiException.getError())) {
                 Toast.makeText(
                         getActivity(),
                         getString(R.string.lastfm_logging_api_error_14),
                         Toast.LENGTH_LONG
                 ).show();
-            } else if (ERROR_SERVICE_OFFLINE.equals(lfApiException.getError())) {
+            } else if (LFApiException.ERROR_SERVICE_OFFLINE.equals(lfApiException.getError())) {
                 Toast.makeText(
                         getActivity(),
                         getString(R.string.lastfm_api_error_11),

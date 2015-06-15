@@ -1,15 +1,34 @@
 package com.artemzin.android.wail.ui.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.WAILApp;
 import com.artemzin.android.wail.storage.WAILSettings;
+import com.artemzin.android.wail.storage.db.AppDBManager;
+import com.artemzin.android.wail.util.LocaleUtil;
 import com.google.analytics.tracking.android.EasyTracker;
 
-public abstract class BaseActivity extends ActionBarActivity {
+public abstract class BaseActivity extends AppCompatActivity {
+
+    public static final String ACTION_INVALID_SESSION_KEY = "ACTION_INVALID_SESSION_KEY";
+
+    private final BroadcastReceiver invalidSessionKeyReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            WAILSettings.clearAllSettings(BaseActivity.this);
+            AppDBManager.getInstance(BaseActivity.this).clearAll();
+            LocaleUtil.updateLanguage(BaseActivity.this, null);
+            startActivity(new Intent(BaseActivity.this, MainActivity.class));
+            BaseActivity.this.finish();
+        }
+    };
 
     protected boolean doFinishOnHomeAsUpButton() {
         return true;
@@ -24,20 +43,20 @@ public abstract class BaseActivity extends ActionBarActivity {
             onCreteWithNullState();
         }
 
-
-
         setupUI(savedInstanceState);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        unregisterReceiver(invalidSessionKeyReceiver);
         WAILApp.activityPaused();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        registerReceiver(invalidSessionKeyReceiver, new IntentFilter(ACTION_INVALID_SESSION_KEY));
         WAILApp.activityResumed();
     }
 
