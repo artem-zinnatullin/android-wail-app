@@ -73,7 +73,7 @@ public class SettingsIgnoredPlayersFragment extends Fragment implements AdapterV
 
                     if (rowView == null) {
                         LayoutInflater inflater = getActivity().getLayoutInflater();
-                        rowView = inflater.inflate(R.layout.settings_ignored_players_item_layout, null, true);
+                        rowView = inflater.inflate(R.layout.settings_ignored_players_item_layout, parent, false);
                         holder = new ViewHolder();
                         holder.textView = (TextView) rowView
                                 .findViewById(R.id.settings_ignored_players_list_view_text);
@@ -103,9 +103,8 @@ public class SettingsIgnoredPlayersFragment extends Fragment implements AdapterV
         final ApplicationInfo applicationInfo = (ApplicationInfo) adapterView.getAdapter().getItem(i);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View titleView = inflater.inflate(R.layout.dialog_fragment_title, null);
+        View titleView = View.inflate(getActivity(), R.layout.dialog_fragment_title, null);
         ((TextView) titleView.findViewById(R.id.dialog_fragment_title_text_view))
                 .setText(String.format(getString(R.string.settings_confirm_unignoring_player),
                         packageManager.getApplicationLabel(applicationInfo)));
