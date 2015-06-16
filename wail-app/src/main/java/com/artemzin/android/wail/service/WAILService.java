@@ -10,7 +10,6 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.v4.content.LocalBroadcastManager;
 
-import com.artemzin.android.wail.WAILApp;
 import com.artemzin.android.wail.api.lastfm.LFApiException;
 import com.artemzin.android.wail.api.lastfm.LFTrackApi;
 import com.artemzin.android.wail.api.lastfm.model.request.LFTrackRequestModel;
@@ -25,7 +24,6 @@ import com.artemzin.android.wail.storage.db.LovedTracksDBHelper;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.model.Track;
 import com.artemzin.android.wail.ui.activity.BaseActivity;
-import com.artemzin.android.wail.ui.activity.NonAuthorizedActivity;
 import com.artemzin.android.wail.util.AsyncTaskExecutor;
 import com.artemzin.android.wail.util.IntentUtil;
 import com.artemzin.android.wail.util.Loggi;
@@ -599,7 +597,6 @@ public class WAILService extends Service {
 
     private void handleSessionKeyInvalidError(LFApiException exception) {
         if (LFApiException.ERROR_INVALID_SESSION_KEY.equals(exception.getError())) {
-            WAILSettings.setLastfmSessionKey(getApplicationContext(), null);
             sendBroadcast(new Intent(BaseActivity.ACTION_INVALID_SESSION_KEY));
         }
     }
