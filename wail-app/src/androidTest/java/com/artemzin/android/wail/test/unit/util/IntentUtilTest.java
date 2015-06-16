@@ -15,7 +15,7 @@ public class IntentUtilTest extends BaseAndroidTestCase {
     }
 
     public void testGetLongOrIntExtraNullExtraName() {
-        assertEquals(-1, IntentUtil.getLongOrIntExtra(new Intent(), -1, null));
+        assertEquals(-1, IntentUtil.getLongOrIntExtra(new Intent(), -1, (String[]) null));
     }
 
     public void testGetLongOrIntNoExtra() {

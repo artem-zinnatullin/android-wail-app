@@ -7,7 +7,9 @@
         android:layout_width="24dp"
         android:layout_gravity="center"
         android:layout_marginLeft="@dimen/main_drawer_padding"
-        android:id="@+id/activity_main_drawer_item_image"/>
+        android:layout_marginStart="@dimen/main_drawer_padding"
+        android:id="@+id/activity_main_drawer_item_image"
+        android:contentDescription="@string/drawer_item_image_content_description"/>
 
     <com.artemzin.android.wail.ui.TypefaceTextView
         android:id="@+id/activity_main_drawer_item_text"

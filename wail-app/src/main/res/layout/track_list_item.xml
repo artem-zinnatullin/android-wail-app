@@ -2,14 +2,16 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="?trackListItemBackground">
+    style="?trackListItemBackground"
+    android:baselineAligned="false">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="65"
-        android:paddingRight="15dp">
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp">
 
         <com.artemzin.android.wail.ui.TypefaceTextView
             android:id="@+id/track_list_item_track"
@@ -40,7 +42,7 @@
             android:layout_marginTop="3dp"
             android:textSize="12sp"
             tools:textColor="@color/light_theme_text_secondary"
-            android:gravity="right"
+            android:gravity="end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -50,7 +52,7 @@
             android:textSize="12sp"
             android:layout_marginTop="0dp"
             android:textColor="@color/light_theme_text_secondary"
-            android:gravity="bottom|right"
+            android:gravity="bottom|end"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />

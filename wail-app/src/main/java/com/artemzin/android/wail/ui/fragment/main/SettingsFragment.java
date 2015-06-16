@@ -195,7 +195,7 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
                 WAILSettings.setEnabled(getActivity(), isChecked);
 
                 final Toast toast = Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP | Gravity.RIGHT, 0, (int) DisplayUnitsConverter.dpToPx(getActivity(), 60));
+                toast.setGravity(Gravity.TOP | Gravity.END, 0, (int) DisplayUnitsConverter.dpToPx(getActivity(), 60));
 
                 if (isChecked) {
                     setUIStateWailEnabled();

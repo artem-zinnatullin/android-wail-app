@@ -19,26 +19,19 @@
             android:layout_width="match_parent"
             android:layout_height="156dp"
             android:layout_marginBottom="6dp"
+            android:orientation="vertical"
+            android:paddingBottom="12dp"
             android:clickable="true"
             android:gravity="bottom"
             android:background="@drawable/drawer_header_background">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/main_drawer_standard_increment"
-                android:orientation="vertical"
-                android:gravity="start|center_vertical"
-                android:clickable="true">
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                android:id="@+id/main_left_drawer_title_main"
+                style="@style/AppTheme.DrawerTitleMainText" />
 
-                <com.artemzin.android.wail.ui.TypefaceTextView
-                    android:id="@+id/main_left_drawer_title_main"
-                    style="@style/AppTheme.DrawerTitleMainText" />
-
-                <com.artemzin.android.wail.ui.TypefaceTextView
-                    android:id="@+id/main_left_drawer_title_secondary"
-                    style="@style/AppTheme.DrawerTitleSecondaryText" />
-
-            </LinearLayout>
+            <com.artemzin.android.wail.ui.TypefaceTextView
+                android:id="@+id/main_left_drawer_title_secondary"
+                style="@style/AppTheme.DrawerTitleSecondaryText" />
 
         </LinearLayout>
 

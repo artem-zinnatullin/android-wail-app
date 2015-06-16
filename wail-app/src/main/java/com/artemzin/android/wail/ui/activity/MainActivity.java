@@ -142,7 +142,7 @@ public class MainActivity extends BaseActivity {
 
                 if (rowView == null) {
                     LayoutInflater inflater = getLayoutInflater();
-                    rowView = inflater.inflate(R.layout.activity_main_drawer_item_layout, null, true);
+                    rowView = inflater.inflate(R.layout.activity_main_drawer_item_layout, parent, false);
                     holder = new ViewHolder();
                     holder.background = rowView;
                     holder.textView = (TypefaceTextView) rowView.findViewById(R.id.activity_main_drawer_item_text);
