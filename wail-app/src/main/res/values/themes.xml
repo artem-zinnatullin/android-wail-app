@@ -17,8 +17,6 @@
         <item name="listViewStyle">@style/AppTheme.Light.ListViewStyle</item>
 
         <item name="signInToLastFm">@style/AppTheme.Light.Clickable.SignInToLastFm</item>
-        <item name="lastFmLoginEditText">@style/AppTheme.Light.LastFmLoginEditText</item>
-        <item name="lastFmLoginEditButton">@style/AppTheme.Light.LastFmLoginEditButton</item>
 
         <item name="mainTracksTodayContainer">@style/AppTheme.Light.MainTracksTodayContainer</item>
         <item name="mainTracksTodayCount">@style/AppTheme.Light.MainTracksTodayCount</item>
@@ -60,9 +58,6 @@
         <item name="listViewStyle">@style/AppTheme.Dark.ListViewStyle</item>
 
         <item name="signInToLastFm">@style/AppTheme.Dark.Clickable.SignInToLastFm</item>
-
-        <item name="lastFmLoginEditText">@style/AppTheme.Dark.LastFmLoginEditText</item>
-        <item name="lastFmLoginEditButton">@style/AppTheme.Dark.Clickable.LastFmLoginEditButton</item>
 
         <item name="mainTracksTodayContainer">@style/AppTheme.Dark.Clickable.MainTracksTodayContainer</item>
         <item name="mainTracksTodayCount">@style/AppTheme.Dark.MainTracksTodayCount</item>

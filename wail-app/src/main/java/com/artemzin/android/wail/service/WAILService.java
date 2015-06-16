@@ -13,6 +13,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import com.artemzin.android.wail.api.lastfm.LFApiException;
 import com.artemzin.android.wail.api.lastfm.LFTrackApi;
 import com.artemzin.android.wail.api.lastfm.model.request.LFTrackRequestModel;
+import com.artemzin.android.wail.api.lastfm.model.response.LFScrobbleResponseModel;
 import com.artemzin.android.wail.api.network.NetworkException;
 import com.artemzin.android.wail.notifications.SoundNotificationsManager;
 import com.artemzin.android.wail.notifications.StatusBarNotificationsManager;
@@ -22,6 +23,7 @@ import com.artemzin.android.wail.storage.db.IgnoredPlayersDBHelper;
 import com.artemzin.android.wail.storage.db.LovedTracksDBHelper;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.model.Track;
+import com.artemzin.android.wail.ui.activity.BaseActivity;
 import com.artemzin.android.wail.util.AsyncTaskExecutor;
 import com.artemzin.android.wail.util.IntentUtil;
 import com.artemzin.android.wail.util.Loggi;
@@ -315,7 +317,7 @@ public class WAILService extends Service {
                 }
 
                 try {
-                    final String result = LFTrackApi.scrobble(
+                    final LFScrobbleResponseModel result = LFTrackApi.scrobble(
                             WAILSettings.getLastfmSessionKey(WAILService.this),
                             WAILSettings.getLastfmApiKey(),
                             WAILSettings.getLastfmSecret(),
@@ -370,6 +372,8 @@ public class WAILService extends Service {
                                     .build()
                     );
                 } catch (LFApiException e) {
+                    handleSessionKeyInvalidError(e);
+
                     Loggi.e("WAILService tracks scrobbling to Last.fm failed with api error: " + e.getMessage());
 
                     for (com.artemzin.android.wail.storage.model.Track track : tracksToScrobbleListForDB) {
@@ -466,6 +470,8 @@ public class WAILService extends Service {
                                     .build()
                     );
                 } catch (LFApiException e) {
+                    handleSessionKeyInvalidError(e);
+
                     Loggi.e("Can not update last.fm nowplaying with track: " + track + ", exception: " + e.getMessage());
 
                     EasyTracker.getInstance(getApplicationContext()).send(
@@ -549,6 +555,18 @@ public class WAILService extends Service {
                                         0L)
                                         .build()
                         );
+                    } catch (LFApiException e) {
+                        handleSessionKeyInvalidError(e);
+
+                        Loggi.e("Can not love track: " + track + ", exception: " + e.getMessage());
+
+                        EasyTracker.getInstance(getApplicationContext()).send(
+                                MapBuilder.createEvent(GA_EVENT_UPDATE_LASTFM_NOW_PLAYING,
+                                        "failed with LFApiException: " + e.getMessage(),
+                                        null,
+                                        0L)
+                                        .build()
+                        );
                     }
                 }
             }
@@ -575,6 +593,12 @@ public class WAILService extends Service {
                         .hideTrackLovedStatusBarNotification();
             }
         });
+    }
+
+    private void handleSessionKeyInvalidError(LFApiException exception) {
+        if (LFApiException.ERROR_INVALID_SESSION_KEY.equals(exception.getError())) {
+            sendBroadcast(new Intent(BaseActivity.ACTION_INVALID_SESSION_KEY));
+        }
     }
 
     public static class LastCapturedTrackInfo {

@@ -8,5 +8,7 @@ public class LFApiCommon {
     public static final String PARAM_API_SIG = "api_sig";
     public static final String PARAM_SK = "sk";
 
+    public static final String AUTHORIZATION_URL = "http://www.last.fm/api/auth/?api_key=%s&token=%s";
+
     private LFApiCommon() {}
 }

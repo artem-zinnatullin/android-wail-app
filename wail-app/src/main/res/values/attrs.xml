@@ -15,9 +15,6 @@
 
     <attr name="signInToLastFm" format="reference"/>
 
-    <attr name="lastFmLoginEditText" format="reference"/>
-    <attr name="lastFmLoginEditButton" format="reference"/>
-
     <attr name="mainTracksTodayContainer" format="reference"/>
     <attr name="mainTracksTodayCount" format="reference"/>
     <attr name="mainTracksTodayLabel" format="reference"/>

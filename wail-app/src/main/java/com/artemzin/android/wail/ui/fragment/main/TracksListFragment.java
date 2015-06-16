@@ -9,7 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -77,7 +77,7 @@ public class TracksListFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.tracks_actionbar_title));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.tracks_actionbar_title));
         tracksListAdapter = new TracksListAdapter(tracksListDataProvider);
     }
 
