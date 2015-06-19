@@ -19,8 +19,8 @@ public class WAILSettings {
     private static final String KEY_START_ON_BOOT                  = "KEY_START_ON_BOOT";
     private static final String KEY_LASTFM_SESSION_KEY             = "KEY_LASTFM_SESSION_KEY";
     private static final String KEY_LASTFM_TOKEN                   = "KEY_LASTFM_TOKEN";
-    private static final String KEY_MIN_TRACK_DURATION_IN_PERCENTS = "KEY_MIN_TRACK_DURATION_IN_PERCENTS";
-    private static final String KEY_MIN_TRACK_DURATION_IN_SECONDS  = "KEY_MIN_TRACK_DURATION_IN_SECONDS";
+    private static final String KEY_MIN_TRACK_DURATION_IN_PERCENTS = "KEY_MIN_TRACK_DURATION_IN_PERCENTS_V2";
+    private static final String KEY_MIN_TRACK_DURATION_IN_SECONDS  = "KEY_MIN_TRACK_DURATION_IN_SECONDS_V2";
     private static final String KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK = "KEY_DISABLE_SCROBBLING_OVER_MOBILE_NETWORK";
     private static final String KEY_TOTAL_HANDLED_TRACKS_COUNT     = "KEY_TOTAL_HANDLED_TRACKS_COUNT";
     private static final String KEY_LASTFM_USER_NAME               = "KEY_LASTFM_USER_NAME";
