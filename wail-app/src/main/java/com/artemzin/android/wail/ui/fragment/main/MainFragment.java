@@ -19,8 +19,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.Theme;
 import com.artemzin.android.bytes.ui.ViewUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.api.lastfm.LFApiException;
@@ -29,7 +27,6 @@ import com.artemzin.android.wail.api.lastfm.model.response.LFUserResponseModel;
 import com.artemzin.android.wail.api.network.NetworkException;
 import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.WAILSettings;
-import com.artemzin.android.wail.storage.db.IgnoredPlayersDBHelper;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.model.Track;
 import com.artemzin.android.wail.ui.fragment.BaseFragment;
@@ -54,8 +51,6 @@ public class MainFragment extends BaseFragment {
 
     private static final String GA_EVENT_MAIN_FRAGMENT = "MainFragment";
 
-    private IgnoredPlayersDBHelper dbHelper;
-
     private final BroadcastReceiver tracksChangedBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -78,9 +73,6 @@ public class MainFragment extends BaseFragment {
     @InjectView(R.id.main_now_scrobbling_track_text_view)
     public TextView nowScrobblingTrackTextView;
 
-    @InjectView(R.id.main_now_scrobbling_player_text_view)
-    public TextView nowScrobblingPlayerTextView;
-
     @InjectView(R.id.main_tracks_total_count_text_view)
     public TextView tracksTotalCountOnLastfmTextView;
 
@@ -92,9 +84,6 @@ public class MainFragment extends BaseFragment {
 
     @InjectView(R.id.main_last_fm_user_info_update_time)
     public TextView lastfmUserInfoUpdateTimeTextView;
-
-    @InjectView(R.id.main_ignore_player_button)
-    public TextView ignorePlayerButton;
 
     @InjectView(R.id.main_love_current_track_button)
     public FloatingActionButton loveCurrentTrackButton;
@@ -154,38 +143,6 @@ public class MainFragment extends BaseFragment {
         }
     }
 
-    @OnClick(R.id.main_ignore_player_button)
-    public void onIgnoreScrobblingPlayerClick() {
-        String label = WAILSettings.getNowScrobblingPlayerLabel(getActivity());
-        final String packageName = WAILSettings.getNowScrobblingPlayerPackageName(getActivity());
-        final String nowScrobblingPlayer = label != null ? label : packageName;
-
-        new MaterialDialog.Builder(getActivity())
-                .theme(Theme.DARK)
-                .title(String.format(
-                                getString(R.string.main_confirm_ignoring_player),
-                                nowScrobblingPlayer)
-                )
-                .positiveText("Ok")
-                .negativeText(R.string.dialog_cancel)
-                .callback(new MaterialDialog.ButtonCallback() {
-                    @Override
-                    public void onPositive(MaterialDialog dialog) {
-                        dbHelper.add(packageName);
-                        WAILSettings.setNowScrobblingTrack(getActivity(), null);
-                        WAILSettings.setNowScrobblingPlayerPackageName(getActivity(), null);
-                        WAILSettings.setNowScrobblingPlayerLabel(getActivity(), null);
-                        WAILSettings.setLastCapturedTrackInfo(getActivity(), null);
-                        updateLocalInfo();
-                    }
-
-                    @Override
-                    public void onNegative(MaterialDialog dialog) {
-                        dialog.dismiss();
-                    }
-                }).build().show();
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -201,8 +158,6 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        dbHelper = IgnoredPlayersDBHelper.getInstance(getActivity());
 
         ButterKnife.inject(this, view);
 
@@ -485,26 +440,19 @@ public class MainFragment extends BaseFragment {
 
     private void updateNowScrobblingTrack() {
         Track nowScrobblingTrack = WAILSettings.getNowScrobblingTrack(getActivity());
-        String label = WAILSettings.getNowScrobblingPlayerLabel(getActivity());
-        String packageName = WAILSettings.getNowScrobblingPlayerPackageName(getActivity());
-        final String nowScrobblingPlayer = label != null ? label : packageName;
 
         if (nowScrobblingTrack != null) {
             nowScrobblingTrackTextView.setText(getString(
                             R.string.main_now_scrobbling_label,
                             nowScrobblingTrack.getArtist() + " - " + nowScrobblingTrack.getTrack())
             );
-            nowScrobblingPlayerTextView.setText(String.format(getString(R.string.main_scrobbling_from_player_label), nowScrobblingPlayer));
             if (loveCurrentTrackButton.getVisibility() != View.VISIBLE) {
                 loveCurrentTrackButton.setVisibility(View.VISIBLE);
             }
             loveCurrentTrackButton.show();
-            ignorePlayerButton.setVisibility(View.VISIBLE);
         } else {
             nowScrobblingTrackTextView.setText(getString(R.string.main_now_scrobbling_label, getString(R.string.main_now_scrobbling_nothing)));
-            nowScrobblingPlayerTextView.setText("");
             loveCurrentTrackButton.hide();
-            ignorePlayerButton.setVisibility(View.GONE);
         }
     }
 
