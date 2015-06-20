@@ -27,6 +27,7 @@ import com.artemzin.android.wail.api.lastfm.model.response.LFUserResponseModel;
 import com.artemzin.android.wail.api.network.NetworkException;
 import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.WAILSettings;
+import com.artemzin.android.wail.storage.db.LovedTracksDBHelper;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.model.Track;
 import com.artemzin.android.wail.ui.fragment.BaseFragment;
@@ -136,10 +137,10 @@ public class MainFragment extends BaseFragment {
         if (track != null) {
             Toast.makeText(getActivity(), getString(R.string.main_track_loved), Toast.LENGTH_SHORT).show();
             loveCurrentTrackButton.hide();
-            getActivity().startService(
-                    new Intent(getActivity(), WAILService.class)
-                            .setAction(WAILService.INTENT_ACTION_HANDLE_LOVED_TRACK)
-            );
+            Intent intent = new Intent(getActivity(), WAILService.class);
+            LovedTracksDBHelper.getInstance(getActivity()).add(track);
+            intent.setAction(WAILService.INTENT_ACTION_HANDLE_LOVED_TRACKS);
+            getActivity().startService(intent);
         }
     }
 

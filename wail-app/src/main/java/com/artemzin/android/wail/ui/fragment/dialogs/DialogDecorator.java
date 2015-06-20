@@ -13,7 +13,9 @@ public class DialogDecorator extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        listener.onDismiss();
+        if (listener != null) {
+            listener.onDismiss();
+        }
     }
 
     public interface Callback {
