@@ -34,18 +34,12 @@ public class AppDBManager extends SQLiteOpenHelper {
         db.execSQL(TracksDBHelper.TableInfo.CREATE_TABLE_QUERY);
         db.execSQL(PlayersDBHelper.TableInfo.CREATE_TABLE_QUERY);
         db.execSQL(LovedTracksDBHelper.TableInfo.CREATE_TABLE_QUERY);
-        db.execSQL(IgnoredPlayersDBHelper.TableInfo.CREATE_TABLE_QUERY);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion == 1 && newVersion == 2) {
             db.execSQL(LovedTracksDBHelper.TableInfo.CREATE_TABLE_QUERY);
-        } else if (oldVersion == 2 && newVersion == 3) {
-            db.execSQL(IgnoredPlayersDBHelper.TableInfo.CREATE_TABLE_QUERY);
-        } else if (oldVersion == 1 && newVersion == 3) {
-            db.execSQL(LovedTracksDBHelper.TableInfo.CREATE_TABLE_QUERY);
-            db.execSQL(IgnoredPlayersDBHelper.TableInfo.CREATE_TABLE_QUERY);
         }
     }
 
@@ -70,6 +64,5 @@ public class AppDBManager extends SQLiteOpenHelper {
         PlayersDBHelper.getInstance(context).removeAll();
         TracksDBHelper.getInstance(context).deleteAll();
         LovedTracksDBHelper.getInstance(context).deleteAll();
-        IgnoredPlayersDBHelper.getInstance(context).deleteAll();
     }
 }

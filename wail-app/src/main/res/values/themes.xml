@@ -26,7 +26,6 @@
         <item name="mainTotalTrackCountLabel">@style/AppTheme.Light.MainTotalTrackCountLabel</item>
         <item name="mainUpdatedAtLabel">@style/AppTheme.Light.MainUpdatedAtLabel</item>
         <item name="mainNowScrobblingTrack">@style/AppTheme.Light.MainNowScrobblingTrack</item>
-        <item name="mainIgnorePlayerButton">@style/AppTheme.Light.Clickable.MainIgnorePlayerButton</item>
         <item name="mainFloatingActionButton">@style/AppTheme.Light.MainFloatingActionButton</item>
         <item name="mainWailIsSadContainer">@style/AppTheme.Light.MainWailIsSadContainer</item>
         <item name="mainWailIsSadLabel">@style/AppTheme.Light.Clickable.MainWailIsSadLabel</item>
@@ -46,7 +45,6 @@
         <item name="settingsItemTitleWithSwitch">@style/AppTheme.Light.SettingsItemTitle.WithSwitch</item>
         <item name="settingsItemSwitch">@style/AppTheme.Light.SettingsItemSwitch</item>
         <item name="settingSelectLanguageItem">@style/AppTheme.Light.SettingsSelectLanguageItem</item>
-        <item name="settingIgnoredPlayersItem">@style/AppTheme.Light.Clickable</item>
 
         <item name="dialogTitle">@style/AppTheme.Light.DialogTitle</item>
     </style>
@@ -67,7 +65,6 @@
         <item name="mainTotalTrackCountLabel">@style/AppTheme.Dark.MainTotalTrackCountLabel</item>
         <item name="mainUpdatedAtLabel">@style/AppTheme.Dark.MainUpdatedAtLabel</item>
         <item name="mainNowScrobblingTrack">@style/AppTheme.Dark.MainNowScrobblingTrack</item>
-        <item name="mainIgnorePlayerButton">@style/AppTheme.Dark.Clickable.MainIgnorePlayerButton</item>
         <item name="mainFloatingActionButton">@style/AppTheme.Dark.MainFloatingActionButton</item>
         <item name="mainWailIsSadContainer">@style/AppTheme.Dark.MainWailIsSadContainer</item>
         <item name="mainWailIsSadLabel">@style/AppTheme.Dark.Clickable.MainWailIsSadLabel</item>
@@ -87,7 +84,6 @@
         <item name="settingsItemTitleWithSwitch">@style/AppTheme.Dark.SettingsItemTitle.WithSwitch</item>
         <item name="settingsItemSwitch">@style/AppTheme.Dark.SettingsItemSwitch</item>
         <item name="settingSelectLanguageItem">@style/AppTheme.Dark.SettingsSelectLanguageItem</item>
-        <item name="settingIgnoredPlayersItem">@style/AppTheme.Dark.Clickable</item>
 
         <item name="dialogTitle">@style/AppTheme.Dark.DialogTitle</item>
     </style>

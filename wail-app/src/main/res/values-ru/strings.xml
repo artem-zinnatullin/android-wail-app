@@ -76,15 +76,6 @@
     <string name="tracks_list_empty_motivation_text">Попробуйте послушать музыку в своем любимом плеере и прослушанные треки появятся здесь!</string>
     <string name="tracks_search_no_results">Нет результатов для: %1$s :(</string>
     <string name="tracks_search_error_toast">Невозможно произвести поиск :(</string>
-    <string name="settings_ignored_players_activity_label">Игнорируемые медиа плееры</string>
-    <string name="settings_ignored_players_item_title">Игнорируемые медиа плееры</string>
-    <string name="settings_ignored_players_item_desc">Треки, воспроизводимые этими плеерами не будут скробблиться</string>
-    <string name="settings_ignored_players_image_content_description">Иконка игнорируемого плеера</string>
-    <string name="settings_confirm_unignoring_player">Вы хотите перестать игнорировать плеер \"%s\"?</string>
-    <string name="main_scrobbling_from_player_label">из %s</string>
-    <string name="main_confirm_ignoring_player">Вы хотите добавить в игнорируемые плеер %s</string>
-    <string name="settings_ignored_players_empty_text">У Вас нет игнорируемых плееров</string>
-    <string name="main_ignore_this_player_button_text">Игнорировать этот плеер</string>
     <string name="drawer_registered_at">"Зарегистрирован(а) "</string>
     <string name="drawer_item_image_content_description">Drawer item image</string>
     <string name="settings_logout">Выйти</string>

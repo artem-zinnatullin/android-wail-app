@@ -132,7 +132,7 @@ public class MainActivity extends BaseActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this,
-                R.layout.settings_ignored_players_item_layout,
+                R.layout.activity_main_drawer_item_layout,
                 getResources().getStringArray(R.array.drawer_items)
         ) {
             @Override
