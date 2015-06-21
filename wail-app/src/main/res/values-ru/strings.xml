@@ -86,6 +86,9 @@
         <item>Треки</item>
         <item>Настройки</item>
     </string-array>
+    <string-array name="track_actions">
+        <item>Добавить в любимые</item>
+    </string-array>
     <string-array name="word_form_track">
         <item>трек</item>
         <item>трека</item>

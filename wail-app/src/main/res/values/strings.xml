@@ -112,6 +112,10 @@
         <item>Settings</item>
     </string-array>
 
+    <string-array name="track_actions">
+        <item>Love</item>
+    </string-array>
+
     <!-- Some languages has 3 word forms depending on word items count -->
     <!-- But English has only 2 word forms -->
     <string-array name="word_form_track">

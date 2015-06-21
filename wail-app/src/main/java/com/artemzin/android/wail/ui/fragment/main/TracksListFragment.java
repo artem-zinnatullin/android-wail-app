@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.model.Track;
 import com.artemzin.android.wail.ui.fragment.BaseFragment;
+import com.artemzin.android.wail.ui.fragment.dialogs.TrackActionsDialog;
 import com.artemzin.android.wail.util.AsyncTaskExecutor;
 import com.artemzin.android.wail.util.Loggi;
 import com.google.analytics.tracking.android.EasyTracker;
@@ -95,6 +97,16 @@ public class TracksListFragment extends BaseFragment {
         setUIStateLoading();
 
         tracksListView.setAdapter(tracksListAdapter);
+        tracksListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Track track = (Track) parent.getAdapter().getItem(position);
+                TrackActionsDialog.newInstance(track).show(
+                        getFragmentManager(),
+                        "trackActionsDialog"
+                );
+            }
+        });
     }
 
     private void setUIStateLoading() {

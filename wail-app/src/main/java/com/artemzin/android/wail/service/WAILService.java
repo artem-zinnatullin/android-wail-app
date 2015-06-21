@@ -45,7 +45,7 @@ public class WAILService extends Service {
     public static final String INTENT_ACTION_HANDLE_TRACK = "INTENT_ACTION_HANDLE_TRACK";
     public static final String INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK = "INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK";
     public static final String INTENT_ACTION_SCROBBLE_PENDING_TRACKS = "INTENT_ACTION_SCROBBLE_PENDING_TRACKS";
-    public static final String INTENT_ACTION_HANDLE_LOVED_TRACK = "INTENT_ACTION_HANDLE_LOVED_TRACK";
+    public static final String INTENT_ACTION_HANDLE_LOVED_TRACKS = "INTENT_ACTION_HANDLE_LOVED_TRACKS";
 
     private static final int DEFAULT_TRACK_DURATION_IF_UNKNOWN_SECONDS = 210;
 
@@ -94,8 +94,8 @@ public class WAILService extends Service {
             pushLovedTracks();
         } else if (action.equals(INTENT_ACTION_HANDLE_PREVIOUSLY_IGNORED_TRACK)) {
             handleTrack(lastIntent);
-        } else if (action.equals(INTENT_ACTION_HANDLE_LOVED_TRACK)) {
-            handleLovedTrack();
+        } else if (action.equals(INTENT_ACTION_HANDLE_LOVED_TRACKS)) {
+            pushLovedTracks();
         } else {
             // unknown intent action
         }
@@ -492,22 +492,6 @@ public class WAILService extends Service {
                         .build());
             }
         }
-    }
-
-    private void handleLovedTrack() {
-        AsyncTaskExecutor.executeConcurrently(new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... objects) {
-                Track track = WAILSettings.getNowScrobblingTrack(getApplicationContext());
-                LovedTracksDBHelper.getInstance(getApplicationContext()).add(track);
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void o) {
-                pushLovedTracks();
-            }
-        });
     }
 
     private void pushLovedTracks() {

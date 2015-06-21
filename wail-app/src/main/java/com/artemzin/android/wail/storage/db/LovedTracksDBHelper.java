@@ -7,8 +7,6 @@ import android.database.Cursor;
 import com.artemzin.android.wail.storage.model.Track;
 import com.artemzin.android.wail.util.Loggi;
 
-import java.util.List;
-
 /**
  * Created by Ilya Murzinov [murz42@gmail.com]
  */
