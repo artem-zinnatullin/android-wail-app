@@ -13,10 +13,10 @@
 
     <!-- START of authorization screen strings -->
     <string name="lastfm_logging_progress_dialog_message">Bei Last.fm anmelden …</string>
-    <string name="lastfm_logging_network_error">Anmeldung bei Last.fm nicht möglich, bitte überprüfe die Verbindung.</string>
+    <string name="lastfm_logging_network_error">Anmeldung bei Last.fm nicht möglich, bitte überprüfe die Netzverbindung.</string>
     <string name="lastfm_logging_api_error_unknown">Konnte die Antwort von Last.fm nicht verstehen, bitte überprüfe die Version der App.</string>
-    <string name="lastfm_logging_api_error_15">You authorized WAIL in Last.FM too long ago. Please try again.</string>
-    <string name="lastfm_logging_api_error_14">You did not authorize WAIL in Last.FM :(</string>
+    <string name="lastfm_logging_api_error_15">WAIL wurde vor zu langer Zeit bei Last.fm angemeldet. Bitte erneut anmelden.</string>
+    <string name="lastfm_logging_api_error_14">WAIL wurde nicht bei Last.fm angemeldet.</string>
     <!-- END of authorization screen strings -->
 
     <!-- START of main screen strings -->
@@ -94,7 +94,7 @@
 
     <string name="settings_status_bar_notifications_activity_label">Statusbar-Mitteilungen</string>
     <string name="settings_notifications_track_now_scrobbling">WAIL scrobbelt Titel</string>
-    <string name="settings_notifications_min_priority">Minimum notification priority</string>
+    <string name="settings_notifications_min_priority">Niedrige Mitteilungspriorität</string>
 
     <string name="notifications_now_scrobbling">Scrobbelt jetzt</string>
     <string name="notifications_love_current_track">Aktuellen Titel lieben</string>
@@ -104,7 +104,7 @@
     <string name="dialog_cancel">Abbrechen</string>
     <string name="dialog_save">Speichern</string>
     <string name="drawer_registered_at">"Mitglied seit "</string>
-    <string name="drawer_item_image_content_description">Drawer item image</string>
+    <string name="drawer_item_image_content_description">Menüpunktsymbol</string>
 
     <string-array name="drawer_items">
         <item>Start</item>
