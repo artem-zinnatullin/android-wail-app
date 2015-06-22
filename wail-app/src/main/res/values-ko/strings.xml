@@ -15,8 +15,8 @@
     <string name="lastfm_logging_progress_dialog_message">Last.fm에 로그인 중…</string>
     <string name="lastfm_logging_network_error">Last.fm에 로그인할 수 없습니다. 네트워크 연결을 확인해주세요.</string>
     <string name="lastfm_logging_api_error_unknown">Last.fm 응답을 처리할 수 없습니다. 현재 앱이 최신버전입니까?</string>
-    <string name="lastfm_logging_api_error_15">You authorized WAIL in Last.FM too long ago. Please try again.</string>
-    <string name="lastfm_logging_api_error_14">You did not authorize WAIL in Last.FM :(</string>
+    <string name="lastfm_logging_api_error_15">WAIL의 Last.FM 인증 만료 시간이 지났습니다. 다시 시도해주세요.</string>
+    <string name="lastfm_logging_api_error_14">WAIL이 Last.FM 계정에서 인증되지 않았습니다 :(</string>
     <!-- END of authorization screen strings -->
 
     <!-- START of main screen strings -->
@@ -59,8 +59,8 @@
     <string name="settings_scrobbling_options_title">집계 옵션</string>
     <string name="settings_min_track_elapsed_time_in_percent_title">최소 트랙 재생 시간(\%%)</string>
     <string name="settings_min_track_elapsed_time_in_seconds_title">최소 트랙 재생 시간(초)</string>
-    <string name="settings_min_track_elapsed_time_in_seconds_desc">이 설정은 퍼센트 값보다 우선 순위가 높습니다. 트랙이 현재 값인 %1$s 이상 재생되면 집계될 것입니다.</string>
-    <string name="settings_min_track_elapsed_time_in_percent_desc">현재 값은 %1$s%%입니다. 트랙 시간이 최소 트랙 재생시간(초)보다 짧을 때만 사용됩니다.</string>
+    <string name="settings_min_track_elapsed_time_in_percent_desc">WAIL은 트랙이 전체 재생 시간의 %1$s%% 이상 재생되었을 때만 집계할 것입니다</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">WAIL은 트랙이 최소 %1$s초 이상 재생되었을 때만 집계할 것입니다</string>
     <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">최소 트랙 재생 시간(초)</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_title">최소 트랙 재생 시간(\%%)</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">현재 값: 트랙의 %1$s%%</string>
@@ -71,7 +71,7 @@
     <string name="settings_scrobbling_over_mobile_network_disabled_toast">모바일 네트워크로 집계 중지됨</string>
     <string name="settings_notifications_title">알림</string>
     <string name="settings_sound_notifications_title">사운드 알림</string>
-    <string name="settings_sound_notifications_description">Track scrobbled sound, etc…</string>
+    <string name="settings_sound_notifications_description">트랙 집계 알림음 등…</string>
     <string name="settings_status_bar_notifications_title">상태바 알림</string>
     <string name="settings_theme_switch_label">다크 테마</string>
     <string name="settings_other">기타</string>
@@ -93,8 +93,8 @@
     <!-- END of sound notifications screen strings -->
 
     <string name="settings_status_bar_notifications_activity_label">상태바 알림</string>
-    <string name="settings_notifications_track_now_scrobbling">WAIL이 이제 음악 트랙을 집계합니다</string>
-    <string name="settings_notifications_min_priority">Minimum notification priority</string>
+    <string name="settings_notifications_track_now_scrobbling">현재 집계되는 트랙을 알림에 표시</string>
+    <string name="settings_notifications_min_priority">알림 우선순위 최하로 변경</string>
 
     <string name="notifications_now_scrobbling">현재 집계 중</string>
     <string name="notifications_love_current_track">현재 재생 중인 트랙을 선호 목록에 추가</string>
@@ -113,7 +113,7 @@
     </string-array>
 
     <string-array name="track_actions">
-        <item>Love</item>
+        <item>선호 목록에 추가</item>
     </string-array>
 
     <!-- Some languages has 3 word forms depending on word items count -->
