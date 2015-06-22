@@ -13,10 +13,10 @@
 
     <!-- START of authorization screen strings -->
     <string name="lastfm_logging_progress_dialog_message">Bei Last.fm anmelden …</string>
-    <string name="lastfm_logging_network_error">Anmeldung bei Last.fm nicht möglich, bitte überprüfe die Verbindung.</string>
+    <string name="lastfm_logging_network_error">Anmeldung bei Last.fm nicht möglich, bitte überprüfe die Netzverbindung.</string>
     <string name="lastfm_logging_api_error_unknown">Konnte die Antwort von Last.fm nicht verstehen, bitte überprüfe die Version der App.</string>
-    <string name="lastfm_logging_api_error_15">You authorized WAIL in Last.FM too long ago. Please try again.</string>
-    <string name="lastfm_logging_api_error_14">You did not authorize WAIL in Last.FM :(</string>
+    <string name="lastfm_logging_api_error_15">WAIL wurde vor zu langer Zeit bei Last.fm angemeldet. Bitte erneut anmelden.</string>
+    <string name="lastfm_logging_api_error_14">WAIL wurde nicht bei Last.fm angemeldet.</string>
     <!-- END of authorization screen strings -->
 
     <!-- START of main screen strings -->
@@ -57,16 +57,17 @@
     <string name="settings_wail_enabled_toast">WAIL aktiv! Auf gehts!</string>
     <string name="settings_wail_disabled_toast">WAIL abgeschaltet</string>
     <string name="settings_scrobbling_options_title">Scrobbel-Optionen</string>
-    <string name="settings_min_track_elapsed_time_in_percent_title">Mindest-Titellänge in Prozent</string>
-    <string name="settings_min_track_elapsed_time_in_seconds_title">Mindest-Titellänge in Sekunden</string>
-    <string name="settings_min_track_elapsed_time_in_seconds_desc">Titel wird gescrobbelt, wenn er länger als %1$s abgespielt wurde.</string>
-    <string name="settings_min_track_elapsed_time_in_percent_desc">Titel wird gescrobbelt, wenn er zu %1$s%% abgespielt wurde, jedoch nur wenn der Titel kürzer als die Mindestlänge ist.</string>
-    <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">Mindestlänge in Sekunden</string>
-    <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Mindestlänge in Prozent</string>
+    <string name="settings_min_track_elapsed_time_in_percent_title">Mindest-Abspiellänge in Prozent</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_title">Mindest-Abspiellänge in Sekunden</string>
+    <string name="settings_min_track_elapsed_time_in_percent_desc">Titel wird nur gescrobbelt, wenn er zu %1$s%% abgespielt wurde.</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">Titel wird nur gescrobbelt, wenn er für %1$s Sekunden abgespielt wurde.</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">Abspiellänge in Sekunden</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Abspiellänge in Prozent</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Aktuell: %1$s%%</string>
-    <string name="settings_lastfm_update_nowplaying_title">Auf Last.fm den aktuellen Titel anzeigen</string>
-    <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm #nowplaying aktiviert</string>
-    <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm #nowplaying deaktiviert</string>
+    <string name="settings_lastfm_update_nowplaying_title">Aktuellen Titel auf Last.fm</string>
+    <string name="settings_lastfm_update_nowplaying_enabled_toast">Auf Last.fm wird angezeigt, was gerade gespielt wird.</string>
+    <string name="settings_lastfm_update_nowplaying_disabled_toast">Auf Last.fm nicht angezeigt, was gerade gespielt wird.</string>
+    <string name="settings_disable_scrobbling_over_mobile_network">Über Mobilfunk scrobbeln</string>
     <string name="settings_scrobbling_over_mobile_network_enabled_toast">Scrobbeln über Mobilfunk aktiviert!</string>
     <string name="settings_scrobbling_over_mobile_network_disabled_toast">Scrobbeln über Mobilfunk deaktiviert!</string>
     <string name="settings_notifications_title">Mitteilungen</string>
@@ -78,7 +79,6 @@
     <string name="settings_email_to_developers">E-Mail an Entwickler senden</string>
     <string name="settings_email_dialog_title">E-Mail-App auswählen</string>
     <string name="main_settings_menu_toggle_wail">WAIL an/abschalten</string>
-    <string name="settings_disable_scrobbling_over_mobile_network">Über Mobilfunk scrobbeln</string>
 
     <!-- END of settings screen strings -->
 
@@ -94,7 +94,7 @@
 
     <string name="settings_status_bar_notifications_activity_label">Statusbar-Mitteilungen</string>
     <string name="settings_notifications_track_now_scrobbling">WAIL scrobbelt Titel</string>
-    <string name="settings_notifications_min_priority">Minimum notification priority</string>
+    <string name="settings_notifications_min_priority">Niedrige Mitteilungspriorität</string>
 
     <string name="notifications_now_scrobbling">Scrobbelt jetzt</string>
     <string name="notifications_love_current_track">Aktuellen Titel lieben</string>
@@ -104,7 +104,7 @@
     <string name="dialog_cancel">Abbrechen</string>
     <string name="dialog_save">Speichern</string>
     <string name="drawer_registered_at">"Mitglied seit "</string>
-    <string name="drawer_item_image_content_description">Drawer item image</string>
+    <string name="drawer_item_image_content_description">Menüpunktsymbol</string>
 
     <string-array name="drawer_items">
         <item>Start</item>
