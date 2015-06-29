@@ -1,6 +1,7 @@
 package com.artemzin.android.wail.api;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -9,16 +10,6 @@ import java.security.NoSuchAlgorithmException;
  * @author Artem Zinnatullin [artem.zinnatullin@gmail.com]
  */
 public class MD5Hash {
-
-    private static MessageDigest digest;
-
-    static {
-        try {
-            digest = MessageDigest.getInstance("MD5");
-        } catch (NoSuchAlgorithmException e) {
-            // better never happens
-        }
-    }
 
     /**
      * Calculates MD5 hash from input string <br/>
@@ -29,21 +20,12 @@ public class MD5Hash {
      */
     public static String calculateMD5(String input) throws NoSuchAlgorithmException {
         try {
-            final byte[] bytes = digest.digest(input.getBytes("UTF-8"));
-            final StringBuilder b = new StringBuilder(32);
-
-            for (byte aByte : bytes) {
-                final String hex = Integer.toHexString((int) aByte & 0xFF);
-                if (hex.length() == 1)
-                    b.append('0');
-                b.append(hex);
-            }
-
-            return b.toString();
+            final byte[] digest = MessageDigest.getInstance("MD5").digest(input.getBytes("UTF-8"));
+            return String.format("%032x", new BigInteger(1, digest));
+            //return String.format("%016x", 1234);
         } catch (UnsupportedEncodingException e) {
-            // utf-8 always available
+            // Should not happen: UTF-8 always available
+            throw new RuntimeException(e);
         }
-
-        return null;
     }
 }
