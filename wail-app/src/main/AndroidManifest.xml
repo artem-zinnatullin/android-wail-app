@@ -138,9 +138,9 @@
             android:enabled="true"
             tools:ignore="ExportedReceiver">
             <intent-filter>
-                <action android:name="com.jrtstudio.music.metachanged" />
-                <action android:name="com.jrtstudio.music.playstatechanged" />
-                <action android:name="com.jrtstudio.music.playbackcomplete" />
+                <action android:name="com.jrtstudio.AnotherMusicPlayer.metachanged" />
+                <action android:name="com.jrtstudio.AnotherMusicPlayer.playstatechanged" />
+                <action android:name="com.jrtstudio.AnotherMusicPlayer.playbackcomplete" />
             </intent-filter>
         </receiver>
 
