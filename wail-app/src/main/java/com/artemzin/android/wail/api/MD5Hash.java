@@ -22,7 +22,6 @@ public class MD5Hash {
         try {
             final byte[] digest = MessageDigest.getInstance("MD5").digest(input.getBytes("UTF-8"));
             return String.format("%032x", new BigInteger(1, digest));
-            //return String.format("%016x", 1234);
         } catch (UnsupportedEncodingException e) {
             // Should not happen: UTF-8 always available
             throw new RuntimeException(e);
