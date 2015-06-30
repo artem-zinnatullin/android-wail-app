@@ -38,6 +38,8 @@ android {
         debug {
             versionNameSuffix ' debug ' + getDateForVersionName()
             signingConfig signingConfigs.wail
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
         }
 
         release {
