@@ -11,7 +11,6 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.service.WAILService;
-import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.storage.db.LovedTracksDBHelper;
 import com.artemzin.android.wail.storage.model.Track;
 import com.artemzin.android.wail.util.AsyncTaskExecutor;
@@ -30,7 +29,7 @@ public class TrackActionsDialog extends DialogDecorator {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        return new MaterialDialog.Builder(getActivity())
+        return new MaterialDialog.Builder(activity)
                 .items(R.array.track_actions)
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
@@ -52,11 +51,11 @@ public class TrackActionsDialog extends DialogDecorator {
             AsyncTaskExecutor.executeConcurrently(new AsyncTask<Void, Void, Void>() {
                 @Override
                 protected Void doInBackground(Void... objects) {
-                    LovedTracksDBHelper.getInstance(getActivity()).add(track);
+                    LovedTracksDBHelper.getInstance(activity).add(track);
 
-                    Intent intent = new Intent(getActivity(), WAILService.class);
+                    Intent intent = new Intent(activity, WAILService.class);
                     intent.setAction(WAILService.INTENT_ACTION_HANDLE_LOVED_TRACKS);
-                    getActivity().startService(intent);
+                    activity.startService(intent);
 
                     return null;
                 }
@@ -64,7 +63,7 @@ public class TrackActionsDialog extends DialogDecorator {
                 @Override
                 protected void onPostExecute(Void o) {
                     Toast.makeText(
-                            getActivity(),
+                            activity,
                             getString(R.string.main_track_loved),
                             Toast.LENGTH_SHORT
                     ).show();
