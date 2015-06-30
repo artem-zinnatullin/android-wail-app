@@ -2,7 +2,6 @@ package com.artemzin.android.wail.ui.fragment.dialogs;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -13,7 +12,6 @@ import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.db.LovedTracksDBHelper;
 import com.artemzin.android.wail.storage.model.Track;
-import com.artemzin.android.wail.util.AsyncTaskExecutor;
 
 /**
  * @author Ilya Murzinov [murz42@gmail.com]
@@ -48,27 +46,17 @@ public class TrackActionsDialog extends DialogDecorator {
 
     private void loveTrack() {
         if (track != null) {
-            AsyncTaskExecutor.executeConcurrently(new AsyncTask<Void, Void, Void>() {
-                @Override
-                protected Void doInBackground(Void... objects) {
-                    LovedTracksDBHelper.getInstance(activity).add(track);
+            LovedTracksDBHelper.getInstance(activity).add(track);
 
-                    Intent intent = new Intent(activity, WAILService.class);
-                    intent.setAction(WAILService.INTENT_ACTION_HANDLE_LOVED_TRACKS);
-                    activity.startService(intent);
+            Intent intent = new Intent(activity, WAILService.class);
+            intent.setAction(WAILService.INTENT_ACTION_HANDLE_LOVED_TRACKS);
+            activity.startService(intent);
 
-                    return null;
-                }
-
-                @Override
-                protected void onPostExecute(Void o) {
-                    Toast.makeText(
-                            activity,
-                            getString(R.string.main_track_loved),
-                            Toast.LENGTH_SHORT
-                    ).show();
-                }
-            });
+            Toast.makeText(
+                    activity,
+                    getString(R.string.main_track_loved),
+                    Toast.LENGTH_SHORT
+            ).show();
 
             dismiss();
         }
