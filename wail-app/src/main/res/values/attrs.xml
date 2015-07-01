@@ -24,6 +24,7 @@
     <attr name="mainUpdatedAtLabel" format="reference"/>
     <attr name="mainNowScrobblingTrack" format="reference"/>
     <attr name="mainFloatingActionButton" format="reference"/>
+    <attr name="mainIgnorePlayerButton" format="reference"/>
     <attr name="mainWailIsSadContainer" format="reference"/>
     <attr name="mainWailIsSadLabel" format="reference"/>
 
@@ -42,6 +43,7 @@
     <attr name="settingsItemTitleWithSwitch" format="reference"/>
     <attr name="settingsItemSwitch" format="reference"/>
     <attr name="settingSelectLanguageItem" format="reference"/>
+    <attr name="settingIgnoredPlayersItem" format="reference"/>
 
     <attr name="dialogTitle" format="reference"/>
 </resources>
