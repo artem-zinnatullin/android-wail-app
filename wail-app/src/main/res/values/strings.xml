@@ -60,7 +60,7 @@
     <string name="settings_min_track_elapsed_time_in_percent_title">Min track time elapsed in percent</string>
     <string name="settings_min_track_elapsed_time_in_seconds_title">Min track time elapsed in seconds</string>
     <string name="settings_min_track_elapsed_time_in_percent_desc">WAIL will scrobble a track only if you have played it at least for %1$s%% of its duration</string>
-    <string name="settings_min_track_elapsed_time_in_seconds_desc">WAIL will scrobble a track only if you have played it at least for %1$s seconds</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">WAIL will scrobble a track only if you have played it at least for %1$s</string>
     <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">Min track el. time in secs</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Min track time elapsed in percents</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Current value %1$s%% of track</string>

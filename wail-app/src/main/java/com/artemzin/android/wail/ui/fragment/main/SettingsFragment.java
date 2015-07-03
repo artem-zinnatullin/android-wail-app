@@ -302,7 +302,7 @@ public class SettingsFragment extends BaseFragment implements DialogDecorator.Ca
         minDurationInSecondsDescription.setText(
                 getString(
                         R.string.settings_min_track_elapsed_time_in_seconds_desc,
-                        minTrackDurationInSeconds
+                        minTrackDurationInSeconds + " " + WordFormUtil.getWordForm(minTrackDurationInSeconds, getResources().getStringArray(R.array.word_forms_second))
                 )
         );
     }

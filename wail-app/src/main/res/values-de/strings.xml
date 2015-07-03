@@ -60,7 +60,7 @@
     <string name="settings_min_track_elapsed_time_in_percent_title">Mindest-Abspiellänge in Prozent</string>
     <string name="settings_min_track_elapsed_time_in_seconds_title">Mindest-Abspiellänge in Sekunden</string>
     <string name="settings_min_track_elapsed_time_in_percent_desc">Titel wird gescrobbelt, wenn er zu %1$s%% abgespielt wurde.</string>
-    <string name="settings_min_track_elapsed_time_in_seconds_desc">Titel wird gescrobbelt, wenn er für %1$s Sekunden abgespielt wurde.</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">Titel wird gescrobbelt, wenn er für %1$s abgespielt wurde.</string>
     <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">Abspiellänge in Sekunden</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Abspiellänge in Prozent</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Aktuell: %1$s%%</string>

@@ -42,7 +42,7 @@
     <string name="settings_min_track_elapsed_time_in_percent_desc">WAIL скробблит трек только если он был прослушан хотя бы %1$s%% его продолжительности</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Текущее значение %1$s%% продолжительности трека</string>
     <string name="settings_min_track_elapsed_time_in_percent_title">Минимальное время прослушивания в процентах</string>
-    <string name="settings_min_track_elapsed_time_in_seconds_desc">WAIL скробблит трек только если он был прослушан хотя бы %1$s секунд</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">WAIL скробблит трек только если он был прослушан хотя бы %1$s</string>
     <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">Минимальное время прослушивания в секундах</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Минимальное время прослушивания в %</string>
     <string name="settings_min_track_elapsed_time_in_seconds_title">Минимальное время прослушивания в секундах</string>
