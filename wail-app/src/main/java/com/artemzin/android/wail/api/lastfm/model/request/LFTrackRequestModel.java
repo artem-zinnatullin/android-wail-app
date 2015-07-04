@@ -67,7 +67,7 @@ public class LFTrackRequestModel extends LFBaseRequestModel {
         track = trackModel.getTrack();
         timeStamp = trackModel.getTimestamp() / 1000;
         album = trackModel.getAlbum();
-        duration = (int) (trackModel.getDurationInMillis() / 1000);
+        duration = (int) (trackModel.getDuration() / 1000);
     }
 
     public String getArtist() {

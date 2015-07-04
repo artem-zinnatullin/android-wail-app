@@ -59,12 +59,8 @@ public class Track {
         this.album = album;
     }
 
-    public long getDurationInMillis() {
-        // Some players set duration in seconds, some in milliseconds
-        // If duration is greater then 30000 we assume that it measured in milliseconds
-        return duration < 30000 && duration != -1
-                ? duration * 1000
-                : duration;
+    public long getDuration() {
+        return duration;
     }
 
     public void setDuration(long duration) {
@@ -140,7 +136,7 @@ public class Track {
             return false;
         }
 
-        if (duration != track.getDurationInMillis()) {
+        if (duration != track.getDuration()) {
             return false;
         }
 

@@ -156,39 +156,40 @@ public class WAILService extends Service {
 
                 final LastCapturedTrackInfo mLastCapturedTrackInfo = WAILSettings.getLastCapturedTrackInfo(getApplicationContext());
 
-                if (mLastCapturedTrackInfo == null) {
-                    // just add track in lastCapturedTrackInfo
-                } else {
+                if (mLastCapturedTrackInfo != null) {
                     final long trackPlayingDurationInMillis = currentTrack.getTimestamp() - mLastCapturedTrackInfo.getTrack().getTimestamp();
                     final long minTrackDurationInMillis = WAILSettings.getMinTrackDurationInSeconds(getApplicationContext()) * 1000;
+                    final int minTrackDurationInPercents = WAILSettings.getMinTrackDurationInPercents(getApplicationContext());
 
                     if ((!isCurrentTrackPlaying && mLastCapturedTrackInfo.isPlaying()) || mLastCapturedTrackInfo.isPlaying()) {
-                        Loggi.w("Track playing duration in millis == " + trackPlayingDurationInMillis
-                                + " >= min track duration in millis == "
-                                + (WAILSettings.getMinTrackDurationInSeconds(getApplicationContext()) * 1000));
-
-                        long duration = mLastCapturedTrackInfo.getTrack().getDurationInMillis();
+                        long duration = mLastCapturedTrackInfo.getTrack().getDuration();
 
                         if (duration != -1) {
                             final int trackDurationInPercents = (int) (100 * trackPlayingDurationInMillis / (duration + 2500));
-                            int minTrackDurationInPercents = WAILSettings.getMinTrackDurationInPercents(getApplicationContext());
 
-                            if (trackDurationInPercents >= minTrackDurationInPercents) {
-                                Loggi.w("Track playing duration in millis == " + trackPlayingDurationInMillis
-                                        + ", in % == " + trackDurationInPercents + " >= min track duration in % == "
-                                        + minTrackDurationInPercents);
-                                mLastCapturedTrackInfo.getTrack().setStateTimestamp(System.currentTimeMillis());
-                                addTrackToDB(mLastCapturedTrackInfo.getTrack());
+                            if (trackDurationInPercents >= minTrackDurationInPercents
+                                    && trackPlayingDurationInMillis >= minTrackDurationInMillis) {
+                                scrobble(
+                                        mLastCapturedTrackInfo,
+                                        trackPlayingDurationInMillis,
+                                        minTrackDurationInMillis,
+                                        duration,
+                                        minTrackDurationInPercents
+                                );
                             } else {
-                                Loggi.w("Track playing duration is too small to scrobble it! Track duration in millis == "
-                                        + trackPlayingDurationInMillis + ", in percents == " + trackDurationInPercents
-                                        + "%, min duration == " + minTrackDurationInPercents);
-                                SoundNotificationsManager.getInstance(getApplicationContext()).playTrackSkippedSound();
+                                skip(trackPlayingDurationInMillis, minTrackDurationInMillis, minTrackDurationInPercents, duration);
                             }
+                        } else if (trackPlayingDurationInMillis >= minTrackDurationInMillis) {
+                            Loggi.d("Duration of track not set, skipping checking mitTrackDurationInPercents");
+                            scrobble(
+                                    mLastCapturedTrackInfo,
+                                    trackPlayingDurationInMillis,
+                                    minTrackDurationInMillis,
+                                    duration,
+                                    minTrackDurationInPercents
+                            );
                         } else {
-                            Loggi.w("Skipping track, playing duration in millis == " + trackPlayingDurationInMillis
-                                    + ", it does not played required time(" + minTrackDurationInMillis
-                                    + " millis) and WAIL can not calculate playing time in percents");
+                            skip(trackPlayingDurationInMillis, minTrackDurationInMillis, minTrackDurationInPercents, duration);
                         }
                     } else {
                         Loggi.w("Skipping track");
@@ -203,6 +204,32 @@ public class WAILService extends Service {
             @Override
             protected void onPostExecute(Void aVoid) {
                 scrobblePendingTracks(false);
+            }
+
+            private void scrobble(LastCapturedTrackInfo mLastCapturedTrackInfo, long trackPlayingDurationInMillis, long minTrackDurationInMillis,
+                                  long duration, int minTrackDurationInPercents) {
+                Loggi.i(String.format(
+                        "Adding track to DB. Duration: %s ms, playing for: %s ms, minTrackDurationInMillis: %s," +
+                                " minTrackDurationInPercents: %s",
+                        duration,
+                        trackPlayingDurationInMillis,
+                        minTrackDurationInMillis,
+                        minTrackDurationInPercents
+                ));
+                addTrackToDB(mLastCapturedTrackInfo.getTrack());
+                SoundNotificationsManager.getInstance(getApplicationContext()).playTrackMarkedAsScrobbledSound();
+            }
+
+            private void skip(long trackPlayingDurationInMillis, long minTrackDurationInMillis, int minTrackDurationInPercents, long duration) {
+                Loggi.i(String.format(
+                        "Skipping track. Duration: %s ms, playing for: %s ms, minTrackDurationInMillis: %s," +
+                                " minTrackDurationInPercents: %s",
+                        duration,
+                        trackPlayingDurationInMillis,
+                        minTrackDurationInMillis,
+                        minTrackDurationInPercents
+                ));
+                SoundNotificationsManager.getInstance(getApplicationContext()).playTrackSkippedSound();
             }
         });
     }
@@ -601,7 +628,7 @@ public class WAILService extends Service {
                 json.put("track", track.getTrack());
                 json.put("artist", track.getArtist());
                 json.put("album", track.getAlbum());
-                json.put("duration", track.getDurationInMillis());
+                json.put("duration", track.getDuration());
                 json.put("timestamp", track.getTimestamp());
                 json.put("state", track.getState());
                 json.put("stateTimestamp", track.getStateTimestamp());

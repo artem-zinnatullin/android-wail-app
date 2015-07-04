@@ -199,7 +199,7 @@ public class TracksDBHelper {
         contentValues.put(TableInfo.COLUMN_TRACK, track.getTrack());
         contentValues.put(TableInfo.COLUMN_ARTIST, track.getArtist());
         contentValues.put(TableInfo.COLUMN_ALBUM, track.getAlbum());
-        contentValues.put(TableInfo.COLUMN_DURATION, track.getDurationInMillis());
+        contentValues.put(TableInfo.COLUMN_DURATION, track.getDuration());
         contentValues.put(TableInfo.COLUMN_TIMESTAMP, track.getTimestamp());
         contentValues.put(TableInfo.COLUMN_STATE, track.getState());
         contentValues.put(TableInfo.COLUMN_STATE_TIMESTAMP, track.getStateTimestamp());
