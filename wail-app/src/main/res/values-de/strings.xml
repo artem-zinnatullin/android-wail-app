@@ -32,6 +32,9 @@
     <string name="main_updated_common">Stand %1$s</string>
     <string name="main_refresh_info_from_lastfm_network_error">Netzwerkfehler, bitte später erneut versuchen.</string>
     <string name="main_refresh_info_from_lastfm_api_error">Last.fm-Fehler: %1$s</string>
+    <string name="main_scrobbling_from_player_label">von %s</string>
+    <string name="main_confirm_ignoring_player">Willst Du %s ignorieren?</string>
+    <string name="main_ignore_this_player_button_text">App ignorieren</string>
     <string name="main_refresh_info_from_lastfm_unknown_error">Unbekannter Last.fm-Fehler</string>
     <string name="main_feedback_please">Ohne ein Feedback auf Google Play ist WAIL traurig.</string>
     <string name="main_feedback_please_happy_toast">Jetzt ist WAIL glücklich.</string>
@@ -68,6 +71,12 @@
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Auf Last.fm wird angezeigt, was gerade gespielt wird.</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">Auf Last.fm nicht angezeigt, was gerade gespielt wird.</string>
     <string name="settings_disable_scrobbling_over_mobile_network">Über Mobilfunk scrobbeln</string>
+    <string name="settings_ignored_players_item_title">Ignorierte Musikapps</string>
+    <string name="settings_ignored_players_item_desc">WAIL wird Titel von diesen Musikapps nicht scrobbeln</string>
+    <string name="settings_ignored_players_activity_label">Aktivität von ignorierten Musikapps</string>
+    <string name="settings_ignored_players_image_content_description">Bild von ignorierten Musikapps</string>
+    <string name="settings_confirm_unignoring_player">Möchtest Du App \"%s\" nicht mehr ignorieren?</string>
+    <string name="settings_ignored_players_empty_text">Du ignorierst zurzeit keine Musikapps</string>
     <string name="settings_scrobbling_over_mobile_network_enabled_toast">Scrobbeln über Mobilfunk aktiviert!</string>
     <string name="settings_scrobbling_over_mobile_network_disabled_toast">Scrobbeln über Mobilfunk deaktiviert!</string>
     <string name="settings_notifications_title">Mitteilungen</string>

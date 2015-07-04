@@ -19,6 +19,7 @@ import com.artemzin.android.wail.notifications.SoundNotificationsManager;
 import com.artemzin.android.wail.notifications.StatusBarNotificationsManager;
 import com.artemzin.android.wail.receiver.music.CommonMusicAppReceiver;
 import com.artemzin.android.wail.storage.WAILSettings;
+import com.artemzin.android.wail.storage.db.IgnoredPlayersDBHelper;
 import com.artemzin.android.wail.storage.db.LovedTracksDBHelper;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.model.Track;
@@ -55,6 +56,8 @@ public class WAILService extends Service {
 
     private Intent lastIntent;
 
+    private IgnoredPlayersDBHelper ignoredPlayersDBHelper;
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -69,6 +72,8 @@ public class WAILService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Loggi.i("WAILService.onStartCommand() " + IntentUtil.getIntentAsString(intent));
+
+        ignoredPlayersDBHelper = IgnoredPlayersDBHelper.getInstance(getApplicationContext());
 
         if (intent == null) {
             // seems that system has recreated the service, if so
@@ -110,6 +115,11 @@ public class WAILService extends Service {
         }
 
         final String player = intent.getStringExtra(CommonMusicAppReceiver.EXTRA_PLAYER_PACKAGE_NAME);
+
+        if (ignoredPlayersDBHelper.contains(player)) {
+            Loggi.w(String.format("WAILService track is not handled because the player %s is ignored", player));
+            return;
+        }
 
         AsyncTaskExecutor.executeConcurrently(new AsyncTask<Void, Void, Void>() {
             @Override

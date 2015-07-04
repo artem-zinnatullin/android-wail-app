@@ -33,6 +33,11 @@
             android:label="@string/settings_select_language_activity_label" />
 
         <activity
+            android:name=".ui.activity.settings.SettingsIgnoredPlayersActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/settings_ignored_players_activity_label" />
+
+        <activity
             android:name=".ui.activity.settings.SettingsSoundNotificationsActivity"
             android:windowSoftInputMode="stateHidden"
             android:label="@string/settings_sound_notifications_activity_label" />
