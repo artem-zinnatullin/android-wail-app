@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">WAIL Beta</string>
     <string name="app_main_about_1">WAIL — Ne dinliyorum?</string>
     <string name="app_main_about_2">WAIL çeşitli müzik oynatıcılar aracılığıyla dinlediğiniz müziği last.fm\'e skroplar</string>
     <string name="dialog_cancel">İptal</string>
