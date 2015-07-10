@@ -35,15 +35,28 @@ android {
     }
 
     buildTypes {
+        // A build signed with debug keys.
+        // Not using proguard, it's fast to package.
+        fast_debug {
+            versionNameSuffix ' debug ' + getDateForVersionName()
+            signingConfig signingConfigs.wail
+            // Gradle defaults to debuggable=false for variants other than "debug".
+            debuggable true
+        }
+        // A build signed with debug keys.
+        // Using proguard, it's slower to package.
         debug {
             versionNameSuffix ' debug ' + getDateForVersionName()
             signingConfig signingConfigs.wail
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
         }
-
+        // A build signed with release keys.
+        // Using proguard for code optimization and reducing the apk size.
         release {
             signingConfig signingConfigs.wail
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
         }
     }
 
