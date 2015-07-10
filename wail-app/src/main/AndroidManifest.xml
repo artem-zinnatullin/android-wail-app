@@ -343,6 +343,18 @@
         </receiver>
 
         <!-- end of music apps receivers -->
+
+        <receiver android:name=".ui.activity.WAILLoveWidget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_OPTIONS_CHANGED"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/waillove_widget_info" />
+        </receiver>
+
     </application>
 
 </manifest>

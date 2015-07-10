@@ -146,6 +146,7 @@
         <item>seconds</item>
         <!-- <item>3rd word form</item> -->
     </string-array>
+    <string name="add_widget">Add widget</string>
     <!-- END of some common strings -->
 
 </resources>
