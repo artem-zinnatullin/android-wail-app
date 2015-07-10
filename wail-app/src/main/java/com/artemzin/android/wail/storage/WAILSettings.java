@@ -2,8 +2,8 @@ package com.artemzin.android.wail.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
-import com.artemzin.android.bytes.common.StringUtil;
 import com.artemzin.android.wail.api.lastfm.model.response.LFUserResponseModel;
 import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.model.Track;
@@ -114,7 +114,7 @@ public class WAILSettings {
     }
 
     public static synchronized boolean isAuthorized(Context context) {
-        return !StringUtil.isNullOrEmpty(getLastfmSessionKey(context));
+        return !TextUtils.isEmpty(getLastfmSessionKey(context));
     }
 
     public static String getLastfmApiKey() {
@@ -205,7 +205,7 @@ public class WAILSettings {
     public static synchronized String getLastfmUserName(Context context) {
         final String lastfmUserNameRefCopy = lastfmUserName;
 
-        if (!StringUtil.isNullOrEmpty(lastfmUserNameRefCopy)) {
+        if (!TextUtils.isEmpty(lastfmUserNameRefCopy)) {
             return lastfmUserNameRefCopy;
         }
 
@@ -222,7 +222,7 @@ public class WAILSettings {
     public static synchronized String getLastfmUserRegistered(Context context) {
         final String lastfmUserRegisteredRefCopy = lastfmUserRegistered;
 
-        if (!StringUtil.isNullOrEmpty(lastfmUserRegisteredRefCopy)) {
+        if (!TextUtils.isEmpty(lastfmUserRegisteredRefCopy)) {
             return lastfmUserRegisteredRefCopy;
         }
 

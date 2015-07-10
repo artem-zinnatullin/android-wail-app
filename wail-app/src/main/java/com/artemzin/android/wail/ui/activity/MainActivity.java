@@ -9,6 +9,7 @@ import android.os.SystemClock;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -20,7 +21,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.artemzin.android.bytes.common.StringUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.ui.TypefaceTextView;
@@ -115,8 +115,8 @@ public class MainActivity extends BaseActivity {
                 @Override
                 public void onDrawerOpened(View drawerView) {
                     super.onDrawerOpened(drawerView);
-                    if (StringUtil.isNullOrEmpty(drawerTitleMain.getText().toString()) ||
-                            StringUtil.isNullOrEmpty(drawerTitleSecondary.getText().toString())) {
+                    if (TextUtils.isEmpty(drawerTitleMain.getText().toString()) ||
+                            TextUtils.isEmpty(drawerTitleSecondary.getText().toString())) {
                         setDrawerHeaderText();
                     }
                 }
