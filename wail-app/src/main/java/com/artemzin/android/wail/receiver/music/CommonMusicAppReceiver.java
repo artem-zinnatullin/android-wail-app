@@ -4,8 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.text.TextUtils;
 
-import com.artemzin.android.bytes.common.StringUtil;
 import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.model.Track;
 import com.artemzin.android.wail.util.AsyncTaskExecutor;
@@ -54,7 +54,7 @@ public abstract class CommonMusicAppReceiver extends BroadcastReceiver {
                         return null;
                     }
 
-                    if (StringUtil.isNullOrEmpty(intent.getAction())
+                    if (TextUtils.isEmpty(intent.getAction())
                             || intent.getAction().indexOf('.') == -1) {
                         Loggi.e("CommonMusicAppReceiver.onReceive() intent action is corrupted: " + intent.getAction());
                         return null;

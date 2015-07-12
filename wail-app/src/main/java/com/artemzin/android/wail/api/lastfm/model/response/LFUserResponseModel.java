@@ -1,6 +1,7 @@
 package com.artemzin.android.wail.api.lastfm.model.response;
 
-import com.artemzin.android.bytes.common.StringUtil;
+import android.text.TextUtils;
+
 import com.artemzin.android.wail.api.lastfm.LFApiException;
 
 import org.json.JSONException;
@@ -60,7 +61,7 @@ public class LFUserResponseModel extends LFBaseResponseModel {
             if (other instanceof Registered) {
                 Registered o = (Registered) other;
 
-                return StringUtil.equals(text, o.text)
+                return TextUtils.equals(text, o.text)
                         && unixtime == o.unixtime;
             }
 
@@ -195,13 +196,13 @@ public class LFUserResponseModel extends LFBaseResponseModel {
         if (other instanceof LFUserResponseModel) {
             LFUserResponseModel o = (LFUserResponseModel) other;
 
-            return StringUtil.equals(id, o.id)
-                    && StringUtil.equals(name, o.name)
-                    && StringUtil.equals(realName, o.realName)
-                    && StringUtil.equals(url, o.url)
-                    && StringUtil.equals(country, o.country)
-                    && StringUtil.equals(age, o.age)
-                    && StringUtil.equals(gender, o.gender)
+            return TextUtils.equals(id, o.id)
+                    && TextUtils.equals(name, o.name)
+                    && TextUtils.equals(realName, o.realName)
+                    && TextUtils.equals(url, o.url)
+                    && TextUtils.equals(country, o.country)
+                    && TextUtils.equals(age, o.age)
+                    && TextUtils.equals(gender, o.gender)
                     && subscriber == o.subscriber
                     && playCount == o.playCount
                     && playlists == o.playlists

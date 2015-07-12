@@ -1,6 +1,7 @@
 package com.artemzin.android.wail.api.lastfm;
 
-import com.artemzin.android.bytes.common.StringUtil;
+import android.text.TextUtils;
+
 import com.artemzin.android.wail.api.network.NetworkException;
 import com.artemzin.android.wail.api.network.NetworkRequest;
 
@@ -11,7 +12,6 @@ public class LFUserApi {
     /**
      *
      * @param user optional user name
-     * @return
      * @see <a href="http://www.lastfm.ru/api/show/user.getInfo">user.getInfo()</a>
      */
     public static String getInfo(String sessionKey, String apiKey, String secret, String user)
@@ -19,7 +19,7 @@ public class LFUserApi {
 
         final LFRequestParamContainer requestParams = new LFRequestParamContainer("user.getInfo", secret);
 
-        if (!StringUtil.isNullOrEmpty(user)) {
+        if (!TextUtils.isEmpty(user)) {
             requestParams.addParam("user", user);
         }
 

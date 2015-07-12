@@ -1,6 +1,6 @@
 package com.artemzin.android.wail.storage.model;
 
-import com.artemzin.android.bytes.common.StringUtil;
+import android.text.TextUtils;
 
 public class Track {
 
@@ -124,15 +124,15 @@ public class Track {
         if (track == null) return false;
 
 
-        if (!StringUtil.equals(getPlayerPackageName(), track.getPlayerPackageName())) {
+        if (!TextUtils.equals(getPlayerPackageName(), track.getPlayerPackageName())) {
             return false;
         }
 
-        if (!StringUtil.equals(getTrack(), track.getTrack())) {
+        if (!TextUtils.equals(getTrack(), track.getTrack())) {
             return false;
         }
 
-        if (!StringUtil.equals(getAlbum(), track.getAlbum())) {
+        if (!TextUtils.equals(getAlbum(), track.getAlbum())) {
             return false;
         }
 
@@ -149,10 +149,10 @@ public class Track {
             Track track = (Track) o;
 
             return internalDBId == track.internalDBId
-                    && StringUtil.equals(playerPackageName, track.playerPackageName)
-                    && StringUtil.equals(this.track, track.track)
-                    && StringUtil.equals(artist, track.artist)
-                    && StringUtil.equals(album, track.album)
+                    && TextUtils.equals(playerPackageName, track.playerPackageName)
+                    && TextUtils.equals(this.track, track.track)
+                    && TextUtils.equals(artist, track.artist)
+                    && TextUtils.equals(album, track.album)
                     && duration == track.duration
                     && timestamp == track.timestamp
                     && state == track.state
