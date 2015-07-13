@@ -40,13 +40,8 @@ public class WAILLoveWidget extends AppWidgetProvider {
 
         int newMinWidth = newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
         if (newMinWidth > 179) {
-            views.setViewVisibility(R.id.widget_app_shortcut, View.GONE);
             views.setViewVisibility(R.id.widget_infobox_layout, View.VISIBLE);
-        } else if (newMinWidth > 109) {
-            views.setViewVisibility(R.id.widget_app_shortcut, View.VISIBLE);
-            views.setViewVisibility(R.id.widget_infobox_layout, View.GONE);
-        } else if (newMinWidth > 39) {
-            views.setViewVisibility(R.id.widget_app_shortcut, View.GONE);
+        } else {
             views.setViewVisibility(R.id.widget_infobox_layout, View.GONE);
         }
 
@@ -57,13 +52,7 @@ public class WAILLoveWidget extends AppWidgetProvider {
 
         Intent appMainIntent = new Intent(context, MainActivity.class);
         PendingIntent pendingAppMainIntent = PendingIntent.getActivity(context, 0, appMainIntent, 0);
-        views.setOnClickPendingIntent(R.id.widget_app_shortcut, pendingAppMainIntent);
-
-        Track track = WAILSettings.getNowScrobblingTrack(context);
-        if (track != null) {
-            views.setTextViewText(R.id.widget_infobox_track_text, track.getTrack());
-            views.setTextViewText(R.id.widget_infobox_artist_text, track.getArtist());
-        }
+        views.setOnClickPendingIntent(R.id.widget_infobox_layout, pendingAppMainIntent);
 
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }

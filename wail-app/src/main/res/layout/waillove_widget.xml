@@ -1,54 +1,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:background="@android:color/transparent"
+              android:background="@drawable/appwidget_bg"
               android:orientation="horizontal"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent" android:showDividers="none" android:padding="@dimen/widget_margin"
               android:baselineAligned="false">
     <ImageButton
             android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:id="@+id/widget_app_shortcut" android:src="@drawable/wail_launcher_icon"
-            android:layout_weight="20" android:scaleType="fitCenter" android:minHeight="40dp" android:minWidth="40dp"
-            android:paddingLeft="0dp" android:paddingBottom="0dp" android:paddingRight="2dp" android:clickable="true"
-            android:background="@android:color/transparent" android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp" android:layout_marginLeft="4dp" android:layout_marginRight="0dp"/>
-    <ImageButton
-            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/widget_love_current_track_button"
-            android:src="@drawable/ic_main_love_track" android:background="@color/accent"
+            android:src="@drawable/ic_main_love_track"
             android:visibility="visible" android:baselineAlignBottom="false" android:clickable="true"
             android:cropToPadding="false" android:minHeight="40dp" android:minWidth="40dp"
             android:scaleType="center" android:adjustViewBounds="false"
-            android:layout_weight="20" android:layout_marginRight="0dp" android:layout_marginLeft="0dp"
-            android:layout_marginTop="4dp" android:layout_marginBottom="4dp"/>
+            android:layout_weight="20"
+            android:background="@drawable/appwidget_button_left" android:tint="@color/accent_material_light"/>
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="fill_parent" android:id="@+id/widget_infobox_layout" android:layout_weight="80"
-            android:layout_marginLeft="0dp" android:background="@color/accent_material_light"
-            android:showDividers="none" android:layout_marginTop="4dp" android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp">
+            android:background="@drawable/appwidget_button_right"
+            android:showDividers="none"
+            >
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Now playing:"
-                android:id="@+id/widget_infobox_now_playing"
-                android:layout_weight="10" android:layout_marginTop="4dp" android:layout_marginLeft="4dp"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="-"
-                android:id="@+id/widget_infobox_track_text" android:layout_weight="60"
-                android:layout_marginLeft="4dp"/>
-        <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="-"
-                android:id="@+id/widget_infobox_artist_text" android:layout_weight="30"
-                android:layout_marginLeft="4dp" android:layout_marginBottom="4dp"/>
+                android:id="@+id/widget_infobox_track_text" android:layout_weight="60"
+                android:layout_marginLeft="4dp" android:layout_marginTop="8dp"
+                android:textColor="@color/accent_material_light"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="-"
+                android:id="@+id/widget_infobox_artist_text" android:layout_weight="40"
+                android:layout_marginLeft="4dp" android:layout_marginBottom="8dp"
+                android:textColor="@color/accent_material_light"/>
     </LinearLayout>
 </LinearLayout>
