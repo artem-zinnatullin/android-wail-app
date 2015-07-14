@@ -1,6 +1,7 @@
 package com.artemzin.android.wail.api.lastfm.model.response;
 
-import com.artemzin.android.bytes.common.StringUtil;
+import android.text.TextUtils;
+
 import com.artemzin.android.wail.api.lastfm.LFApiException;
 
 import org.json.JSONObject;
@@ -44,7 +45,7 @@ public abstract class LFBaseResponseModel {
         public static Error optFromJSONObject(JSONObject jsonObject) {
             final String errorValue = jsonObject.optString("error");
 
-            if (!StringUtil.isNullOrEmpty(errorValue)) {
+            if (!TextUtils.isEmpty(errorValue)) {
                 final Error error = new Error();
                 error.error = errorValue;
                 error.message = jsonObject.optString("message");

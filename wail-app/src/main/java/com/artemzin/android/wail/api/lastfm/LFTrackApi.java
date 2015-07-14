@@ -1,6 +1,7 @@
 package com.artemzin.android.wail.api.lastfm;
 
-import com.artemzin.android.bytes.common.StringUtil;
+import android.text.TextUtils;
+
 import com.artemzin.android.wail.api.lastfm.model.request.LFTrackRequestModel;
 import com.artemzin.android.wail.api.lastfm.model.response.LFLoveTrackResponseModel;
 import com.artemzin.android.wail.api.lastfm.model.response.LFScrobbleResponseModel;
@@ -26,7 +27,7 @@ public class LFTrackApi {
             requestParams.addParam("track[" + i + "]", track.getTrack());
             requestParams.addParam("timestamp[" + i + "]", track.getTimeStamp().toString());
 
-            if (!StringUtil.isNullOrEmpty(track.getAlbum())) {
+            if (!TextUtils.isEmpty(track.getAlbum())) {
                 requestParams.addParam("album[" + i + "]", track.getAlbum());
             }
 
@@ -60,7 +61,7 @@ public class LFTrackApi {
         requestParams.addParam("artist", track.getArtist());
         requestParams.addParam("track", track.getTrack());
 
-        if (!StringUtil.isNullOrEmpty(track.getAlbum())) {
+        if (!TextUtils.isEmpty(track.getAlbum())) {
             requestParams.addParam("album", track.getAlbum());
         }
 

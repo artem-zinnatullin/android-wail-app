@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 
 import com.artemzin.android.wail.api.lastfm.LFApiException;
 import com.artemzin.android.wail.api.lastfm.LFTrackApi;
@@ -19,6 +20,7 @@ import com.artemzin.android.wail.notifications.SoundNotificationsManager;
 import com.artemzin.android.wail.notifications.StatusBarNotificationsManager;
 import com.artemzin.android.wail.receiver.music.CommonMusicAppReceiver;
 import com.artemzin.android.wail.storage.WAILSettings;
+import com.artemzin.android.wail.storage.db.IgnoredPlayersDBHelper;
 import com.artemzin.android.wail.storage.db.LovedTracksDBHelper;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.model.Track;
@@ -55,6 +57,8 @@ public class WAILService extends Service {
 
     private Intent lastIntent;
 
+    private IgnoredPlayersDBHelper ignoredPlayersDBHelper;
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -69,6 +73,8 @@ public class WAILService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Loggi.i("WAILService.onStartCommand() " + IntentUtil.getIntentAsString(intent));
+
+        ignoredPlayersDBHelper = IgnoredPlayersDBHelper.getInstance(getApplicationContext());
 
         if (intent == null) {
             // seems that system has recreated the service, if so
@@ -110,6 +116,11 @@ public class WAILService extends Service {
         }
 
         final String player = intent.getStringExtra(CommonMusicAppReceiver.EXTRA_PLAYER_PACKAGE_NAME);
+
+        if (ignoredPlayersDBHelper.contains(player)) {
+            Loggi.w(String.format("WAILService track is not handled because the player %s is ignored", player));
+            return;
+        }
 
         AsyncTaskExecutor.executeConcurrently(new AsyncTask<Void, Void, Void>() {
             @Override
@@ -156,39 +167,40 @@ public class WAILService extends Service {
 
                 final LastCapturedTrackInfo mLastCapturedTrackInfo = WAILSettings.getLastCapturedTrackInfo(getApplicationContext());
 
-                if (mLastCapturedTrackInfo == null) {
-                    // just add track in lastCapturedTrackInfo
-                } else {
+                if (mLastCapturedTrackInfo != null) {
                     final long trackPlayingDurationInMillis = currentTrack.getTimestamp() - mLastCapturedTrackInfo.getTrack().getTimestamp();
                     final long minTrackDurationInMillis = WAILSettings.getMinTrackDurationInSeconds(getApplicationContext()) * 1000;
+                    final int minTrackDurationInPercents = WAILSettings.getMinTrackDurationInPercents(getApplicationContext());
 
                     if ((!isCurrentTrackPlaying && mLastCapturedTrackInfo.isPlaying()) || mLastCapturedTrackInfo.isPlaying()) {
-                        Loggi.w("Track playing duration in millis == " + trackPlayingDurationInMillis
-                                + " >= min track duration in millis == "
-                                + (WAILSettings.getMinTrackDurationInSeconds(getApplicationContext()) * 1000));
-
-                        long duration = mLastCapturedTrackInfo.getTrack().getDurationInMillis();
+                        long duration = mLastCapturedTrackInfo.getTrack().getDuration();
 
                         if (duration != -1) {
                             final int trackDurationInPercents = (int) (100 * trackPlayingDurationInMillis / (duration + 2500));
-                            int minTrackDurationInPercents = WAILSettings.getMinTrackDurationInPercents(getApplicationContext());
 
-                            if (trackDurationInPercents >= minTrackDurationInPercents) {
-                                Loggi.w("Track playing duration in millis == " + trackPlayingDurationInMillis
-                                        + ", in % == " + trackDurationInPercents + " >= min track duration in % == "
-                                        + minTrackDurationInPercents);
-                                mLastCapturedTrackInfo.getTrack().setStateTimestamp(System.currentTimeMillis());
-                                addTrackToDB(mLastCapturedTrackInfo.getTrack());
+                            if (trackDurationInPercents >= minTrackDurationInPercents
+                                    && trackPlayingDurationInMillis >= minTrackDurationInMillis) {
+                                scrobble(
+                                        mLastCapturedTrackInfo,
+                                        trackPlayingDurationInMillis,
+                                        minTrackDurationInMillis,
+                                        duration,
+                                        minTrackDurationInPercents
+                                );
                             } else {
-                                Loggi.w("Track playing duration is too small to scrobble it! Track duration in millis == "
-                                        + trackPlayingDurationInMillis + ", in percents == " + trackDurationInPercents
-                                        + "%, min duration == " + minTrackDurationInPercents);
-                                SoundNotificationsManager.getInstance(getApplicationContext()).playTrackSkippedSound();
+                                skip(trackPlayingDurationInMillis, minTrackDurationInMillis, minTrackDurationInPercents, duration);
                             }
+                        } else if (trackPlayingDurationInMillis >= minTrackDurationInMillis) {
+                            Loggi.d("Duration of track not set, skipping checking mitTrackDurationInPercents");
+                            scrobble(
+                                    mLastCapturedTrackInfo,
+                                    trackPlayingDurationInMillis,
+                                    minTrackDurationInMillis,
+                                    duration,
+                                    minTrackDurationInPercents
+                            );
                         } else {
-                            Loggi.w("Skipping track, playing duration in millis == " + trackPlayingDurationInMillis
-                                    + ", it does not played required time(" + minTrackDurationInMillis
-                                    + " millis) and WAIL can not calculate playing time in percents");
+                            skip(trackPlayingDurationInMillis, minTrackDurationInMillis, minTrackDurationInPercents, duration);
                         }
                     } else {
                         Loggi.w("Skipping track");
@@ -204,13 +216,38 @@ public class WAILService extends Service {
             protected void onPostExecute(Void aVoid) {
                 scrobblePendingTracks(false);
             }
+
+            private void scrobble(LastCapturedTrackInfo mLastCapturedTrackInfo, long trackPlayingDurationInMillis, long minTrackDurationInMillis,
+                                  long duration, int minTrackDurationInPercents) {
+                Loggi.i(String.format(
+                        "Adding track to DB. Duration: %s ms, playing for: %s ms, minTrackDurationInMillis: %s," +
+                                " minTrackDurationInPercents: %s",
+                        duration,
+                        trackPlayingDurationInMillis,
+                        minTrackDurationInMillis,
+                        minTrackDurationInPercents
+                ));
+                addTrackToDB(mLastCapturedTrackInfo.getTrack());
+                SoundNotificationsManager.getInstance(getApplicationContext()).playTrackMarkedAsScrobbledSound();
+            }
+
+            private void skip(long trackPlayingDurationInMillis, long minTrackDurationInMillis, int minTrackDurationInPercents, long duration) {
+                Loggi.i(String.format(
+                        "Skipping track. Duration: %s ms, playing for: %s ms, minTrackDurationInMillis: %s," +
+                                " minTrackDurationInPercents: %s",
+                        duration,
+                        trackPlayingDurationInMillis,
+                        minTrackDurationInMillis,
+                        minTrackDurationInPercents
+                ));
+                SoundNotificationsManager.getInstance(getApplicationContext()).playTrackSkippedSound();
+            }
         });
     }
 
     private synchronized void addTrackToDB(com.artemzin.android.wail.storage.model.Track track) {
         com.artemzin.android.wail.storage.model.Track lastAddedTrack = TracksDBHelper.getInstance(getApplicationContext())
                 .getLastAddedTrack();
-
 
         if (lastAddedTrack != null) {
             final long pauseBetweenTracksInSeconds = (track.getTimestamp() - lastAddedTrack.getTimestamp()) / 1000;
@@ -220,6 +257,11 @@ public class WAILService extends Service {
             } else {
                 Loggi.w("Pause between tracks is ok " + pauseBetweenTracksInSeconds + " seconds");
             }
+        }
+
+        if (TextUtils.isEmpty(track.getArtist()) || TextUtils.isEmpty(track.getTrack())) {
+            Loggi.w("Skipping track without name or artist");
+            return;
         }
 
         if (TracksDBHelper.getInstance(WAILService.this).add(track) != -1) {
@@ -261,10 +303,11 @@ public class WAILService extends Service {
 
             @Override
             protected Void doInBackground(Void... params) {
-                Cursor tracksCursor = TracksDBHelper.getInstance(getApplicationContext()).getAllDesc();
+                TracksDBHelper tracksDBHelper = TracksDBHelper.getInstance(getApplicationContext());
+                Cursor tracksCursor = tracksDBHelper.getAllDesc();
 
-                final List<com.artemzin.android.wail.storage.model.Track> tracksToScrobbleListForDB = new ArrayList<com.artemzin.android.wail.storage.model.Track>();
-                final List<LFTrackRequestModel> tracksToScrobbleForApiRequest = new ArrayList<LFTrackRequestModel>();
+                final List<com.artemzin.android.wail.storage.model.Track> tracksToScrobbleListForDB = new ArrayList<>();
+                final List<LFTrackRequestModel> tracksToScrobbleForApiRequest = new ArrayList<>();
 
                 boolean isTracksToScrobbleCountMoreThanMaxForRequest = false;
 
@@ -277,6 +320,12 @@ public class WAILService extends Service {
                 if (tracksCursor.moveToFirst()) {
                     do {
                         com.artemzin.android.wail.storage.model.Track track = TracksDBHelper.parseFromCursor(tracksCursor);
+
+                        if (TextUtils.isEmpty(track.getArtist()) || TextUtils.isEmpty(track.getTrack())) {
+                            Loggi.w("Removing track without name or artist from database");
+                            tracksDBHelper.delete(track);
+                            continue;
+                        }
 
                         if (tracksToScrobbleForApiRequest.size() >= 48) {
                             isTracksToScrobbleCountMoreThanMaxForRequest = true;
@@ -547,11 +596,19 @@ public class WAILService extends Service {
 
             @Override
             protected Void doInBackground(Void... params) {
-                Cursor tracksCursor = LovedTracksDBHelper.getInstance(getApplicationContext()).getAllDesc();
+                LovedTracksDBHelper lovedTracksDBHelper = LovedTracksDBHelper.getInstance(getApplicationContext());
+                Cursor tracksCursor = lovedTracksDBHelper.getAllDesc();
 
                 if (tracksCursor.moveToFirst()) {
                     do {
                         Track track = LovedTracksDBHelper.parseFromCursor(tracksCursor);
+
+                        if (TextUtils.isEmpty(track.getArtist()) || TextUtils.isEmpty(track.getTrack())) {
+                            Loggi.w("Removing track without name or artist from loved tracks database");
+                            lovedTracksDBHelper.delete(track);
+                            continue;
+                        }
+
                         loveTrack(track);
                     } while (tracksCursor.moveToNext());
                 }
@@ -601,7 +658,7 @@ public class WAILService extends Service {
                 json.put("track", track.getTrack());
                 json.put("artist", track.getArtist());
                 json.put("album", track.getAlbum());
-                json.put("duration", track.getDurationInMillis());
+                json.put("duration", track.getDuration());
                 json.put("timestamp", track.getTimestamp());
                 json.put("state", track.getState());
                 json.put("stateTimestamp", track.getStateTimestamp());

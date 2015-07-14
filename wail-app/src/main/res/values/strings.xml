@@ -32,6 +32,9 @@
     <string name="main_updated_common">updated %1$s</string>
     <string name="main_refresh_info_from_lastfm_network_error">Network error, please try again later</string>
     <string name="main_refresh_info_from_lastfm_api_error">Last.fm error: %1$s</string>
+    <string name="main_scrobbling_from_player_label">from %s</string>
+    <string name="main_confirm_ignoring_player">Do you want to ignore %s?</string>
+    <string name="main_ignore_this_player_button_text">Ignore this player</string>
     <string name="main_refresh_info_from_lastfm_unknown_error">Can not update info from last.fm, sorry :(</string>
     <string name="main_feedback_please">WAIL is sad without your feedback on the Google Play :(</string>
     <string name="main_feedback_please_happy_toast">Now WAIL is happy ;)</string>
@@ -60,10 +63,16 @@
     <string name="settings_min_track_elapsed_time_in_percent_title">Min track time elapsed in percent</string>
     <string name="settings_min_track_elapsed_time_in_seconds_title">Min track time elapsed in seconds</string>
     <string name="settings_min_track_elapsed_time_in_percent_desc">WAIL will scrobble a track only if you have played it at least for %1$s%% of its duration</string>
-    <string name="settings_min_track_elapsed_time_in_seconds_desc">WAIL will scrobble a track only if you have played it at least for %1$s seconds</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">WAIL will scrobble a track only if you have played it at least for %1$s</string>
     <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">Min track el. time in secs</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Min track time elapsed in percents</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Current value %1$s%% of track</string>
+    <string name="settings_ignored_players_item_title">Ignored media players</string>
+    <string name="settings_ignored_players_item_desc">WAIL will not scrobble tracks played by these players</string>
+    <string name="settings_ignored_players_activity_label">Ignored media players</string>
+    <string name="settings_ignored_players_image_content_description">Ignored player image</string>
+    <string name="settings_confirm_unignoring_player">Do you want to stop ignoring player \"%s\"?</string>
+    <string name="settings_ignored_players_empty_text">You have no ignored players</string>
     <string name="settings_lastfm_update_nowplaying_title">Listening now on last.fm</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm update nowplaying enabled</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm update nowplaying turned off</string>

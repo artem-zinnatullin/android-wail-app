@@ -11,6 +11,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,7 +24,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.artemzin.android.bytes.common.StringUtil;
 import com.artemzin.android.bytes.ui.ViewUtil;
 import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
@@ -356,13 +356,13 @@ public class TracksListFragment extends BaseFragment {
 
             String artistAndAlbum;
 
-            if (!StringUtil.isNullOrEmpty(track.getArtist())) {
+            if (!TextUtils.isEmpty(track.getArtist())) {
                 artistAndAlbum = track.getArtist();
 
-                if (!StringUtil.isNullOrEmpty(track.getAlbum())) {
+                if (!TextUtils.isEmpty(track.getAlbum())) {
                     artistAndAlbum += " — " + track.getAlbum();
                 }
-            } else if (!StringUtil.isNullOrEmpty(track.getAlbum())) {
+            } else if (!TextUtils.isEmpty(track.getAlbum())) {
                 artistAndAlbum = track.getAlbum();
             } else {
                 artistAndAlbum = getString(R.string.track_artist_and_album_no_data);

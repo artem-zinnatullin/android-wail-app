@@ -20,7 +20,7 @@ public class CommonMusicAppReceiverTest extends BaseAndroidTestCase {
         intent.putExtra(CommonMusicAppReceiver.EXTRA_TRACK, track.getTrack());
         intent.putExtra(CommonMusicAppReceiver.EXTRA_ARTIST, track.getArtist());
         intent.putExtra(CommonMusicAppReceiver.EXTRA_ALBUM, track.getAlbum());
-        intent.putExtra(CommonMusicAppReceiver.EXTRA_DURATION, track.getDurationInMillis());
+        intent.putExtra(CommonMusicAppReceiver.EXTRA_DURATION, track.getDuration());
         intent.putExtra(CommonMusicAppReceiver.EXTRA_TIMESTAMP, track.getTimestamp());
 
         Track parsedTrack = CommonMusicAppReceiver.parseFromIntentExtras(intent);
@@ -29,7 +29,7 @@ public class CommonMusicAppReceiverTest extends BaseAndroidTestCase {
         assertEquals(track.getTrack(), parsedTrack.getTrack());
         assertEquals(track.getArtist(), parsedTrack.getArtist());
         assertEquals(track.getAlbum(), parsedTrack.getAlbum());
-        assertEquals(track.getDurationInMillis(), parsedTrack.getDurationInMillis());
+        assertEquals(track.getDuration(), parsedTrack.getDuration());
         assertEquals(track.getTimestamp(), parsedTrack.getTimestamp());
     }
 }

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_main_about_1">WAIL — Ne dinliyorum?</string>
+    <string name="app_main_about_2">WAIL çeşitli müzik oynatıcılar aracılığıyla dinlediğiniz müziği last.fm\'e skroplar</string>
+    <string name="dialog_cancel">İptal</string>
+    <string name="dialog_save">Kaydet</string>
+    <string name="drawer_item_image_content_description">Menü simgesi</string>
+    <string name="drawer_registered_at">"Kaydedildi "</string>
+    <string name="lastfm_api_error_11">Last.fm servisi şu anda çevrim dışı, lütfen daha sonra tekrar deneyin</string>
+    <string name="lastfm_logging_api_error_14">WAIL\'i last.fm\'de yetkilendirmediniz :(</string>
+    <string name="lastfm_logging_api_error_15">WAIL\'in last.fm yetkilendirmesini çok uzun süre önce yaptınız. Lütfen tekrar deneyin.</string>
+    <string name="lastfm_logging_api_error_unknown">Last.fm\'den gelen cevap anlaşılamadı, belki de uygulamayı güncelleştirmeniz gereklidir?</string>
+    <string name="lastfm_logging_network_error">Last.fm\'e giriş yapılamadı, lütfen internet bağlantınızı kontrol edin</string>
+    <string name="lastfm_logging_progress_dialog_message">Last.fm\'de yetkilendirme yapılıyor…</string>
+    <string name="main_confirm_ignoring_player">%s\'i yoksaymak istiyor musunuz?</string>
+    <string name="main_feedback_please">Google Play yorumunuzun eksikliği WAIL\'i mutsuz ediyor :(</string>
+    <string name="main_feedback_please_happy_toast">İşte şimdi WAIL mutlu ;)</string>
+    <string name="main_ignore_this_player_button_text">Bu oynatıcıyı yokay</string>
+    <string name="main_now_scrobbling_label">Şimdi skroplanıyor: %1$s</string>
+    <string name="main_now_scrobbling_nothing">hiçbirşey :(</string>
+    <string name="main_pull_down_to_refresh_toast">Güncellemek için aşağı çekin :)</string>
+    <string name="main_refresh_info_from_lastfm_api_error">Last.fm hatası: %1$s</string>
+    <string name="main_refresh_info_from_lastfm_network_error">Şebeke hatası, lütfen daha sonra tekrar deneyin</string>
+    <string name="main_refresh_info_from_lastfm_unknown_error">Last.fm\'den bilgi güncellenemiyor, özür dilerim :(</string>
+    <string name="main_refreshing">Güncelleniyor…</string>
+    <string name="main_scrobbling_from_player_label">%s\'den</string>
+    <string name="main_settings_menu_toggle_wail">WAIL\'i aç/kapa</string>
+    <string name="main_today">bugün</string>
+    <string name="main_track_loved">Parça beğenildi :)</string>
+    <string name="main_tracks_on_last_fm">Last.fm\'de skroplandı</string>
+    <string name="main_tracks_on_last_fm_unknown">Last.fm\'deki toplam parça sayısı bilinmiyor :(\nAşağı çekerek güncellemeyi deneyin!</string>
+    <string name="main_updated_common">güncellendi %1$s</string>
+    <string name="main_updated_today_at">bugün %1$s sularında güncellendi</string>
+    <string name="main_updated_yesterday_at">dün %1$s sularında güncellendi</string>
+    <string name="non_authorized_sign_up_in_lastfm">Last.fm\'e kayıt ol</string>
+    <string name="not_authorized_activity_label">Merhaba!</string>
+    <string name="notifications_love_current_track">Bu parçayı beğen</string>
+    <string name="notifications_now_scrobbling">Şimdi skroplanıyor</string>
+    <string name="notifications_track_loved">Parça beğenildi</string>
+    <string name="setting_logout_warning">Tüm skroplama bilgisi silinecek! Emin misiniz?</string>
+    <string name="settings_actionbar_title">Ayarlar</string>
+    <string name="settings_confirm_unignoring_player">\"%s\" oynatıcısını yoksaymaktan vazgeçmek istiyor musunuz?</string>
+    <string name="settings_disable_scrobbling_over_mobile_network">Mobil şebeke üzerinden skroplama</string>
+    <string name="settings_email_dialog_title">E-posta uygulamasını seçin</string>
+    <string name="settings_email_to_developers">Geliştiricilere e-posta gönderin</string>
+    <string name="settings_ignored_players_activity_label">Yoksayılan oynatıcılar</string>
+    <string name="settings_ignored_players_empty_text">Yoksaydığınız oynatıcı bulunmamakta</string>
+    <string name="settings_ignored_players_image_content_description">Yoksayılan oynatıcı resmi</string>
+    <string name="settings_ignored_players_item_desc">WAIL bu oynatıcılar tarafından oynatılan parçaları skroplamayacak</string>
+    <string name="settings_ignored_players_item_title">Yoksayılan oynatıcılar</string>
+    <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm şimdi oynatılıyor özelliği devre dışı</string>
+    <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm şimdi oynatılıyor özelliği etkin</string>
+    <string name="settings_lastfm_update_nowplaying_title">Last.fm şimdi oynatılıyor bilgisi</string>
+    <string name="settings_logout">Çıkış</string>
+    <string name="settings_min_track_elapsed_time_in_percent_desc">WAIL bir parçayı sadece parça uzunluğunun %1$s%% kadarını oynattıysanız skroplayacak</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Güncel değer: parçanın %1$s%% kadarı</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Yüzde olarak minimum oynatılan parça uzunluğu</string>
+    <string name="settings_min_track_elapsed_time_in_percent_title">Yüzde olarak minimum oynatılan parça uzunluğu</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">WAIL bir parçayı sadece o parçanın %1$s kadarını oynattıysanız skroplayacak</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">Saniye cinsinden minimum oynatılan parça süresi</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_title">Saniye cinsinden minimum oynatılan parça süresi</string>
+    <string name="settings_notifications_min_priority">Minimum bildiri önceliği</string>
+    <string name="settings_notifications_title">Bildiriler</string>
+    <string name="settings_notifications_track_now_scrobbling">WAIL şimdi skropluyor</string>
+    <string name="settings_notifications_track_scrobbled">WAIL parçayı skroplandı olarak işaretledi</string>
+    <string name="settings_other">Diğer</string>
+    <string name="settings_scrobbling_options_title">Skroplama seçenekleri</string>
+    <string name="settings_scrobbling_over_mobile_network_disabled_toast">Mobil şebeke üzerinden skroplama devre dışı!</string>
+    <string name="settings_scrobbling_over_mobile_network_enabled_toast">Mobil şebeke üzerinden skroplama etkin!</string>
+    <string name="settings_sound_notifications_activity_label">Sesli bildiriler</string>
+    <string name="settings_sound_notifications_description">Parça skroplandı tonu, v.b.</string>
+    <string name="settings_sound_notifications_pro_tip">İpucu: oynatmak için ses açıklamasına dokunun</string>
+    <string name="settings_sound_notifications_title">Sesli bildiriler</string>
+    <string name="settings_sound_notifications_toast_can_not_play_sound">Ses oynatılamadı :(</string>
+    <string name="settings_status_bar_notifications_activity_label">Durum çubuğu bildirileri</string>
+    <string name="settings_status_bar_notifications_title">Durum çubuğu bildirileri</string>
+    <string name="settings_theme_switch_label">Karanlık görünüm</string>
+    <string name="settings_track_was_skipped">WAIL gerekli süre kadar oynatılmadığı için parçayı atladı</string>
+    <string name="settings_wail_disabled_toast">WAIL devre dışı ;(</string>
+    <string name="settings_wail_enabled_toast">WAIL devrede!</string>
+    <string name="text_button_sign_in_last_fm">Last.fm\'e giriş yap</string>
+    <string name="track_artist_and_album_no_data">Sanatçı ve albüm için bilgi bulunamadı :(</string>
+    <string name="track_status_scrobble_error">Skroplama hatası</string>
+    <string name="track_status_scrobble_success">Skroplandı</string>
+    <string name="track_status_scrobbling">Skroplanıyor…</string>
+    <string name="track_status_unknown">Bilinmeyen durum :(</string>
+    <string name="track_status_waiting_for_scrobble">Skroplama için bekleniyor</string>
+    <string name="tracks_actionbar_title">Parçalar</string>
+    <string name="tracks_list_empty_motivation_text">Sevdiğiniz oynatıcıda müzik dinlemeyi deneyin ve ardından yakalanan parçaları burada görün!</string>
+    <string name="tracks_search_ab_title">Ara</string>
+    <string name="tracks_search_error_toast">Aramaya devam edilemiyor :(</string>
+    <string name="tracks_search_no_results">%1$s için arama sonucu yok :(</string>
+
+    <string-array name="drawer_items">
+        <item>Anasayfa</item>
+        <item>Parçalar</item>
+        <item>Ayarlar</item>
+    </string-array>
+
+    <string-array name="track_actions">
+        <item>Beğen</item>
+    </string-array>
+
+    <!-- Some languages has 3 word forms depending on word items count -->
+    <!-- But English has only 2 word forms -->
+    <string-array name="word_form_track">
+        <item>Parça</item>
+    </string-array>
+
+    <!-- same as word_form_tracks -->
+    <string-array name="word_forms_second">
+        <item>Saniye</item>
+    </string-array>
+    <!-- END of some common strings -->
+</resources>

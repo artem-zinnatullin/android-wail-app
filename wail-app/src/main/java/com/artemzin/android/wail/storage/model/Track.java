@@ -1,6 +1,6 @@
 package com.artemzin.android.wail.storage.model;
 
-import com.artemzin.android.bytes.common.StringUtil;
+import android.text.TextUtils;
 
 public class Track {
 
@@ -59,12 +59,8 @@ public class Track {
         this.album = album;
     }
 
-    public long getDurationInMillis() {
-        // Some players set duration in seconds, some in milliseconds
-        // If duration is greater then 30000 we assume that it measured in milliseconds
-        return duration < 30000 && duration != -1
-                ? duration * 1000
-                : duration;
+    public long getDuration() {
+        return duration;
     }
 
     public void setDuration(long duration) {
@@ -128,19 +124,19 @@ public class Track {
         if (track == null) return false;
 
 
-        if (!StringUtil.equals(getPlayerPackageName(), track.getPlayerPackageName())) {
+        if (!TextUtils.equals(getPlayerPackageName(), track.getPlayerPackageName())) {
             return false;
         }
 
-        if (!StringUtil.equals(getTrack(), track.getTrack())) {
+        if (!TextUtils.equals(getTrack(), track.getTrack())) {
             return false;
         }
 
-        if (!StringUtil.equals(getAlbum(), track.getAlbum())) {
+        if (!TextUtils.equals(getAlbum(), track.getAlbum())) {
             return false;
         }
 
-        if (duration != track.getDurationInMillis()) {
+        if (duration != track.getDuration()) {
             return false;
         }
 
@@ -153,10 +149,10 @@ public class Track {
             Track track = (Track) o;
 
             return internalDBId == track.internalDBId
-                    && StringUtil.equals(playerPackageName, track.playerPackageName)
-                    && StringUtil.equals(this.track, track.track)
-                    && StringUtil.equals(artist, track.artist)
-                    && StringUtil.equals(album, track.album)
+                    && TextUtils.equals(playerPackageName, track.playerPackageName)
+                    && TextUtils.equals(this.track, track.track)
+                    && TextUtils.equals(artist, track.artist)
+                    && TextUtils.equals(album, track.album)
                     && duration == track.duration
                     && timestamp == track.timestamp
                     && state == track.state

@@ -32,6 +32,9 @@
     <string name="main_updated_common">%1$s에 업데이트됨</string>
     <string name="main_refresh_info_from_lastfm_network_error">네트워크 오류 발생, 다음에 다시 시도하세요</string>
     <string name="main_refresh_info_from_lastfm_api_error">Last.fm 오류: %1$s</string>
+    <string name="main_scrobbling_from_player_label">현재 플레이어: %s</string>
+    <string name="main_confirm_ignoring_player">%s을 제외하시겠습니까??</string>
+    <string name="main_ignore_this_player_button_text">이 플레이어 제외</string>
     <string name="main_refresh_info_from_lastfm_unknown_error">last.fm으로부터 정보를 가져올 수 없습니다. 죄송해요 :(</string>
     <string name="main_feedback_please">Google Play에 WAIL 피드백을 남겨주지 않으셔서 슬프네요 :(</string>
     <string name="main_feedback_please_happy_toast">이제 WAIL은 행복합니다 ;)</string>
@@ -64,6 +67,12 @@
     <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">최소 트랙 재생 시간(초)</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_title">최소 트랙 재생 시간(\%%)</string>
     <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">현재 값: 트랙의 %1$s%%</string>
+    <string name="settings_ignored_players_item_title">제외된 플레이어 목록</string>
+    <string name="settings_ignored_players_item_desc">WAIL은 이 플레이어로 재생된 곡들을 집계하지 않을 것입니다</string>
+    <string name="settings_ignored_players_activity_label">제외된 플레이어 목록</string>
+    <string name="settings_ignored_players_image_content_description">제외된 플레이어 이미지</string>
+    <string name="settings_confirm_unignoring_player">이 플레이어 \"%s\"를 다시 포함시키겠습니까?</string>
+    <string name="settings_ignored_players_empty_text">제외된 플레이어가 없습니다</string>
     <string name="settings_lastfm_update_nowplaying_title">last.fm을 통해 현재 듣고 있는 곡</string>
     <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm update now 사용 시작됨</string>
     <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm update now 사용 중지됨</string>

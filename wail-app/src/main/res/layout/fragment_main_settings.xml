@@ -98,6 +98,26 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/divider" />
+
+                <LinearLayout
+                    android:id="@+id/settings_ignored_players"
+                    style="?settingsItem">
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        style="?settingsItemTitle"
+                        android:text="@string/settings_ignored_players_item_title" />
+
+                    <com.artemzin.android.wail.ui.TypefaceTextView
+                        android:id="@+id/settings_ignored_players_desc"
+                        style="?settingsItemDescription"
+                        android:text="@string/settings_ignored_players_item_desc" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
