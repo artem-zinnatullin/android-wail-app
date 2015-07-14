@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 
 import com.artemzin.android.wail.api.lastfm.LFApiException;
 import com.artemzin.android.wail.api.lastfm.LFTrackApi;
@@ -248,7 +249,6 @@ public class WAILService extends Service {
         com.artemzin.android.wail.storage.model.Track lastAddedTrack = TracksDBHelper.getInstance(getApplicationContext())
                 .getLastAddedTrack();
 
-
         if (lastAddedTrack != null) {
             final long pauseBetweenTracksInSeconds = (track.getTimestamp() - lastAddedTrack.getTimestamp()) / 1000;
             if (pauseBetweenTracksInSeconds < 10) {
@@ -257,6 +257,11 @@ public class WAILService extends Service {
             } else {
                 Loggi.w("Pause between tracks is ok " + pauseBetweenTracksInSeconds + " seconds");
             }
+        }
+
+        if (TextUtils.isEmpty(track.getArtist()) || TextUtils.isEmpty(track.getTrack())) {
+            Loggi.w("Skipping track without name or artist");
+            return;
         }
 
         if (TracksDBHelper.getInstance(WAILService.this).add(track) != -1) {
@@ -298,10 +303,11 @@ public class WAILService extends Service {
 
             @Override
             protected Void doInBackground(Void... params) {
-                Cursor tracksCursor = TracksDBHelper.getInstance(getApplicationContext()).getAllDesc();
+                TracksDBHelper tracksDBHelper = TracksDBHelper.getInstance(getApplicationContext());
+                Cursor tracksCursor = tracksDBHelper.getAllDesc();
 
-                final List<com.artemzin.android.wail.storage.model.Track> tracksToScrobbleListForDB = new ArrayList<com.artemzin.android.wail.storage.model.Track>();
-                final List<LFTrackRequestModel> tracksToScrobbleForApiRequest = new ArrayList<LFTrackRequestModel>();
+                final List<com.artemzin.android.wail.storage.model.Track> tracksToScrobbleListForDB = new ArrayList<>();
+                final List<LFTrackRequestModel> tracksToScrobbleForApiRequest = new ArrayList<>();
 
                 boolean isTracksToScrobbleCountMoreThanMaxForRequest = false;
 
@@ -314,6 +320,12 @@ public class WAILService extends Service {
                 if (tracksCursor.moveToFirst()) {
                     do {
                         com.artemzin.android.wail.storage.model.Track track = TracksDBHelper.parseFromCursor(tracksCursor);
+
+                        if (TextUtils.isEmpty(track.getArtist()) || TextUtils.isEmpty(track.getTrack())) {
+                            Loggi.w("Removing track without name or artist from database");
+                            tracksDBHelper.delete(track);
+                            continue;
+                        }
 
                         if (tracksToScrobbleForApiRequest.size() >= 48) {
                             isTracksToScrobbleCountMoreThanMaxForRequest = true;
