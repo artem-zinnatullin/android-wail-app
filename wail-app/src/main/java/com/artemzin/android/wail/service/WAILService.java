@@ -596,11 +596,19 @@ public class WAILService extends Service {
 
             @Override
             protected Void doInBackground(Void... params) {
-                Cursor tracksCursor = LovedTracksDBHelper.getInstance(getApplicationContext()).getAllDesc();
+                LovedTracksDBHelper lovedTracksDBHelper = LovedTracksDBHelper.getInstance(getApplicationContext());
+                Cursor tracksCursor = lovedTracksDBHelper.getAllDesc();
 
                 if (tracksCursor.moveToFirst()) {
                     do {
                         Track track = LovedTracksDBHelper.parseFromCursor(tracksCursor);
+
+                        if (TextUtils.isEmpty(track.getArtist()) || TextUtils.isEmpty(track.getTrack())) {
+                            Loggi.w("Removing track without name or artist from loved tracks database");
+                            lovedTracksDBHelper.delete(track);
+                            continue;
+                        }
+
                         loveTrack(track);
                     } while (tracksCursor.moveToNext());
                 }
