@@ -13,8 +13,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 28
-        versionName '0.7.4 beta'
+        versionCode 29
+        versionName '0.7.5 beta'
     }
 
     packagingOptions {

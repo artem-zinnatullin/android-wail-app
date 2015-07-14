@@ -1,2 +1,3 @@
 build/
+custom_env/
 custom_env.gradle
