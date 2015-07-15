@@ -5,7 +5,7 @@
 
 [![Get WAIL on the Google Play!](http://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=com.artemzin.android.wail&referrer=utm_source%3Dgithub)
 
-*Main* ***develop*** branch build status [on Travis CI](https://travis-ci.org/artem-zinnatullin/android-wail-app): [![Build Status](https://travis-ci.org/artem-zinnatullin/android-wail-app.svg?branch=develop)](https://travis-ci.org/artem-zinnatullin/android-wail-app)
+*Main* ***master*** branch build status [on Travis CI](https://travis-ci.org/artem-zinnatullin/android-wail-app): [![Build Status](https://travis-ci.org/artem-zinnatullin/android-wail-app.svg?branch=master)](https://travis-ci.org/artem-zinnatullin/android-wail-app)
 
 [![Join the chat at https://gitter.im/artem-zinnatullin/android-wail-app](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/artem-zinnatullin/android-wail-app?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
