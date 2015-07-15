@@ -25,8 +25,10 @@ import butterknife.OnClick;
  * @author Artem Zinnatullin [artem.zinnatullin@gmail.com]
  */
 public class SettingsSoundNotificationsFragment extends BaseFragment {
-
     private final String GA_EVENT_SETTINGS_SOUND_NOTIFICATIONS = "SettingsSoundNotifications";
+
+    /** Delay in ms to play the sound after the list item is clicked. */
+    private static final long SOUND_DELAY = 100;
 
     @InjectView(R.id.settings_sound_notifications_track_marked_as_scrobbled_switch)
     public SwitchCompat trackMarkedAsScrobbledSoundSwitch;
@@ -91,7 +93,9 @@ public class SettingsSoundNotificationsFragment extends BaseFragment {
                 1L).build());
 
         try {
-            SoundNotificationsManager.getInstance(activity).playTrackMarkedAsScrobbledSound(true);
+            // Delay playing the sound so that it doesn't conflict with the "tap" sound effect.
+            final SoundNotificationsManager soundNotificationManager = SoundNotificationsManager.getInstance(activity);
+            soundNotificationManager.playTrackMarkedAsScrobbledSound(true, SOUND_DELAY);
         } catch (Exception e) {
             Loggi.e("SettingsSoundNotificationsFragment.tryToPlayTrackMarkedAsScrobbledSound() exception: " + e);
             Toast.makeText(activity, R.string.settings_sound_notifications_toast_can_not_play_sound, Toast.LENGTH_LONG).show();
@@ -107,7 +111,7 @@ public class SettingsSoundNotificationsFragment extends BaseFragment {
                 1L).build());
 
         try {
-            SoundNotificationsManager.getInstance(activity).playTrackSkippedSound(true);
+            SoundNotificationsManager.getInstance(activity).playTrackSkippedSound(true, SOUND_DELAY);
         } catch (Exception e) {
             Loggi.e("SettingsSoundNotificationsFragment.tryToPlayTrackSkippedSound() exception: " + e);
             Toast.makeText(activity, R.string.settings_sound_notifications_toast_can_not_play_sound, Toast.LENGTH_LONG).show();
