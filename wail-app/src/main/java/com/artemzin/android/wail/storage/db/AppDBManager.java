@@ -39,13 +39,11 @@ public class AppDBManager extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion == 1 && newVersion == 2) {
-            db.execSQL(LovedTracksDBHelper.TableInfo.CREATE_TABLE_QUERY);
-        } else if (oldVersion == 2 && newVersion == 3) {
-            db.execSQL(IgnoredPlayersDBHelper.TableInfo.CREATE_TABLE_QUERY);
-        } else if (oldVersion == 1 && newVersion == 3) {
-            db.execSQL(LovedTracksDBHelper.TableInfo.CREATE_TABLE_QUERY);
-            db.execSQL(IgnoredPlayersDBHelper.TableInfo.CREATE_TABLE_QUERY);
+        switch (oldVersion) {
+            case 1: // Upgrade from 1 to 2
+                db.execSQL(LovedTracksDBHelper.TableInfo.CREATE_TABLE_QUERY);
+            case 2: // Upgrade from 2 to 3
+                db.execSQL(IgnoredPlayersDBHelper.TableInfo.CREATE_TABLE_QUERY);
         }
     }
 
