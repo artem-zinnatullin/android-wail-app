@@ -1,106 +1,151 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="not_authorized_activity_label">Salut!</string>
-  <string name="app_main_about_1">WAIL — Qu\'est-ce que j\'écoute ?</string>
-  <string name="app_main_about_2">WAIL va scrobbler sur last.fm la musique que vous écoutez avec vos différents lecteurs.</string>
-  <string name="text_button_sign_in_last_fm">Se connecter sur last.fm</string>
-  <string name="non_authorized_sign_up_in_lastfm">Inscrivez-vous last.fm</string>
-  <string name="lastfm_api_error_11">Oups ! Last.fm est injoignable, veuillez réessayer plus tard</string>
-  <string name="lastfm_logging_progress_dialog_message">Connexion à last.fm…</string>
-  <string name="lastfm_logging_network_error">Impossible de se connecter à last.fm, merci de vérifier votre connexion internet</string>
-  <string name="lastfm_logging_api_error_unknown">Impossible d\'interpréter la réponse de last.fm, vous devriez peut-être mettre à jour l\'appli ?</string>
-  <string name="lastfm_logging_api_error_14">Vous n\'avez pas autorisé WAIL à publié sur Lastfm</string>
-  <string name="main_today">aujourd\'hui</string>
-  <string name="main_tracks_on_last_fm">scrobblé sur last.fm</string>
-  <string name="main_tracks_on_last_fm_unknown">Nombre total de pistes sur last.fm inconnu :(\nEssayez de tirer pour rafraîchir !</string>
-  <string name="main_now_scrobbling_label">En train de scrobller : %1$s</string>
-  <string name="main_now_scrobbling_nothing">rien :(</string>
-  <string name="main_pull_down_to_refresh_toast">Tirer pour rafraîchir les données</string>
-  <string name="main_refreshing">Mise à jour…</string>
-  <string name="main_updated_today_at">mis à jour aujourd\'hui à %1$s</string>
-  <string name="main_updated_yesterday_at">mis à jour hier à %1$s</string>
-  <string name="main_updated_common">mis à jour %1$s</string>
-  <string name="main_refresh_info_from_lastfm_network_error">Erreur réseau, merci de réessayer ultérieurement</string>
-  <string name="main_refresh_info_from_lastfm_api_error">Erreur last.fm : %1$s</string>
-  <string name="main_scrobbling_from_player_label">depuis %s</string>
-  <string name="main_confirm_ignoring_player">Voulez-vous ignorer %s ?</string>
-  <string name="main_ignore_this_player_button_text">Ignorer ce lecteur</string>
-  <string name="main_refresh_info_from_lastfm_unknown_error">N\'a pas pu mettre à jour les info de last.fm, désolé :(</string>
-  <string name="main_feedback_please">WAIL est triste sans votre avis sur Google Play :(</string>
-  <string name="main_feedback_please_happy_toast">Maintenant, WAIL est content ;)</string>
-  <string name="main_track_loved">Piste aimée :)</string>
-  <string name="tracks_actionbar_title">Pistes</string>
-  <string name="tracks_list_empty_motivation_text">Écoutez de la musique avec votre lecteur favori, et les pistes apparaîtront ici !</string>
-  <string name="track_artist_and_album_no_data">Aucune donnée pour ces artiste et album :(</string>
-  <string name="track_status_waiting_for_scrobble">En attente du scrobble</string>
-  <string name="track_status_scrobbling">En train de scrobbler…</string>
-  <string name="track_status_scrobble_error">Erreur lors de l\'envoi du scrobble</string>
-  <string name="track_status_scrobble_success">Scrobblé</string>
-  <string name="track_status_unknown">Statut inconnu :(</string>
-  <string name="tracks_search_ab_title">Recherche</string>
-  <string name="tracks_search_error_toast">Ne peut pas effectuer la recherche</string>
-  <string name="tracks_search_no_results">Aucune résultat pour : \"%1$s\" :(</string>
-  <string name="settings_actionbar_title">Paramètres</string>
-  <string name="settings_wail_enabled_toast">WAIL Activé ! C\'est parti !</string>
-  <string name="settings_wail_disabled_toast">WAIL désactivé ;(</string>
-  <string name="settings_scrobbling_options_title">Options de scrobble</string>
-  <string name="settings_min_track_elapsed_time_in_percent_title">Temps min. d\'écoute en pourcentage</string>
-  <string name="settings_min_track_elapsed_time_in_seconds_title">Temps min. d\'écoute en secondes</string>
-  <string name="settings_min_track_elapsed_time_in_percent_desc">"la piste sera scrobblée uniquement si vous avez écouté plus de %1$s "</string>
-  <string name="settings_min_track_elapsed_time_in_seconds_desc">la piste sera scrobblée si vous avez écouté plus de %1$s</string>
-  <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">Temps d\'écoute min. en secondes</string>
-  <string name="settings_min_track_elapsed_time_in_percent_dialog_title">"Temps d'écoute min. en pourcentage "</string>
-  <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Valeur actuelle : %1$s&#0037;&#0037; de la piste</string>
-  <string name="settings_ignored_players_item_title">Lecteurs audio ignorés</string>
-  <string name="settings_ignored_players_item_desc">WAIL ne va pas scrobbler les pistes écoutées avec ces lecteurs</string>
-  <string name="settings_ignored_players_activity_label">"Lecteurs audio ignorés "</string>
-  <string name="settings_confirm_unignoring_player">Voulez-vous prendre en considération le lecteur \"%s\" ?</string>
-  <string name="settings_ignored_players_empty_text">Vous n\'ignorez aucun lecteur</string>
-  <string name="settings_lastfm_update_nowplaying_title">\"En ce moment\" sur last.fm</string>
-  <string name="settings_lastfm_update_nowplaying_enabled_toast">Scrobble \"En ce moment\" activé</string>
-  <string name="settings_lastfm_update_nowplaying_disabled_toast">Scrobble \"En ce moment\" desactivé</string>
-  <string name="settings_scrobbling_over_mobile_network_enabled_toast">Scrobble sur réseau mobile activé !</string>
-  <string name="settings_scrobbling_over_mobile_network_disabled_toast">Scrobble sur réseau mobile désactivé !</string>
-  <string name="settings_notifications_title">Notifications</string>
-  <string name="settings_sound_notifications_title">Notifications sonores</string>
-  <string name="settings_sound_notifications_description">Son lorsqu\'une piste est scrobblée, etc.</string>
-  <string name="settings_status_bar_notifications_title">Notifications dans la barre de status</string>
-  <string name="settings_theme_switch_label">Thème sombre</string>
-  <string name="settings_other">Autre</string>
-  <string name="settings_email_to_developers">Contacter les développeurs par email</string>
-  <string name="settings_email_dialog_title">Choisissez votre application de courrier électronique</string>
-  <string name="main_settings_menu_toggle_wail">Activer/Désactiver WAIL</string>
-  <string name="settings_disable_scrobbling_over_mobile_network">Scrobble sur réseau mobile</string>
-  <string name="settings_sound_notifications_activity_label">Son de notification</string>
-  <string name="settings_sound_notifications_pro_tip">Astuce d\'expert : Tapotez la description du son pour l\'écouter</string>
-  <string name="settings_notifications_track_scrobbled">WAIL a marqué la piste comme scrobblée</string>
-  <string name="settings_track_was_skipped">WAIL a sauté la piste parce qu\'elle n\'a pas été écoutée assez longtemps</string>
-  <string name="settings_sound_notifications_toast_can_not_play_sound">Ne peut pas jouer le son :(</string>
-  <string name="settings_logout">Se déconnecter</string>
-  <string name="setting_logout_warning">Toutes les pistes scrobblées vont être supprimées. Êtes-vous vraiment certain ?</string>
-  <string name="settings_status_bar_notifications_activity_label">Notifications dans la barre de statut</string>
-  <string name="settings_notifications_track_now_scrobbling">WAIL est en train de scrobbler la piste</string>
-  <string name="settings_notifications_min_priority">Priorité minimale de notification</string>
-  <string name="notifications_now_scrobbling">En train de scrobbler</string>
-  <string name="notifications_love_current_track">Ajouter à mes coups de cœur</string>
-  <string name="notifications_track_loved">Piste ajoutée aux coups de cœur</string>
-  <string name="dialog_cancel">Annuler</string>
-  <string name="dialog_save">Enregister</string>
-  <string name="drawer_registered_at">"Enregistré"</string>
-  <string-array name="drawer_items">
-    <item>Accueil</item>
-    <item>Pistes</item>
-    <item>Paramètres</item>
-  </string-array>
-  <string-array name="track_actions">
-    <item>Coup de cœur</item>
-  </string-array>
-  <string-array name="word_form_track">
-    <item>piste</item>
-    <item>pistes</item>
-  </string-array>
-  <string-array name="word_forms_second">
-    <item>seconde</item>
-    <item>secondes</item>
-  </string-array>
+
+    <!-- START of Not authorized main screen strings -->
+    <string name="not_authorized_activity_label">Hi there!</string>
+    <string name="app_main_about_1">WAIL — What am I listening to?</string>
+    <string name="app_main_about_2">WAIL will scrobble music you are listening to via different music players to last.fm</string>
+    <string name="text_button_sign_in_last_fm">Sign in to last.fm</string>
+    <string name="non_authorized_sign_up_in_lastfm">Sign up for last.fm</string>
+    <!-- END of Not authorized main screen -->
+
+    <string name="lastfm_api_error_11">Wow, last.fm service is offline, please try again later</string>
+
+    <!-- START of authorization screen strings -->
+    <string name="lastfm_logging_progress_dialog_message">Authorizing in last.fm…</string>
+    <string name="lastfm_logging_network_error">Could not login into last.fm, please check your internet connection</string>
+    <string name="lastfm_logging_api_error_unknown">Can not understand last.fm response, may be you need to update the app?</string>
+    <string name="lastfm_logging_api_error_14">You did not authorize WAIL in Last.FM :(</string>
+    <string name="lastfm_logging_api_error_15">You authorized WAIL in Last.FM too long ago. Please try again.</string>
+    <!-- END of authorization screen strings -->
+
+    <!-- START of main screen strings -->
+    <string name="main_today">today</string>
+    <string name="main_tracks_on_last_fm">scrobbled on last.fm</string>
+    <string name="main_tracks_on_last_fm_unknown">Total tracks count on last.fm is unknown :(\nTry to do manual pull to refresh!</string>
+    <string name="main_now_scrobbling_label">Now scrobbling: %1$s</string>
+    <string name="main_now_scrobbling_nothing">nothing :(</string>
+    <string name="main_pull_down_to_refresh_toast">Pull down to refresh data :)</string>
+    <string name="main_refreshing">Refreshing…</string>
+    <string name="main_updated_today_at">updated today at %1$s</string>
+    <string name="main_updated_yesterday_at">updated yesterday at %1$s</string>
+    <string name="main_updated_common">updated %1$s</string>
+    <string name="main_refresh_info_from_lastfm_network_error">Network error, please try again later</string>
+    <string name="main_refresh_info_from_lastfm_api_error">Last.fm error: %1$s</string>
+    <string name="main_scrobbling_from_player_label">from %s</string>
+    <string name="main_confirm_ignoring_player">Do you want to ignore %s?</string>
+    <string name="main_ignore_this_player_button_text">Ignore this player</string>
+    <string name="main_refresh_info_from_lastfm_unknown_error">Can not update info from last.fm, sorry :(</string>
+    <string name="main_feedback_please">WAIL is sad without your feedback on the Google Play :(</string>
+    <string name="main_feedback_please_happy_toast">Now WAIL is happy ;)</string>
+    <string name="main_track_loved">Track loved :)</string>
+    <!-- END of main screen strings -->
+
+    <!-- START of tracks list screen strings -->
+    <string name="tracks_actionbar_title">Tracks</string>
+    <string name="tracks_list_empty_motivation_text">Try listening to music in your favorite music player and you will see captured tracks here!</string>
+    <string name="track_artist_and_album_no_data">No data for artist and album :(</string>
+    <string name="track_status_waiting_for_scrobble">Waiting for scrobble</string>
+    <string name="track_status_scrobbling">Scrobbling…</string>
+    <string name="track_status_scrobble_error">Scrobble error</string>
+    <string name="track_status_scrobble_success">Scrobbled</string>
+    <string name="track_status_unknown">Unknown state :(</string>
+    <string name="tracks_search_ab_title">Search</string>
+    <string name="tracks_search_error_toast">Can not proceed search :(</string>
+    <string name="tracks_search_no_results">No search results for text: %1$s :(</string>
+    <!-- END of tracks list screen strings -->
+
+    <!-- START of settings screen strings -->
+    <string name="settings_actionbar_title">WAIL Settings</string>
+    <string name="settings_wail_enabled_toast">WAIL enabled! Lets go!</string>
+    <string name="settings_wail_disabled_toast">WAIL disabled ;(</string>
+    <string name="settings_scrobbling_options_title">Scrobbling options</string>
+    <string name="settings_min_track_elapsed_time_in_percent_title">Min track time elapsed in percent</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_title">Min track time elapsed in seconds</string>
+    <string name="settings_min_track_elapsed_time_in_percent_desc">WAIL will scrobble a track only if you have played it at least for %1$s%% of its duration</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">WAIL will scrobble a track only if you have played it at least for %1$s</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">Min track el. time in secs</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_title">Min track time elapsed in percents</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">Current value %1$s%% of track</string>
+    <string name="settings_ignored_players_item_title">Ignored media players</string>
+    <string name="settings_ignored_players_item_desc">WAIL will not scrobble tracks played by these players</string>
+    <string name="settings_ignored_players_activity_label">Ignored media players</string>
+    <string name="settings_ignored_players_image_content_description">Ignored player image</string>
+    <string name="settings_confirm_unignoring_player">Do you want to stop ignoring player \"%s\"?</string>
+    <string name="settings_ignored_players_empty_text">You have no ignored players</string>
+    <string name="settings_lastfm_update_nowplaying_title">Listening now on last.fm</string>
+    <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm update nowplaying enabled</string>
+    <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm update nowplaying turned off</string>
+    <string name="settings_scrobbling_over_mobile_network_enabled_toast">Scrobbling over mobile network enabled!</string>
+    <string name="settings_scrobbling_over_mobile_network_disabled_toast">Scrobbling over mobile network disabled!</string>
+    <string name="settings_notifications_title">Notifications</string>
+    <string name="settings_sound_notifications_title">Sound notifications</string>
+    <string name="settings_sound_notifications_description">Track scrobbled sound, etc…</string>
+    <string name="settings_status_bar_notifications_title">Status bar notifications</string>
+    <string name="settings_theme_switch_label">Dark theme</string>
+    <string name="settings_other">Other</string>
+    <string name="settings_email_to_developers">Email developers</string>
+    <string name="settings_email_dialog_title">Select email app</string>
+    <string name="main_settings_menu_toggle_wail">Toggle WAIL</string>
+    <string name="settings_disable_scrobbling_over_mobile_network">Scrobbling over mobile network</string>
+
+    <!-- END of settings screen strings -->
+
+    <!-- START of sound notifications screen strings -->
+    <string name="settings_sound_notifications_activity_label">Sound notifications</string>
+    <string name="settings_sound_notifications_pro_tip">Pro tip: tap on the sound description to play it</string>
+    <string name="settings_notifications_track_scrobbled">WAIL marked track as scrobbled</string>
+    <string name="settings_track_was_skipped">WAIL skipped track because it was not played required time</string>
+    <string name="settings_sound_notifications_toast_can_not_play_sound">Can not play sound :(</string>
+    <string name="settings_logout">Logout</string>
+    <string name="setting_logout_warning">All scrobbling data will be deleted! Are you sure?</string>
+    <!-- END of sound notifications screen strings -->
+
+    <string name="settings_status_bar_notifications_activity_label">Status bar notifications</string>
+    <string name="settings_notifications_track_now_scrobbling">WAIL is now scrobbling track</string>
+    <string name="settings_notifications_min_priority">Minimum notification priority</string>
+
+    <string name="notifications_now_scrobbling">Now scrobbling</string>
+    <string name="notifications_love_current_track">Love this track</string>
+    <string name="notifications_track_loved">Track loved</string>
+
+    <!-- START of some common strings -->
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_save">Save</string>
+    <string name="drawer_registered_at">"Registered "</string>
+    <string name="drawer_item_image_content_description">Drawer item image</string>
+
+    <string-array name="drawer_items">
+        <item>Main</item>
+        <item>Tracks</item>
+        <item>Settings</item>
+    </string-array>
+
+    <string-array name="track_actions">
+        <item>Love</item>
+    </string-array>
+
+    <!-- Some languages has 3 word forms depending on word items count -->
+    <!-- But English has only 2 word forms -->
+    <string-array name="word_form_track">
+        <item>track</item>
+        <!-- example: 1 track -->
+        <item>tracks</item>
+        <!-- example: 2 tracks, 3, .... infinity -->
+        <!-- <item>3rd word form</item> -->
+        <!-- if your language requires 3rd word form, uncomment and  write it above -->
+
+        <!-- example for Russian language -->
+        <!-- 1 трек, 2 трека, 3 трека, 4 трека, 5 треков -->
+        <!-- as you see, we got 3 word forms: "трек", "трека", "треков" -->
+    </string-array>
+
+    <!-- same as word_form_tracks -->
+    <string-array name="word_forms_second">
+        <item>second</item>
+        <item>seconds</item>
+        <!-- <item>3rd word form</item> -->
+    </string-array>
+    <!-- END of some common strings -->
+
 </resources>
