@@ -116,11 +116,16 @@ public class WAILService extends Service {
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.waillove_widget);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
 
-        String trackText = "-";
-        String artistText = "-";
-        if (track != null) {
+        String trackText;
+        String artistText;
+        if (track == null) {
+            trackText = getString(R.string.main_now_scrobbling_label, getString(R.string.main_now_scrobbling_nothing));
+            artistText = "";
+            remoteViews.setBoolean(R.id.widget_love_current_track_button, "setEnabled", false);
+        } else {
             trackText = track.getTrack();
             artistText = track.getArtist();
+            remoteViews.setBoolean(R.id.widget_love_current_track_button, "setEnabled", true);
         }
 
         remoteViews.setTextViewText(R.id.widget_infobox_track_text, trackText);

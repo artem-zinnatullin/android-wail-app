@@ -64,7 +64,7 @@ public class WAILLoveWidget extends AppWidgetProvider {
         if (LOVE_CLICKED.equals(intent.getAction())) {
             Track track = WAILSettings.getNowScrobblingTrack(context);
             if (track == null) {
-                Toast.makeText(context, "nufin to luv T__T", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getString(R.string.widget_nothing_to_love), Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(context, context.getString(R.string.main_track_loved), Toast.LENGTH_SHORT).show();
                 LovedTracksDBHelper.getInstance(context).add(track);
