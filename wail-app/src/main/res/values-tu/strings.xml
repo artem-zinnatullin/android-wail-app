@@ -112,4 +112,8 @@
         <item>Saniye</item>
     </string-array>
     <!-- END of some common strings -->
+
+    <!-- START of widget strings -->
+    <string name="widget_nothing_to_love">Şu an oynatılan bir parça yok!</string>
+    <!-- END of widget strings -->
 </resources>

@@ -149,7 +149,6 @@
     <!-- END of some common strings -->
 
     <!-- START of widget strings -->
-    <string name="add_widget">Add widget</string>
     <string name="widget_nothing_to_love">No track currently playing to love!</string>
     <!-- END of widget strings -->
 

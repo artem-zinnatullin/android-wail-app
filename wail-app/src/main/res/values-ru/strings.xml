@@ -108,4 +108,8 @@
         <item>секунды</item>
         <item>секунд</item>
     </string-array>
+
+    <!-- START of widget strings -->
+    <string name="widget_nothing_to_love">No track currently playing to love!</string>
+    <!-- END of widget strings -->
 </resources>
