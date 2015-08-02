@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.widget.RemoteViews;
@@ -112,7 +113,7 @@ public class WAILService extends Service {
         return START_STICKY;
     }
 
-    private void updateWidget(Track track) {
+    private void updateWidget(@Nullable Track track) {
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.waillove_widget);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
 

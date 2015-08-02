@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,10 +18,16 @@ import com.artemzin.android.wail.service.WAILService;
 import com.artemzin.android.wail.storage.WAILSettings;
 import com.artemzin.android.wail.storage.db.LovedTracksDBHelper;
 import com.artemzin.android.wail.storage.model.Track;
+import com.artemzin.android.wail.util.AsyncTaskExecutor;
 
 public class WAILLoveWidget extends AppWidgetProvider {
 
-    private static final String LOVE_CLICKED = "LOVE_CLICKED";
+    private static final String LOVE_TRACK_BUTTON_CLICKED = "LOVE_TRACK_BUTTON_CLICKED";
+
+    // Show info box only if widget has a min width of 3 cells, which needs to be calculated in terms of dp.
+    // Formula provided in Widget Design Guideline is (70 x n - 30) where n is number of cells.
+    // see: http://developer.android.com/guide/practices/ui_guidelines/widget_design.html
+    private static final int MIN_WIDTH_TO_SHOW_INFO_BOX = 179;
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -39,14 +46,14 @@ public class WAILLoveWidget extends AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.waillove_widget);
 
         int newMinWidth = newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
-        if (newMinWidth > 179) {
+        if (newMinWidth > MIN_WIDTH_TO_SHOW_INFO_BOX) {
             views.setViewVisibility(R.id.widget_infobox_layout, View.VISIBLE);
         } else {
             views.setViewVisibility(R.id.widget_infobox_layout, View.GONE);
         }
 
         Intent loveTrackIntent = new Intent(context, getClass());
-        loveTrackIntent.setAction(LOVE_CLICKED);
+        loveTrackIntent.setAction(LOVE_TRACK_BUTTON_CLICKED);
         PendingIntent pendingLoveTrackIntent = PendingIntent.getBroadcast(context, 0, loveTrackIntent, 0);
         views.setOnClickPendingIntent(R.id.widget_love_current_track_button, pendingLoveTrackIntent);
 
@@ -58,21 +65,33 @@ public class WAILLoveWidget extends AppWidgetProvider {
     }
 
     @Override
-    public void onReceive(@NonNull Context context, @NonNull Intent intent) {
+    public void onReceive(@NonNull final Context context, @NonNull final Intent intent) {
         super.onReceive(context, intent);
 
-        if (LOVE_CLICKED.equals(intent.getAction())) {
-            Track track = WAILSettings.getNowScrobblingTrack(context);
+        if (LOVE_TRACK_BUTTON_CLICKED.equals(intent.getAction())) {
+            final Track track = WAILSettings.getNowScrobblingTrack(context);
             if (track == null) {
                 Toast.makeText(context, context.getString(R.string.widget_nothing_to_love), Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(context, context.getString(R.string.main_track_loved), Toast.LENGTH_SHORT).show();
-                LovedTracksDBHelper.getInstance(context).add(track);
-
-                Intent handleLovedTracksIntent = new Intent(context, WAILService.class);
-                handleLovedTracksIntent.setAction(WAILService.INTENT_ACTION_HANDLE_LOVED_TRACKS);
-                context.startService(handleLovedTracksIntent);
+                return;
             }
+
+            AsyncTaskExecutor.executeConcurrently(new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... objects) {
+                    LovedTracksDBHelper.getInstance(context).add(track);
+
+                    Intent handleLovedTracksIntent = new Intent(context, WAILService.class);
+                    handleLovedTracksIntent.setAction(WAILService.INTENT_ACTION_HANDLE_LOVED_TRACKS);
+                    context.startService(handleLovedTracksIntent);
+
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Void o) {
+                    Toast.makeText(context, context.getString(R.string.main_track_loved), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 
