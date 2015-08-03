@@ -120,8 +120,8 @@ public class WAILService extends Service {
         String trackText;
         String artistText;
         if (track == null) {
-            trackText = getString(R.string.main_now_scrobbling_label, getString(R.string.main_now_scrobbling_nothing));
-            artistText = "";
+            trackText = getString(R.string.main_now_scrobbling_label, "");
+            artistText = getString(R.string.main_now_scrobbling_nothing);
             remoteViews.setBoolean(R.id.widget_love_current_track_button, "setEnabled", false);
         } else {
             trackText = track.getTrack();
