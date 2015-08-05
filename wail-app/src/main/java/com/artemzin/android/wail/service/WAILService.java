@@ -1,6 +1,8 @@
 package com.artemzin.android.wail.service;
 
 import android.app.Service;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -8,9 +10,11 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
-
+import android.widget.RemoteViews;
+import com.artemzin.android.wail.R;
 import com.artemzin.android.wail.api.lastfm.LFApiException;
 import com.artemzin.android.wail.api.lastfm.LFTrackApi;
 import com.artemzin.android.wail.api.lastfm.model.request.LFTrackRequestModel;
@@ -25,13 +29,13 @@ import com.artemzin.android.wail.storage.db.LovedTracksDBHelper;
 import com.artemzin.android.wail.storage.db.TracksDBHelper;
 import com.artemzin.android.wail.storage.model.Track;
 import com.artemzin.android.wail.ui.activity.BaseActivity;
+import com.artemzin.android.wail.ui.activity.WAILLoveWidget;
 import com.artemzin.android.wail.util.AsyncTaskExecutor;
 import com.artemzin.android.wail.util.IntentUtil;
 import com.artemzin.android.wail.util.Loggi;
 import com.artemzin.android.wail.util.NetworkUtil;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
-
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -109,6 +113,29 @@ public class WAILService extends Service {
         return START_STICKY;
     }
 
+    private void updateWidget(@Nullable Track track) {
+        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.waillove_widget);
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+
+        String trackText;
+        String artistText;
+        if (track == null) {
+            trackText = getString(R.string.main_now_scrobbling_label, "");
+            artistText = getString(R.string.main_now_scrobbling_nothing);
+            remoteViews.setBoolean(R.id.widget_love_current_track_button, "setEnabled", false);
+        } else {
+            trackText = track.getTrack();
+            artistText = track.getArtist();
+            remoteViews.setBoolean(R.id.widget_love_current_track_button, "setEnabled", true);
+        }
+
+        remoteViews.setTextViewText(R.id.widget_infobox_track_text, trackText);
+        remoteViews.setTextViewText(R.id.widget_infobox_artist_text, artistText);
+
+        int[] widgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(getApplicationContext(), WAILLoveWidget.class));
+        appWidgetManager.updateAppWidget(widgetIds, remoteViews);
+    }
+
     private void handleTrack(final Intent intent) {
         if (intent == null || !WAILSettings.isEnabled(this)) {
             Loggi.w("WAILService track is not handled because WAIL is disabled");
@@ -156,11 +183,13 @@ public class WAILService extends Service {
                     StatusBarNotificationsManager.getInstance(getApplicationContext())
                             .showTrackScrobblingStatusBarNotification(currentTrack);
                     updateNowPlaying(currentTrack);
+                    updateWidget(currentTrack);
                 } else {
                     StatusBarNotificationsManager.getInstance(getApplicationContext())
                             .hideTrackScrobblingStatusBarNotification();
                     WAILSettings.setNowScrobblingTrack(getApplicationContext(), null);
                     WAILSettings.setNowScrobblingPlayerPackageName(getApplicationContext(), null);
+                    updateWidget(null);
                 }
                 LocalBroadcastManager.getInstance(getApplicationContext())
                         .sendBroadcast(new Intent(TracksDBHelper.INTENT_TRACKS_CHANGED));
