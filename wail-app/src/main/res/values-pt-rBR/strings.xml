@@ -21,8 +21,8 @@
 
     <!-- START of main screen strings -->
     <string name="main_today">hoje</string>
-    <string name="main_tracks_on_last_fm">realizado scrobbling no last.fm</string>
-    <string name="main_tracks_on_last_fm_unknown">Total tracks count on last.fm is unknown :(\nTente atualizar manualmente!</string>
+    <string name="main_tracks_on_last_fm">ao total no last.fm</string>
+    <string name="main_tracks_on_last_fm_unknown">Contagem de faixas no last.fm é desconhecida :(\nTente atualizar manualmente!</string>
     <string name="main_now_scrobbling_label">Realizando scrobbling agora: %1$s</string>
     <string name="main_now_scrobbling_nothing">nada :(</string>
     <string name="main_pull_down_to_refresh_toast">Puxe para atualizar as informações :)</string>
@@ -32,7 +32,7 @@
     <string name="main_updated_common">atualizado %1$s</string>
     <string name="main_refresh_info_from_lastfm_network_error">Erro na rede, por favor, tente novamente mais tarde</string>
     <string name="main_refresh_info_from_lastfm_api_error">Erro no last.fm: %1$s</string>
-    <string name="main_scrobbling_from_player_label">de %s</string>
+    <string name="main_scrobbling_from_player_label">a partir do %s</string>
     <string name="main_confirm_ignoring_player">Você quer ignorar %s?</string>
     <string name="main_ignore_this_player_button_text">Ignorar este player de música</string>
     <string name="main_refresh_info_from_lastfm_unknown_error">Não foi possível atualizar informações a partir last.fm, desculpe :(</string>
