@@ -21,7 +21,7 @@
 
     <!-- START of main screen strings -->
     <string name="main_today">hoje</string>
-    <string name="main_tracks_on_last_fm">ao total no last.fm</string>
+    <string name="main_tracks_on_last_fm">faixas ao total no last.fm</string>
     <string name="main_tracks_on_last_fm_unknown">Contagem de faixas no last.fm é desconhecida :(\nTente atualizar manualmente!</string>
     <string name="main_now_scrobbling_label">Realizando scrobbling agora: %1$s</string>
     <string name="main_now_scrobbling_nothing">nada :(</string>
