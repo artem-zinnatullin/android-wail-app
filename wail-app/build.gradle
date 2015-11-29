@@ -4,7 +4,7 @@ repositories {
     maven() {
         url 'http://jcenter.bintray.com'
     }
-    maven { url "https://jitpack.io" }
+    maven { url 'https://jitpack.io' }
 }
 
 android {
