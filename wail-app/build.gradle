@@ -8,12 +8,12 @@ repositories {
 }
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 22
     buildToolsVersion '22.0.1'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 29
         versionName '0.7.5 beta'
     }
