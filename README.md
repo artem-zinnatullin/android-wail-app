@@ -1,3 +1,6 @@
+### DEPRECATED
+This project is no longer maintained.
+
 ##Android WAIL Beta — nice last.fm scrobbler
 **WAIL — What am I listening** 
 
