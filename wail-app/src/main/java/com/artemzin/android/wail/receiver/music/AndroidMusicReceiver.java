@@ -14,6 +14,9 @@ public class AndroidMusicReceiver extends CommonMusicAppReceiver {
         if (handleTrackIntent != null && originalIntent.hasExtra("com.maxmpz.audioplayer.source")) {
             handleTrackIntent.putExtra(EXTRA_PLAYER_PACKAGE_NAME, "com.maxmpz.audioplayer");
         }
+        if (handleTrackIntent != null && originalIntent.hasExtra("scrobbling_source")) {
+            handleTrackIntent.putExtra(EXTRA_PLAYER_PACKAGE_NAME, originalIntent.getStringExtra("scrobbling_source"));
+        }
 
         return handleTrackIntent;
     }
