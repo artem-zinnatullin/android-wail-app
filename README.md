@@ -1,7 +1,7 @@
 ### DEPRECATED
 This project is no longer maintained.
 
-##Android WAIL Beta — nice last.fm scrobbler
+## Android WAIL Beta — nice last.fm scrobbler
 **WAIL — What am I listening** 
 
 *Android [last.fm](http://last.fm) scrobbler and "now playing" updater*
@@ -22,7 +22,7 @@ This project is no longer maintained.
 &nbsp;<img src="screenshots/light_tracks.png" alt="Captured tracks list" height="400px"/>
 &nbsp;<img src="screenshots/light_settings.png" alt="Settings screen" height="400px"/>
 
-##Main features:
+## Main features:
 * Scrobbling tracks to the last.fm (even if you are offline, WAIL will send them later)
 * Updating #nowplaying
 * Sound notifications
@@ -33,7 +33,7 @@ This project is no longer maintained.
 * English, German and Russian languages
 
 -------------------
-###BEFORE CONTRIBUTING TO THE WAIL APP!
+### BEFORE CONTRIBUTING TO THE WAIL APP!
 Please read small wiki about commits style guides, git work flow and sources styleguides -> [WIKI](https://github.com/artem-zinnatullin/android-wail-app/wiki)  
 
 
