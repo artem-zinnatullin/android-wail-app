@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- START of Not authorized main screen strings -->
+    <string name="not_authorized_activity_label">你好啊！</string>
+    <string name="app_main_about_1">WAIL — 我在听什么？</string>
+    <string name="app_main_about_2">WAIL会将你通过多种音乐播放器播放的音乐记录到last.fm</string>
+    <string name="text_button_sign_in_last_fm">登录到last.fm</string>
+    <string name="non_authorized_sign_up_in_lastfm">注册last.fm</string>
+    <!-- END of Not authorized main screen -->
+
+    <string name="lastfm_api_error_11">矮油，last.fm服务处于离线状态，请稍候再试</string>
+
+    <!-- START of authorization screen strings -->
+    <string name="lastfm_logging_progress_dialog_message">正在等待last.fm授权…</string>
+    <string name="lastfm_logging_network_error">无法登录到last.fm，请检查你的互联网连接</string>
+    <string name="lastfm_logging_api_error_unknown">无法理解last.fm的回应，可能你需要更新程序了？</string>
+    <string name="lastfm_logging_api_error_14">你还没在Last.FM给予WAIL授权呢 :(</string>
+    <string name="lastfm_logging_api_error_15">你在Last.FM上给予WAIL授权已经是太长时间之前了。请重试。</string>
+    <!-- END of authorization screen strings -->
+
+    <!-- START of main screen strings -->
+    <string name="main_today">今天</string>
+    <string name="main_tracks_on_last_fm">记录到last.fm</string>
+    <string name="main_tracks_on_last_fm_unknown">无法得知last.fm上的总计曲目数 :( \n试试手动拉一下来刷新！</string>
+    <string name="main_now_scrobbling_label">正在记录： %1$s</string>
+    <string name="main_now_scrobbling_nothing">啥也没有 :(</string>
+    <string name="main_pull_down_to_refresh_toast">下拉以刷新数据 :)</string>
+    <string name="main_refreshing">刷新中…</string>
+    <string name="main_updated_today_at">今天更新于 %1$s</string>
+    <string name="main_updated_yesterday_at">昨天更新于 %1$s</string>
+    <string name="main_updated_common">已更新 %1$s</string>
+    <string name="main_refresh_info_from_lastfm_network_error">网络错误，请稍候重试</string>
+    <string name="main_refresh_info_from_lastfm_api_error">Last.fm 错误： %1$s</string>
+    <string name="main_scrobbling_from_player_label">来自 %s</string>
+    <string name="main_confirm_ignoring_player">你想忽略%s吗?</string>
+    <string name="main_ignore_this_player_button_text">忽略这个播放器</string>
+    <string name="main_refresh_info_from_lastfm_unknown_error">无法从last.fm更新信息，抱歉 :(</string>
+    <string name="main_feedback_please">WAIL没有你在Google Play上的反馈很是忧桑啊 :(</string>
+    <string name="main_feedback_please_happy_toast">WAIL这回高兴了 ;)</string>
+    <string name="main_track_loved">已标为最爱 :)</string>
+    <!-- END of main screen strings -->
+
+    <!-- START of tracks list screen strings -->
+    <string name="tracks_actionbar_title">曲目</string>
+    <string name="tracks_list_empty_motivation_text">试试从你最喜欢的音乐播放器上听歌，捕捉到的曲目将显示在这儿！</string>
+    <string name="track_artist_and_album_no_data">没有艺术家和专辑信息 :(</string>
+    <string name="track_status_waiting_for_scrobble">等待记录</string>
+    <string name="track_status_scrobbling">记录中…</string>
+    <string name="track_status_scrobble_error">记录错误</string>
+    <string name="track_status_scrobble_success">已记录</string>
+    <string name="track_status_unknown">未知状态 :(</string>
+    <string name="tracks_search_ab_title">搜索</string>
+    <string name="tracks_search_error_toast">无法继续搜索 :(</string>
+    <string name="tracks_search_no_results">没有搜索结果： %1$s :(</string>
+    <!-- END of tracks list screen strings -->
+
+    <!-- START of settings screen strings -->
+    <string name="settings_actionbar_title">WAIL设置</string>
+    <string name="settings_wail_enabled_toast">WAIL已启用！快来一发！</string>
+    <string name="settings_wail_disabled_toast">WAIL已禁用 ;(</string>
+    <string name="settings_scrobbling_options_title">记录选项</string>
+    <string name="settings_min_track_elapsed_time_in_percent_title">最短曲目播放时间百分比</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_title">最短曲目播放时间秒数</string>
+    <string name="settings_min_track_elapsed_time_in_percent_desc">WAIL将只在你播放了这首歌长度的%1$s%%才会记录</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_desc">WAIL只在你播放了这首歌%1$秒后才会记录</string>
+    <string name="settings_min_track_elapsed_time_in_seconds_dialog_title">最短曲目播放时间秒数</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_title">最短曲目播放时间百分比</string>
+    <string name="settings_min_track_elapsed_time_in_percent_dialog_bottom_text">曲目当前值 %1$s%%</string>
+    <string name="settings_ignored_players_item_title">已忽略的媒体播放器</string>
+    <string name="settings_ignored_players_item_desc">WAIL不会记录在这些播放器上播放的曲目</string>
+    <string name="settings_ignored_players_activity_label">已忽略的媒体播放器</string>
+    <string name="settings_ignored_players_image_content_description">已忽略的播放器图像</string>
+    <string name="settings_confirm_unignoring_player">你想取消忽略播放器\"%s\"吗?</string>
+    <string name="settings_ignored_players_empty_text">你没有已忽略的播放器</string>
+    <string name="settings_lastfm_update_nowplaying_title">last.fm正在收听</string>
+    <string name="settings_lastfm_update_nowplaying_enabled_toast">Last.fm正在收听更新已启用</string>
+    <string name="settings_lastfm_update_nowplaying_disabled_toast">Last.fm正在收听更新已关闭</string>
+    <string name="settings_scrobbling_over_mobile_network_enabled_toast">通过手机网络记录已启用！</string>
+    <string name="settings_scrobbling_over_mobile_network_disabled_toast">通过手机网络记录已禁用！</string>
+    <string name="settings_notifications_title">通知</string>
+    <string name="settings_sound_notifications_title">声音通知</string>
+    <string name="settings_sound_notifications_description">曲目已记录声音等等…</string>
+    <string name="settings_status_bar_notifications_title">状态栏通知</string>
+    <string name="settings_theme_switch_label">深色主题</string>
+    <string name="settings_other">其他</string>
+    <string name="settings_email_to_developers">给开发者发邮件</string>
+    <string name="settings_email_dialog_title">选择电子邮件应用</string>
+    <string name="main_settings_menu_toggle_wail">切换WAIL</string>
+    <string name="settings_disable_scrobbling_over_mobile_network">通过手机网络记录</string>
+
+    <!-- END of settings screen strings -->
+
+    <!-- START of sound notifications screen strings -->
+    <string name="settings_sound_notifications_activity_label">声音通知</string>
+    <string name="settings_sound_notifications_pro_tip">高手提示:轻触声音描述来播放它</string>
+    <string name="settings_notifications_track_scrobbled">WAIL已标记曲目为已记录</string>
+    <string name="settings_track_was_skipped">WAIL跳过了这个曲目，因为没有播放到必要的时间</string>
+    <string name="settings_sound_notifications_toast_can_not_play_sound">无法播放声音 :(</string>
+    <string name="settings_logout">登出</string>
+    <string name="setting_logout_warning">所有记录数据将会被删除！你确定吗？</string>
+    <!-- END of sound notifications screen strings -->
+
+    <string name="settings_status_bar_notifications_activity_label">状态栏通知</string>
+    <string name="settings_notifications_track_now_scrobbling">WAIL正在记录曲目</string>
+    <string name="settings_notifications_min_priority">最低通知优先级</string>
+
+    <string name="notifications_now_scrobbling">正在记录</string>
+    <string name="notifications_love_current_track">标记这首歌为最爱</string>
+    <string name="notifications_track_loved">已标为最爱</string>
+
+    <!-- START of some common strings -->
+    <string name="dialog_cancel">取消</string>
+    <string name="dialog_save">保存</string>
+    <string name="drawer_registered_at">"已注册"</string>
+    <string name="drawer_item_image_content_description">抽屉项目图片</string>
+
+    <string-array name="drawer_items">
+        <item>主界面</item>
+        <item>曲目</item>
+        <item>设置</item>
+    </string-array>
+
+    <string-array name="track_actions">
+        <item>最爱</item>
+    </string-array>
+
+    <!-- Some languages has 3 word forms depending on word items count -->
+    <!-- But English has only 2 word forms -->
+    <string-array name="word_form_track">
+        <item>曲目</item>
+        <!-- example: 1 track -->
+        <item>曲目</item>
+        <!-- example: 2 tracks, 3, .... infinity -->
+        <!-- <item>3rd word form</item> -->
+        <!-- if your language requires 3rd word form, uncomment and  write it above -->
+
+        <!-- example for Russian language -->
+        <!-- 1 трек, 2 трека, 3 трека, 4 трека, 5 треков -->
+        <!-- as you see, we got 3 word forms: "трек", "трека", "треков" -->
+    </string-array>
+
+    <!-- same as word_form_tracks -->
+    <string-array name="word_forms_second">
+        <item>秒</item>
+        <item>秒</item>
+        <!-- <item>3rd word form</item> -->
+    </string-array>
+    <!-- END of some common strings -->
+
+    <!-- START of widget strings -->
+    <string name="widget_nothing_to_love">没有可标为最爱的当前播放曲目！</string>
+    <!-- END of widget strings -->
+
+</resources>
